@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>대학원 유학생 영어 논문 작성 LMS</title>
+    <meta
+      name="description"
+      content="대학원 유학생을 위한 영어 논문 작성 수업 LMS. 주차별 강의자료, 학습목표, 과제, 체크리스트, 논문 작성 템플릿을 제공합니다."
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="주요 메뉴">
+        <a class="brand" href="#home">Academic Writing LMS</a>
+        <div class="nav-links">
+          <a href="#modules">주차별 학습</a>
+          <a href="#studio">작성 도구</a>
+          <a href="#assessment">평가</a>
+          <a href="#materials">자료실</a>
+        </div>
+      </nav>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Graduate Academic Writing in English</p>
+          <h1>대학원 유학생을 위한 영어 논문 작성 수업</h1>
+          <p>
+            연구 아이디어, 문헌고찰, 방법론, 결과와 논의, 연구윤리, 커리어 문서까지
+            15주 과정으로 정리한 실전형 LMS입니다.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#modules">학습 시작</a>
+            <a class="button secondary" href="#studio">논문 작성 도구</a>
+          </div>
+        </div>
+        <aside class="course-panel" aria-label="수업 요약">
+          <div>
+            <span class="panel-label">Course</span>
+            <strong>English Research Paper Writing</strong>
+          </div>
+          <div>
+            <span class="panel-label">Target</span>
+            <strong>International Graduate Students</strong>
+          </div>
+          <div>
+            <span class="panel-label">Format</span>
+            <strong>15-week LMS with PPT materials</strong>
+          </div>
+        </aside>
+      </section>
+    </header>
+
+    <main>
+      <section class="overview" aria-label="수업 핵심 흐름">
+        <article><strong>Research Design</strong><span>문제 설정, 연구 질문, 이론과 문헌의 정렬</span></article>
+        <article><strong>Paper Sections</strong><span>Title, Abstract, Introduction, Methods, Results, Discussion</span></article>
+        <article><strong>Reviewer Lens</strong><span>심사자가 보는 명료성, 기여도, 방법론, 윤리</span></article>
+        <article><strong>Ethics & AI</strong><span>연구윤리, AI 활용, 투명성, 개인정보 보호</span></article>
+      </section>
+
+      <section class="dashboard" aria-label="학습 현황">
+        <div class="progress-card"><div><p class="section-kicker">My Progress</p><h2>학습 진행률</h2></div><div class="progress-wrap"><div class="progress-bar" aria-hidden="true"><span id="progressBar"></span></div><strong id="progressText">0 / 15 완료</strong></div></div>
+        <div class="search-card"><label for="moduleSearch">주제 검색</label><input id="moduleSearch" type="search" placeholder="예: abstract, IRB, literature review" /></div>
+      </section>
+
+      <section class="section" id="modules"><div class="section-heading"><p class="section-kicker">Weekly Modules</p><h2>주차별 학습</h2><p>각 주차는 학습목표, 핵심개념, 수업활동, 과제, 체크리스트와 강의자료 다운로드로 구성했습니다.</p></div><div class="filters" aria-label="모듈 필터"><button class="filter active" data-filter="all" type="button">전체</button><button class="filter" data-filter="planning" type="button">연구설계</button><button class="filter" data-filter="writing" type="button">논문작성</button><button class="filter" data-filter="ethics" type="button">윤리·AI</button><button class="filter" data-filter="career" type="button">성장·커리어</button></div><div class="module-grid" id="moduleGrid"></div></section>
+
+      <section class="section studio" id="studio"><div class="section-heading"><p class="section-kicker">Writing Studio</p><h2>논문 작성 도구</h2><p>수업 중 바로 사용할 수 있는 문장 구조와 점검표입니다. 버튼을 누르면 템플릿을 복사할 수 있습니다.</p></div><div class="tool-grid" id="toolGrid"></div></section>
+
+      <section class="section two-column" id="assessment"><div><p class="section-kicker">Assessment</p><h2>평가와 제출 흐름</h2><div class="timeline"><article><span>01</span><strong>Research Question Brief</strong><p>연구 주제, 연구 공백, 목적, 연구 질문을 1쪽으로 정리합니다.</p></article><article><span>02</span><strong>Literature Review Matrix</strong><p>핵심 선행연구를 비교하고 연구 공백을 문장으로 도출합니다.</p></article><article><span>03</span><strong>Paper Section Draft</strong><p>초록, 서론, 방법론, 결과 또는 논의 중 한 섹션을 완성합니다.</p></article><article><span>04</span><strong>Final Research Portfolio</strong><p>논문 초안, 윤리 점검표, 수정 계획, 발표 자료를 묶어 제출합니다.</p></article></div></div><aside class="note-box"><h3>학생용 개인 메모</h3><p>이 브라우저에만 저장되는 간단한 학습 메모입니다.</p><textarea id="studentNote" placeholder="이번 주 연구 질문, 피드백, 수정할 문장을 적어두세요."></textarea><button class="button primary" id="saveNote" type="button">메모 저장</button><p class="save-state" id="saveState" aria-live="polite"></p></aside></section>
+
+      <section class="section" id="materials"><div class="section-heading"><p class="section-kicker">Materials</p><h2>강의자료 다운로드</h2><p>강의자료는 주차별 자료실에 연결됩니다. 학생은 필요한 주차 자료를 바로 확인할 수 있습니다.</p></div><div class="materials-list" id="materialsList"></div></section>
+    </main>
+
+    <footer class="site-footer"><strong>대학원 유학생 영어 논문 작성 LMS</strong><span>Academic writing aligns purpose, research questions, methods, evidence, and contribution.</span></footer>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
