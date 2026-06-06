@@ -70,10 +70,13 @@ textarea {
 }
 
 .nav-links a {
+  align-items: center;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
   color: rgba(255, 255, 255, 0.88);
+  display: inline-flex;
   font-size: 14px;
+  min-height: 38px;
   padding: 8px 14px;
 }
 
@@ -418,6 +421,16 @@ main,
 .materials-list a {
   color: var(--blue);
   font-weight: 800;
+}
+
+.module-card .download {
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px 12px;
 }
 
 .two-column {
