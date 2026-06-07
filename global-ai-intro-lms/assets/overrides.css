@@ -68,6 +68,24 @@ strong {
     width: 100vw;
   }
 
+  .hero > div,
+  .lead,
+  .note,
+  .quick-grid,
+  .section,
+  .course-panel,
+  .quick-grid article,
+  .start-grid article,
+  .module,
+  .assignment-grid article {
+    max-width: calc(100vw - 36px);
+  }
+
+  .quick-grid,
+  .section {
+    width: calc(100vw - 36px);
+  }
+
   .nav a {
     min-width: 0;
     padding: 8px 6px;
