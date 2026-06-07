@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>인공지능과 TED PDF 다운로드 LMS</title>
+  <style>
+    html,body{margin:0;width:100%;height:100%;background:#f5f7f8;font-family:"Segoe UI","Noto Sans KR",Arial,sans-serif}
+    .bar{position:fixed;left:0;right:0;top:0;z-index:3;display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 16px;background:#0b4f4b;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+    .bar strong{font-size:15px}.bar span{font-size:13px;opacity:.9}iframe{position:absolute;left:0;top:52px;width:100%;height:calc(100% - 52px);border:0;background:white}
+    @media(max-width:640px){.bar{align-items:flex-start;flex-direction:column}.bar span{font-size:12px}iframe{top:76px;height:calc(100% - 76px)}}
+  </style>
+</head>
+<body>
+  <div class="bar"><strong>인공지능과 TED 학생용 LMS</strong><span>초록색 다운로드 버튼을 누르면 PDF 파일로 저장됩니다.</span></div>
+  <iframe id="lmsFrame" src="student-ready.html?v=pdf-downloads" title="인공지능과 TED 학생용 LMS"></iframe>
+  <script>
+    const frame=document.getElementById('lmsFrame');
+    frame.addEventListener('load',()=>{
+      const doc=frame.contentDocument;
+      if(!doc || doc.querySelector('script[data-pdf-downloads]')) return;
+      const script=doc.createElement('script');
+      script.src='assets/pdf-downloads.js?v=20260608';
+      script.dataset.pdfDownloads='true';
+      doc.body.appendChild(script);
+    });
+  </script>
+</body>
+</html>
