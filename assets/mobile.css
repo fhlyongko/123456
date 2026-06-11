@@ -1,154 +1,43 @@
-body {
-  overflow-x: hidden;
-}
-
-h1,
-h2,
-h3,
-p {
-  overflow-wrap: break-word;
-}
-
-.nav-links a {
-  align-items: center;
-  display: inline-flex;
-  min-height: 38px;
-}
-
-.module-card .download {
-  align-items: center;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  display: inline-flex;
-  justify-content: center;
-  min-height: 42px;
-  padding: 8px 12px;
-}
-
-@media (max-width: 900px) {
+@media (max-width: 760px) {
   .site-header {
     min-height: auto;
   }
 
   .topbar {
-    align-items: stretch;
-    flex-direction: column;
+    align-items: flex-start;
     gap: 14px;
   }
 
-  .nav-links {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: thin;
-    white-space: nowrap;
-  }
-
-  .nav-links a {
-    flex: 0 0 auto;
+  .brand {
+    line-height: 1.35;
   }
 
   .hero {
-    align-items: stretch;
     min-height: auto;
-    padding-top: 28px;
-  }
-
-  .hero,
-  .dashboard,
-  .two-column,
-  .overview,
-  .module-grid,
-  .tool-grid,
-  .coursework-grid,
-  .rubric-grid,
-  .materials-list {
-    grid-template-columns: 1fr;
-  }
-
-  .progress-card {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  .progress-wrap {
-    min-width: 0;
-  }
-
-  .overview {
-    margin-top: -32px;
-  }
-
-  .course-panel {
-    max-width: 520px;
-  }
-
-  .note-box {
-    position: static;
-  }
-}
-
-@media (max-width: 560px) {
-  .topbar,
-  .hero,
-  main,
-  .site-footer {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .hero {
-    gap: 22px;
-    padding-bottom: 52px;
-  }
-
-  h1 {
-    font-size: 34px;
-    line-height: 1.12;
-  }
-
-  h2 {
-    font-size: 26px;
-  }
-
-  h3 {
-    font-size: 19px;
+    padding-top: 34px;
   }
 
   .hero-copy p:not(.eyebrow) {
     font-size: 17px;
   }
 
-  .hero-actions,
-  .card-actions {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .button,
-  .module-card .download {
+  .hero-actions .button {
     width: 100%;
   }
 
   .overview {
-    margin-top: -24px;
+    margin-top: -32px;
   }
 
-  .overview article,
-  .progress-card,
-  .search-card,
-  .module-card,
-  .tool-card,
-  .note-box,
-  .timeline article,
-  .coursework-grid article,
-  .rubric-grid article {
-    padding: 18px;
+  .dashboard,
+  .section {
+    margin-top: 0;
   }
 
-  .module-top {
+  .module-top,
+  .materials-list a,
+  .site-footer {
+    align-items: flex-start;
     flex-direction: column;
   }
 
@@ -156,31 +45,29 @@ p {
     width: 100%;
   }
 
-  .week-badge {
-    min-width: 0;
-  }
-
-  .section {
-    padding-top: 58px;
-  }
-
-  .filters {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 4px;
-  }
-
-  .filter {
-    flex: 0 0 auto;
-  }
-
   .materials-list a {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 12px;
+    gap: 6px;
   }
 
-  .site-footer {
-    flex-direction: column;
+  .note-box {
+    position: static;
+  }
+}
+
+@media (max-width: 420px) {
+  h1 {
+    font-size: 34px;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  .module-card,
+  .tool-card,
+  .progress-card,
+  .search-card,
+  .note-box {
+    padding: 18px;
   }
 }

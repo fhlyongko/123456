@@ -3,7 +3,7 @@ const modules = [
     week: 1,
     title: "영어 논문 작성의 큰 지도",
     category: "writing",
-    file: "week1-academic-writing-summary-40slides-redesign.pptx",
+    file: "week1-academic-writing-summary-40slides-redesign.pdf",
     goals: ["Academic English의 목적 이해", "연구 질문, 방법, 증거, 기여의 정렬", "리뷰어 관점으로 논문 구조 보기"],
     concepts: ["EAP/ESP", "Simple and clear English", "Research alignment"],
     activity: "자신의 연구 주제를 한 문장으로 쓰고 목적, 질문, 방법, 기여를 연결해 본다.",
@@ -14,7 +14,7 @@ const modules = [
     week: 2,
     title: "연구계획 수립과 문제 설정",
     category: "planning",
-    file: "week2-research-planning-academic-writing-40slides-redesign.pptx",
+    file: "week2-research-planning-academic-writing-40slides-redesign.pdf",
     goals: ["논문 작성 계획 단계 이해", "서론의 funnel 구조 정리", "문제해결형 연구 주제 설계"],
     concepts: ["Research planning", "Introduction funnel", "Problem definition"],
     activity: "관심 주제를 연구 문제로 좁히고 why, what, how 질문을 만든다.",
@@ -25,7 +25,7 @@ const modules = [
     week: 3,
     title: "이론적 기반과 문헌고찰",
     category: "planning",
-    file: "week3-theory-literature-submission-40slides.pptx",
+    file: "week3-theory-literature-submission-40slides.pdf",
     goals: ["이론적 기반의 의미 이해", "문헌고찰의 탐색, 조직화, 작성", "투고 가능한 연구 프로필 만들기"],
     concepts: ["Theoretical foundation", "Literature review", "Journal submission"],
     activity: "선행연구 5편을 비교해 공통점, 차이점, 연구 공백을 표로 정리한다.",
@@ -36,7 +36,7 @@ const modules = [
     week: 4,
     title: "방법론, 결과 제시, 논의와 결론",
     category: "writing",
-    file: "week4-methodology-results-discussion-40slides.pptx",
+    file: "week4-methodology-results-discussion-40slides.pdf",
     goals: ["Methodology와 methods의 차이 이해", "결과 제시 방식 정리", "논의와 결론의 역할 구분"],
     concepts: ["Research paradigm", "Results", "Discussion moves"],
     activity: "자신의 연구방법을 철학적 전제, 자료수집, 분석 절차로 분리해 설명한다.",
@@ -47,7 +47,7 @@ const modules = [
     week: 5,
     title: "리뷰어 관점에서 논문 섹션 점검",
     category: "writing",
-    file: "week5-reviewer-view-paper-sections-40slides.pptx",
+    file: "week5-reviewer-view-paper-sections-40slides.pdf",
     goals: ["리뷰어 평가 기준 이해", "초록부터 결론까지 섹션별 기능 점검", "내 초안에 체크리스트 적용"],
     concepts: ["Reviewer lens", "Section alignment", "Journal fit"],
     activity: "논문 초록 또는 서론을 리뷰어 체크리스트로 진단한다.",
@@ -58,7 +58,7 @@ const modules = [
     week: 6,
     title: "연구 시작, 절차, IRB와 윤리",
     category: "ethics",
-    file: "week6-research-problem-procedure-ethics-40slides.pptx",
+    file: "week6-research-problem-procedure-ethics-40slides.pdf",
     goals: ["글쓰기 이전의 why 정리", "연구 절차와 IRB 이해", "윤리적 글쓰기 기준 확인"],
     concepts: ["Research procedure", "IRB", "Ethical writing"],
     activity: "연구 대상, 자료수집, 개인정보, 동의 절차의 위험 요소를 점검한다.",
@@ -69,7 +69,7 @@ const modules = [
     week: 7,
     title: "방법론에서 결론 작성까지",
     category: "writing",
-    file: "week7-methodology-results-writing-functions-40slides.pptx",
+    file: "week7-methodology-results-writing-functions-40slides.pdf",
     goals: ["양적, 질적, 혼합 연구 방법 정리", "결과 시각화와 논의 작성", "학술적 글쓰기 기능 활용"],
     concepts: ["Quantitative", "Qualitative", "Mixed methods", "Conclusion"],
     activity: "한 개의 표나 그림을 선택해 결과 문단과 논의 문단을 각각 작성한다.",
@@ -91,7 +91,7 @@ const modules = [
     week: 9,
     title: "시각 자료, 제안점, 한계점, 학문적 언어",
     category: "writing",
-    file: "week9-visual-references-recommendations-academic-language-40slides.pptx",
+    file: "week9-visual-references-recommendations-academic-language-40slides.pdf",
     goals: ["표와 그림을 본문에서 참조", "권장사항과 한계점 작성", "신중한 학술 표현 사용"],
     concepts: ["Visual reference", "Limitations", "Hedging", "Causality"],
     activity: "표 또는 그림을 설명하는 문장 3개와 한계점 문장 2개를 작성한다.",
@@ -102,7 +102,7 @@ const modules = [
     week: 10,
     title: "학술 영어 논문 작성 핸드북",
     category: "writing",
-    file: "week10-academic-writing-handbook-summary-40slides.pptx",
+    file: "week10-academic-writing-handbook-summary-40slides.pdf",
     goals: ["학술 글쓰기 기본 원칙 종합", "아이디어부터 확산까지 전체 여정 이해", "명확성, 정확성, 증거 기반 점검"],
     concepts: ["Clarity", "Accuracy", "Evidence-based argument", "Research process"],
     activity: "내 논문 초안에서 모호한 문장 3개를 명확한 문장으로 고친다.",
@@ -113,7 +113,7 @@ const modules = [
     week: 11,
     title: "아이디어에서 연구보고까지",
     category: "planning",
-    file: "week11-academic-writing-research-process-40slides.pptx",
+    file: "week11-academic-writing-research-process-40slides.pdf",
     goals: ["연구 수행 과정과 글쓰기 연결", "인용과 증거 기반 논증 강화", "보고서에서 논문으로 발전"],
     concepts: ["Research process", "Citation", "Argumentation", "Revision"],
     activity: "선행연구 인용 문장을 단순 요약형에서 비판적 논증형으로 수정한다.",
@@ -124,7 +124,7 @@ const modules = [
     week: 12,
     title: "논문 사례 분석과 학문 커리어 문서",
     category: "career",
-    file: "week12-academic-career-writing-30slides.pptx",
+    file: "week12-academic-career-writing-30slides.pdf",
     goals: ["실제 논문의 구조와 기여 분석", "Cover Letter와 CV 이해", "Research/Teaching Statement 방향 설정"],
     concepts: ["Article analysis", "Cover letter", "CV", "Research statement"],
     activity: "샘플 논문 1편의 연구 공백, 방법, 결과, 기여를 역추적한다.",
@@ -135,7 +135,7 @@ const modules = [
     week: 13,
     title: "양적연구 영어 논문 작성",
     category: "writing",
-    file: "week13-quantitative-research-writing-40slides.pptx",
+    file: "week13-quantitative-research-writing-40slides.pdf",
     goals: ["양적연구 논문의 표준 구조 이해", "제목과 초록 템플릿 적용", "방법, 결과, 논의 문장 패턴 익히기"],
     concepts: ["Title pattern", "Abstract 5-sentence structure", "Methods", "Statistical results"],
     activity: "자신의 연구를 5문장 abstract 구조로 압축한다.",
@@ -146,7 +146,7 @@ const modules = [
     week: 14,
     title: "연구윤리와 AI 윤리",
     category: "ethics",
-    file: "week14-research-ai-ethics-39slides.pptx",
+    file: "week14-research-ai-ethics-39slides.pdf",
     goals: ["연구윤리 기본 원칙 이해", "FFP와 중복게재 위험 구분", "AI 도구 활용의 투명성 점검"],
     concepts: ["Integrity", "Belmont Report", "FFP", "AI transparency", "Privacy"],
     activity: "AI 활용 가능 범위와 disclosure 문장을 수업 맥락에 맞게 작성한다.",
@@ -157,7 +157,7 @@ const modules = [
     week: 15,
     title: "연구자의 성장과 발전",
     category: "career",
-    file: "week15-researcher-growth-20slides.pptx",
+    file: "week15-researcher-growth-20slides.pdf",
     goals: ["학술 글쓰기 성장 과정 성찰", "연구 확산과 역량 개발 계획", "다음 연구 로드맵 수립"],
     concepts: ["Reflection", "Research dissemination", "Growth roadmap", "Researcher development"],
     activity: "이번 학기 산출물을 바탕으로 성장 포트폴리오를 구성한다.",
@@ -219,10 +219,9 @@ function renderModules() {
     .forEach((module) => {
       const card = document.createElement("article");
       card.className = "module-card";
-      card.id = `week-${module.week}`;
       const checked = completed.has(module.week);
       const download = module.file
-        ? `<a class="download" href="#week-${module.week}">주차 내용 보기</a>`
+        ? `<a class="download" href="materials/${encodeURIComponent(module.file)}" download>PDF 다운로드</a>`
         : `<span class="tag">워크숍 자료 없음</span>`;
       card.innerHTML = `
         <div class="module-top">
@@ -279,9 +278,9 @@ function renderMaterials() {
     .filter((module) => module.file)
     .map(
       (module) => `
-      <a href="#week-${module.week}">
+      <a href="materials/${encodeURIComponent(module.file)}" download>
         <strong>Week ${module.week}. ${module.title}</strong>
-        <span>웹 학습자료</span>
+        <span>PDF</span>
       </a>
     `
     )
