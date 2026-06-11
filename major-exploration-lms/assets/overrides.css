@@ -1,0 +1,14 @@
+.button {
+  gap: 6px;
+}
+
+.course-facts {
+  grid-template-columns: 1fr 1.35fr 0.8fr;
+  max-width: 720px;
+}
+
+@media (max-width: 640px) {
+  .course-facts {
+    grid-template-columns: 1fr;
+  }
+}
