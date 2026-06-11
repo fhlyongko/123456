@@ -13,3 +13,6 @@ Eliza, Deep Blue, Watson, AlphaGo에서 오늘의 AI 활용 윤리까지 연결�
 - AI 시스템 사례 카드 정리
 - AI 활용법 토론
 - 미니 퀴즈와 Exit Ticket 작성
+
+## 수업 후 과제
+AI 리터러시가 필요한 이유를 자신의 학업 상황과 연결해 설명한다.
