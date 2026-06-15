@@ -221,7 +221,7 @@ function renderModules() {
       card.className = "module-card";
       const checked = completed.has(module.week);
       const download = module.file
-        ? `<a class="download" href="materials/${encodeURIComponent(module.file)}" download>PDF 다운로드</a>`
+        ? `<a class="download" href="materials/${encodeURIComponent(module.file)}" download="${module.file}" type="application/pdf">PDF 다운로드</a>`
         : `<span class="tag">워크숍 자료 없음</span>`;
       card.innerHTML = `
         <div class="module-top">
@@ -278,7 +278,7 @@ function renderMaterials() {
     .filter((module) => module.file)
     .map(
       (module) => `
-      <a href="materials/${encodeURIComponent(module.file)}" download>
+      <a href="materials/${encodeURIComponent(module.file)}" download="${module.file}" type="application/pdf">
         <strong>Week ${module.week}. ${module.title}</strong>
         <span>PDF</span>
       </a>
