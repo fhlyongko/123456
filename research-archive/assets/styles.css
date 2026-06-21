@@ -200,6 +200,10 @@ h1 {
   padding: 20px;
 }
 
+#notice {
+  scroll-margin-top: 124px;
+}
+
 .section-title-row,
 .section-head {
   display: flex;
