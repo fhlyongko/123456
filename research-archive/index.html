@@ -8,30 +8,76 @@
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#home">이용직 / Yong-Jik Lee</a>
-    <nav aria-label="Primary navigation">
-      <a href="#profile">소개</a>
-      <a href="#self-intro">연구분야</a>
-      <a href="#publications">논문</a>
-      <a href="#projects">연구과제</a>
-      <a href="#education">학력</a>
-      <a href="#career">경력</a>
-      <a href="#service">활동</a>
-      <a href="#contact">연락처</a>
-    </nav>
+  <header class="site-header" id="home">
+    <div class="utility-bar">
+      <div>
+        <a href="https://www.changwon.ac.kr" target="_blank" rel="noopener noreferrer">국립창원대학교</a>
+        <a href="#contact">외부 프로필 링크 연결</a>
+      </div>
+      <span>Changwon National University</span>
+    </div>
+    <div class="masthead">
+      <a class="brand" href="#home">
+        <span>국립창원대학교</span>
+        <strong>이용직 교수</strong>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#profile">PROFILE</a>
+        <a href="#self-intro">RESEARCH</a>
+        <a href="#publications">PUBLICATIONS</a>
+        <a href="#projects">PROJECTS</a>
+        <a href="#education">CV</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="home">
-    <section class="hero">
-      <div>
+  <main>
+    <section class="main-visual" aria-label="메인비주얼">
+      <div class="visual-copy">
+        <p>Changwon National University</p>
         <h1>이용직 교수</h1>
+        <strong>교육, 언어, AI 리터러시 연구 아카이브</strong>
+        <span>Publications · Projects · Career · Academic Profile</span>
       </div>
-      <div class="profile-visual" aria-label="Yong-Jik Lee research profile visual">
-        <span>Yong-Jik Lee</span>
-        <strong>Education Research Archive</strong>
-        <p>Publications · Projects · Career · Academic Profile</p>
-      </div>
+      <img src="assets/research-profile-card.png" alt="Yong-Jik Lee Research visual">
+    </section>
+
+    <section class="home-board" aria-label="요약 정보">
+      <article class="notice-card">
+        <div class="section-title-row">
+          <h2>NOTICE</h2>
+          <a href="#publications">더보기</a>
+        </div>
+        <ul class="notice-list">
+          <li><a href="#publications">논문 제목을 클릭하면 DOI 또는 학술 검색 페이지로 바로 연결됩니다.</a><time>2026</time></li>
+          <li><a href="#projects">AI 기반 디지털 포트폴리오 연구과제 정보를 확인할 수 있습니다.</a><time>2026</time></li>
+          <li><a href="#contact">Google Scholar, ResearchGate, ORCID, Scopus 외부 프로필을 연결했습니다.</a><time>Profile</time></li>
+        </ul>
+      </article>
+      <article class="quick-card">
+        <div class="section-title-row">
+          <h2>RESEARCH</h2>
+          <a href="#self-intro">더보기</a>
+        </div>
+        <div class="quick-links">
+          <a href="#self-intro">연구분야</a>
+          <a href="#publications">논문실적</a>
+          <a href="#projects">연구과제</a>
+          <a href="#stats">연도별 통계</a>
+        </div>
+      </article>
+      <article class="quick-card">
+        <div class="section-title-row">
+          <h2>PROFILE</h2>
+          <a href="#profile">더보기</a>
+        </div>
+        <div class="profile-mini">
+          <strong>국립창원대학교</strong>
+          <span>사림아너스학부(자율전공학부)</span>
+          <span>Artificial intelligence · English language teaching · Global competency</span>
+        </div>
+      </article>
     </section>
 
     <section class="metrics">
