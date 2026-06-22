@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이용직 교수 · Research Archive</title>
+<style>
+  :root{
+    --ink:#1c1b19;--text:#2f2d2a;--muted:#6f6b64;--faint:#787469;
+    --line:#e4e0d9;--soft:#f1ede6;--bg:#fcfbf8;--card:#fff;--accent:#2b2b2b;--chip:#f2efe9;
+    --ssci:#1f1f1f;--scopus:#3f3f3f;--kci:#857f74;
+    --maxw:880px;--navh:56px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--ink)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  nav.top{position:sticky;top:0;z-index:40;background:rgba(252,251,248,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--navh)}
+  nav.top .brand{font-weight:700;font-size:15px}
+  nav.top .links a{color:var(--muted);text-decoration:none;font-size:13.5px;margin-left:18px;padding-bottom:2px;border-bottom:2px solid transparent}
+  nav.top .links a:hover,nav.top .links a.active{color:var(--ink);border-bottom-color:var(--accent)}
+  @media(max-width:680px){nav.top .links{display:none}}
+
+  header.hero{padding:54px 0 30px}
+  .hrow{display:flex;gap:28px;align-items:center}
+  .avatar{flex:0 0 auto;width:104px;height:104px;border-radius:50%;background:linear-gradient(150deg,#3a3a3a,#1e1e1e);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:38px}
+  .hero h1{font-family:var(--serif);font-size:36px;margin:0 0 4px;color:var(--ink);line-height:1.15}
+  .hero .role{font-size:16px;color:var(--text);margin:0 0 2px;font-weight:500}
+  .hero .affil{font-size:14px;color:var(--muted);margin:0}
+  .links-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .links-row a{font-size:12.5px;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:5px 12px;text-decoration:none;background:var(--card)}
+  .links-row a:hover{background:var(--soft)}
+  @media(max-width:560px){.hrow{flex-direction:column;text-align:center}.links-row{justify-content:center}.hero h1{font-size:30px}}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:6px 0}
+  .stat{background:var(--soft);border-radius:9px;padding:15px 16px}
+  .stat .n{font-family:var(--serif);font-size:23px;color:var(--ink);line-height:1}
+  .stat .l{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.35}
+  @media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  section{padding:34px 0;border-top:1px solid var(--soft);scroll-margin-top:calc(var(--navh)+10px)}
+  .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:700;margin:0 0 6px}
+  h2{font-size:22px;margin:0 0 16px;color:var(--ink);font-weight:700}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 4px}
+  .tags span{background:var(--chip);border:1px solid var(--line);color:var(--text);padding:6px 13px;border-radius:18px;font-size:13.5px}
+  .focus p{font-size:15px;color:var(--text);margin:14px 0 0;max-width:680px}
+
+  .chart{display:flex;align-items:flex-end;gap:14px;height:120px;padding:6px 0 0;border-bottom:1px solid var(--line);margin:6px 0 6px}
+  .col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:6px}
+  .col .bar{width:60%;max-width:48px;background:var(--accent);border-radius:4px 4px 0 0}
+  .col .yr{font-size:12px;color:var(--muted)} .col .v{font-size:12.5px;color:var(--ink);font-weight:650}
+
+  .filters{display:flex;flex-wrap:wrap;gap:7px;margin:4px 0 18px}
+  .filter{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:18px;padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+  .filter.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .yr-head{font-family:var(--serif);font-size:15px;color:var(--faint);margin:20px 0 10px;padding-bottom:5px;border-bottom:1px solid var(--line)}
+  .pub{padding:0 0 16px;margin-bottom:16px;border-bottom:1px solid var(--soft)}
+  .pub:last-child{border-bottom:none}
+  .pub .t{font-weight:650;color:var(--ink);line-height:1.4;font-size:15.5px}
+  .pub .t a{text-decoration:none;border-bottom:1px solid transparent} .pub .t a:hover{border-bottom-color:var(--ink)}
+  .pub .a{font-size:13.5px;color:var(--muted);margin-top:3px} .pub .a b{color:var(--text);font-weight:700}
+  .pub .v{font-size:13.5px;margin-top:3px} .pub .v em{font-style:italic;color:var(--text)}
+  .badge{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.03em;padding:2px 7px;border-radius:4px;margin-left:7px;color:#fff;vertical-align:1px}
+  .badge.SSCI{background:var(--ssci)} .badge.SCOPUS{background:var(--scopus)} .badge.KCI{background:var(--kci)}
+  .ptags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+  .ptags span{font-size:11px;color:var(--muted);background:var(--soft);border-radius:4px;padding:1px 7px}
+
+  .proj{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:9px;padding:20px 22px}
+  .proj h3{font-size:16.5px;margin:0 0 4px;color:var(--ink)}
+  .proj .en{font-size:13px;color:var(--muted);font-style:italic;margin:0 0 10px}
+  .proj .meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);margin-bottom:10px}
+  .proj .meta b{color:var(--ink);font-weight:600}
+  .proj p{font-size:14px;color:var(--text);margin:0 0 10px}
+
+  .cv{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  @media(max-width:680px){.cv{grid-template-columns:1fr;gap:24px}}
+  .cv h3{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:0 0 14px;font-weight:700}
+  .tl .it{position:relative;padding-left:16px;margin-bottom:16px;border-left:1px solid var(--line)}
+  .tl .it::before{content:"";position:absolute;left:-4px;top:5px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .tl .it .yr{font-size:12px;color:var(--faint)}
+  .tl .it .ti{font-size:14.5px;color:var(--ink);font-weight:650;margin:1px 0}
+  .tl .it .ds{font-size:13px;color:var(--muted);line-height:1.5}
+  .diss{margin-top:18px;background:var(--soft);border-radius:8px;padding:14px 16px}
+  .diss .lab{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:700}
+  .diss p{font-size:13.5px;color:var(--text);margin:5px 0 0;line-height:1.5;font-style:italic}
+  .award{margin-top:18px;font-size:14px;color:var(--text)} .award b{color:var(--ink)}
+
+  footer{padding:30px 0 60px;border-top:1px solid var(--line);text-align:center;color:var(--faint);font-size:13px}
+  @media print{nav.top{display:none}body{background:#fff}.pub,.proj,.tl .it{break-inside:avoid}}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <span class="brand">이용직 · Yong-Jik Lee</span>
+  <span class="links"><a href="#profile">Profile</a><a href="#publications">Publications</a><a href="#projects">Projects</a><a href="#cv">CV</a><a href="#contact">Contact</a></span>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="hrow">
+    <div class="avatar">이</div>
+    <div>
+      <h1>이용직 <span style="font-size:22px;color:var(--muted)">Yong-Jik Lee</span></h1>
+      <p class="role">국립창원대학교 사림아너스학부 교수</p>
+      <p class="affil">Professor, School of Sarim Honors · Changwon National University</p>
+      <div class="links-row">
+        <a href="https://scholar.google.com/citations?hl=ko&user=Jzv1a7MAAAAJ&view_op=list_works&sortby=pubdate">Google Scholar</a>
+        <a href="https://orcid.org/0000-0001-8783-2237">ORCID</a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=57215574762">Scopus</a>
+        <a href="https://www.researchgate.net/profile/Yong-Jik-Lee-2?ev=hdr_xprf">ResearchGate</a>
+        <a href="https://sites.google.com/view/dr-yong-jik-lee/home">Website</a>
+      </div>
+    </div>
+  </div>
+</div></header>
+
+<div class="wrap"><div class="stats">
+  <div class="stat"><div class="n">19</div><div class="l">Peer-reviewed<br>publications</div></div>
+  <div class="stat"><div class="n">17</div><div class="l">SSCI · Scopus<br>indexed</div></div>
+  <div class="stat"><div class="n">6</div><div class="l">Published<br>in 2026</div></div>
+  <div class="stat"><div class="n">NRF</div><div class="l">PI grant<br>2026–2029</div></div>
+</div></div>
+
+<section id="profile"><div class="wrap">
+  <p class="kicker">Research Focus</p>
+  <h2>연구 분야</h2>
+  <div class="focus">
+    <div class="tags">
+      <span>AI Literacy</span><span>English Language Teaching</span><span>Generative AI</span>
+      <span>English-Medium Instruction (EMI)</span><span>Teacher Education</span>
+      <span>Multilingual Education</span><span>Global Competency</span>
+    </div>
+    <p>영어교육·교사교육·AI/디지털교육과 EMI·다중언어 교육 맥락을 연결해, 영어교육 이론과 실제 수업 설계, AI 도구 활용, 학습자 다양성을 통합하는 연구를 수행합니다.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="kicker">Output by Year</p>
+  <h2>연도별 논문 수</h2>
+  <div class="chart" id="chart"></div>
+</div></section>
+
+<section id="publications"><div class="wrap">
+  <p class="kicker">Publications</p>
+  <h2>논문 실적</h2>
+  <div class="filters" id="filters">
+    <button class="filter active" data-f="all">전체</button>
+    <button class="filter" data-f="SSCI">SSCI</button>
+    <button class="filter" data-f="SCOPUS">SCOPUS</button>
+    <button class="filter" data-f="KCI">KCI</button>
+  </div>
+  <div id="pubs"></div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <p class="kicker">Funded Projects</p>
+  <h2>연구과제</h2>
+  <div class="proj">
+    <h3>자율전공학부생의 글로벌 역량 개발을 지원하는 AI 기반 디지털 포트폴리오 시스템 개발</h3>
+    <p class="en">Developing an AI-Enabled Digital Portfolio System to Support Personalized Global Competence for Undeclared-Major Students</p>
+    <div class="meta">
+      <span>기간 <b>2026.06 – 2029.05</b></span>
+      <span>역할 <b>연구책임자 (단독연구)</b></span>
+      <span>지원 <b>한국연구재단 · 신진연구</b></span>
+    </div>
+    <p>자율전공학부 학생의 글로벌 역량을 진단·관리·강화하는 AI 기반 디지털 포트폴리오 시스템을 개발하고, 역량 측정 도구·맞춤형 학습경로·학습분석 피드백을 구축하는 3년 과제.</p>
+    <div class="ptags"><span>Global competence</span><span>Digital portfolio</span><span>AI personalization</span><span>Learning analytics</span></div>
+  </div>
+</div></section>
+
+<section id="cv"><div class="wrap">
+  <p class="kicker">Curriculum Vitae</p>
+  <h2>학력 · 경력</h2>
+  <div class="cv">
+    <div>
+      <h3>Education</h3>
+      <div class="tl">
+        <div class="it"><div class="yr">2014 – 2018</div><div class="ti">Ph.D., ESOL / Bilingual Education</div><div class="ds">University of Florida, USA · Curriculum and Instruction</div></div>
+        <div class="it"><div class="yr">2010 – 2012</div><div class="ti">M.A., TESL</div><div class="ds">Indiana State University, USA</div></div>
+        <div class="it"><div class="yr">2003 – 2009</div><div class="ti">B.A., English</div><div class="ds">Chung-Ang University, Korea</div></div>
+      </div>
+      <div class="diss">
+        <span class="lab">Doctoral Dissertation</span>
+        <p>An Exploratory Study of Pre-service Teachers and Their Self-Efficacy Beliefs as Teachers of English Language Learners Using Micro-Teaching Experiences (Univ. of Florida, 2018)</p>
+      </div>
+    </div>
+    <div>
+      <h3>Appointments</h3>
+      <div class="tl">
+        <div class="it"><div class="yr">2025.06 – 현재</div><div class="ti">조교수 · 국립창원대학교</div><div class="ds">사림아너스학부(자율전공학부)</div></div>
+        <div class="it"><div class="yr">2024.09 – 2025.12</div><div class="ti">초빙교원 · 가톨릭관동대학교</div><div class="ds">영어교육과 · 영어교육과정·교수공학</div></div>
+        <div class="it"><div class="yr">2023.09 – 2024.08</div><div class="ti">전임연구원 · 전남대학교</div><div class="ds">AI디지털교과서 교원연수·연구</div></div>
+        <div class="it"><div class="yr">2019.03 – 2020.02</div><div class="ti">조교수 · 극동대학교</div><div class="ds">교양영어·영어몰입프로그램 운영</div></div>
+      </div>
+      <p class="award"><b>수상</b> · 학술대상, 한국산학기술학회 (2021)</p>
+    </div>
+  </div>
+</div></section>
+
+<footer id="contact"><div class="wrap">© 2026 이용직 Yong-Jik Lee · 국립창원대학교 · Updated 2026-06</div></footer>
+
+<script>
+const me=/이용직|Yong-?Jik Lee/g;
+const P=[
+ {t:"University students' perspectives on integrating generative AI into English language learning",a:"이용직, Masashi Otani",v:"International Journal of Evaluation and Research in Education",y:2026,x:"SCOPUS",doi:"https://doi.org/10.11591/ijere.v15i1.35223",g:["생성형 AI","영어학습"]},
+ {t:"Integrating Generative AI into English Learning: Insights from Korean University EFL Students",a:"Yong-Jik Lee, Robert O. Davis, Jungin Choi",v:"The Journal of Asia TEFL",y:2026,x:"SCOPUS",doi:"https://doi.org/10.18823/asiatefl.2026.23.1.10.128",g:["Generative AI","EFL","higher education"]},
+ {t:"Cognitive Load and Working Memory in Multimedia Video Podcasts: Effects of Elaborative and Seductive Details",a:"Robert O. Davis, Yong-Jik Lee, Joseph Vincent, Ji Hae Lee",v:"Journal of Intelligence",y:2026,x:"SSCI",doi:"https://doi.org/10.3390/jintelligence14050074",g:["cognitive load","multimedia learning"]},
+ {t:"Examining Artificial Intelligence (AI) Literacy Among First-Year Students in Korean Higher Education",a:"Yong-Jik Lee, Seung-Hoon Jeong",v:"Journal of Curriculum and Teaching",y:2026,x:"SCOPUS",doi:"https://doi.org/10.5430/jct.v15n2p284",g:["AI literacy","first-year students"]},
+ {t:"Disciplinary Differences in University Students' AI Adoption: a Technology Acceptance Model Approach",a:"Yong-Jik Lee, Hyun Cheol Choi",v:"International Journal of Information and Education Technology",y:2026,x:"SCOPUS",doi:"https://doi.org/10.18178/ijiet.2026.16.6.2613",g:["AI adoption","TAM"]},
+ {t:"Exploring EFL Students' Engagement with Generative AI: Experiences, Perceptions, and Ethical Concerns",a:"Yong-Jik Lee, Robert Davis",v:"Journal of Education and Learning (EduLearn)",y:2026,x:"SCOPUS",doi:"",g:["EFL","Generative AI","ethics"]},
+ {t:"EFL University Students' Motivation, Cognitive Load, and Satisfaction with Using GenAI for English Learning",a:"이용직, Masashi Otani",v:"LLT Journal: A Journal on Language and Language Teaching",y:2025,x:"SCOPUS",doi:"https://doi.org/10.24071/llt.v28i2.11518",g:["GenAI","영어학습"]},
+ {t:"Assessing the Impact of Prior Coding and AI Learning on Non-Computing Majors' Perception of AI in a University Context",a:"이용직, Robert Davis",v:"Information",y:2025,x:"SCOPUS",doi:"https://doi.org/10.3390/info16040277",g:["AI/디지털교육"]},
+ {t:"An Exploratory Study on English Pre-service Teachers' AI Literacy",a:"이용직, 조형숙",v:"교육발전",y:2025,x:"KCI",doi:"https://doi.org/10.34245/jed.45.1.301",g:["예비교사","AI 리터러시"]},
+ {t:"University students' perceptions of artificial intelligence-based tools for English writing courses",a:"이용직, Robert Davis, 이선옥",v:"Online Journal of Communication and Media Technologies",y:2024,x:"SCOPUS",doi:"https://doi.org/10.30935/ojcmt/14195",g:["AI/디지털교육","영어쓰기"]},
+ {t:"A case study of implementing generative AI in university's general English courses",a:"이용직, Robert Davis",v:"Contemporary Educational Technology",y:2024,x:"SCOPUS",doi:"https://doi.org/10.30935/cedtech/15218",g:["생성형 AI","교양영어"]},
+ {t:"A Case Study of Implementing ChatGPT for University's General English Courses: Self-Regulated Learning and Grit",a:"이용직, Robert Davis",v:"중등영어교육",y:2024,x:"KCI",doi:"https://doi.org/10.20487/kasee.17.3.202406.73",g:["ChatGPT","교양영어"]},
+ {t:"Reimagining raciolinguistic ideologies through localized language-in-education policies in Turkey and Korea",a:"이용직, 김현진, Tuba Yilmaz",v:"Current Issues in Language Planning",y:2024,x:"SSCI",doi:"https://doi.org/10.1080/14664208.2024.2315682",g:["언어교육정책"]},
+ {t:"A multilingualism-as-resource approach in a graduate-level EMI program at a Korean university",a:"이용직, Tuba Yilmaz, Shuzhan Li",v:"Journal of Multilingual and Multicultural Development",y:2024,x:"SSCI",doi:"https://doi.org/10.1080/01434632.2024.2314659",g:["EMI","다중언어"]},
+ {t:"Rethinking linguistic capitals and asset-based language learning: bilingual Korean-Chinese instruction for international students",a:"이용직, 김현진, Yue Li",v:"Language and Education",y:2023,x:"SSCI",doi:"https://doi.org/10.1080/09500782.2023.2221221",g:["언어교육","다중언어"]},
+ {t:"English Teachers' Experiences of a Long-Term Professional Development for Teaching English through English",a:"이용직, Robert Davis",v:"MEXTESOL Journal",y:2022,x:"SCOPUS",doi:"https://doi.org/10.61871/mj.v46n2-12",g:["교사교육","영어교육"]},
+ {t:"Preparing Mainstream Teacher Candidates to Work with English Language Learners: Dissonance and Care Developing Agency",a:"이용직, 김현진, Ester de Jong",v:"European Journal of Educational Research",y:2022,x:"SCOPUS",doi:"https://doi.org/10.12973/eu-jer.11.3.1303",g:["교사교육","영어학습자"]},
+ {t:"International Students' Experiences of Content Language Integrated Learning in a Korean University",a:"이용직, 김현진, Yue Li",v:"International Journal of Educational Methodology",y:2022,x:"SCOPUS",doi:"https://doi.org/10.12973/ijem.8.3.421",g:["EMI","국제학생"]},
+ {t:"Korean Pre-service Teachers' Flipped Learning Experiences in a Teacher Education Program",a:"이용직, 정승훈, Yue Li",v:"International Journal of Educational Methodology",y:2022,x:"SCOPUS",doi:"https://doi.org/10.12973/ijem.8.4.711",g:["교사교육"]},
+];
+let flt="all";
+const $=s=>document.querySelector(s);
+function pubHTML(p){
+ const a=p.a.replace(me,m=>"<b>"+m+"</b>");
+ const title=p.doi?`<a href="${p.doi}">${p.t}</a>`:p.t;
+ return `<div class="pub"><div class="t">${title}</div>
+   <div class="a">${a}</div>
+   <div class="v"><em>${p.v}</em>, ${p.y}<span class="badge ${p.x}">${p.x}</span></div>
+   <div class="ptags">${p.g.map(g=>`<span>${g}</span>`).join("")}</div></div>`;
+}
+function drawPubs(){
+ const host=$("#pubs");host.innerHTML="";
+ const list=P.filter(p=>flt==="all"||p.x===flt);
+ let cy=null;
+ list.forEach(p=>{
+   if(p.y!==cy){cy=p.y;const h=document.createElement("div");h.className="yr-head";h.textContent=cy;host.appendChild(h);}
+   const d=document.createElement("div");d.innerHTML=pubHTML(p);host.appendChild(d.firstChild);
+ });
+ if(!list.length)host.innerHTML='<p style="color:var(--muted)">해당 색인 논문이 없습니다.</p>';
+}
+$("#filters").addEventListener("click",e=>{if(!e.target.matches(".filter"))return;document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));e.target.classList.add("active");flt=e.target.dataset.f;drawPubs();});
+// year chart
+const years={2022:0,2023:0,2024:0,2025:0,2026:0};
+P.forEach(p=>years[p.y]++);
+const mx=Math.max(...Object.values(years));
+$("#chart").innerHTML=Object.keys(years).map(y=>`<div class="col"><div class="v">${years[y]}</div><div class="bar" style="height:${Math.round(years[y]/mx*86)}px"></div><div class="yr">${y}</div></div>`).join("");
+drawPubs();
+// nav scroll-spy
+const secs=[...document.querySelectorAll('section[id], footer[id]')];
+const nav={};document.querySelectorAll('nav.top .links a').forEach(a=>nav[a.getAttribute('href').slice(1)]=a);
+addEventListener('scroll',()=>{let c=null;secs.forEach(s=>{if(s.getBoundingClientRect().top<=80)c=s.id;});Object.values(nav).forEach(a=>a.classList.remove('active'));if(c&&nav[c])nav[c].classList.add('active');},{passive:true});
+</script>
+</body>
+</html>
