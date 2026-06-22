@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전공탐구생활 온라인 강의실</title>
+<style>
+  :root{
+    --ink:#1d1c1a; --text:#33312d; --muted:#6f6b63; --faint:#8a857b;
+    --line:#e7e3da; --soft:#f1ede5; --bg:#fbfaf7; --card:#fff; --accent:#2b2b2b;
+    --s1:#3a6b6b; --s1b:#e3efed; --s2:#7a5d8a; --s2b:#efe8f3;
+    --s3:#a8602e; --s3b:#f6e9df; --s4:#3a5a86; --s4b:#e6edf6;
+    --maxw:960px; --navh:56px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--ink)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  nav.top{position:sticky;top:0;z-index:40;background:rgba(251,250,247,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--navh)}
+  nav.top .brand{font-weight:700;font-size:15px}
+  nav.top .links a{color:var(--muted);text-decoration:none;font-size:13.5px;margin-left:18px}
+  nav.top .links a:hover{color:var(--ink)}
+  @media(max-width:680px){nav.top .links{display:none}}
+
+  header.hero{padding:50px 0 30px}
+  .eyebrow{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600;margin:0 0 12px}
+  header.hero h1{font-family:var(--serif);font-size:34px;line-height:1.2;margin:0 0 12px;color:var(--ink)}
+  header.hero p.sub{font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:640px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+  .meta-row b{color:var(--ink);font-weight:650}
+
+  section{padding:34px 0;border-top:1px solid var(--soft);scroll-margin-top:calc(var(--navh) + 10px)}
+  .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:700;margin:0 0 6px}
+  h2{font-size:22px;margin:0 0 6px;color:var(--ink);font-weight:700}
+  .lead{color:var(--muted);font-size:15px;margin:0 0 22px}
+
+  .roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .stage{border-radius:10px;padding:16px 16px;border:1px solid var(--line)}
+  .stage .ph{font-size:12px;font-weight:700;letter-spacing:.04em}
+  .stage h3{font-size:16px;margin:8px 0 5px;color:var(--ink)}
+  .stage p{font-size:13px;color:var(--muted);margin:0;line-height:1.55}
+  .stage.s1{background:var(--s1b)} .stage.s1 .ph{color:var(--s1)}
+  .stage.s2{background:var(--s2b)} .stage.s2 .ph{color:var(--s2)}
+  .stage.s3{background:var(--s3b)} .stage.s3 .ph{color:var(--s3)}
+  .stage.s4{background:var(--s4b)} .stage.s4 .ph{color:var(--s4)}
+  @media(max-width:760px){.roadmap{grid-template-columns:repeat(2,1fr)}}
+
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:8px}
+  .controls input{flex:1;min-width:180px;height:38px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font-family:inherit;font-size:14px;background:var(--card)}
+  .filters{display:flex;flex-wrap:wrap;gap:7px;margin:6px 0 16px}
+  .filter{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:18px;padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+  .filter.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .progress{display:flex;align-items:center;gap:12px;margin:0 0 18px;font-size:13.5px;color:var(--muted)}
+  .pbar{flex:1;height:7px;background:var(--soft);border-radius:5px;overflow:hidden;max-width:340px}
+  .pbar span{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+
+  .weeks{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:760px){.weeks{grid-template-columns:1fr}}
+  .wk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;border-left:4px solid var(--line);display:flex;flex-direction:column;gap:9px}
+  .wk.s1{border-left-color:var(--s1)} .wk.s2{border-left-color:var(--s2)}
+  .wk.s3{border-left-color:var(--s3)} .wk.s4{border-left-color:var(--s4)}
+  .wk-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .wbadge{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);background:var(--soft);border-radius:6px;padding:2px 9px}
+  .stag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:5px}
+  .stag.s1{color:var(--s1);background:var(--s1b)} .stag.s2{color:var(--s2);background:var(--s2b)}
+  .stag.s3{color:var(--s3);background:var(--s3b)} .stag.s4{color:var(--s4);background:var(--s4b)}
+  .wk h3{font-size:16px;margin:0;color:var(--ink);line-height:1.35}
+  .wk .desc{font-size:13.5px;color:var(--muted);margin:0;line-height:1.55}
+  .wk . tagrow{margin-top:2px}
+  .mini{display:flex;flex-wrap:wrap;gap:5px}
+  .mini span{font-size:11.5px;color:var(--text);background:var(--soft);border-radius:5px;padding:2px 8px}
+  .warn{font-size:12px;color:var(--s3);font-weight:600}
+  .wk-foot{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:auto;padding-top:4px}
+  .pdf{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 10px;text-decoration:none;background:var(--bg)}
+  .pdf:hover{background:var(--soft)}
+  .done{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer;user-select:none}
+
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.cards3{grid-template-columns:1fr}}
+  .ac{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+  .ac .w{font-size:11.5px;font-weight:700;color:var(--accent);background:var(--soft);border-radius:5px;padding:2px 8px;display:inline-block;margin-bottom:8px}
+  .ac h3{font-size:16px;margin:0 0 6px;color:var(--ink)}
+  .ac p{font-size:13px;color:var(--muted);margin:0 0 10px;line-height:1.55}
+
+  .assess{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
+  @media(max-width:760px){.assess{grid-template-columns:1fr}}
+  .bars .b{margin-bottom:12px}
+  .bars .b .lab{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:5px}
+  .bars .b .lab b{color:var(--ink);font-weight:650}
+  .bars .b .track{height:9px;background:var(--soft);border-radius:5px;overflow:hidden}
+  .bars .b .track i{display:block;height:100%;background:var(--accent);border-radius:5px}
+  . unote{}
+  .unote{background:#fbf1ec;border:1px solid #f0d8cc;border-radius:10px;padding:16px 18px}
+  .unote h3{font-size:14px;margin:0 0 8px;color:var(--s3)}
+  .unote ul{margin:0;padding-left:18px;font-size:13px;color:var(--text);line-height:1.6}
+  .grade{font-size:13.5px;color:var(--muted);margin:14px 0 0}
+  .grade b{color:var(--ink)}
+
+  .dlgroup h3{font-size:14px;margin:18px 0 10px;color:var(--ink)}
+  .dlgrid{display:flex;flex-wrap:wrap;gap:8px}
+
+  footer{padding:30px 0 60px;border-top:1px solid var(--line);text-align:center;color:var(--faint);font-size:13px;margin-top:20px}
+  footer b{color:var(--muted);display:block;font-size:14px;margin-bottom:3px}
+
+  @media print{nav.top{display:none}body{background:#fff}.wk,.ac,.stage{break-inside:avoid}}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <span class="brand">전공탐구생활</span>
+  <span class="links">
+    <a href="#roadmap">로드맵</a><a href="#modules">주차별</a><a href="#assignments">과제</a>
+    <a href="#assessment">평가</a><a href="#downloads">PDF</a>
+  </span>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">Major Exploration · 2026학년도 1학기</p>
+  <h1>전공탐구생활 온라인 강의실</h1>
+  <p class="sub">나를 이해하고, 전공을 탐색하고, 변화하는 사회를 읽으며 나만의 대학생활 로드맵을 설계합니다.</p>
+  <div class="meta-row">
+    <span>소속 <b>사림아너스학부</b></span>
+    <span>수업 <b>금요일 12:00–15:00</b></span>
+    <span>구성 <b>16주 · 4단계</b></span>
+    <span>평가 <b>S / U</b></span>
+  </div>
+</div></header>
+
+<section id="roadmap"><div class="wrap">
+  <p class="kicker">Course Roadmap</p>
+  <h2>한 학기 학습 여정</h2>
+  <p class="lead">네 단계로 자기이해부터 대학생활 설계까지 이어집니다.</p>
+  <div class="roadmap">
+    <div class="stage s1"><div class="ph">1단계 · 1–3주</div><h3>자기이해</h3><p>성격 강점·흥미·적성·가치관을 탐색합니다.</p></div>
+    <div class="stage s2"><div class="ph">2단계 · 4–9주</div><h3>대학과 전공탐색</h3><p>학과·전공의 의미를 이해하고 관심 전공을 비교합니다.</p></div>
+    <div class="stage s3"><div class="ph">3단계 · 10–11주</div><h3>사회변화와 AI</h3><p>AI 리터러시·윤리와 생성형 AI 활용을 살펴봅니다.</p></div>
+    <div class="stage s4"><div class="ph">4단계 · 12–16주</div><h3>대학생활 설계</h3><p>직업·학업·비교과를 연결해 로드맵을 완성합니다.</p></div>
+  </div>
+</div></section>
+
+<section id="modules"><div class="wrap">
+  <p class="kicker">Weekly Modules</p>
+  <h2>주차별 학습</h2>
+  <p class="lead">검색하거나 단계로 골라 보고, 학습 후 완료를 표시하세요.</p>
+  <div class="controls">
+    <input id="search" type="search" placeholder="검색: 전공 비교, AI 윤리, 포스터 …">
+  </div>
+  <div class="filters" id="filters">
+    <button class="filter active" data-f="all">전체</button>
+    <button class="filter" data-f="s1">자기이해</button>
+    <button class="filter" data-f="s2">전공탐색</button>
+    <button class="filter" data-f="s3">사회변화·AI</button>
+    <button class="filter" data-f="s4">대학생활 설계</button>
+  </div>
+  <div class="progress"><span>나의 진행률</span><div class="pbar"><span id="pbar"></span></div><b id="ptext">0 / 16</b></div>
+  <div class="weeks" id="weeks"></div>
+</div></section>
+
+<section id="assignments"><div class="wrap">
+  <p class="kicker">Assignments</p>
+  <h2>핵심 과제</h2>
+  <p class="lead">형식보다 자기이해·정보탐색·계획의 연결을 봅니다.</p>
+  <div class="cards3">
+    <div class="ac"><span class="w">중간 · 20%</span><h3>진로탐색 및 설계 보고서</h3><p>A4 5쪽(본문 12pt·줄간격 160%). 자기평가·직업정보·SMART 목표·실행계획·참고문헌. <b style="color:var(--s3)">이 과제는 AI 사용 금지.</b></p><a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/files/week04-career-design-assignment.pdf">↓ 보고서 지침</a></div>
+    <div class="ac"><span class="w">기말 보고서 · 20%</span><h3>나의 대학생활 설계</h3><p>선택 전공·진로 중심으로 수업·비교과·역량·네트워킹을 하나의 로드맵으로 정리합니다.</p><a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/generated/final-roadmap.pdf">↓ 로드맵 양식</a></div>
+    <div class="ac"><span class="w">기말 발표 · 20%</span><h3>대학생활 설계 포스터</h3><p>전공·진로 키워드, 수업 로드맵, 비교과 계획, 다짐을 시각화해 발표합니다.</p><a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/generated/poster-guide.pdf">↓ 포스터 지침</a></div>
+  </div>
+</div></section>
+
+<section id="assessment"><div class="wrap">
+  <p class="kicker">Assessment</p>
+  <h2>평가 기준</h2>
+  <p class="lead">총점 75점 이상이면 S.</p>
+  <div class="assess">
+    <div class="bars">
+      <div class="b"><div class="lab"><span>출석 및 수업 참여</span><b>40%</b></div><div class="track"><i style="width:40%"></i></div></div>
+      <div class="b"><div class="lab"><span>중간 보고서</span><b>20%</b></div><div class="track"><i style="width:20%"></i></div></div>
+      <div class="b"><div class="lab"><span>기말 보고서</span><b>20%</b></div><div class="track"><i style="width:20%"></i></div></div>
+      <div class="b"><div class="lab"><span>기말 발표</span><b>20%</b></div><div class="track"><i style="width:20%"></i></div></div>
+      <p class="grade"><b>S</b> 75점 이상 · <b>U</b> 부정행위 또는 참여 기준 미달 시</p>
+    </div>
+    <aside class="unote">
+      <h3>⚠ U 학점 유의사항</h3>
+      <ul>
+        <li>대리출석·과제 부정행위</li>
+        <li>수업 활동·발표 미참여</li>
+        <li>과제 50% 이상 미제출</li>
+        <li>결석 4회 또는 무단 퇴실 3회</li>
+      </ul>
+    </aside>
+  </div>
+</div></section>
+
+<section id="downloads"><div class="wrap">
+  <p class="kicker">PDF Downloads</p>
+  <h2>학습자료 한눈에</h2>
+  <p class="lead">버튼을 누르면 PDF가 바로 열립니다.</p>
+  <div class="dlgroup">
+    <h3>수업 안내</h3>
+    <div class="dlgrid">
+      <a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/files/course-plan-2026-spring.pdf">↓ 강의 안내</a>
+      <a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/files/week04-career-design-assignment.pdf">↓ 중간 보고서 지침</a>
+      <a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/generated/final-roadmap.pdf">↓ 기말 로드맵 양식</a>
+      <a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/generated/poster-guide.pdf">↓ 포스터 지침</a>
+    </div>
+    <h3>주차별 자료</h3>
+    <div class="dlgrid" id="weekDl"></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><b>전공탐구생활 온라인 강의실</b><span>전공 선택의 첫걸음, 나만의 대학생활 설계</span></div></footer>
+
+<script>
+const B="https://fhlyongko.github.io/123456/major-exploration-lms/";
+const weeks=[
+ {w:1,s:"s1",st:"자기이해",t:"오리엔테이션과 자기소개",d:"교과목 목표·운영·평가 기준을 이해하고 자기소개 에세이를 작성합니다.",m:["전공 선택의 의미","자기소개 에세이"],pdf:[["1주차",B+"files/week01-course-introduction.pdf"]]},
+ {w:2,s:"s1",st:"자기이해",t:"자기 탐색 1 — 나를 이해하는 첫걸음",d:"성격 강점의 발견과 활용, 자기이해의 중요성을 학습합니다.",m:["강점 키워드 3가지"],pdf:[["2주차",B+"files/week02-self-understanding-1.pdf"]]},
+ {w:3,s:"s1",st:"자기이해",t:"자기 탐색 2 — 진로 이해",d:"흥미·가치관·적성·능력을 탐색하고 진로 의사결정을 이해합니다.",m:["직업선호도·가치관 검사"],pdf:[["3주차",B+"files/week03-self-understanding-career.pdf"]]},
+ {w:4,s:"s2",st:"전공탐색",t:"대학과 학과의 이해",d:"대학·전공의 의미와 선택 기준을 이해하고 진로탐색 보고서를 설계합니다.",m:["University Value Map","전공 비교"],warn:"이 보고서 과제는 AI 사용 금지",pdf:[["4주차",B+"files/week04-university-department.pdf"],["보충",B+"files/week04-lecture-2.pdf"],["보고서 지침",B+"files/week04-career-design-assignment.pdf"]]},
+ {w:5,s:"s2",st:"전공탐색",t:"전공 탐색 1 — 관심 분야 넓히기",d:"멘토의 전공 소개를 듣고 관심 전공 3개 후보를 만듭니다.",m:["전공별 질문 목록"],pdf:[["5주차",B+"generated/week05.pdf"]]},
+ {w:6,s:"s2",st:"전공탐색",t:"전공 탐색 2 — 전공 비교하기",d:"교육과정·요구 역량·진출 경로를 같은 기준으로 비교합니다.",m:["전공 비교 매트릭스"],pdf:[["6주차",B+"generated/week06.pdf"]]},
+ {w:7,s:"s2",st:"전공탐색",t:"전공 탐색 3 — 정보 검증하기",d:"홍보성 정보와 실제 경험을 구분하고 자료를 교차 확인합니다.",m:["멘토 인터뷰 기록"],pdf:[["7주차",B+"generated/week07.pdf"]]},
+ {w:8,s:"s2",st:"전공탐색",t:"중간 점검 — 진로탐색 보고서",d:"자기평가·직업정보·SMART 목표·실행계획의 연결을 확인합니다.",m:["중간고사 보고서 20%"],pdf:[["8주차",B+"generated/week08.pdf"],["보고서 지침",B+"files/week04-career-design-assignment.pdf"]]},
+ {w:9,s:"s2",st:"전공탐색",t:"전공 탐색 4 — 선택 기준 세우기",d:"자기이해와 전공 정보를 통합해 우선순위를 정합니다.",m:["1순위·대안 전공과 근거"],pdf:[["9주차",B+"generated/week09.pdf"]]},
+ {w:10,s:"s3",st:"사회변화·AI",t:"AI 리터러시와 AI 윤리",d:"AI 챗봇의 특성·한계를 비교하고 출처·개인정보·저작권을 토론합니다.",m:["ChatGPT·Gemini·Claude·Perplexity","근거·편향 평가"],pdf:[["10주차",B+"files/week10-ai-literacy.pdf"]]},
+ {w:11,s:"s3",st:"사회변화·AI",t:"ChatGPT와 생성형 AI 기반 교육",d:"생성형 AI를 학습에 적용하고 오류·윤리 문제를 점검합니다.",m:["좋은 질문 작성","결과 사실 확인"],pdf:[["11주차",B+"files/week11-chatgpt-education.pdf"]]},
+ {w:12,s:"s4",st:"대학생활 설계",t:"진로 설계 — 직업",d:"직무·요구 역량·전공 연계성·노동시장 전망을 조사합니다.",m:["관심 직업 2개 분석"],pdf:[["12주차",B+"files/week12-career-design-jobs.pdf"]]},
+ {w:13,s:"s4",st:"대학생활 설계",t:"진로 설계 — 학업",d:"수강 계획과 주전공·복수전공·부전공 로드맵을 세웁니다.",m:["졸업까지 교과 로드맵"],pdf:[["13주차",B+"files/week13-career-design.pdf"]]},
+ {w:14,s:"s4",st:"대학생활 설계",t:"진로 설계 — 비교과",d:"동아리·공모전·자격증·인턴·봉사를 목표와 연결합니다.",m:["시기별 실천 계획"],pdf:[["14주차",B+"files/week14-extracurricular-career-design.pdf"]]},
+ {w:15,s:"s4",st:"대학생활 설계",t:"전시회로 떠나는 전공 탐색 여행",d:"기술 전시로 AI·바이오·로봇·환경·미디어의 전공 연결을 탐색합니다.",m:["보강주 — 운영은 수업 안내"],pdf:[["15주차",B+"files/week15-major-exploration-exhibition.pdf"]]},
+ {w:16,s:"s4",st:"대학생활 설계",t:"나의 대학생활 설계 공유회",d:"설계 포스터를 발표하고 동료 피드백으로 보완합니다.",m:["기말 보고서 20% + 발표 20%"],pdf:[["16주차",B+"files/week16-campus-life-design-sharing.pdf"],["포스터 지침",B+"generated/poster-guide.pdf"]]},
+];
+const KEY="major-exp-done";
+const done=new Set(JSON.parse(localStorage.getItem(KEY)||"[]"));
+let flt="all";
+const $=s=>document.querySelector(s);
+function draw(){
+ const q=$("#search").value.trim().toLowerCase();
+ const host=$("#weeks");host.innerHTML="";
+ weeks.filter(x=>flt==="all"||x.s===flt)
+   .filter(x=>!q||(x.t+x.d+x.st+x.m.join(" ")).toLowerCase().includes(q))
+   .forEach(x=>{
+   const el=document.createElement("article");el.className="wk "+x.s;el.id="w"+x.w;
+   const dn=done.has(x.w);
+   el.innerHTML=`
+    <div class="wk-top"><span class="wbadge">${x.w}주</span><span class="stag ${x.s}">${x.st}</span></div>
+    <h3>${x.t}</h3>
+    <p class="desc">${x.d}</p>
+    ${x.warn?`<div class="warn">⚠ ${x.warn}</div>`:""}
+    <div class="mini">${x.m.map(t=>`<span>${t}</span>`).join("")}</div>
+    <div class="wk-foot">
+      ${x.pdf.map(p=>`<a class="pdf" href="${p[1]}">↓ ${p[0]}</a>`).join("")}
+      <label class="done"><input type="checkbox" data-w="${x.w}" ${dn?"checked":""}> 완료</label>
+    </div>`;
+   host.appendChild(el);
+ });
+ if(!host.children.length)host.innerHTML='<p class="lead">검색 결과가 없습니다.</p>';
+ prog();
+}
+function prog(){const p=Math.round(done.size/weeks.length*100);$("#pbar").style.width=p+"%";$("#ptext").textContent=done.size+" / "+weeks.length;}
+document.addEventListener("change",e=>{if(!e.target.matches("[data-w]"))return;const w=+e.target.dataset.w;e.target.checked?done.add(w):done.delete(w);localStorage.setItem(KEY,JSON.stringify([...done]));prog();});
+$("#filters").addEventListener("click",e=>{if(!e.target.matches(".filter"))return;document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));e.target.classList.add("active");flt=e.target.dataset.f;draw();});
+$("#search").addEventListener("input",draw);
+$("#weekDl").innerHTML=weeks.map(x=>`<a class="pdf" href="${x.pdf[0][1]}">↓ ${x.w}주</a>`).join("");
+draw();
+</script>
+</body>
+</html>
