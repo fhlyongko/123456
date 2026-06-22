@@ -1,31 +1,221 @@
-﻿<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>인공지능과 TED PDF 다운로드 LMS</title>
-  <style>
-    html,body{margin:0;width:100%;height:100%;background:#f5f7f8;font-family:"Segoe UI","Noto Sans KR",Arial,sans-serif}
-    .bar{position:fixed;left:0;right:0;top:0;z-index:3;display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 16px;background:#0b4f4b;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12)}
-    .bar strong{font-size:15px}.bar span{font-size:13px;opacity:.9}iframe{position:absolute;left:0;top:52px;width:100%;height:calc(100% - 52px);border:0;background:white}
-    @media(max-width:640px){.bar{align-items:flex-start;flex-direction:column}.bar span{font-size:12px}iframe{top:76px;height:calc(100% - 76px)}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>인공지능과 TED 학생용 LMS</title>
+<style>
+  :root{
+    --ink:#13201f;--text:#2c3a39;--muted:#5f6f6d;--faint:#85918f;
+    --line:#dfe6e4;--soft:#eef3f2;--bg:#f8faf9;--card:#fff;--accent:#0b4f4b;--accent2:#14746f;
+    --ted:#14746f;--tedb:#e1efed;--prj:#3a5a86;--prjb:#e6edf6;--ai:#a8602e;--aib:#f6e9df;
+    --maxw:960px;--navh:56px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--ink)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  nav.top{position:sticky;top:0;z-index:40;background:rgba(248,250,249,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--navh)}
+  nav.top .brand{font-weight:700;font-size:15px;color:var(--accent)}
+  nav.top .links a{color:var(--muted);text-decoration:none;font-size:13.5px;margin-left:16px}
+  nav.top .links a:hover{color:var(--ink)}
+  @media(max-width:680px){nav.top .links{display:none}}
+
+  header.hero{padding:48px 0 28px}
+  .eyebrow{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);font-weight:700;margin:0 0 12px}
+  header.hero h1{font-family:var(--serif);font-size:31px;line-height:1.25;margin:0 0 12px;color:var(--ink)}
+  header.hero p.sub{font-size:16px;color:var(--muted);margin:0 0 18px;max-width:660px}
+  .hint{font-size:13.5px;color:var(--accent);background:var(--tedb);border-radius:8px;padding:9px 14px;display:inline-block;margin-bottom:18px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+  .meta-row b{color:var(--ink);font-weight:650}
+
+  section{padding:32px 0;border-top:1px solid var(--soft);scroll-margin-top:calc(var(--navh)+10px)}
+  .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:700;margin:0 0 6px}
+  h2{font-size:22px;margin:0 0 6px;color:var(--ink);font-weight:700}
+  .lead{color:var(--muted);font-size:15px;margin:0 0 20px}
+
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:760px){.flow{grid-template-columns:repeat(2,1fr)}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 16px}
+  .step .no{font-family:var(--serif);font-size:13px;color:var(--accent2);font-weight:700}
+  .step strong{display:block;font-size:14.5px;color:var(--ink);margin:5px 0 4px}
+  .step p{font-size:12.5px;color:var(--muted);margin:0;line-height:1.5}
+
+  .controls input{width:100%;height:38px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font-family:inherit;font-size:14px;background:var(--card)}
+  .filters{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 16px}
+  .filter{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:18px;padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+  .filter.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .progress{display:flex;align-items:center;gap:12px;margin:0 0 18px;font-size:13.5px;color:var(--muted)}
+  .pbar{flex:1;height:7px;background:var(--soft);border-radius:5px;overflow:hidden;max-width:340px}
+  .pbar span{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+
+  .weeks{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:760px){.weeks{grid-template-columns:1fr}}
+  .wk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;border-left:4px solid var(--line);display:flex;flex-direction:column;gap:8px}
+  .wk.ted{border-left-color:var(--ted)} .wk.project{border-left-color:var(--prj)} .wk.ai{border-left-color:var(--ai)}
+  .wk-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .wbadge{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);background:var(--soft);border-radius:6px;padding:2px 9px}
+  .ctag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:5px}
+  .ctag.ted{color:var(--ted);background:var(--tedb)} .ctag.project{color:var(--prj);background:var(--prjb)} .ctag.ai{color:var(--ai);background:var(--aib)}
+  .wk h3{font-size:16px;margin:0;color:var(--ink);line-height:1.35}
+  .wk .desc{font-size:13.5px;color:var(--muted);margin:0;line-height:1.5}
+  .wk .pt{font-size:13px;color:var(--text);margin:0}
+  .wk .pt b{color:var(--accent2);font-weight:650}
+  .wk-foot{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:auto;padding-top:4px}
+  .dl{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;color:#fff;background:var(--accent2);border:0;border-radius:6px;padding:6px 11px;text-decoration:none;cursor:pointer}
+  .dl:hover{background:var(--accent)}
+  .done{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer;user-select:none}
+
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.cards3{grid-template-columns:1fr}}
+  .ac{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .ac span{font-size:11.5px;font-weight:700;color:var(--accent);background:var(--tedb);border-radius:5px;padding:2px 8px;display:inline-block;margin-bottom:8px}
+  .ac strong{display:block;font-size:15px;color:var(--ink);margin-bottom:4px}
+  .ac p{font-size:13px;color:var(--muted);margin:0;line-height:1.55}
+
+  .bars .b{margin-bottom:12px}
+  .bars .b .lab{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:5px}
+  .bars .b .lab b{color:var(--ink);font-weight:650}
+  .bars .b .track{height:9px;background:var(--soft);border-radius:5px;overflow:hidden}
+  .bars .b .track i{display:block;height:100%;background:var(--accent);border-radius:5px}
+  .bars .sub{font-size:13px;color:var(--muted);margin-top:10px}
+
+  .dlgrid{display:flex;flex-wrap:wrap;gap:8px}
+  footer{padding:28px 0 56px;border-top:1px solid var(--line);text-align:center;color:var(--faint);font-size:13px;margin-top:18px}
+  footer b{color:var(--muted);display:block;font-size:14px;margin-bottom:3px}
+  @media print{nav.top{display:none}body{background:#fff}.wk,.ac,.step{break-inside:avoid}}
+</style>
 </head>
 <body>
-  <div class="bar"><strong>인공지능과 TED 학생용 LMS</strong><span>초록색 다운로드 버튼을 누르면 PDF 파일로 저장됩니다.</span></div>
-  <iframe id="lmsFrame" src="student-ready.html?v=no-professor-20260612" title="인공지능과 TED 학생용 LMS"></iframe>
-  <script>
-    const frame=document.getElementById('lmsFrame');
-    frame.addEventListener('load',()=>{
-      const doc=frame.contentDocument;
-      if(!doc || doc.querySelector('script[data-pdf-downloads]')) return;
-      const script=doc.createElement('script');
-      script.src='assets/pdf-downloads.js?v=20260608';
-      script.dataset.pdfDownloads='true';
-      doc.body.appendChild(script);
-    });
-  </script>
+<nav class="top"><div class="wrap">
+  <span class="brand">인공지능과 TED</span>
+  <span class="links"><a href="#routine">학습 루틴</a><a href="#modules">주차별</a><a href="#assignments">과제</a><a href="#assessment">평가</a><a href="#resources">다운로드</a></span>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">AI &amp; TED · 2026학년도 2학기 · 디지털커뮤니케이션</p>
+  <h1>인공지능과 TED 강의로 배우는 글로벌 커뮤니케이션</h1>
+  <p class="sub">주차별 학습 내용, 과제, 평가 기준, 수업자료 다운로드를 한곳에서 확인하는 학생용 LMS입니다.</p>
+  <div class="hint">초록색 <b>다운로드</b> 버튼을 누르면 학습자료가 PDF로 저장됩니다.</div>
+  <div class="meta-row">
+    <span>학점 <b>3학점</b></span>
+    <span>수업 <b>원어수업 · 대면수업</b></span>
+    <span>구성 <b>16주 · TED·프로젝트·AI</b></span>
+    <span>평가 <b>절대평가</b></span>
+  </div>
+</div></header>
+
+<section id="routine"><div class="wrap">
+  <p class="kicker">Weekly Routine</p>
+  <h2>매주 이렇게 학습해요</h2>
+  <div class="flow">
+    <div class="step"><div class="no">01</div><strong>오늘 주차 확인</strong><p>핵심 질문·활동·다운로드 자료를 먼저 확인합니다.</p></div>
+    <div class="step"><div class="no">02</div><strong>수업 활동 준비</strong><p>읽기·토론 질문과 짧은 영어 표현 과제를 봅니다.</p></div>
+    <div class="step"><div class="no">03</div><strong>AI 활용 기록</strong><p>도구명·사용 목적·수정 내용을 과제에 표시합니다.</p></div>
+    <div class="step"><div class="no">04</div><strong>포트폴리오 축적</strong><p>매주 결과물을 기말 포트폴리오로 발전시킵니다.</p></div>
+  </div>
+</div></section>
+
+<section id="modules"><div class="wrap">
+  <p class="kicker">Weekly Modules</p>
+  <h2>주차별 학습</h2>
+  <p class="lead">검색하거나 주제로 골라 보고, 학습 후 완료를 표시하세요.</p>
+  <div class="controls"><input id="search" type="search" placeholder="검색: leadership, AI, infographic, portfolio …"></div>
+  <div class="filters" id="filters">
+    <button class="filter active" data-f="all">전체</button>
+    <button class="filter" data-f="ted">TED·읽기</button>
+    <button class="filter" data-f="project">프로젝트</button>
+    <button class="filter" data-f="ai">AI 활용</button>
+  </div>
+  <div class="progress"><span>나의 진행률</span><div class="pbar"><span id="pbar"></span></div><b id="ptext">0 / 16</b></div>
+  <div class="weeks" id="weeks"></div>
+</div></section>
+
+<section id="assignments"><div class="wrap">
+  <p class="kicker">Assignments</p>
+  <h2>과제와 산출물</h2>
+  <div class="cards3">
+    <div class="ac"><span>매주</span><strong>매주 학습 활동</strong><p>TED 주제 읽기, 핵심 어휘 정리, 토론, 짧은 영어 의견문 작성.</p></div>
+    <div class="ac"><span>7–8주</span><strong>중간 팀 프로젝트</strong><p>글로벌 이슈를 디지털 콘텐츠로 제작하고 발표합니다.</p></div>
+    <div class="ac"><span>14–16주</span><strong>기말 개인 포트폴리오</strong><p>TED 분석, AI 활용 과정, 영어 결과물, 자기성찰을 모읍니다.</p></div>
+  </div>
+</div></section>
+
+<section id="assessment"><div class="wrap">
+  <p class="kicker">Assessment</p>
+  <h2>평가 기준</h2>
+  <p class="lead">절대평가 · 성실한 참여, 근거 기반 사고, 영어 표현, AI 활용의 투명성을 봅니다.</p>
+  <div class="bars">
+    <div class="b"><div class="lab"><span>출석 및 참여 <span style="color:var(--faint)">(출석·토론·동료 피드백)</span></span><b>20%</b></div><div class="track"><i style="width:20%"></i></div></div>
+    <div class="b"><div class="lab"><span>중간 프로젝트 <span style="color:var(--faint)">(문제 정의·완성도·협업·발표)</span></span><b>40%</b></div><div class="track"><i style="width:40%"></i></div></div>
+    <div class="b"><div class="lab"><span>기말 프로젝트 <span style="color:var(--faint)">(TED 분석·AI 기록·영어·포트폴리오)</span></span><b>40%</b></div><div class="track"><i style="width:40%"></i></div></div>
+  </div>
+</div></section>
+
+<section id="resources"><div class="wrap">
+  <p class="kicker">Resources</p>
+  <h2>전체 다운로드</h2>
+  <p class="lead">버튼을 누르면 자료가 PDF로 저장됩니다.</p>
+  <div class="dlgrid" id="allDl"></div>
+</div></section>
+
+<footer><div class="wrap"><b>인공지능과 TED 학생용 LMS</b><span>TED · AI · Global Communication</span></div></footer>
+
+<script>
+const B="https://fhlyongko.github.io/123456/ai-ted-lms/downloads/";
+const W=[
+ {w:1,c:"ai",t:"강의 소개 및 AI 리터러시",d:"수업 목표·평가 기준·AI 사용 원칙을 확인합니다.",p:["활동","개인 학습 목표 3문장 작성"],dl:[["수업 안내","course-syllabus-ai-ted.md"],["AI 리터러시","ai-literacy-guide.md"]]},
+ {w:2,c:"ted",t:"Leadership and Movements",d:"Sinek의 belief 리더십과 Sivers의 first follower를 비교합니다.",p:["핵심 질문","Why do people follow leaders?"],dl:[["Unit 1 활동지","unit1-leadership-movements.md"]]},
+ {w:3,c:"ted",t:"Simple Ideas for Big Problems",d:"복잡한 사회문제를 단순하고 창의적인 해결책으로 접근합니다.",p:["산출물","문제 정의 카드와 영어 요약문"],dl:[["Unit 3 활동지","unit3-simple-ideas.md"]]},
+ {w:4,c:"ted",t:"Game Changers",d:"온라인 게임의 협력·전략적 사고·문제 해결 가능성을 토론합니다.",p:["산출물","사회문제 해결 게임 아이디어"],dl:[["Unit 4 활동지","unit4-game-changers.md"]]},
+ {w:5,c:"ted",t:"Lessons in Learning",d:"학습 참여, Studio School, grit, growth mindset을 연결합니다.",p:["토론","학습 성공에 영향을 주는 조건"],dl:[["Unit 5 활동지","unit5-lessons-learning.md"]]},
+ {w:6,c:"ted",t:"Food Revolution",d:"건강한 식문화·학교 급식·음식 교육의 사회적 의미를 분석합니다.",p:["산출물","Food Revolution Day 플라이어"],dl:[["Unit 6 활동지","unit6-food-revolution.md"]]},
+ {w:7,c:"project",t:"중간 프로젝트 준비",d:"팀별 주제 선정·문제 정의·자료 수집·역할 분담을 수행합니다.",p:["제출","기획안·AI 활용 계획·참고자료 목록"],dl:[]},
+ {w:8,c:"project",t:"중간 프로젝트 발표",d:"팀 디지털 콘텐츠를 발표하고 동료 피드백을 받습니다.",p:["피드백","내용 구성·전달력·시각적 완성도"],dl:[]},
+ {w:9,c:"ted",t:"Body Signs",d:"비언어적 의사소통과 power posing을 발표 수행과 연결합니다.",p:["활동","발표 자세 자기점검"],dl:[["Unit 7 활동지","unit7-body-signs.md"]]},
+ {w:10,c:"ted",t:"New Perspectives",d:"disability를 limitation이 아니라 difference·strength로 읽습니다.",p:["산출물","2분 영어 발표"],dl:[["Unit 9 활동지","unit9-new-perspectives.md"]]},
+ {w:11,c:"ted",t:"Data Detectives",d:"데이터 시각화와 infographic의 소통 효과를 학습합니다.",p:["산출물","미니 인포그래픽"],dl:[["Unit 10 활동지","unit10-data-detectives.md"]]},
+ {w:12,c:"ted",t:"Sleep",d:"수면 부족이 학업·업무·건강·안전에 미치는 영향을 분석합니다.",p:["산출물","영어 의견문 1단락"],dl:[["Unit 11 활동지","unit11-sleep.md"]]},
+ {w:13,c:"ai",t:"AI, Cyborgs and Language Learning",d:"기술이 인간 능력을 확장하는 방식을 읽고 AI 언어학습을 실습합니다.",p:["활동","AI 초안 수정과 활용 기록"],dl:[["Unit 12 활동지","unit12-ai-cyborgs.md"]]},
+ {w:14,c:"project",t:"기말 프로젝트 준비",d:"개인 주제·TED 분석·AI 활용·디지털 콘텐츠를 포트폴리오로 구성합니다.",p:["안내","포트폴리오 가이드 확인"],dl:[["포트폴리오 안내","final-portfolio-guide.md"]]},
+ {w:15,c:"project",t:"보강 및 기말 피드백",d:"포트폴리오 구성·영어 표현·AI 활용 기록을 최종 보완합니다.",p:["활동","개별 상담·동료 검토"],dl:[]},
+ {w:16,c:"project",t:"기말 프로젝트 제출 및 성찰",d:"개인 디지털 포트폴리오를 제출하고 한 학기 성장을 성찰합니다.",p:["제출","개인 디지털 포트폴리오"],dl:[["포트폴리오 안내","final-portfolio-guide.md"]]},
+];
+const cat={ted:"TED·읽기",project:"프로젝트",ai:"AI 활용"};
+const KEY="ai-ted-done";
+const done=new Set(JSON.parse(localStorage.getItem(KEY)||"[]"));
+let flt="all";const $=s=>document.querySelector(s);
+function dlHTML(d){return `<a class="dl download-link" href="${B+d[1]}">↓ ${d[0]}</a>`;}
+function draw(){
+ const q=$("#search").value.trim().toLowerCase();const host=$("#weeks");host.innerHTML="";
+ W.filter(x=>flt==="all"||x.c===flt).filter(x=>!q||(x.t+x.d+x.p.join(" ")).toLowerCase().includes(q)).forEach(x=>{
+  const el=document.createElement("article");el.className="wk "+x.c;el.id="w"+x.w;const dn=done.has(x.w);
+  el.innerHTML=`
+   <div class="wk-top"><span class="wbadge">${x.w}주</span><span class="ctag ${x.c}">${cat[x.c]}</span></div>
+   <h3>${x.t}</h3>
+   <p class="desc">${x.d}</p>
+   <p class="pt"><b>${x.p[0]}</b> · ${x.p[1]}</p>
+   <div class="wk-foot">${x.dl.map(dlHTML).join("")}<label class="done"><input type="checkbox" data-w="${x.w}" ${dn?"checked":""}> 완료</label></div>`;
+  host.appendChild(el);
+ });
+ if(!host.children.length)host.innerHTML='<p class="lead">검색 결과가 없습니다.</p>';
+ prog();
+}
+function prog(){const p=Math.round(done.size/W.length*100);$("#pbar").style.width=p+"%";$("#ptext").textContent=done.size+" / "+W.length;}
+const seen=new Set();const all=[];
+W.forEach(x=>x.dl.forEach(d=>{if(!seen.has(d[1])){seen.add(d[1]);all.push(d);}}));
+$("#allDl").innerHTML=all.map(dlHTML).join("");
+document.addEventListener("change",e=>{if(!e.target.matches("[data-w]"))return;const w=+e.target.dataset.w;e.target.checked?done.add(w):done.delete(w);localStorage.setItem(KEY,JSON.stringify([...done]));prog();});
+$("#filters").addEventListener("click",e=>{if(!e.target.matches(".filter"))return;document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));e.target.classList.add("active");flt=e.target.dataset.f;draw();});
+$("#search").addEventListener("input",draw);
+draw();
+</script>
+<script data-pdf-downloads="true">
+(()=>{const W=595.28,H=841.89,CW=1240,CH=1754,M=92,LH=34,enc=s=>new TextEncoder().encode(s);function wrap(ctx,t,max){const w=t.split(/\s+/),r=[];let l='';for(const x of w){const y=l?l+' '+x:x;if(ctx.measureText(y).width<=max)l=y;else{if(l)r.push(l);l=x}}if(l)r.push(l);return r}function parse(md){const a=[];md.split(/\r?\n/).forEach(raw=>{const s=raw.trim();if(!s)a.push({t:'space',v:''});else if(s.startsWith('# '))a.push({t:'title',v:s.slice(2)});else if(s.startsWith('## '))a.push({t:'heading',v:s.slice(3)});else if(/^[-*]\s+/.test(s))a.push({t:'bullet',v:s.replace(/^[-*]\s+/,'')});else if(/^\d+\.\s+/.test(s))a.push({t:'bullet',v:s.replace(/^\d+\.\s+/,'')});else a.push({t:'body',v:s})});return a}function page(){const c=document.createElement('canvas');c.width=CW;c.height=CH;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,CW,CH);x.fillStyle='#14746f';x.fillRect(0,0,CW,22);x.fillStyle='#5b6570';x.font="24px 'Segoe UI','Malgun Gothic',sans-serif";x.fillText('AI TED Global Communication LMS',M,CH-58);return{c,x,y:M}}function render(md){const ps=[];let p=page();ps.push(p);function need(n){if(p.y+n>CH-120){p=page();ps.push(p)}}function draw(lines,o){need((o.before||0)+lines.length*LH+(o.after||0));p.y+=o.before||0;p.x.font=o.font;p.x.fillStyle=o.color;for(const line of lines){if(o.bullet)p.x.fillText('•',M+(o.indent||0),p.y);p.x.fillText(line,M+(o.indent||0)+(o.bullet?30:0),p.y);p.y+=LH}p.y+=o.after||0}for(const b of parse(md)){const max=CW-M*2;if(b.t==='space'){need(18);p.y+=18}else if(b.t==='title'){p.x.font="bold 42px 'Segoe UI','Malgun Gothic',sans-serif";draw(wrap(p.x,b.v,max),{font:p.x.font,color:'#0b4f4b',before:10,after:24})}else if(b.t==='heading'){p.x.font="bold 28px 'Segoe UI','Malgun Gothic',sans-serif";draw(wrap(p.x,b.v,max),{font:p.x.font,color:'#172026',before:24,after:10})}else if(b.t==='bullet'){p.x.font="24px 'Segoe UI','Malgun Gothic',sans-serif";draw(wrap(p.x,b.v,max-50),{font:p.x.font,color:'#172026',indent:18,before:4,after:4,bullet:true})}else{p.x.font="24px 'Segoe UI','Malgun Gothic',sans-serif";draw(wrap(p.x,b.v,max),{font:p.x.font,color:'#172026',before:4,after:6})}}return ps.map(z=>z.c)}function b64bytes(url){const bin=atob(url.split(',')[1]),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return u}function pdf(jpegs){const chunks=[],ofs=[];let len=0;const add=p=>{const b=typeof p==='string'?enc(p):p;chunks.push(b);len+=b.length},obj=(n,parts)=>{ofs[n]=len;add(n+' 0 obj\n');parts.forEach(add);add('\nendobj\n')};add('%PDF-1.4\n');const pages=jpegs.map((_,i)=>3+i*3);obj(1,['<< /Type /Catalog /Pages 2 0 R >>']);obj(2,[`<< /Type /Pages /Kids [${pages.map(n=>n+' 0 R').join(' ')}] /Count ${jpegs.length} >>`]);jpegs.forEach((jpg,i)=>{const po=3+i*3,io=po+1,co=po+2,nm='Im'+(i+1),ct=`q\n${W} 0 0 ${H} 0 0 cm\n/${nm} Do\nQ`;obj(po,[`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${W} ${H}] /Resources << /XObject << /${nm} ${io} 0 R >> >> /Contents ${co} 0 R >>`]);ofs[io]=len;add(`${io} 0 obj\n<< /Type /XObject /Subtype /Image /Width ${CW} /Height ${CH} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${jpg.length} >>\nstream\n`);add(jpg);add('\nendstream\nendobj\n');obj(co,[`<< /Length ${ct.length} >>\nstream\n${ct}\nendstream`])});const xref=len,max=2+jpegs.length*3;add(`xref\n0 ${max+1}\n0000000000 65535 f \n`);for(let i=1;i<=max;i++)add(String(ofs[i]).padStart(10,'0')+' 00000 n \n');add(`trailer\n<< /Size ${max+1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`);return new Blob(chunks,{type:'application/pdf'})}async function make(link){const r=await fetch(link.href,{cache:'no-store'});if(!r.ok)throw Error('source missing');const md=await r.text(),jpgs=render(md).map(c=>b64bytes(c.toDataURL('image/jpeg',.92))),blob=pdf(jpgs),u=URL.createObjectURL(blob),a=document.createElement('a'),name=(link.getAttribute('href').split('/').pop()||'material.md').replace(/\.md$/i,'.pdf');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u)}document.addEventListener('click',async e=>{const l=e.target.closest('a.download-link[href$=".md"]');if(!l)return;e.preventDefault();const txt=l.textContent;l.textContent='PDF 생성 중...';l.style.pointerEvents='none';try{await make(l)}catch(_){location.href=l.href}finally{l.textContent=txt;l.style.pointerEvents=''}})})();
+</script>
 </body>
 </html>
-
-
