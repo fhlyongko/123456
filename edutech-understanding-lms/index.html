@@ -1,44 +1,181 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>에듀테크의 이해</title>
 <style>
-:root{--ink:#142126;--muted:#5d6f75;--line:#d9e2e2;--paper:#fff;--bg:#f5f8f8;--green:#126b5a;--blue:#245b9b;--coral:#a74d45;--gold:#9b6a18;--shadow:0 18px 44px rgba(20,33,38,.09)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Malgun Gothic",Arial,sans-serif;line-height:1.62;letter-spacing:0}a{color:inherit}button,.btn{font:inherit}.top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.top-inner{max-width:1180px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:900}.nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}.nav a{padding:7px 10px;border-radius:6px;text-decoration:none;color:#344b52;font-size:.94rem}.nav a:hover{background:#e8f0ef}.hero{border-bottom:1px solid var(--line);background:linear-gradient(120deg,#f8fbfb 0%,#eaf3ef 46%,#edf3f9 100%)}.hero-inner{max-width:1180px;margin:0 auto;padding:54px 22px 38px;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}.eyebrow{margin:0 0 8px;color:var(--green);font-weight:900}.hero h1{margin:0 0 16px;font-size:clamp(2rem,5vw,4.2rem);line-height:1.08}.lead{margin:0;color:#3d555c;font-size:1.08rem;max-width:760px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:7px;cursor:pointer}.btn.primary{background:var(--green);border-color:var(--green);color:#fff}.btn.blue{background:var(--blue);border-color:var(--blue);color:#fff}.btn.coral{background:var(--coral);border-color:var(--coral);color:#fff}.hero-visual{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;box-shadow:var(--shadow)}.visual-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.visual-tile{min-height:82px;border-radius:7px;padding:12px;color:#fff;display:flex;flex-direction:column;justify-content:space-between}.visual-tile strong{font-size:1.55rem}.visual-tile:nth-child(1){background:var(--green)}.visual-tile:nth-child(2){background:var(--blue)}.visual-tile:nth-child(3){background:var(--coral)}.visual-tile:nth-child(4){background:var(--gold)}.visual-tile:nth-child(5){background:#53656d}.visual-tile:nth-child(6){background:#2f7a8b}.metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.metric{border-left:4px solid var(--green);background:#f7faf9;border-radius:6px;padding:10px}.metric strong{display:block;font-size:1.15rem}main{max-width:1180px;margin:0 auto;padding:28px 22px 70px}.section{margin:30px 0 46px}.section h2{font-size:1.55rem;margin:0 0 14px}.section-intro{color:var(--muted);margin-top:-6px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card,.module{background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:0 10px 24px rgba(20,33,38,.05)}.card{padding:18px}.card h3,.module h3{margin:0 0 8px;font-size:1.08rem}.card p{margin:0;color:#52666c}.pill{display:inline-flex;border:1px solid var(--line);background:#f8fbfb;border-radius:999px;padding:4px 9px;font-size:.86rem;color:#4c6066;margin-bottom:10px}.modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.module{overflow:hidden}.module-head{padding:16px 17px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}.unit{min-width:76px;text-align:center;border-radius:7px;background:#edf5f2;color:var(--green);font-weight:900;padding:7px 8px}.tag{color:#65787d;font-size:.9rem}.module-body{padding:16px 17px}.module ul{margin:8px 0 0;padding-left:20px}.module li{margin:4px 0}.module-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.download-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.download{padding:15px;border:1px solid var(--line);background:#fff;border-radius:8px}.download h3{font-size:1rem;margin:0 0 6px}.download p{margin:0 0 12px;color:var(--muted);font-size:.92rem}.rubric{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}.rubric th,.rubric td{border-bottom:1px solid var(--line);padding:12px;text-align:left;vertical-align:top}.rubric th{background:#edf3f2}.rubric tr:last-child td{border-bottom:0}.footer{border-top:1px solid var(--line);padding:24px 22px;color:#64767a;text-align:center;background:#fff}.small{font-size:.9rem;color:var(--muted)}@media(max-width:940px){.hero-inner{grid-template-columns:1fr}.cards,.download-grid,.modules{grid-template-columns:1fr}.metric-row{grid-template-columns:repeat(2,1fr)}.hero-visual{box-shadow:none}.top-inner{align-items:flex-start;flex-direction:column}.nav{justify-content:flex-start}}@media(max-width:560px){.top-inner,main,.hero-inner{padding-left:16px;padding-right:16px}.visual-grid{grid-template-columns:1fr 1fr}.metric-row{grid-template-columns:1fr}.module-head{flex-direction:column}.unit{text-align:left}.actions,.module-actions{flex-direction:column}.btn{width:100%}.rubric th,.rubric td{display:block;width:100%}.rubric tr{display:block;border-bottom:1px solid var(--line)}}@media print{.top,.actions,.module-actions,.download .btn,.footer{display:none}body{background:#fff}.hero{background:#fff}.hero-inner,main{max-width:none;padding:0}.card,.module,.download,.hero-visual{box-shadow:none;break-inside:avoid}.cards,.modules,.download-grid{grid-template-columns:1fr}}
+  :root{
+    --ink:#1a1c20;--text:#2e3138;--muted:#646a74;--faint:#8a909a;
+    --line:#e3e5ea;--soft:#eef0f4;--bg:#f8f9fb;--card:#fff;--accent:#27408a;--accent2:#3a5aa6;
+    --t1:#27408a;--t1b:#e7ecf7; --t2:#1d8a7a;--t2b:#e0f2ef; --t3:#7a4fa0;--t3b:#efe8f5;
+    --t4:#b0701f;--t4b:#f7ecd9; --t5:#3a3a3a;--t5b:#ececec;
+    --maxw:980px;--navh:56px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--ink)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  nav.top{position:sticky;top:0;z-index:40;background:rgba(248,249,251,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--navh)}
+  nav.top .brand{font-weight:700;font-size:15px;color:var(--accent)}
+  nav.top .links a{color:var(--muted);text-decoration:none;font-size:13.5px;margin-left:16px}
+  nav.top .links a:hover{color:var(--ink)}
+  @media(max-width:680px){nav.top .links{display:none}}
+
+  header.hero{padding:48px 0 26px}
+  .eyebrow{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);font-weight:700;margin:0 0 12px}
+  header.hero h1{font-family:var(--serif);font-size:33px;line-height:1.2;margin:0 0 12px;color:var(--ink)}
+  header.hero p.sub{font-size:16px;color:var(--muted);margin:0 0 18px;max-width:680px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:6px}
+  .stat{background:var(--soft);border-radius:9px;padding:14px 16px}
+  .stat .n{font-family:var(--serif);font-size:22px;color:var(--ink);line-height:1}
+  .stat .l{font-size:12px;color:var(--muted);margin-top:6px}
+  @media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  section{padding:32px 0;border-top:1px solid var(--soft);scroll-margin-top:calc(var(--navh)+10px)}
+  .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:700;margin:0 0 6px}
+  h2{font-size:22px;margin:0 0 6px;color:var(--ink);font-weight:700}
+  .lead{color:var(--muted);font-size:15px;margin:0 0 20px}
+
+  .themes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.themes{grid-template-columns:1fr}}
+  .th{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .th .e{font-size:11.5px;font-weight:700;color:var(--accent2);letter-spacing:.04em}
+  .th h3{font-size:16px;margin:6px 0 5px;color:var(--ink)}
+  .th p{font-size:13px;color:var(--muted);margin:0;line-height:1.55}
+
+  .mods{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:760px){.mods{grid-template-columns:1fr}}
+  .mod{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;border-left:4px solid var(--line);display:flex;flex-direction:column;gap:9px}
+  .mod.t1{border-left-color:var(--t1)} .mod.t2{border-left-color:var(--t2)} .mod.t3{border-left-color:var(--t3)} .mod.t4{border-left-color:var(--t4)} .mod.t5{border-left-color:var(--t5)}
+  .mod-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .lbadge{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);background:var(--soft);border-radius:6px;padding:2px 9px}
+  .ttag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:5px}
+  .ttag.t1{color:var(--t1);background:var(--t1b)} .ttag.t2{color:var(--t2);background:var(--t2b)} .ttag.t3{color:var(--t3);background:var(--t3b)} .ttag.t4{color:var(--t4);background:var(--t4b)} .ttag.t5{color:var(--t5);background:var(--t5b)}
+  .pg{margin-left:auto;font-size:11.5px;color:var(--faint)}
+  .mod h3{font-size:16px;margin:0;color:var(--ink);line-height:1.35}
+  .concepts{display:flex;flex-wrap:wrap;gap:5px}
+  .concepts span{font-size:11.5px;color:var(--text);background:var(--soft);border-radius:5px;padding:2px 8px}
+  details summary{font-size:12.5px;color:var(--muted);cursor:pointer;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"▸ 학습 목표";color:var(--faint)}
+  details[open] summary::before{content:"▾ 학습 목표"}
+  details ul{margin:7px 0 0;padding-left:18px;font-size:12.5px;color:var(--muted);line-height:1.55}
+  .mod-foot{margin-top:auto;padding-top:4px}
+  .pdf{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;color:#fff;background:var(--accent2);border-radius:6px;padding:6px 12px;text-decoration:none}
+  .pdf:hover{background:var(--accent)}
+
+  .dlgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  @media(max-width:760px){.dlgrid{grid-template-columns:1fr}}
+  .dlrow{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:11px 14px}
+  .dlrow .ti{font-size:13.5px;color:var(--ink);font-weight:600;line-height:1.3}
+  .dlrow .ti small{display:block;color:var(--faint);font-weight:400;font-size:11.5px}
+  .dlrow a{flex:0 0 auto;font-size:12px;font-weight:600;color:var(--accent2);text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:5px 10px}
+  .dlrow a:hover{background:var(--soft)}
+
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.cards3{grid-template-columns:1fr}}
+  .ac{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .ac span{font-size:11.5px;font-weight:700;color:var(--accent);background:var(--t1b);border-radius:5px;padding:2px 8px;display:inline-block;margin-bottom:8px}
+  .ac strong{display:block;font-size:15px;color:var(--ink);margin-bottom:4px}
+  .ac p{font-size:13px;color:var(--muted);margin:0;line-height:1.55}
+
+  table.run{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+  table.run th,table.run td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+  table.run th{background:var(--soft);font-weight:650;width:90px;white-space:nowrap}
+  footer{padding:28px 0 56px;border-top:1px solid var(--line);text-align:center;color:var(--faint);font-size:13px;margin-top:18px}
+  footer b{color:var(--muted);display:block;font-size:14px;margin-bottom:3px}
+  @media print{nav.top{display:none}body{background:#fff}.mod,.th,.ac{break-inside:avoid}details{display:block}}
 </style>
 </head>
 <body>
-<header class="top"><div class="top-inner"><div class="brand">에듀테크의 이해</div><nav class="nav"><a href="#overview">개요</a><a href="#modules">단원</a><a href="#downloads">원본 PDF</a><a href="#activities">활동</a></nav></div></header>
-<section class="hero"><div class="hero-inner"><div><p class="eyebrow">온라인 강의실</p><h1>에듀테크의 이해</h1><p class="lead">디지털 교육, 모바일 학습, 실감미디어, 멀티미디어 학습이론, 메타버스, 인공지능 교육을 하나의 흐름으로 탐색하는 수업용 온라인 강의실입니다.</p><div class="actions"><a class="btn primary" href="#modules">단원별 학습 시작</a><a class="btn blue" href="#downloads">원본 PDF 다운로드</a><button class="btn" onclick="window.print()">페이지 PDF 저장</button></div></div><aside class="hero-visual" aria-label="course visual summary"><div class="visual-grid"><div class="visual-tile"><span>Digital</span><strong>01</strong></div><div class="visual-tile"><span>Mobile</span><strong>02</strong></div><div class="visual-tile"><span>XR</span><strong>03</strong></div><div class="visual-tile"><span>Media</span><strong>04</strong></div><div class="visual-tile"><span>Metaverse</span><strong>09</strong></div><div class="visual-tile"><span>AI</span><strong>12</strong></div></div><div class="metric-row"><div class="metric"><strong>9개</strong><span>PDF 자료</span></div><div class="metric"><strong>12과</strong><span>학습 범위</span></div><div class="metric"><strong>226쪽</strong><span>총 페이지</span></div><div class="metric"><strong>PDF</strong><span>원본 다운로드</span></div></div></aside></div></section>
-<main>
-<section id="overview" class="section"><h2>수업 개요</h2><p class="section-intro">업로드된 교재 PDF를 바탕으로 학생이 단원별 핵심 개념과 활동을 바로 확인할 수 있게 재구성했습니다.</p><div class="cards"><article class="card"><span class="pill">핵심 주제</span><h3>교육과 기술의 융합</h3><p>에듀테크의 개념, 온라인 교육, 디지털 학습, 최신 교수학습 동향을 교육 혁신의 관점에서 이해합니다.</p></article><article class="card"><span class="pill">학습 환경</span><h3>실감미디어와 멀티미디어</h3><p>AR, VR, XR, 멀티미디어 학습, 인지부하, 설계원리를 연결해 효과적인 학습환경을 설계합니다.</p></article><article class="card"><span class="pill">미래 전망</span><h3>메타버스와 AI 교육</h3><p>메타버스 플랫폼, 가상현실 적용, 인공지능의 개념과 교육적 활용을 탐색합니다.</p></article></div></section>
-<section id="modules" class="section"><h2>단원별 학습 모듈</h2><p class="section-intro">각 모듈은 원본 PDF의 제목, 학습 목표, 핵심 개념을 기준으로 정리했습니다.</p><div class="modules">
-<article class="module"><div class="module-head"><div class="unit">1과</div><div><h3>에듀테크와 디지털 교육</h3><div class="tag">에듀테크 개념, 이러닝, 온라인 교육, 디지털 교육 혁신</div></div></div><div class="module-body"><ul><li>에듀테크의 정의와 중요성을 설명합니다.</li><li>이러닝과 온라인 교육의 특징을 구분합니다.</li><li>디지털 시대 교육 혁신의 흐름을 이해합니다.</li></ul><div class="module-actions"><a class="btn primary" href="files/lesson01-edutech-digital-education.pdf" download>원본 PDF 다운로드</a><button class="btn" onclick="window.print()">페이지 PDF 저장</button></div></div></article>
-<article class="module"><div class="module-head"><div class="unit">2과</div><div><h3>디지털 학습</h3><div class="tag">모바일 학습, 소셜미디어, 스마트러닝, 마이크로러닝</div></div></div><div class="module-body"><ul><li>모바일 기기를 활용한 학습의 가능성을 설명합니다.</li><li>소셜미디어의 협업과 의사소통 기능을 이해합니다.</li><li>스마트러닝과 마이크로러닝의 적용 방안을 탐색합니다.</li></ul><div class="module-actions"><a class="btn primary" href="files/lesson02-digital-learning.pdf" download>원본 PDF 다운로드</a><button class="btn" onclick="window.print()">페이지 PDF 저장</button></div></div></article>
-<article class="module"><div class="module-head"><div class="unit">3과</div><div><h3>실감미디어</h3><div class="tag">실재감, 몰입감, AR, VR, XR</div></div></div><div class="module-body"><ul><li>실감미디어의 개념과 특징을 정의합니다.</li><li>증강현실과 가상현실의 교육적 활용을 비교합니다.</li><li>확장현실이 학습 경험에 주는 의미를 설명합니다.</li></ul><div class="module-actions"><a class="btn primary" href="files/lesson03-immersive-media.pdf" download>원본 PDF 다운로드</a><button class="btn" onclick="window.print()">페이지 PDF 저장</button></div></div></article>
-<article class="module"><div class="module-head"><div class="unit">4과</div><div><h3>멀티미디어 학습</h3><div class="tag">인지부하, 스키마, 멀티미디어 학습이론</div></div></div><div class="module-body"><ul><li>멀티미디어 학습의 개념과 인지 과정을 이해합니다.</li><li>스키마 형성과 인지부하의 관계를 파악합니다.</li><li>학습 효과를 높이는 인지부하 관리 전략을 적용합니다.</li></ul><div class="module-actions"><a class="btn primary" href="files/lesson04-multimedia-learning.pdf" download>원본 PDF 다운로드</a><button class="btn" onclick="window.print()">페이지 PDF 저장</button></div></div></article>
-<article class="module"><div class="module-head"><div class="unit">5-6과</div><div><h3>멀티미디어 설계원리</h3><div class="tag">이중채널, 작업기억, 일관성, 신호, 중복, 근접성</div></div></div><div class="module-body"><ul><li>인지 과정의 세 가정을 설명합니다.</li><li>불필요한 인지부하를 줄이는 설계원리를 적용합니다.</li><li>능동적 인지처리를 촉진하는 설계 전략을 분석합니다.</li></ul><div class="module-actions"><a class="btn primary" href="files/lesson05-06-multimedia-design-principles.pdf" download>원본 PDF 다운로드</a><button class="btn" onclick="window.print()">페이지 PDF 저장</button></div></div></article>
-<article class="module"><div class="module-head"><div class="unit">7과</div><div><h3>실감미디어 학습환경</h3><div class="tag">AR, VR, MR, 사용자 모형, 학습환경 설계</div></div></div><div class="module-body"><ul><li>실감미디어 유형을 구분하고 설명합니다.</li><li>사용자 모형과 학습자 특성 반영 방식을 이해합니다.</li><li>가상현실 학습 환경의 설계 요소를 정리합니다.</li></ul><div class="module-actions"><a class="btn primary" href="files/lesson07-immersive-learning-environment.pdf" download>원본 PDF 다운로드</a><button class="btn" onclick="window.print()">페이지 PDF 저장</button></div></div></article>
-<article class="module"><div class="module-head"><div class="unit">8과</div><div><h3>가상현실의 적용</h3><div class="tag">시뮬레이션, 가상체험공간, 시나리오 기반 학습</div></div></div><div class="module-body"><ul><li>교육 시뮬레이션의 목적과 유형을 설명합니다.</li><li>가상현실 구현 방식과 운영 방법을 이해합니다.</li><li>시나리오 기반 학습의 적용 사례를 탐색합니다.</li></ul><div class="module-actions"><a class="btn primary" href="files/lesson08-virtual-reality-application.pdf" download>원본 PDF 다운로드</a><button class="btn" onclick="window.print()">페이지 PDF 저장</button></div></div></article>
-<article class="module"><div class="module-head"><div class="unit">9-10과</div><div><h3>메타버스</h3><div class="tag">가상세계, 기술요인, 플랫폼 유형, 학습공간 구축</div></div></div><div class="module-body"><ul><li>메타버스의 개념과 현실-가상 융합 특징을 설명합니다.</li><li>메타버스 플랫폼 유형과 기술 요인을 분석합니다.</li><li>교육 분야의 메타버스 학습공간 사례를 검토합니다.</li></ul><div class="module-actions"><a class="btn primary" href="files/lesson09-10-metaverse.pdf" download>원본 PDF 다운로드</a><button class="btn" onclick="window.print()">페이지 PDF 저장</button></div></div></article>
-<article class="module"><div class="module-head"><div class="unit">11-12과</div><div><h3>인공지능과 교육의 미래</h3><div class="tag">AI 개념, 머신러닝, 세계 동향, 융합교육, 교수설계</div></div></div><div class="module-body"><ul><li>인공지능의 개념과 주요 기능을 설명합니다.</li><li>머신러닝과 딥러닝의 기본 원리를 구분합니다.</li><li>AI를 교육과 교수설계에 통합하는 방안을 탐색합니다.</li></ul><div class="module-actions"><a class="btn primary" href="files/lesson11-12-ai-future-of-education.pdf" download>원본 PDF 다운로드</a><button class="btn" onclick="window.print()">페이지 PDF 저장</button></div></div></article>
+<nav class="top"><div class="wrap">
+  <span class="brand">에듀테크의 이해</span>
+  <span class="links"><a href="#overview">개요</a><a href="#modules">단원</a><a href="#downloads">원본 PDF</a><a href="#activities">활동</a></span>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">EdTech · 온라인 강의실</p>
+  <h1>에듀테크의 이해</h1>
+  <p class="sub">디지털 교육, 모바일 학습, 실감미디어, 멀티미디어 학습이론, 메타버스, 인공지능 교육을 하나의 흐름으로 탐색합니다.</p>
+  <div class="stats">
+    <div class="stat"><div class="n">9</div><div class="l">PDF 자료</div></div>
+    <div class="stat"><div class="n">12과</div><div class="l">학습 범위</div></div>
+    <div class="stat"><div class="n">226쪽</div><div class="l">총 페이지</div></div>
+    <div class="stat"><div class="n">원본</div><div class="l">PDF 다운로드</div></div>
+  </div>
+</div></header>
+
+<section id="overview"><div class="wrap">
+  <p class="kicker">Overview</p>
+  <h2>수업 개요</h2>
+  <p class="lead">교재 PDF를 바탕으로 단원별 핵심 개념과 활동을 바로 확인할 수 있게 재구성했습니다.</p>
+  <div class="themes">
+    <div class="th"><div class="e">핵심 주제</div><h3>교육과 기술의 융합</h3><p>에듀테크 개념, 온라인 교육, 디지털 학습, 최신 교수학습 동향을 이해합니다.</p></div>
+    <div class="th"><div class="e">학습 환경</div><h3>실감미디어와 멀티미디어</h3><p>AR·VR·XR, 멀티미디어 학습, 인지부하, 설계원리로 학습환경을 설계합니다.</p></div>
+    <div class="th"><div class="e">미래 전망</div><h3>메타버스와 AI 교육</h3><p>메타버스 플랫폼, 가상현실 적용, 인공지능의 교육적 활용을 탐색합니다.</p></div>
+  </div>
 </div></section>
-<section id="downloads" class="section"><h2>원본 PDF 다운로드</h2><p class="section-intro">업로드된 원본 PDF 9개를 그대로 내려받을 수 있습니다.</p><div class="download-grid">
-<article class="download"><h3>1과</h3><p>에듀테크와 디지털 교육 · 29쪽</p><a class="btn primary" href="files/lesson01-edutech-digital-education.pdf" download>PDF 다운로드</a></article>
-<article class="download"><h3>2과</h3><p>디지털 학습 · 15쪽</p><a class="btn primary" href="files/lesson02-digital-learning.pdf" download>PDF 다운로드</a></article>
-<article class="download"><h3>3과</h3><p>실감미디어 · 21쪽</p><a class="btn primary" href="files/lesson03-immersive-media.pdf" download>PDF 다운로드</a></article>
-<article class="download"><h3>4과</h3><p>멀티미디어 학습 · 21쪽</p><a class="btn primary" href="files/lesson04-multimedia-learning.pdf" download>PDF 다운로드</a></article>
-<article class="download"><h3>5-6과</h3><p>멀티미디어 설계원리 · 35쪽</p><a class="btn primary" href="files/lesson05-06-multimedia-design-principles.pdf" download>PDF 다운로드</a></article>
-<article class="download"><h3>7과</h3><p>실감미디어 학습환경 · 23쪽</p><a class="btn primary" href="files/lesson07-immersive-learning-environment.pdf" download>PDF 다운로드</a></article>
-<article class="download"><h3>8과</h3><p>가상현실의 적용 · 16쪽</p><a class="btn primary" href="files/lesson08-virtual-reality-application.pdf" download>PDF 다운로드</a></article>
-<article class="download"><h3>9-10과</h3><p>메타버스 · 25쪽</p><a class="btn primary" href="files/lesson09-10-metaverse.pdf" download>PDF 다운로드</a></article>
-<article class="download"><h3>11-12과</h3><p>인공지능과 교육의 미래 · 61쪽</p><a class="btn primary" href="files/lesson11-12-ai-future-of-education.pdf" download>PDF 다운로드</a></article>
+
+<section id="modules"><div class="wrap">
+  <p class="kicker">Modules</p>
+  <h2>단원별 학습</h2>
+  <p class="lead">각 단원은 원본 PDF의 제목·학습 목표·핵심 개념 기준으로 정리했습니다. 학습 목표는 펼쳐서 확인하세요.</p>
+  <div class="mods" id="mods"></div>
 </div></section>
-<section id="activities" class="section"><h2>학습 활동과 점검</h2><div class="cards"><article class="card"><span class="pill">개념 점검</span><h3>핵심 용어 사전</h3><p>에듀테크, 디지털 학습, 실감미디어, 인지부하, 메타버스, 인공지능을 자신의 언어로 정의합니다.</p></article><article class="card"><span class="pill">적용 활동</span><h3>수업 설계 미니 과제</h3><p>하나의 전공 또는 교양 수업을 선택해 디지털 도구, 멀티미디어 원리, AI 활용 방안을 적용합니다.</p></article><article class="card"><span class="pill">성찰</span><h3>미래 교육 시나리오</h3><p>XR, 메타버스, AI가 결합된 학습 환경을 상상하고 장점, 위험, 윤리 기준을 정리합니다.</p></article></div></section>
-<section class="section"><h2>수업 운영 체크</h2><table class="rubric"><tr><th>구분</th><th>학생 활동</th></tr><tr><td>수업 전</td><td>해당 단원 PDF를 내려받고 핵심 개념 3개를 표시합니다.</td></tr><tr><td>수업 중</td><td>사례 분석, 도구 비교, 설계원리 적용 활동에 참여합니다.</td></tr><tr><td>수업 후</td><td>학습 내용을 전공 분야 또는 관심 진로와 연결해 5문장으로 정리합니다.</td></tr></table></section>
-</main>
-<footer class="footer">에듀테크의 이해 · GitHub Pages 공개본 · 원본 PDF 다운로드 지원</footer>
+
+<section id="downloads"><div class="wrap">
+  <p class="kicker">Original PDF</p>
+  <h2>원본 PDF 다운로드</h2>
+  <p class="lead">업로드된 원본 PDF 9개를 그대로 내려받습니다.</p>
+  <div class="dlgrid" id="dlgrid"></div>
+</div></section>
+
+<section id="activities"><div class="wrap">
+  <p class="kicker">Activities</p>
+  <h2>학습 활동과 점검</h2>
+  <div class="cards3" style="margin-bottom:18px">
+    <div class="ac"><span>개념 점검</span><strong>핵심 용어 사전</strong><p>에듀테크·디지털 학습·실감미디어·인지부하·메타버스·AI를 자신의 언어로 정의합니다.</p></div>
+    <div class="ac"><span>적용 활동</span><strong>수업 설계 미니 과제</strong><p>전공 또는 교양 수업을 골라 디지털 도구·멀티미디어 원리·AI 활용을 적용합니다.</p></div>
+    <div class="ac"><span>성찰</span><strong>미래 교육 시나리오</strong><p>XR·메타버스·AI가 결합된 학습 환경의 장점·위험·윤리 기준을 정리합니다.</p></div>
+  </div>
+  <table class="run">
+    <tr><th>수업 전</th><td>해당 단원 PDF를 내려받고 핵심 개념 3개를 표시합니다.</td></tr>
+    <tr><th>수업 중</th><td>사례 분석, 도구 비교, 설계원리 적용 활동에 참여합니다.</td></tr>
+    <tr><th>수업 후</th><td>학습 내용을 전공 또는 진로와 연결해 5문장으로 정리합니다.</td></tr>
+  </table>
+</div></section>
+
+<footer><div class="wrap"><b>에듀테크의 이해</b><span>Digital · Immersive · Multimedia · Metaverse · AI</span></div></footer>
+
+<script>
+const B="https://fhlyongko.github.io/123456/edutech-understanding-lms/files/";
+const L=[
+ {l:"1과",th:"t1",tn:"디지털교육",t:"에듀테크와 디지털 교육",c:["에듀테크","이러닝","온라인 교육","디지털 혁신"],o:["에듀테크의 정의와 중요성을 설명한다.","이러닝과 온라인 교육의 특징을 구분한다.","디지털 시대 교육 혁신의 흐름을 이해한다."],pg:"29쪽",f:"lesson01-edutech-digital-education.pdf"},
+ {l:"2과",th:"t1",tn:"디지털교육",t:"디지털 학습",c:["모바일 학습","소셜미디어","스마트러닝","마이크로러닝"],o:["모바일 기기를 활용한 학습 가능성을 설명한다.","소셜미디어의 협업·의사소통 기능을 이해한다.","스마트러닝과 마이크로러닝의 적용을 탐색한다."],pg:"15쪽",f:"lesson02-digital-learning.pdf"},
+ {l:"3과",th:"t2",tn:"실감미디어",t:"실감미디어",c:["실재감","몰입감","AR","VR","XR"],o:["실감미디어의 개념과 특징을 정의한다.","증강현실과 가상현실의 교육적 활용을 비교한다.","확장현실이 학습 경험에 주는 의미를 설명한다."],pg:"21쪽",f:"lesson03-immersive-media.pdf"},
+ {l:"4과",th:"t3",tn:"멀티미디어",t:"멀티미디어 학습",c:["인지부하","스키마","멀티미디어 학습이론"],o:["멀티미디어 학습의 개념과 인지 과정을 이해한다.","스키마 형성과 인지부하의 관계를 파악한다.","인지부하 관리 전략을 적용한다."],pg:"21쪽",f:"lesson04-multimedia-learning.pdf"},
+ {l:"5–6과",th:"t3",tn:"멀티미디어",t:"멀티미디어 설계원리",c:["이중채널","작업기억","일관성·신호","중복·근접성"],o:["인지 과정의 세 가정을 설명한다.","불필요한 인지부하를 줄이는 설계원리를 적용한다.","능동적 인지처리를 촉진하는 전략을 분석한다."],pg:"35쪽",f:"lesson05-06-multimedia-design-principles.pdf"},
+ {l:"7과",th:"t2",tn:"실감미디어",t:"실감미디어 학습환경",c:["AR·VR·MR","사용자 모형","학습환경 설계"],o:["실감미디어 유형을 구분하고 설명한다.","사용자 모형과 학습자 특성 반영을 이해한다.","가상현실 학습 환경의 설계 요소를 정리한다."],pg:"23쪽",f:"lesson07-immersive-learning-environment.pdf"},
+ {l:"8과",th:"t2",tn:"실감미디어",t:"가상현실의 적용",c:["시뮬레이션","가상체험공간","시나리오 기반 학습"],o:["교육 시뮬레이션의 목적과 유형을 설명한다.","가상현실 구현·운영 방법을 이해한다.","시나리오 기반 학습 사례를 탐색한다."],pg:"16쪽",f:"lesson08-virtual-reality-application.pdf"},
+ {l:"9–10과",th:"t4",tn:"메타버스",t:"메타버스",c:["가상세계","기술요인","플랫폼 유형","학습공간"],o:["메타버스 개념과 현실-가상 융합 특징을 설명한다.","플랫폼 유형과 기술 요인을 분석한다.","교육 분야 메타버스 학습공간 사례를 검토한다."],pg:"25쪽",f:"lesson09-10-metaverse.pdf"},
+ {l:"11–12과",th:"t5",tn:"AI 교육",t:"인공지능과 교육의 미래",c:["AI 개념","머신러닝","융합교육","교수설계"],o:["인공지능의 개념과 주요 기능을 설명한다.","머신러닝과 딥러닝의 기본 원리를 구분한다.","AI를 교육·교수설계에 통합하는 방안을 탐색한다."],pg:"61쪽",f:"lesson11-12-ai-future-of-education.pdf"},
+];
+const $=s=>document.querySelector(s);
+$("#mods").innerHTML=L.map(x=>`
+  <article class="mod ${x.th}">
+    <div class="mod-top"><span class="lbadge">${x.l}</span><span class="ttag ${x.th}">${x.tn}</span><span class="pg">${x.pg}</span></div>
+    <h3>${x.t}</h3>
+    <div class="concepts">${x.c.map(c=>`<span>${c}</span>`).join("")}</div>
+    <details><summary></summary><ul>${x.o.map(o=>`<li>${o}</li>`).join("")}</ul></details>
+    <div class="mod-foot"><a class="pdf" href="${B+x.f}">↓ 원본 PDF</a></div>
+  </article>`).join("");
+$("#dlgrid").innerHTML=L.map(x=>`
+  <div class="dlrow"><div class="ti">${x.l}<small>${x.t} · ${x.pg}</small></div><a href="${B+x.f}">PDF</a></div>`).join("");
+</script>
 </body>
 </html>
