@@ -1,134 +1,272 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="2026학년도 1학기 전공탐구생활 온라인 수업강의실">
-  <title>전공탐구생활 온라인 수업강의실</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <link rel="stylesheet" href="assets/hero-image.css">
-  <link rel="stylesheet" href="assets/overrides.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전공탐구생활 온라인 강의실</title>
+<style>
+  :root{
+    --ink:#1d1c1a; --text:#33312d; --muted:#6f6b63; --faint:#8a857b;
+    --line:#e7e3da; --soft:#f1ede5; --bg:#fbfaf7; --card:#fff; --accent:#2b2b2b;
+    --s1:#3a6b6b; --s1b:#e3efed; --s2:#7a5d8a; --s2b:#efe8f3;
+    --s3:#a8602e; --s3b:#f6e9df; --s4:#3a5a86; --s4b:#e6edf6;
+    --maxw:960px; --navh:56px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--ink)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  nav.top{position:sticky;top:0;z-index:40;background:rgba(251,250,247,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--navh)}
+  nav.top .brand{font-weight:700;font-size:15px}
+  nav.top .links a{color:var(--muted);text-decoration:none;font-size:13.5px;margin-left:18px}
+  nav.top .links a:hover{color:var(--ink)}
+  @media(max-width:680px){nav.top .links{display:none}}
+
+  header.hero{padding:50px 0 30px}
+  .eyebrow{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600;margin:0 0 12px}
+  header.hero h1{font-family:var(--serif);font-size:34px;line-height:1.2;margin:0 0 12px;color:var(--ink)}
+  header.hero p.sub{font-size:16.5px;color:var(--muted);margin:0 0 20px;max-width:640px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+  .meta-row b{color:var(--ink);font-weight:650}
+
+  section{padding:34px 0;border-top:1px solid var(--soft);scroll-margin-top:calc(var(--navh) + 10px)}
+  .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:700;margin:0 0 6px}
+  h2{font-size:22px;margin:0 0 6px;color:var(--ink);font-weight:700}
+  .lead{color:var(--muted);font-size:15px;margin:0 0 22px}
+
+  .roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .stage{border-radius:10px;padding:16px 16px;border:1px solid var(--line)}
+  .stage .ph{font-size:12px;font-weight:700;letter-spacing:.04em}
+  .stage h3{font-size:16px;margin:8px 0 5px;color:var(--ink)}
+  .stage p{font-size:13px;color:var(--muted);margin:0;line-height:1.55}
+  .stage.s1{background:var(--s1b)} .stage.s1 .ph{color:var(--s1)}
+  .stage.s2{background:var(--s2b)} .stage.s2 .ph{color:var(--s2)}
+  .stage.s3{background:var(--s3b)} .stage.s3 .ph{color:var(--s3)}
+  .stage.s4{background:var(--s4b)} .stage.s4 .ph{color:var(--s4)}
+  @media(max-width:760px){.roadmap{grid-template-columns:repeat(2,1fr)}}
+
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:8px}
+  .controls input{flex:1;min-width:180px;height:38px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font-family:inherit;font-size:14px;background:var(--card)}
+  .filters{display:flex;flex-wrap:wrap;gap:7px;margin:6px 0 16px}
+  .filter{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:18px;padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+  .filter.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .progress{display:flex;align-items:center;gap:12px;margin:0 0 18px;font-size:13.5px;color:var(--muted)}
+  .pbar{flex:1;height:7px;background:var(--soft);border-radius:5px;overflow:hidden;max-width:340px}
+  .pbar span{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+
+  .weeks{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:760px){.weeks{grid-template-columns:1fr}}
+  .wk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;border-left:4px solid var(--line);display:flex;flex-direction:column;gap:9px}
+  .wk.s1{border-left-color:var(--s1)} .wk.s2{border-left-color:var(--s2)}
+  .wk.s3{border-left-color:var(--s3)} .wk.s4{border-left-color:var(--s4)}
+  .wk-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .wbadge{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);background:var(--soft);border-radius:6px;padding:2px 9px}
+  .stag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:5px}
+  .stag.s1{color:var(--s1);background:var(--s1b)} .stag.s2{color:var(--s2);background:var(--s2b)}
+  .stag.s3{color:var(--s3);background:var(--s3b)} .stag.s4{color:var(--s4);background:var(--s4b)}
+  .wk h3{font-size:16px;margin:0;color:var(--ink);line-height:1.35}
+  .wk .desc{font-size:13.5px;color:var(--muted);margin:0;line-height:1.55}
+  .wk . tagrow{margin-top:2px}
+  .mini{display:flex;flex-wrap:wrap;gap:5px}
+  .mini span{font-size:11.5px;color:var(--text);background:var(--soft);border-radius:5px;padding:2px 8px}
+  .warn{font-size:12px;color:var(--s3);font-weight:600}
+  .wk-foot{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:auto;padding-top:4px}
+  .pdf{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 10px;text-decoration:none;background:var(--bg)}
+  .pdf:hover{background:var(--soft)}
+  .done{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer;user-select:none}
+
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.cards3{grid-template-columns:1fr}}
+  .ac{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+  .ac .w{font-size:11.5px;font-weight:700;color:var(--accent);background:var(--soft);border-radius:5px;padding:2px 8px;display:inline-block;margin-bottom:8px}
+  .ac h3{font-size:16px;margin:0 0 6px;color:var(--ink)}
+  .ac p{font-size:13px;color:var(--muted);margin:0 0 10px;line-height:1.55}
+
+  .assess{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
+  @media(max-width:760px){.assess{grid-template-columns:1fr}}
+  .bars .b{margin-bottom:12px}
+  .bars .b .lab{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:5px}
+  .bars .b .lab b{color:var(--ink);font-weight:650}
+  .bars .b .track{height:9px;background:var(--soft);border-radius:5px;overflow:hidden}
+  .bars .b .track i{display:block;height:100%;background:var(--accent);border-radius:5px}
+  . unote{}
+  .unote{background:#fbf1ec;border:1px solid #f0d8cc;border-radius:10px;padding:16px 18px}
+  .unote h3{font-size:14px;margin:0 0 8px;color:var(--s3)}
+  .unote ul{margin:0;padding-left:18px;font-size:13px;color:var(--text);line-height:1.6}
+  .grade{font-size:13.5px;color:var(--muted);margin:14px 0 0}
+  .grade b{color:var(--ink)}
+
+  .dlgroup h3{font-size:14px;margin:18px 0 10px;color:var(--ink)}
+  .dlgrid{display:flex;flex-wrap:wrap;gap:8px}
+
+  footer{padding:30px 0 60px;border-top:1px solid var(--line);text-align:center;color:var(--faint);font-size:13px;margin-top:20px}
+  footer b{color:var(--muted);display:block;font-size:14px;margin-bottom:3px}
+
+  @media print{nav.top{display:none}body{background:#fff}.wk,.ac,.stage{break-inside:avoid}}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#home" aria-label="전공탐구생활 홈">
-      <span class="brand-mark">ME</span>
-      <span><strong>전공탐구생활 온라인 수업강의실</strong><small>Major Exploration Online Classroom</small></span>
-    </a>
-    <nav class="nav" aria-label="주요 메뉴">
-      <a href="#modules">주차별 학습</a>
-      <a href="#assignments">과제</a>
-      <a href="#downloads">PDF 자료</a>
-      <a href="#assessment">평가</a>
-    </nav>
-  </header>
+<nav class="top"><div class="wrap">
+  <span class="brand">전공탐구생활</span>
+  <span class="links">
+    <a href="#roadmap">로드맵</a><a href="#modules">주차별</a><a href="#assignments">과제</a>
+    <a href="#assessment">평가</a><a href="#downloads">PDF</a>
+  </span>
+</div></nav>
 
-  <main id="home">
-    <section class="hero">
-      <div class="hero-photo" role="img" aria-label="전공과 진로 로드맵을 함께 설계하는 대학생들"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <p class="eyebrow">2026학년도 1학기 · 사림아너스학부</p>
-        <h1>전공탐구생활 온라인 수업강의실</h1>
-        <p class="hero-copy">나를 이해하고, 전공을 탐색하고, 변화하는 사회를 읽으며 나만의 대학생활 로드맵을 설계합니다.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#modules"><span aria-hidden="true">▶</span> 학습 시작</a>
-          <a class="button secondary" href="#downloads"><span aria-hidden="true">↓</span> PDF 자료</a>
-        </div>
-        <dl class="course-facts">
-          <div><dt>수업</dt><dd>금요일 12:00-15:00</dd></div>
-          <div><dt>운영</dt><dd>분반 강의 · 통합 전공탐색 · 상담</dd></div>
-        </dl>
-      </div>
-    </section>
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">Major Exploration · 2026학년도 1학기</p>
+  <h1>전공탐구생활 온라인 강의실</h1>
+  <p class="sub">나를 이해하고, 전공을 탐색하고, 변화하는 사회를 읽으며 나만의 대학생활 로드맵을 설계합니다.</p>
+  <div class="meta-row">
+    <span>소속 <b>사림아너스학부</b></span>
+    <span>수업 <b>금요일 12:00–15:00</b></span>
+    <span>구성 <b>16주 · 4단계</b></span>
+    <span>평가 <b>S / U</b></span>
+  </div>
+</div></header>
 
-    <section class="quick-actions" aria-label="빠른 메뉴">
-      <a href="#modules"><span>01</span><strong>오늘의 주차</strong><small>목표와 활동 확인</small></a>
-      <a href="#assignments"><span>02</span><strong>핵심 과제</strong><small>보고서와 포스터</small></a>
-      <a href="#downloads"><span>03</span><strong>PDF 받기</strong><small>주차별 학습자료</small></a>
-      <a href="#assessment"><span>04</span><strong>평가 확인</strong><small>S/U 기준 점검</small></a>
-    </section>
+<section id="roadmap"><div class="wrap">
+  <p class="kicker">Course Roadmap</p>
+  <h2>한 학기 학습 여정</h2>
+  <p class="lead">네 단계로 자기이해부터 대학생활 설계까지 이어집니다.</p>
+  <div class="roadmap">
+    <div class="stage s1"><div class="ph">1단계 · 1–3주</div><h3>자기이해</h3><p>성격 강점·흥미·적성·가치관을 탐색합니다.</p></div>
+    <div class="stage s2"><div class="ph">2단계 · 4–9주</div><h3>대학과 전공탐색</h3><p>학과·전공의 의미를 이해하고 관심 전공을 비교합니다.</p></div>
+    <div class="stage s3"><div class="ph">3단계 · 10–11주</div><h3>사회변화와 AI</h3><p>AI 리터러시·윤리와 생성형 AI 활용을 살펴봅니다.</p></div>
+    <div class="stage s4"><div class="ph">4단계 · 12–16주</div><h3>대학생활 설계</h3><p>직업·학업·비교과를 연결해 로드맵을 완성합니다.</p></div>
+  </div>
+</div></section>
 
-    <section class="section" id="overview">
-      <div class="section-heading">
-        <p class="eyebrow dark">Course Roadmap</p>
-        <h2>한 학기 학습 로드맵</h2>
-        <p>업로드된 강의계획안과 주차별 자료를 네 단계의 학습 여정으로 구성했습니다.</p>
-      </div>
-      <div class="roadmap">
-        <article><span>1단계 · 1-3주</span><h3>자기이해</h3><p>성격 강점, 흥미, 적성, 가치관을 탐색하고 진로 개발의 출발점을 만듭니다.</p></article>
-        <article><span>2단계 · 4-9주</span><h3>대학과 전공탐색</h3><p>대학·학과의 의미를 이해하고 멘토와 자료를 통해 관심 전공을 비교합니다.</p></article>
-        <article><span>3단계 · 10-11주</span><h3>사회변화와 AI</h3><p>AI 리터러시, AI 윤리, 생성형 AI의 학습 활용과 한계를 비판적으로 살펴봅니다.</p></article>
-        <article><span>4단계 · 12-16주</span><h3>대학생활 설계</h3><p>직업·학업·비교과 계획을 연결해 실행 가능한 대학생활 로드맵을 완성합니다.</p></article>
-      </div>
-    </section>
+<section id="modules"><div class="wrap">
+  <p class="kicker">Weekly Modules</p>
+  <h2>주차별 학습</h2>
+  <p class="lead">검색하거나 단계로 골라 보고, 학습 후 완료를 표시하세요.</p>
+  <div class="controls">
+    <input id="search" type="search" placeholder="검색: 전공 비교, AI 윤리, 포스터 …">
+  </div>
+  <div class="filters" id="filters">
+    <button class="filter active" data-f="all">전체</button>
+    <button class="filter" data-f="s1">자기이해</button>
+    <button class="filter" data-f="s2">전공탐색</button>
+    <button class="filter" data-f="s3">사회변화·AI</button>
+    <button class="filter" data-f="s4">대학생활 설계</button>
+  </div>
+  <div class="progress"><span>나의 진행률</span><div class="pbar"><span id="pbar"></span></div><b id="ptext">0 / 16</b></div>
+  <div class="weeks" id="weeks"></div>
+</div></section>
 
-    <section class="section" id="modules">
-      <div class="section-heading tools-heading">
-        <div><p class="eyebrow dark">Weekly Modules</p><h2>주차별 학습 모듈</h2><p>검색하거나 단계별로 골라 보고, 학습 후 완료 표시를 남길 수 있습니다.</p></div>
-        <div class="tools">
-          <label><span class="sr-only">주차 검색</span><input id="moduleSearch" type="search" placeholder="주차·주제·키워드 검색"></label>
-          <label><span class="sr-only">단계 선택</span><select id="moduleFilter"><option value="all">전체 단계</option><option value="self">자기이해</option><option value="major">전공탐색</option><option value="ai">사회변화·AI</option><option value="design">대학생활 설계</option></select></label>
-        </div>
-      </div>
-      <div class="progress-panel">
-        <div><span>나의 학습 진행률</span><strong id="completedCount">0 / 16 완료</strong></div>
-        <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
-      </div>
-      <p class="empty-state" id="emptyState" hidden>검색 조건에 맞는 주차가 없습니다.</p>
-      <div class="module-list">
-        <article class="module" data-tags="self orientation 강의소개 상담 자기소개"><div class="module-head"><span>1주</span><div><small>자기이해</small><h3>오리엔테이션과 자기소개</h3></div></div><p>교과목 목표, 단계별 운영, 상담 신청 방법, 평가 기준을 이해하고 자기소개 에세이를 작성합니다.</p><ul><li>핵심: 전공 선택의 의미, 정보 수집과 의사결정</li><li>활동: 자기소개 에세이와 한 학기 목표 작성</li><li>자료: 강의소개 PDF, 계획안, 전공탐구생활 HWPX</li></ul><div class="module-actions"><a class="download-link" href="files/week01-course-introduction.pdf" download="week01-course-introduction.pdf" type="application/pdf">↓ 1주차 PDF</a><label><input type="checkbox" data-progress="week1"> 학습 완료</label></div></article>
-        <article class="module" data-tags="self 자기이해 성격 강점 키워드"><div class="module-head"><span>2주</span><div><small>자기이해</small><h3>자기 탐색 1: 나를 이해하는 첫걸음</h3></div></div><p>개인과 환경의 상호작용, 자기이해의 중요성, 성격 강점의 발견과 활용을 학습합니다.</p><ul><li>핵심: 자기실현, 개인 욕구와 환경 요구의 조율</li><li>활동: 나를 나타내는 3가지 키워드와 강점 근거</li><li>자료: 2주차 자기이해 1 PDF</li></ul><div class="module-actions"><a class="download-link" href="files/week02-self-understanding-1.pdf" download="week02-self-understanding-1.pdf" type="application/pdf">↓ 2주차 PDF</a><label><input type="checkbox" data-progress="week2"> 학습 완료</label></div></article>
-        <article class="module" data-tags="self 진로 흥미 가치관 적성 직업선호도"><div class="module-head"><span>3주</span><div><small>자기이해</small><h3>자기 탐색 2: 진로 이해</h3></div></div><p>대학생 시기의 진로 개발 과정과 진로 선택에 필요한 흥미·가치관·적성·능력을 탐색합니다.</p><ul><li>핵심: 자기이해, 환경이해, 직업정보, 진로의사결정</li><li>활동: 직업선호도 검사와 직업가치관 검사 해석</li><li>자료: 3주차 자기이해 2 PDF</li></ul><div class="module-actions"><a class="download-link" href="files/week03-self-understanding-career.pdf" download="week03-self-understanding-career.pdf" type="application/pdf">↓ 3주차 PDF</a><label><input type="checkbox" data-progress="week3"> 학습 완료</label></div></article>
-        <article class="module" data-tags="major 대학 학과 전공 보고서 보강"><div class="module-head"><span>4주</span><div><small>전공탐색</small><h3>대학과 학과의 이해</h3></div></div><p>대학과 대학생활의 의미, 학과·전공의 역할과 선택 중요성을 이해하고 진로탐색 보고서를 설계합니다.</p><ul><li>핵심: 대학의 역사와 기능, 전공 선택 기준, University Value Map</li><li>활동: 관심 학과 자료 탐색과 전공 비교</li><li>과제: A4 5쪽 진로탐색 및 설계 보고서, 이번 과제는 AI 사용 금지</li></ul><div class="module-actions"><a class="download-link" href="files/week04-university-department.pdf" download="week04-university-department.pdf" type="application/pdf">↓ 4주차 PDF</a><a class="download-link" href="files/week04-lecture-2.pdf" download="week04-lecture-2.pdf" type="application/pdf">↓ 4주차 보충 PDF</a><a class="download-link" href="files/week04-career-design-assignment.pdf" download="week04-career-design-assignment.pdf" type="application/pdf">↓ 보고서 지침 PDF</a><label><input type="checkbox" data-progress="week4"> 학습 완료</label></div></article>
-        <article class="module" data-tags="major 멘토 전공탐색 통합"><div class="module-head"><span>5주</span><div><small>전공탐색</small><h3>전공 탐색 1: 관심 분야 넓히기</h3></div></div><p>멘토의 전공 소개를 듣고 각 학문의 질문, 핵심 과목, 진출 분야를 기록합니다.</p><ul><li>활동: 관심 전공 3개 후보 만들기</li><li>산출물: 전공별 궁금한 점 질문 목록</li></ul><div class="module-actions"><a class="download-link" href="generated/week05.pdf" download="week05.pdf" type="application/pdf">↓ 5주차 PDF</a><label><input type="checkbox" data-progress="week5"> 학습 완료</label></div></article>
-        <article class="module" data-tags="major 멘토 학과 비교 역량"><div class="module-head"><span>6주</span><div><small>전공탐색</small><h3>전공 탐색 2: 전공 비교하기</h3></div></div><p>관심 전공의 교육과정, 요구 역량, 학습 방식, 진출 경로를 같은 기준으로 비교합니다.</p><ul><li>활동: 전공 비교 매트릭스 작성</li><li>산출물: 나의 강점과 전공 요구 역량 연결</li></ul><div class="module-actions"><a class="download-link" href="generated/week06.pdf" download="week06.pdf" type="application/pdf">↓ 6주차 PDF</a><label><input type="checkbox" data-progress="week6"> 학습 완료</label></div></article>
-        <article class="module" data-tags="major 멘토 인터뷰 의사결정"><div class="module-head"><span>7주</span><div><small>전공탐색</small><h3>전공 탐색 3: 정보 검증하기</h3></div></div><p>홍보성 정보와 실제 경험을 구분하고 멘토 질문, 학과 홈페이지, 교과과정 자료를 교차 확인합니다.</p><ul><li>활동: 멘토 인터뷰 기록</li><li>산출물: 전공 선택의 기대와 우려 정리</li></ul><div class="module-actions"><a class="download-link" href="generated/week07.pdf" download="week07.pdf" type="application/pdf">↓ 7주차 PDF</a><label><input type="checkbox" data-progress="week7"> 학습 완료</label></div></article>
-        <article class="module" data-tags="major 중간고사 보고서 자기평가"><div class="module-head"><span>8주</span><div><small>전공탐색</small><h3>중간 점검: 진로탐색 보고서</h3></div></div><p>자기평가, 직업정보, SMART 목표, 실행계획이 서로 연결되는지 확인하고 중간 보고서를 완성합니다.</p><ul><li>평가: 중간고사 보고서 20%</li><li>주의: 출처를 명시하고 자신의 고민과 계획으로 작성</li></ul><div class="module-actions"><a class="download-link" href="generated/week08.pdf" download="week08.pdf" type="application/pdf">↓ 8주차 PDF</a><a class="download-link" href="files/week04-career-design-assignment.pdf" download="week04-career-design-assignment.pdf" type="application/pdf">↓ 보고서 지침 PDF</a><label><input type="checkbox" data-progress="week8"> 학습 완료</label></div></article>
-        <article class="module" data-tags="major 전공탐색 의사결정 최종 후보"><div class="module-head"><span>9주</span><div><small>전공탐색</small><h3>전공 탐색 4: 선택 기준 세우기</h3></div></div><p>자기이해 결과와 전공 정보를 통합해 우선순위를 정하고 추가로 확인할 정보를 계획합니다.</p><ul><li>활동: 전공 선택 기준 가중치표</li><li>산출물: 1순위·대안 전공과 선택 근거</li></ul><div class="module-actions"><a class="download-link" href="generated/week09.pdf" download="week09.pdf" type="application/pdf">↓ 9주차 PDF</a><label><input type="checkbox" data-progress="week9"> 학습 완료</label></div></article>
-        <article class="module" data-tags="ai AI리터러시 윤리 챗봇 4차산업혁명"><div class="module-head"><span>10주</span><div><small>사회변화·AI</small><h3>AI 리터러시와 AI 윤리</h3></div></div><p>주요 AI 챗봇의 특성과 한계를 비교하고, 출처 확인·개인정보·저작권·책임 있는 활용을 토론합니다.</p><ul><li>도구: ChatGPT, Gemini, Claude, Perplexity 등</li><li>핵심: 최신 모델 순위는 변하며 목적에 맞는 도구 선택이 중요</li><li>활동: AI 응답의 정확성·편향·근거 평가</li></ul><div class="module-actions"><a class="download-link" href="files/week10-ai-literacy.pdf" download="week10-ai-literacy.pdf" type="application/pdf">↓ 10주차 PDF</a><label><input type="checkbox" data-progress="week10"> 학습 완료</label></div></article>
-        <article class="module" data-tags="ai ChatGPT 생성형AI 교육 프롬프트"><div class="module-head"><span>11주</span><div><small>사회변화·AI</small><h3>ChatGPT와 생성형 AI 기반 교육</h3></div></div><p>질의응답, 아이디어, 문서 작성, 번역 등 생성형 AI 기능을 학습에 적용하고 오류와 윤리 문제를 점검합니다.</p><ul><li>핵심: 언어모델의 작동 특성, 교육 혁신, 활용 한계</li><li>활동: 좋은 질문 작성, 결과 검토, 수정 과정 기록</li><li>원칙: AI 결과를 그대로 제출하지 않고 사실 확인과 자기 판단 수행</li></ul><div class="module-actions"><a class="download-link" href="files/week11-chatgpt-education.pdf" download="week11-chatgpt-education.pdf" type="application/pdf">↓ 11주차 PDF</a><label><input type="checkbox" data-progress="week11"> 학습 완료</label></div></article>
-        <article class="module" data-tags="design 직업 직무 워크넷 진로"><div class="module-head"><span>12주</span><div><small>대학생활 설계</small><h3>전공 선택에 기반한 진로 설계: 직업</h3></div></div><p>다양한 직업 사례를 퀴즈로 탐색하고 직무 내용, 요구 역량, 전공 연계성, 노동시장 전망을 조사합니다.</p><ul><li>활동: 관심 직업 2개 직무 분석</li><li>산출물: 현재 역량과 직무 요구의 차이 분석</li></ul><div class="module-actions"><a class="download-link" href="files/week12-career-design-jobs.pdf" download="week12-career-design-jobs.pdf" type="application/pdf">↓ 12주차 PDF</a><label><input type="checkbox" data-progress="week12"> 학습 완료</label></div></article>
-        <article class="module" data-tags="design 학업 수강계획 복수전공 학생성공"><div class="module-head"><span>13주</span><div><small>대학생활 설계</small><h3>전공 선택에 기반한 진로 설계: 학업</h3></div></div><p>학생 성공과 의미 있는 대학생활을 이해하고 학기별 수강 계획, 주전공·복수전공·부전공 계획을 세웁니다.</p><ul><li>핵심: 학업의 본질, 학습성과, 교육과정 이해</li><li>활동: 졸업까지의 교과 로드맵 작성</li><li>운영: 동영상 보강 자료 포함</li></ul><div class="module-actions"><a class="download-link" href="files/week13-career-design.pdf" download="week13-career-design.pdf" type="application/pdf">↓ 13주차 PDF</a><label><input type="checkbox" data-progress="week13"> 학습 완료</label></div></article>
-        <article class="module" data-tags="design 비교과 동아리 인턴 자격증 학생성공"><div class="module-head"><span>14주</span><div><small>대학생활 설계</small><h3>전공 선택에 기반한 진로 설계: 비교과</h3></div></div><p>비교과의 의미와 활용 방법을 이해하고 동아리, 공모전, 자격증, 인턴, 봉사활동을 목표와 연결합니다.</p><ul><li>핵심: 통제 가능한 요인에 집중하고 실행에 전념</li><li>활동: 비교과 목표와 시기별 실천 계획 수립</li></ul><div class="module-actions"><a class="download-link" href="files/week14-extracurricular-career-design.pdf" download="week14-extracurricular-career-design.pdf" type="application/pdf">↓ 14주차 PDF</a><label><input type="checkbox" data-progress="week14"> 학습 완료</label></div></article>
-        <article class="module" data-tags="design 전시회 기술탐색 융합 보강주"><div class="module-head"><span>15주</span><div><small>대학생활 설계</small><h3>전시회로 떠나는 전공 탐색 여행</h3></div></div><p>기술 전시회를 미래 사회와 산업을 읽는 현장으로 이해하고 AI·바이오·로봇·환경·미디어의 전공 연결을 탐색합니다.</p><ul><li>활동: 전시 기술의 사용자, 사회적 가치, 관련 전공 분석</li><li>참고: 계획안상 보강주이므로 실제 운영 일정은 수업 안내를 따름</li></ul><div class="module-actions"><a class="download-link" href="files/week15-major-exploration-exhibition.pdf" download="week15-major-exploration-exhibition.pdf" type="application/pdf">↓ 15주차 PDF</a><label><input type="checkbox" data-progress="week15"> 학습 완료</label></div></article>
-        <article class="module" data-tags="design 대학생활 공유회 포스터 발표 피드백"><div class="module-head"><span>16주</span><div><small>대학생활 설계</small><h3>나의 대학생활 설계 공유회</h3></div></div><p>전공·진로 키워드, 교과 로드맵, 비교과 계획, 다짐을 포스터로 시각화하고 동료 피드백으로 보완합니다.</p><ul><li>발표: 개인별 대학생활 설계 포스터</li><li>피드백: 7개 이상 포스터에 2문장 이상 작성</li><li>평가: 기말 보고서 20% + 발표 20%</li></ul><div class="module-actions"><a class="download-link" href="files/week16-campus-life-design-sharing.pdf" download="week16-campus-life-design-sharing.pdf" type="application/pdf">↓ 16주차 PDF</a><a class="download-link" href="generated/poster-guide.pdf" download="poster-guide.pdf" type="application/pdf">↓ 포스터 지침 PDF</a><label><input type="checkbox" data-progress="week16"> 학습 완료</label></div></article>
-      </div>
-    </section>
+<section id="assignments"><div class="wrap">
+  <p class="kicker">Assignments</p>
+  <h2>핵심 과제</h2>
+  <p class="lead">형식보다 자기이해·정보탐색·계획의 연결을 봅니다.</p>
+  <div class="cards3">
+    <div class="ac"><span class="w">중간 · 20%</span><h3>진로탐색 및 설계 보고서</h3><p>A4 5쪽(본문 12pt·줄간격 160%). 자기평가·직업정보·SMART 목표·실행계획·참고문헌. <b style="color:var(--s3)">이 과제는 AI 사용 금지.</b></p><a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/files/week04-career-design-assignment.pdf">↓ 보고서 지침</a></div>
+    <div class="ac"><span class="w">기말 보고서 · 20%</span><h3>나의 대학생활 설계</h3><p>선택 전공·진로 중심으로 수업·비교과·역량·네트워킹을 하나의 로드맵으로 정리합니다.</p><a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/generated/final-roadmap.pdf">↓ 로드맵 양식</a></div>
+    <div class="ac"><span class="w">기말 발표 · 20%</span><h3>대학생활 설계 포스터</h3><p>전공·진로 키워드, 수업 로드맵, 비교과 계획, 다짐을 시각화해 발표합니다.</p><a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/generated/poster-guide.pdf">↓ 포스터 지침</a></div>
+  </div>
+</div></section>
 
-    <section class="section" id="assignments">
-      <div class="section-heading"><p class="eyebrow dark">Assignments</p><h2>핵심 과제</h2><p>과제의 형식보다 자기이해와 정보 탐색, 계획 사이의 연결성을 중요하게 봅니다.</p></div>
-      <div class="assignment-grid">
-        <article class="assignment important"><span>중간 · 20%</span><h3>진로탐색 및 설계 보고서</h3><p>A4 5쪽, 본문 12pt, 제목 14pt, 줄간격 160%. 자기평가, 직업정보, SMART 목표, 실행계획, 참고문헌을 포함합니다.</p><strong>중요: 업로드된 과제 지침에 따라 이번 과제는 AI 사용 금지입니다.</strong><a class="download-link" href="files/week04-career-design-assignment.pdf" download="week04-career-design-assignment.pdf" type="application/pdf">↓ 보고서 지침 PDF</a></article>
-        <article class="assignment"><span>기말 보고서 · 20%</span><h3>나의 대학생활 설계</h3><p>선택 전공과 진로를 중심으로 학기별 수업, 비교과 활동, 역량 개발, 네트워킹 계획을 하나의 로드맵으로 정리합니다.</p><a class="download-link" href="generated/final-roadmap.pdf" download="final-roadmap.pdf" type="application/pdf">↓ 로드맵 양식 PDF</a></article>
-        <article class="assignment"><span>기말 발표 · 20%</span><h3>대학생활 설계 포스터</h3><p>전공·진로 키워드, 수업 로드맵, 비교과 계획, 다짐을 시각화하고 동료에게 발표합니다.</p><a class="download-link" href="generated/poster-guide.pdf" download="poster-guide.pdf" type="application/pdf">↓ 포스터 지침 PDF</a></article>
-      </div>
-    </section>
+<section id="assessment"><div class="wrap">
+  <p class="kicker">Assessment</p>
+  <h2>평가 기준</h2>
+  <p class="lead">총점 75점 이상이면 S.</p>
+  <div class="assess">
+    <div class="bars">
+      <div class="b"><div class="lab"><span>출석 및 수업 참여</span><b>40%</b></div><div class="track"><i style="width:40%"></i></div></div>
+      <div class="b"><div class="lab"><span>중간 보고서</span><b>20%</b></div><div class="track"><i style="width:20%"></i></div></div>
+      <div class="b"><div class="lab"><span>기말 보고서</span><b>20%</b></div><div class="track"><i style="width:20%"></i></div></div>
+      <div class="b"><div class="lab"><span>기말 발표</span><b>20%</b></div><div class="track"><i style="width:20%"></i></div></div>
+      <p class="grade"><b>S</b> 75점 이상 · <b>U</b> 부정행위 또는 참여 기준 미달 시</p>
+    </div>
+    <aside class="unote">
+      <h3>⚠ U 학점 유의사항</h3>
+      <ul>
+        <li>대리출석·과제 부정행위</li>
+        <li>수업 활동·발표 미참여</li>
+        <li>과제 50% 이상 미제출</li>
+        <li>결석 4회 또는 무단 퇴실 3회</li>
+      </ul>
+    </aside>
+  </div>
+</div></section>
 
-    <section class="section assessment-section" id="assessment">
-      <div class="section-heading"><p class="eyebrow dark">Assessment</p><h2>평가 기준</h2><p>총점 75점 이상이면 S, 부정행위 또는 참여 기준 미달 시 U가 부여될 수 있습니다.</p></div>
-      <div class="assessment-grid">
-        <article><span style="--score:40%"></span><strong>출석 및 수업 참여 40%</strong><p>수업 활동과 발표 참여를 포함합니다.</p></article>
-        <article><span style="--score:20%"></span><strong>중간 보고서 20%</strong><p>진로탐색 및 설계 보고서입니다.</p></article>
-        <article><span style="--score:20%"></span><strong>기말 보고서 20%</strong><p>전공 선택 기반 대학생활 설계입니다.</p></article>
-        <article><span style="--score:20%"></span><strong>기말 발표 20%</strong><p>대학생활 설계 포스터 발표입니다.</p></article>
-      </div>
-      <div class="warning"><strong>U 학점 유의사항</strong><p>대리출석·과제 부정행위, 수업 활동·발표 미참여, 과제 50% 이상 미제출, 결석 4회 또는 무단 퇴실 3회 적발 기준을 반드시 확인하세요.</p></div>
-    </section>
+<section id="downloads"><div class="wrap">
+  <p class="kicker">PDF Downloads</p>
+  <h2>학습자료 한눈에</h2>
+  <p class="lead">버튼을 누르면 PDF가 바로 열립니다.</p>
+  <div class="dlgroup">
+    <h3>수업 안내</h3>
+    <div class="dlgrid">
+      <a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/files/course-plan-2026-spring.pdf">↓ 강의 안내</a>
+      <a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/files/week04-career-design-assignment.pdf">↓ 중간 보고서 지침</a>
+      <a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/generated/final-roadmap.pdf">↓ 기말 로드맵 양식</a>
+      <a class="pdf" href="https://fhlyongko.github.io/123456/major-exploration-lms/generated/poster-guide.pdf">↓ 포스터 지침</a>
+    </div>
+    <h3>주차별 자료</h3>
+    <div class="dlgrid" id="weekDl"></div>
+  </div>
+</div></section>
 
-    <section class="section" id="downloads">
-      <div class="section-heading"><p class="eyebrow dark">PDF Downloads</p><h2>전체 PDF 학습자료</h2><p>버튼을 누르면 실제 PDF 파일이 바로 열리거나 저장됩니다.</p></div>
-      <div class="download-groups">
-        <div><h3>수업 안내</h3><a class="download-link" href="files/course-plan-2026-spring.pdf" download="course-plan-2026-spring.pdf" type="application/pdf">↓ 강의 안내 PDF</a><a class="download-link" href="files/week04-career-design-assignment.pdf" download="week04-career-design-assignment.pdf" type="application/pdf">↓ 중간 보고서 지침 PDF</a><a class="download-link" href="generated/final-roadmap.pdf" download="final-roadmap.pdf" type="application/pdf">↓ 기말 로드맵 양식 PDF</a><a class="download-link" href="generated/poster-guide.pdf" download="poster-guide.pdf" type="application/pdf">↓ 포스터 지침 PDF</a></div>
-        <div><h3>1-8주차</h3><a class="download-link" href="files/week01-course-introduction.pdf" download="week01-course-introduction.pdf" type="application/pdf">↓ 1주차</a><a class="download-link" href="files/week02-self-understanding-1.pdf" download="week02-self-understanding-1.pdf" type="application/pdf">↓ 2주차</a><a class="download-link" href="files/week03-self-understanding-career.pdf" download="week03-self-understanding-career.pdf" type="application/pdf">↓ 3주차</a><a class="download-link" href="files/week04-university-department.pdf" download="week04-university-department.pdf" type="application/pdf">↓ 4주차</a><a class="download-link" href="files/week04-lecture-2.pdf" download="week04-lecture-2.pdf" type="application/pdf">↓ 4주차 보충</a><a class="download-link" href="generated/week05.pdf" download="week05.pdf" type="application/pdf">↓ 5주차</a><a class="download-link" href="generated/week06.pdf" download="week06.pdf" type="application/pdf">↓ 6주차</a><a class="download-link" href="generated/week07.pdf" download="week07.pdf" type="application/pdf">↓ 7주차</a><a class="download-link" href="generated/week08.pdf" download="week08.pdf" type="application/pdf">↓ 8주차</a></div>
-        <div><h3>9-16주차</h3><a class="download-link" href="generated/week09.pdf" download="week09.pdf" type="application/pdf">↓ 9주차</a><a class="download-link" href="files/week10-ai-literacy.pdf" download="week10-ai-literacy.pdf" type="application/pdf">↓ 10주차</a><a class="download-link" href="files/week11-chatgpt-education.pdf" download="week11-chatgpt-education.pdf" type="application/pdf">↓ 11주차</a><a class="download-link" href="files/week12-career-design-jobs.pdf" download="week12-career-design-jobs.pdf" type="application/pdf">↓ 12주차</a><a class="download-link" href="files/week13-career-design.pdf" download="week13-career-design.pdf" type="application/pdf">↓ 13주차</a><a class="download-link" href="files/week14-extracurricular-career-design.pdf" download="week14-extracurricular-career-design.pdf" type="application/pdf">↓ 14주차</a><a class="download-link" href="files/week15-major-exploration-exhibition.pdf" download="week15-major-exploration-exhibition.pdf" type="application/pdf">↓ 15주차</a><a class="download-link" href="files/week16-campus-life-design-sharing.pdf" download="week16-campus-life-design-sharing.pdf" type="application/pdf">↓ 16주차</a></div>
-      </div>
-    </section>
+<footer><div class="wrap"><b>전공탐구생활 온라인 강의실</b><span>전공 선택의 첫걸음, 나만의 대학생활 설계</span></div></footer>
 
-  </main>
-
-  <footer><strong>전공탐구생활 온라인 수업강의실</strong><span>전공 선택의 첫걸음, 나만의 대학생활 설계</span></footer>
-  <script src="assets/app.js"></script>
-  
+<script>
+const B="https://fhlyongko.github.io/123456/major-exploration-lms/";
+const weeks=[
+ {w:1,s:"s1",st:"자기이해",t:"오리엔테이션과 자기소개",d:"교과목 목표·운영·평가 기준을 이해하고 자기소개 에세이를 작성합니다.",m:["전공 선택의 의미","자기소개 에세이"],pdf:[["1주차",B+"files/week01-course-introduction.pdf"]]},
+ {w:2,s:"s1",st:"자기이해",t:"자기 탐색 1 — 나를 이해하는 첫걸음",d:"성격 강점의 발견과 활용, 자기이해의 중요성을 학습합니다.",m:["강점 키워드 3가지"],pdf:[["2주차",B+"files/week02-self-understanding-1.pdf"]]},
+ {w:3,s:"s1",st:"자기이해",t:"자기 탐색 2 — 진로 이해",d:"흥미·가치관·적성·능력을 탐색하고 진로 의사결정을 이해합니다.",m:["직업선호도·가치관 검사"],pdf:[["3주차",B+"files/week03-self-understanding-career.pdf"]]},
+ {w:4,s:"s2",st:"전공탐색",t:"대학과 학과의 이해",d:"대학·전공의 의미와 선택 기준을 이해하고 진로탐색 보고서를 설계합니다.",m:["University Value Map","전공 비교"],warn:"이 보고서 과제는 AI 사용 금지",pdf:[["4주차",B+"files/week04-university-department.pdf"],["보충",B+"files/week04-lecture-2.pdf"],["보고서 지침",B+"files/week04-career-design-assignment.pdf"]]},
+ {w:5,s:"s2",st:"전공탐색",t:"전공 탐색 1 — 관심 분야 넓히기",d:"멘토의 전공 소개를 듣고 관심 전공 3개 후보를 만듭니다.",m:["전공별 질문 목록"],pdf:[["5주차",B+"generated/week05.pdf"]]},
+ {w:6,s:"s2",st:"전공탐색",t:"전공 탐색 2 — 전공 비교하기",d:"교육과정·요구 역량·진출 경로를 같은 기준으로 비교합니다.",m:["전공 비교 매트릭스"],pdf:[["6주차",B+"generated/week06.pdf"]]},
+ {w:7,s:"s2",st:"전공탐색",t:"전공 탐색 3 — 정보 검증하기",d:"홍보성 정보와 실제 경험을 구분하고 자료를 교차 확인합니다.",m:["멘토 인터뷰 기록"],pdf:[["7주차",B+"generated/week07.pdf"]]},
+ {w:8,s:"s2",st:"전공탐색",t:"중간 점검 — 진로탐색 보고서",d:"자기평가·직업정보·SMART 목표·실행계획의 연결을 확인합니다.",m:["중간고사 보고서 20%"],pdf:[["8주차",B+"generated/week08.pdf"],["보고서 지침",B+"files/week04-career-design-assignment.pdf"]]},
+ {w:9,s:"s2",st:"전공탐색",t:"전공 탐색 4 — 선택 기준 세우기",d:"자기이해와 전공 정보를 통합해 우선순위를 정합니다.",m:["1순위·대안 전공과 근거"],pdf:[["9주차",B+"generated/week09.pdf"]]},
+ {w:10,s:"s3",st:"사회변화·AI",t:"AI 리터러시와 AI 윤리",d:"AI 챗봇의 특성·한계를 비교하고 출처·개인정보·저작권을 토론합니다.",m:["ChatGPT·Gemini·Claude·Perplexity","근거·편향 평가"],pdf:[["10주차",B+"files/week10-ai-literacy.pdf"]]},
+ {w:11,s:"s3",st:"사회변화·AI",t:"ChatGPT와 생성형 AI 기반 교육",d:"생성형 AI를 학습에 적용하고 오류·윤리 문제를 점검합니다.",m:["좋은 질문 작성","결과 사실 확인"],pdf:[["11주차",B+"files/week11-chatgpt-education.pdf"]]},
+ {w:12,s:"s4",st:"대학생활 설계",t:"진로 설계 — 직업",d:"직무·요구 역량·전공 연계성·노동시장 전망을 조사합니다.",m:["관심 직업 2개 분석"],pdf:[["12주차",B+"files/week12-career-design-jobs.pdf"]]},
+ {w:13,s:"s4",st:"대학생활 설계",t:"진로 설계 — 학업",d:"수강 계획과 주전공·복수전공·부전공 로드맵을 세웁니다.",m:["졸업까지 교과 로드맵"],pdf:[["13주차",B+"files/week13-career-design.pdf"]]},
+ {w:14,s:"s4",st:"대학생활 설계",t:"진로 설계 — 비교과",d:"동아리·공모전·자격증·인턴·봉사를 목표와 연결합니다.",m:["시기별 실천 계획"],pdf:[["14주차",B+"files/week14-extracurricular-career-design.pdf"]]},
+ {w:15,s:"s4",st:"대학생활 설계",t:"전시회로 떠나는 전공 탐색 여행",d:"기술 전시로 AI·바이오·로봇·환경·미디어의 전공 연결을 탐색합니다.",m:["보강주 — 운영은 수업 안내"],pdf:[["15주차",B+"files/week15-major-exploration-exhibition.pdf"]]},
+ {w:16,s:"s4",st:"대학생활 설계",t:"나의 대학생활 설계 공유회",d:"설계 포스터를 발표하고 동료 피드백으로 보완합니다.",m:["기말 보고서 20% + 발표 20%"],pdf:[["16주차",B+"files/week16-campus-life-design-sharing.pdf"],["포스터 지침",B+"generated/poster-guide.pdf"]]},
+];
+const KEY="major-exp-done";
+const done=new Set(JSON.parse(localStorage.getItem(KEY)||"[]"));
+let flt="all";
+const $=s=>document.querySelector(s);
+function draw(){
+ const q=$("#search").value.trim().toLowerCase();
+ const host=$("#weeks");host.innerHTML="";
+ weeks.filter(x=>flt==="all"||x.s===flt)
+   .filter(x=>!q||(x.t+x.d+x.st+x.m.join(" ")).toLowerCase().includes(q))
+   .forEach(x=>{
+   const el=document.createElement("article");el.className="wk "+x.s;el.id="w"+x.w;
+   const dn=done.has(x.w);
+   el.innerHTML=`
+    <div class="wk-top"><span class="wbadge">${x.w}주</span><span class="stag ${x.s}">${x.st}</span></div>
+    <h3>${x.t}</h3>
+    <p class="desc">${x.d}</p>
+    ${x.warn?`<div class="warn">⚠ ${x.warn}</div>`:""}
+    <div class="mini">${x.m.map(t=>`<span>${t}</span>`).join("")}</div>
+    <div class="wk-foot">
+      ${x.pdf.map(p=>`<a class="pdf" href="${p[1]}">↓ ${p[0]}</a>`).join("")}
+      <label class="done"><input type="checkbox" data-w="${x.w}" ${dn?"checked":""}> 완료</label>
+    </div>`;
+   host.appendChild(el);
+ });
+ if(!host.children.length)host.innerHTML='<p class="lead">검색 결과가 없습니다.</p>';
+ prog();
+}
+function prog(){const p=Math.round(done.size/weeks.length*100);$("#pbar").style.width=p+"%";$("#ptext").textContent=done.size+" / "+weeks.length;}
+document.addEventListener("change",e=>{if(!e.target.matches("[data-w]"))return;const w=+e.target.dataset.w;e.target.checked?done.add(w):done.delete(w);localStorage.setItem(KEY,JSON.stringify([...done]));prog();});
+$("#filters").addEventListener("click",e=>{if(!e.target.matches(".filter"))return;document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));e.target.classList.add("active");flt=e.target.dataset.f;draw();});
+$("#search").addEventListener("input",draw);
+$("#weekDl").innerHTML=weeks.map(x=>`<a class="pdf" href="${x.pdf[0][1]}">↓ ${x.w}주</a>`).join("");
+draw();
+</script>
 </body>
 </html>
