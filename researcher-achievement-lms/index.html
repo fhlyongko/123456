@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>이용직 교수 연구업적 아카이브</title>
+  <meta name="description" content="이용직 교수의 연구, 학술회의, 전문저서, 교육, 봉사, 산학협력, 논문 게재 실적을 정리한 공개용 연구자 홈페이지형 LMS입니다.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home">
+      <span>Changwon National University</span>
+      <strong>이용직 교수 연구업적 아카이브</strong>
+    </a>
+    <nav aria-label="주요 메뉴">
+      <a href="#dashboard">현황</a>
+      <a href="#modules">업적 모듈</a>
+      <a href="#evidence">공개 색인</a>
+      <a href="#guide">활용 안내</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Research Achievement LMS</p>
+        <h1>이용직 교수 연구업적 아카이브</h1>
+        <p class="lead">연구, 학술대회, 전문저서, 교육·수업개선, 봉사활동, 산학협력, 2026년 논문 게재 실적을 범주별로 정리한 공개용 연구자 홈페이지입니다.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#modules">업적 모듈 보기</a>
+          <a class="button secondary" href="#evidence">공개 색인 보기</a>
+        </div>
+      </div>
+      <figure class="hero-visual">
+        <img src="assets/research-profile-card.png" alt="Yong-Jik Lee Research profile visual">
+      </figure>
+    </section>
+
+    <section class="notice">
+      <strong>공개 범위</strong>
+      <span>원본 증빙 문서와 세부 파일명은 공개하지 않고, 전체 자료의 범주별 현황과 자료 유형만 공개용으로 정리했습니다.</span>
+    </section>
+
+    <section class="dashboard" id="dashboard" aria-label="업적 현황">
+      <article><strong id="totalFiles">-</strong><span>반영된 증빙 파일</span></article>
+      <article><strong id="totalSize">-</strong><span>총 자료 규모</span></article>
+      <article><strong id="categoryCount">-</strong><span>업적 범주</span></article>
+      <article><strong id="typeCount">-</strong><span>자료 유형</span></article>
+    </section>
+
+    <section class="section" id="modules">
+      <div class="section-head">
+        <p class="eyebrow">Achievement Modules</p>
+        <h2>업적 모듈</h2>
+      </div>
+      <div class="module-grid" id="moduleGrid"></div>
+    </section>
+
+    <section class="section two-column" id="guide">
+      <div>
+        <p class="eyebrow">LMS Flow</p>
+        <h2>활용 안내</h2>
+      </div>
+      <div class="guide-grid">
+        <article><strong>1. 범주 확인</strong><span>연구, 학술대회, 저서, 교육, 봉사, 산학협력, 논문 게재 실적을 범주별로 확인합니다.</span></article>
+        <article><strong>2. 자료 유형 파악</strong><span>PDF, HWP, PPTX, DOCX, 이미지, ZIP 등 증빙자료 유형별 분포를 확인합니다.</span></article>
+        <article><strong>3. 업적 보고 활용</strong><span>교원업적, 연구실적, 평가자료, 연구자 홈페이지 소개 자료 작성에 활용할 수 있습니다.</span></article>
+      </div>
+    </section>
+
+    <section class="section" id="evidence">
+      <div class="section-head">
+        <p class="eyebrow">Public Index</p>
+        <h2>공개용 업적 현황표</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>업적 범주</th>
+              <th>반영 파일 수</th>
+              <th>자료 규모</th>
+              <th>자료 유형</th>
+            </tr>
+          </thead>
+          <tbody id="publicBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>이용직 교수 연구업적 아카이브</strong>
+    <span>전체 업적증빙 폴더 구조를 기반으로 생성된 공개용 요약 LMS입니다.</span>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
