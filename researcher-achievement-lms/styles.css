@@ -221,6 +221,7 @@ h3 {
 .dashboard article,
 .module-card,
 .guide-grid article,
+.drive-panel,
 .table-wrap {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -302,6 +303,43 @@ h3 {
 .module-card ul {
   margin: 12px 0 0;
   padding-left: 1.1rem;
+}
+
+.drive-panel {
+  display: grid;
+  grid-template-columns: minmax(260px, .72fr) minmax(0, 1fr);
+  gap: 18px;
+  padding: 22px;
+  text-align: left;
+}
+
+.drive-panel p {
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+
+.drive-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.drive-links a {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 12px 14px;
+  background: var(--soft);
+  color: var(--univ-dark);
+  text-decoration: none;
+  font-weight: 850;
+}
+
+.drive-links a:hover {
+  border-color: rgba(7, 91, 99, .36);
+  background: #fff;
 }
 
 .type-row {
@@ -442,7 +480,8 @@ footer {
 
   .hero,
   .section-head.row,
-  .two-column {
+  .two-column,
+  .drive-panel {
     grid-template-columns: 1fr;
   }
 
@@ -472,7 +511,8 @@ footer {
   .dashboard,
   .module-grid,
   .guide-grid,
-  .notice {
+  .notice,
+  .drive-links {
     grid-template-columns: 1fr;
   }
 
