@@ -56,7 +56,6 @@
   .lbadge{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);background:var(--soft);border-radius:6px;padding:2px 9px}
   .ttag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:5px}
   .ttag.t1{color:var(--t1);background:var(--t1b)} .ttag.t2{color:var(--t2);background:var(--t2b)} .ttag.t3{color:var(--t3);background:var(--t3b)} .ttag.t4{color:var(--t4);background:var(--t4b)} .ttag.t5{color:var(--t5);background:var(--t5b)}
-  .pg{margin-left:auto;font-size:11.5px;color:var(--faint)}
   .mod h3{font-size:16px;margin:0;color:var(--ink);line-height:1.35}
   .concepts{display:flex;flex-wrap:wrap;gap:5px}
   .concepts span{font-size:11.5px;color:var(--text);background:var(--soft);border-radius:5px;padding:2px 8px}
@@ -95,7 +94,7 @@
 <body>
 <nav class="top"><div class="wrap">
   <span class="brand">에듀테크의 이해</span>
-  <span class="links"><a href="#overview">개요</a><a href="#modules">단원</a><a href="#downloads">원본 PDF</a><a href="#activities">활동</a></span>
+  <span class="links"><a href="#overview">개요</a><a href="#modules">단원</a><a href="#downloads">수업자료</a><a href="#activities">활동</a></span>
 </div></nav>
 
 <header class="hero"><div class="wrap">
@@ -103,17 +102,16 @@
   <h1>에듀테크의 이해</h1>
   <p class="sub">디지털 교육, 모바일 학습, 실감미디어, 멀티미디어 학습이론, 메타버스, 인공지능 교육을 하나의 흐름으로 탐색합니다.</p>
   <div class="stats">
-    <div class="stat"><div class="n">9</div><div class="l">PDF 자료</div></div>
-    <div class="stat"><div class="n">12과</div><div class="l">학습 범위</div></div>
-    <div class="stat"><div class="n">226쪽</div><div class="l">총 페이지</div></div>
-    <div class="stat"><div class="n">원본</div><div class="l">PDF 다운로드</div></div>
+    <div class="stat"><div class="n">Digital</div><div class="l">디지털 교육과 학습</div></div>
+    <div class="stat"><div class="n">XR</div><div class="l">실감미디어와 가상현실</div></div>
+    <div class="stat"><div class="n">AI</div><div class="l">인공지능과 교육의 미래</div></div>
   </div>
 </div></header>
 
 <section id="overview"><div class="wrap">
   <p class="kicker">Overview</p>
   <h2>수업 개요</h2>
-  <p class="lead">교재 PDF를 바탕으로 단원별 핵심 개념과 활동을 바로 확인할 수 있게 재구성했습니다.</p>
+  <p class="lead">에듀테크의 주요 개념과 교육적 적용 사례를 단원별로 정리해 바로 학습할 수 있도록 구성했습니다.</p>
   <div class="themes">
     <div class="th"><div class="e">핵심 주제</div><h3>교육과 기술의 융합</h3><p>에듀테크 개념, 온라인 교육, 디지털 학습, 최신 교수학습 동향을 이해합니다.</p></div>
     <div class="th"><div class="e">학습 환경</div><h3>실감미디어와 멀티미디어</h3><p>AR·VR·XR, 멀티미디어 학습, 인지부하, 설계원리로 학습환경을 설계합니다.</p></div>
@@ -124,14 +122,14 @@
 <section id="modules"><div class="wrap">
   <p class="kicker">Modules</p>
   <h2>단원별 학습</h2>
-  <p class="lead">각 단원은 원본 PDF의 제목·학습 목표·핵심 개념 기준으로 정리했습니다. 학습 목표는 펼쳐서 확인하세요.</p>
+  <p class="lead">각 단원은 핵심 개념, 학습 목표, 수업 활동을 중심으로 정리했습니다. 학습 목표는 펼쳐서 확인하세요.</p>
   <div class="mods" id="mods"></div>
 </div></section>
 
 <section id="downloads"><div class="wrap">
-  <p class="kicker">Original PDF</p>
-  <h2>원본 PDF 다운로드</h2>
-  <p class="lead">업로드된 원본 PDF 9개를 그대로 내려받습니다.</p>
+  <p class="kicker">Materials</p>
+  <h2>수업자료 다운로드</h2>
+  <p class="lead">단원별 수업자료를 내려받아 예습, 복습, 과제 준비에 활용하세요.</p>
   <div class="dlgrid" id="dlgrid"></div>
 </div></section>
 
@@ -144,7 +142,7 @@
     <div class="ac"><span>성찰</span><strong>미래 교육 시나리오</strong><p>XR·메타버스·AI가 결합된 학습 환경의 장점·위험·윤리 기준을 정리합니다.</p></div>
   </div>
   <table class="run">
-    <tr><th>수업 전</th><td>해당 단원 PDF를 내려받고 핵심 개념 3개를 표시합니다.</td></tr>
+    <tr><th>수업 전</th><td>해당 단원 수업자료를 내려받고 핵심 개념 3개를 표시합니다.</td></tr>
     <tr><th>수업 중</th><td>사례 분석, 도구 비교, 설계원리 적용 활동에 참여합니다.</td></tr>
     <tr><th>수업 후</th><td>학습 내용을 전공 또는 진로와 연결해 5문장으로 정리합니다.</td></tr>
   </table>
@@ -155,27 +153,27 @@
 <script>
 const B="https://fhlyongko.github.io/123456/edutech-understanding-lms/files/";
 const L=[
- {l:"1과",th:"t1",tn:"디지털교육",t:"에듀테크와 디지털 교육",c:["에듀테크","이러닝","온라인 교육","디지털 혁신"],o:["에듀테크의 정의와 중요성을 설명한다.","이러닝과 온라인 교육의 특징을 구분한다.","디지털 시대 교육 혁신의 흐름을 이해한다."],pg:"29쪽",f:"lesson01-edutech-digital-education.pdf"},
- {l:"2과",th:"t1",tn:"디지털교육",t:"디지털 학습",c:["모바일 학습","소셜미디어","스마트러닝","마이크로러닝"],o:["모바일 기기를 활용한 학습 가능성을 설명한다.","소셜미디어의 협업·의사소통 기능을 이해한다.","스마트러닝과 마이크로러닝의 적용을 탐색한다."],pg:"15쪽",f:"lesson02-digital-learning.pdf"},
- {l:"3과",th:"t2",tn:"실감미디어",t:"실감미디어",c:["실재감","몰입감","AR","VR","XR"],o:["실감미디어의 개념과 특징을 정의한다.","증강현실과 가상현실의 교육적 활용을 비교한다.","확장현실이 학습 경험에 주는 의미를 설명한다."],pg:"21쪽",f:"lesson03-immersive-media.pdf"},
- {l:"4과",th:"t3",tn:"멀티미디어",t:"멀티미디어 학습",c:["인지부하","스키마","멀티미디어 학습이론"],o:["멀티미디어 학습의 개념과 인지 과정을 이해한다.","스키마 형성과 인지부하의 관계를 파악한다.","인지부하 관리 전략을 적용한다."],pg:"21쪽",f:"lesson04-multimedia-learning.pdf"},
- {l:"5–6과",th:"t3",tn:"멀티미디어",t:"멀티미디어 설계원리",c:["이중채널","작업기억","일관성·신호","중복·근접성"],o:["인지 과정의 세 가정을 설명한다.","불필요한 인지부하를 줄이는 설계원리를 적용한다.","능동적 인지처리를 촉진하는 전략을 분석한다."],pg:"35쪽",f:"lesson05-06-multimedia-design-principles.pdf"},
- {l:"7과",th:"t2",tn:"실감미디어",t:"실감미디어 학습환경",c:["AR·VR·MR","사용자 모형","학습환경 설계"],o:["실감미디어 유형을 구분하고 설명한다.","사용자 모형과 학습자 특성 반영을 이해한다.","가상현실 학습 환경의 설계 요소를 정리한다."],pg:"23쪽",f:"lesson07-immersive-learning-environment.pdf"},
- {l:"8과",th:"t2",tn:"실감미디어",t:"가상현실의 적용",c:["시뮬레이션","가상체험공간","시나리오 기반 학습"],o:["교육 시뮬레이션의 목적과 유형을 설명한다.","가상현실 구현·운영 방법을 이해한다.","시나리오 기반 학습 사례를 탐색한다."],pg:"16쪽",f:"lesson08-virtual-reality-application.pdf"},
- {l:"9–10과",th:"t4",tn:"메타버스",t:"메타버스",c:["가상세계","기술요인","플랫폼 유형","학습공간"],o:["메타버스 개념과 현실-가상 융합 특징을 설명한다.","플랫폼 유형과 기술 요인을 분석한다.","교육 분야 메타버스 학습공간 사례를 검토한다."],pg:"25쪽",f:"lesson09-10-metaverse.pdf"},
- {l:"11–12과",th:"t5",tn:"AI 교육",t:"인공지능과 교육의 미래",c:["AI 개념","머신러닝","융합교육","교수설계"],o:["인공지능의 개념과 주요 기능을 설명한다.","머신러닝과 딥러닝의 기본 원리를 구분한다.","AI를 교육·교수설계에 통합하는 방안을 탐색한다."],pg:"61쪽",f:"lesson11-12-ai-future-of-education.pdf"},
+ {l:"1과",th:"t1",tn:"디지털교육",t:"에듀테크와 디지털 교육",c:["에듀테크","이러닝","온라인 교육","디지털 혁신"],o:["에듀테크의 정의와 중요성을 설명한다.","이러닝과 온라인 교육의 특징을 구분한다.","디지털 시대 교육 혁신의 흐름을 이해한다."],f:"lesson01-edutech-digital-education.pdf"},
+ {l:"2과",th:"t1",tn:"디지털교육",t:"디지털 학습",c:["모바일 학습","소셜미디어","스마트러닝","마이크로러닝"],o:["모바일 기기를 활용한 학습 가능성을 설명한다.","소셜미디어의 협업·의사소통 기능을 이해한다.","스마트러닝과 마이크로러닝의 적용을 탐색한다."],f:"lesson02-digital-learning.pdf"},
+ {l:"3과",th:"t2",tn:"실감미디어",t:"실감미디어",c:["실재감","몰입감","AR","VR","XR"],o:["실감미디어의 개념과 특징을 정의한다.","증강현실과 가상현실의 교육적 활용을 비교한다.","확장현실이 학습 경험에 주는 의미를 설명한다."],f:"lesson03-immersive-media.pdf"},
+ {l:"4과",th:"t3",tn:"멀티미디어",t:"멀티미디어 학습",c:["인지부하","스키마","멀티미디어 학습이론"],o:["멀티미디어 학습의 개념과 인지 과정을 이해한다.","스키마 형성과 인지부하의 관계를 파악한다.","인지부하 관리 전략을 적용한다."],f:"lesson04-multimedia-learning.pdf"},
+ {l:"5–6과",th:"t3",tn:"멀티미디어",t:"멀티미디어 설계원리",c:["이중채널","작업기억","일관성·신호","중복·근접성"],o:["인지 과정의 세 가정을 설명한다.","불필요한 인지부하를 줄이는 설계원리를 적용한다.","능동적 인지처리를 촉진하는 전략을 분석한다."],f:"lesson05-06-multimedia-design-principles.pdf"},
+ {l:"7과",th:"t2",tn:"실감미디어",t:"실감미디어 학습환경",c:["AR·VR·MR","사용자 모형","학습환경 설계"],o:["실감미디어 유형을 구분하고 설명한다.","사용자 모형과 학습자 특성 반영을 이해한다.","가상현실 학습 환경의 설계 요소를 정리한다."],f:"lesson07-immersive-learning-environment.pdf"},
+ {l:"8과",th:"t2",tn:"실감미디어",t:"가상현실의 적용",c:["시뮬레이션","가상체험공간","시나리오 기반 학습"],o:["교육 시뮬레이션의 목적과 유형을 설명한다.","가상현실 구현·운영 방법을 이해한다.","시나리오 기반 학습 사례를 탐색한다."],f:"lesson08-virtual-reality-application.pdf"},
+ {l:"9–10과",th:"t4",tn:"메타버스",t:"메타버스",c:["가상세계","기술요인","플랫폼 유형","학습공간"],o:["메타버스 개념과 현실-가상 융합 특징을 설명한다.","플랫폼 유형과 기술 요인을 분석한다.","교육 분야 메타버스 학습공간 사례를 검토한다."],f:"lesson09-10-metaverse.pdf"},
+ {l:"11–12과",th:"t5",tn:"AI 교육",t:"인공지능과 교육의 미래",c:["AI 개념","머신러닝","융합교육","교수설계"],o:["인공지능의 개념과 주요 기능을 설명한다.","머신러닝과 딥러닝의 기본 원리를 구분한다.","AI를 교육·교수설계에 통합하는 방안을 탐색한다."],f:"lesson11-12-ai-future-of-education.pdf"},
 ];
 const $=s=>document.querySelector(s);
 $("#mods").innerHTML=L.map(x=>`
   <article class="mod ${x.th}">
-    <div class="mod-top"><span class="lbadge">${x.l}</span><span class="ttag ${x.th}">${x.tn}</span><span class="pg">${x.pg}</span></div>
+    <div class="mod-top"><span class="lbadge">${x.l}</span><span class="ttag ${x.th}">${x.tn}</span></div>
     <h3>${x.t}</h3>
     <div class="concepts">${x.c.map(c=>`<span>${c}</span>`).join("")}</div>
     <details><summary></summary><ul>${x.o.map(o=>`<li>${o}</li>`).join("")}</ul></details>
-    <div class="mod-foot"><a class="pdf" href="${B+x.f}">↓ 원본 PDF</a></div>
+    <div class="mod-foot"><a class="pdf" href="${B+x.f}">수업자료 다운로드</a></div>
   </article>`).join("");
 $("#dlgrid").innerHTML=L.map(x=>`
-  <div class="dlrow"><div class="ti">${x.l}<small>${x.t} · ${x.pg}</small></div><a href="${B+x.f}">PDF</a></div>`).join("");
+  <div class="dlrow"><div class="ti">${x.l}<small>${x.t}</small></div><a href="${B+x.f}">수업자료 다운로드</a></div>`).join("");
 </script>
 </body>
 </html>
