@@ -1,4 +1,4 @@
-const key = "sarim-honors-global-lms-checks";
+const key = "university-global-competency-lms-checks";
 const checks = Array.from(document.querySelectorAll("[data-check]"));
 const saveNote = document.querySelector("#saveNote");
 const saved = new Set(JSON.parse(localStorage.getItem(key) || "[]"));
