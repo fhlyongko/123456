@@ -1,78 +1,225 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>글로벌 역량 LMS</title>
-  <meta http-equiv="refresh" content="0; url=../sarim-honors-global-lms/">
-  <link rel="canonical" href="https://fhlyongko.github.io/123456/sarim-honors-global-lms/">
-  <style>
-    :root {
-      --ink: #1f2330;
-      --muted: #697080;
-      --line: #e5e8ef;
-      --bg: #f7f8fb;
-      --card: #fff;
-      --accent: #4759b8;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>글로벌 역량 비교과 프로그램</title>
+<style>
+  :root{
+    --ink:#1c1b29;--text:#312f42;--muted:#615f78;--faint:#8a87a0;
+    --line:#e6e4f0;--soft:#f1eff8;--bg:#faf9fd;--card:#fff;
+    --accent:#5b4ad0;--accent2:#6f5de0;--accentd:#4234a0;
+    --g1:#5b4ad0;--g1b:#ece9fa; --g2:#1d8a7a;--g2b:#e0f2ef; --g3:#b0701f;--g3b:#f7ecd9;
+    --maxw:960px;--navh:56px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--ink)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  nav.top{position:sticky;top:0;z-index:40;background:rgba(250,249,253,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--navh)}
+  nav.top .brand{font-weight:700;font-size:15px;color:var(--accent)}
+  nav.top .links a{color:var(--muted);text-decoration:none;font-size:13.5px;margin-left:16px}
+  nav.top .links a:hover{color:var(--ink)}
+  @media(max-width:700px){nav.top .links{display:none}}
 
-    * { box-sizing: border-box; }
+  header.hero{background:linear-gradient(135deg,#6f5de0,#8d7bf0 55%,#a99bf6);color:#fff;padding:54px 0 40px;position:relative;overflow:hidden}
+  header.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.12)}
+  .badge-yr{display:inline-block;font-size:12.5px;font-weight:700;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:16px;padding:4px 14px;margin-bottom:18px;letter-spacing:.04em}
+  header.hero h1{font-size:34px;line-height:1.2;margin:0 0 8px;font-weight:800;letter-spacing:-.01em}
+  header.hero .en{font-size:15px;color:rgba(255,255,255,.85);margin:0 0 16px}
+  header.hero p.sub{font-size:16px;color:rgba(255,255,255,.92);margin:0;max-width:600px}
+  .hcards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+  @media(max-width:700px){.hcards{grid-template-columns:1fr}}
+  .hc{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:18px;backdrop-filter:blur(4px)}
+  .hc .ic{font-size:24px}
+  .hc strong{display:block;font-size:15.5px;margin:8px 0 5px;color:#fff}
+  .hc p{font-size:12.5px;color:rgba(255,255,255,.85);margin:0;line-height:1.5}
 
-    body {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      margin: 0;
-      padding: 24px;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
-      line-height: 1.6;
-    }
+  .metabar{background:var(--card);border-bottom:1px solid var(--line)}
+  .metabar .wrap{display:flex;flex-wrap:wrap;gap:10px 30px;padding:16px 22px;font-size:14px;color:var(--muted)}
+  .metabar b{color:var(--ink);font-weight:650}
 
-    main {
-      width: min(520px, 100%);
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: var(--card);
-      text-align: left;
-      box-shadow: 0 18px 36px rgba(31, 35, 48, .08);
-    }
+  section{padding:34px 0;border-top:1px solid var(--soft);scroll-margin-top:calc(var(--navh)+10px)}
+  .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:700;margin:0 0 6px}
+  h2{font-size:22px;margin:0 0 8px;color:var(--ink);font-weight:700}
+  .lead{color:var(--muted);font-size:15px;margin:0 0 20px}
+  p{margin:0 0 14px}
 
-    h1 {
-      margin: 0 0 10px;
-      font-size: 1.6rem;
-      line-height: 1.25;
-    }
+  .goals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:4px}
+  @media(max-width:700px){.goals{grid-template-columns:1fr}}
+  .goal{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;border-top:3px solid var(--accent)}
+  .goal strong{display:block;font-size:15px;color:var(--ink);margin-bottom:4px}
+  .goal p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.55}
 
-    p {
-      margin: 0 0 20px;
-      color: var(--muted);
-    }
+  .comp{display:flex;gap:12px;flex-wrap:wrap}
+  .cpill{background:var(--g1b);color:var(--accentd);border-radius:20px;padding:8px 18px;font-size:14px;font-weight:650}
 
-    a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      border-radius: 6px;
-      padding: 9px 15px;
-      background: var(--accent);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 800;
-    }
-  </style>
+  .acts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:700px){.acts{grid-template-columns:1fr}}
+  .act{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+  .act .ic{font-size:22px;flex:0 0 auto;width:42px;height:42px;border-radius:10px;background:var(--soft);display:flex;align-items:center;justify-content:center}
+  .act h3{font-size:15.5px;margin:0 0 3px;color:var(--ink)}
+  .act p{font-size:13px;color:var(--muted);margin:0;line-height:1.5}
+
+  .talks{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px}
+  .talks .t{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:700;margin-bottom:10px}
+  .talks ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 18px}
+  @media(max-width:700px){.talks ul{grid-template-columns:1fr}}
+  .talks li{font-size:14px;color:var(--text);padding-left:18px;position:relative}
+  .talks li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:700px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+  .step .no{font-family:var(--serif);font-size:14px;color:var(--accent);font-weight:700}
+  .step strong{display:block;font-size:15px;color:var(--ink);margin:5px 0 6px}
+  .step ul{margin:0;padding-left:16px;font-size:13px;color:var(--muted);line-height:1.55}
+
+  .mile{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
+  @media(max-width:700px){.mile{grid-template-columns:1fr}}
+  .mbox{background:var(--g1b);border-radius:12px;padding:20px 22px}
+  .mbox .big{font-family:var(--serif);font-size:30px;color:var(--accentd);line-height:1}
+  .mbox .big small{font-size:15px;color:var(--accent)}
+  .mbox p{font-size:13.5px;color:var(--muted);margin:10px 0 0}
+  .notice{background:#fbf1ec;border:1px solid #f0d8cc;border-radius:12px;padding:16px 18px}
+  .notice h3{font-size:14px;margin:0 0 8px;color:#a8602e}
+  .notice ul{margin:0;padding-left:18px;font-size:13px;color:var(--text);line-height:1.6}
+
+  .linked{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--g2);border-radius:10px;padding:18px 20px}
+  .linked h3{font-size:16px;margin:0 0 4px;color:var(--ink)}
+  .linked .m{font-size:13px;color:var(--muted);margin:0 0 8px}
+  .linked p{font-size:13.5px;color:var(--text);margin:0}
+
+  footer{padding:30px 0 56px;border-top:1px solid var(--line);text-align:center;color:var(--faint);font-size:13px;margin-top:18px}
+  footer b{color:var(--muted);display:block;font-size:14px;margin-bottom:3px}
+
+  .dlgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(max-width:700px){.dlgrid{grid-template-columns:1fr}}
+  .dlrow{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .dlrow .ti{font-size:14.5px;color:var(--ink);font-weight:650;line-height:1.35}
+  .dlrow .ti small{display:block;color:var(--faint);font-weight:400;font-size:12px;margin-top:2px}
+  .dlbtn{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:#fff;background:var(--accent);border-radius:8px;padding:8px 14px;text-decoration:none}
+  .dlbtn:hover{background:var(--accentd)}
+  .dlall{margin-bottom:16px}
+  @media print{nav.top{display:none}header.hero{background:#fff;color:#000}.hc,.goal,.act,.step{break-inside:avoid}}
+</style>
 </head>
 <body>
-  <main>
-    <h1>글로벌 역량 LMS로 이동합니다</h1>
-    <p>자동으로 이동하지 않으면 아래 버튼을 클릭하세요.</p>
-    <a href="../sarim-honors-global-lms/">글로벌 역량 LMS 열기</a>
-  </main>
-  <script>
-    window.location.replace("../sarim-honors-global-lms/");
-  </script>
+<nav class="top"><div class="wrap">
+  <span class="brand">글로벌 역량 프로그램</span>
+  <span class="links"><a href="#about">소개</a><a href="#activities">활동</a><a href="#downloads">자료</a><a href="#process">운영 절차</a><a href="#mileage">마일리지</a><a href="#linked">연계</a></span>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="badge-yr">2025 · 비교과 프로그램</span>
+  <h1>글로벌 역량 비교과 프로그램</h1>
+  <p class="en">Global Competency Program</p>
+  <p class="sub">영미권 교환학생·유학 준비를 위해 영어역량과 글로벌 소통능력을 집중적으로 키우는 학생 참여형 비교과 프로그램입니다.</p>
+  <div class="hcards">
+    <div class="hc"><div class="ic">🌏</div><strong>글로벌 역량</strong><p>영미권 교환학생 프로그램 지원을 위한 영어역량 강화</p></div>
+    <div class="hc"><div class="ic">📚</div><strong>집중 학습</strong><p>영어회화·토플 스터디·유학준비 특강 참여</p></div>
+    <div class="hc"><div class="ic">🤝</div><strong>협력 체계</strong><p>선배와의 대화를 통한 공동체 의식 강화</p></div>
+  </div>
+</div></header>
+
+<div class="metabar"><div class="wrap">
+  <span>대상 <b>학부생 (1학년 2학기)</b></span>
+  <span>운영 <b>2025학년도 2학기</b></span>
+  <span>마일리지 <b>최대 8시간</b></span>
+  <span>장소 <b>국제교육관 101</b></span>
+  <span>신청 <b>이뤄드림 시스템</b></span>
+</div></div>
+
+<section id="about"><div class="wrap">
+  <p class="kicker">Overview</p>
+  <h2>프로그램 소개</h2>
+  <p class="lead">교환학생·유학 준비에 필요한 영어역량과 글로벌 소통능력을 단계적으로 키웁니다.</p>
+  <div class="goals">
+    <div class="goal"><strong>1학년 집중 학습</strong><p>재학 중 집중적인 영어학습으로 글로벌 마인드를 함양합니다.</p></div>
+    <div class="goal"><strong>2학년 지원 기반</strong><p>영미권 대학 교환학생 프로그램 지원의 기반을 마련합니다.</p></div>
+    <div class="goal"><strong>공동체·협력</strong><p>학생 간 공동체 의식과 유학준비 협력 체계를 강화합니다.</p></div>
+  </div>
+  <h2 style="font-size:17px;margin:26px 0 10px">연계 핵심역량</h2>
+  <div class="comp"><span class="cpill">글로벌역량</span><span class="cpill">의사소통역량</span></div>
+</div></section>
+
+<section id="activities"><div class="wrap">
+  <p class="kicker">Activities</p>
+  <h2>프로그램 활동</h2>
+  <p class="lead">영어 학습과 유학준비 활동에 참여하고, 참여 시간만큼 비교과 마일리지를 인정받습니다.</p>
+  <div class="acts">
+    <div class="act"><div class="ic">💬</div><div><h3>영어회화 소그룹</h3><p>소그룹 회화로 말하기 자신감과 실전 표현력을 키웁니다.</p></div></div>
+    <div class="act"><div class="ic">📝</div><div><h3>토플(TOEFL) 스터디</h3><p>교환학생·유학에 필요한 공인 영어시험을 함께 대비합니다.</p></div></div>
+    <div class="act"><div class="ic">🎓</div><div><h3>유학준비 특강</h3><p>지원 절차·서류·인터뷰 등 유학준비 실전 특강에 참여합니다.</p></div></div>
+    <div class="act"><div class="ic">🧭</div><div><h3>교환학생 선배와의 대화</h3><p>경험을 공유하며 공동체 의식과 협력 체계를 다집니다.</p></div></div>
+  </div>
+  <div class="talks">
+    <div class="t">특강 라인업</div>
+    <ul>
+      <li>AI 활용 영어학습 특강</li>
+      <li>유학준비 특강</li>
+      <li>영어논문 작성법</li>
+      <li>영어논문 쓰기 실습</li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="process"><div class="wrap">
+  <p class="kicker">Process</p>
+  <h2>운영 절차</h2>
+  <div class="steps">
+    <div class="step"><div class="no">STEP 1</div><strong>준비</strong><ul><li>이뤄드림 시스템으로 참여 신청</li><li>오리엔테이션에서 프로그램·참여 방법 안내</li></ul></div>
+    <div class="step"><div class="no">STEP 2</div><strong>실행</strong><ul><li>신청·정정 기간 내 신청</li><li>프로그램 참여 및 모니터링</li><li>참여 확인서로 참여 관리</li></ul></div>
+    <div class="step"><div class="no">STEP 3</div><strong>종료</strong><ul><li>참여 시간만큼 마일리지 인정</li><li>만족도 조사로 개선·환류</li></ul></div>
+  </div>
+</div></section>
+
+<section id="mileage"><div class="wrap">
+  <p class="kicker">Mileage &amp; Rules</p>
+  <h2>마일리지와 유의사항</h2>
+  <div class="mile">
+    <div class="mbox">
+      <div class="big">최대 8<small>시간</small></div>
+      <p>2시간 단위 회차에 참여한 시간만큼 비교과 마일리지로 인정됩니다(정시·능동적 참여 필수). 참여 여부는 ‘참여 확인서’로 확인합니다.</p>
+    </div>
+    <aside class="notice">
+      <h3>⚠ 참여 인정 유의사항</h3>
+      <ul>
+        <li>무단으로 결석한 경우 인정되지 않습니다.</li>
+        <li>프로그램 참여 중 자리를 이탈한 경우 인정되지 않습니다.</li>
+        <li>미참여·지각·불성실 참여로 인한 책임은 학생 본인에게 있습니다.</li>
+      </ul>
+    </aside>
+  </div>
+</div></section>
+
+<section id="downloads"><div class="wrap">
+  <p class="kicker">Materials</p>
+  <h2>학습자료 다운로드</h2>
+  <p class="lead">특강 자료를 PDF로 바로 열거나 내려받을 수 있습니다.</p>
+  <div class="dlgrid">
+    <div class="dlrow"><div class="ti">AI 활용 영어학습 특강<small>PDF · 29쪽</small></div><a class="dlbtn" href="https://fhlyongko.github.io/123456/global-competency-lms/files/ai-english-learning.pdf" download>↓ PDF</a></div>
+    <div class="dlrow"><div class="ti">유학준비 특강<small>PDF · 22쪽</small></div><a class="dlbtn" href="https://fhlyongko.github.io/123456/global-competency-lms/files/study-abroad-prep.pdf" download>↓ PDF</a></div>
+    <div class="dlrow"><div class="ti">영어논문 작성법<small>PDF · 58쪽</small></div><a class="dlbtn" href="https://fhlyongko.github.io/123456/global-competency-lms/files/academic-writing.pdf" download>↓ PDF</a></div>
+    <div class="dlrow"><div class="ti">영어논문 쓰기 실습<small>PDF · 61쪽</small></div><a class="dlbtn" href="https://fhlyongko.github.io/123456/global-competency-lms/files/academic-writing-practice.pdf" download>↓ PDF</a></div>
+    <div class="dlrow"><div class="ti">프로그램 안내<small>PDF · 2쪽</small></div><a class="dlbtn" href="https://fhlyongko.github.io/123456/global-competency-lms/files/program-guide.pdf" download>↓ PDF</a></div>
+  </div>
+</div></section>
+
+<section id="linked"><div class="wrap">
+  <p class="kicker">Linked Program</p>
+  <h2>연계 프로그램</h2>
+  <div class="linked">
+    <h3>미주 유학준비반</h3>
+    <p class="m">전학년 대상 · 매년 1학기 운영 · 마일리지 최대 8시간</p>
+    <p>영미권 대학 교환학생·단기 연수 예정 학생을 위한 프로그램으로, 영어회화 소그룹·유학준비 특강·교환학생 선배와의 대화를 통해 영어역량과 글로벌 소통능력을 강화합니다.</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><b>글로벌 역량 비교과 프로그램</b><span>Global Competency Program · 국제교육관 101 · 이뤄드림 시스템 신청</span></div></footer>
 </body>
 </html>
