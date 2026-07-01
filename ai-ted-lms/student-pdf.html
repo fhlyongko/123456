@@ -5,80 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>인공지능 TED LMS</title>
   <meta name="description" content="인공지능 TED 수업용 온라인 LMS입니다. TED 기반 글로벌 커뮤니케이션, AI 리터러시, 프로젝트형 학습 자료를 PDF로 다운로드할 수 있습니다.">
-  <style>
-    :root {
-      --ink:#2a241c; --text:#443a2e; --muted:#887b69; --line:#eadfcd;
-      --bg:#f7f0e4; --paper:#fffdf8; --soft:#f1e7d4;
-      --gold:#b99036; --teal:#3d8878; --terra:#cf764f; --plum:#8f6fa3;
-      --shadow:0 28px 70px -42px rgba(61,49,29,.52);
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;background:var(--bg)}
-    body{margin:0;color:var(--text);background:radial-gradient(circle at 8% 0%,rgba(185,144,54,.14),transparent 34%),radial-gradient(circle at 92% 12%,rgba(61,136,120,.13),transparent 32%),linear-gradient(180deg,#fbf6ec 0%,var(--bg) 52%,#f4ebdd 100%);font-family:"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",Arial,sans-serif;line-height:1.68;word-break:keep-all;overflow-wrap:normal;overflow-x:hidden}
-    a{color:inherit}
-    .site-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:70px;padding:11px clamp(18px,4vw,58px);border-bottom:1px solid rgba(185,144,54,.22);background:rgba(255,253,248,.92);backdrop-filter:blur(14px)}
-    .brand{display:flex;align-items:center;gap:12px;min-width:0;color:var(--ink);text-decoration:none}
-    .brand-mark{display:grid;place-items:center;width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,var(--teal),var(--gold));color:#fff;font-weight:950;box-shadow:0 16px 30px -24px rgba(38,33,25,.7);flex:0 0 auto}
-    .brand strong,.brand small{display:block;line-height:1.25;white-space:nowrap}.brand strong{font-size:1rem;font-weight:950}.brand small{color:var(--muted);font-size:.76rem}
-    nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
-    nav a,.button{display:inline-flex;align-items:center;justify-content:center;min-width:0;min-height:39px;border:1px solid transparent;border-radius:999px;padding:8px 14px;background:var(--paper);color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:850;line-height:1.25;text-align:center;white-space:nowrap}
-    nav a:hover,.button:hover{border-color:var(--line);color:var(--ink);box-shadow:0 10px 26px -22px rgba(58,46,24,.6)}
-    .button.primary{background:var(--ink);border-color:var(--ink);color:#fff}
-    main,.quick-grid,.section{width:min(1180px,calc(100% - 36px));margin:0 auto}
-    .hero{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:clamp(28px,5vw,58px);align-items:stretch;margin:28px auto 0;padding:clamp(32px,5vw,60px);overflow:hidden;border:1px solid var(--line);border-radius:30px;background:linear-gradient(135deg,rgba(255,253,248,.98),rgba(246,237,221,.94));color:var(--ink);box-shadow:var(--shadow)}
-    .hero::after{content:"";position:absolute;right:-10%;bottom:-35%;width:58%;height:320px;border-radius:999px;background:rgba(61,136,120,.13);transform:rotate(-8deg)}
-    .hero-copy,.ted-map{position:relative;z-index:1;min-width:0}.hero-copy{display:flex;flex-direction:column;justify-content:center}
-    .eyebrow{margin:0 0 10px;color:var(--gold);font-size:.78rem;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
-    h1,h2,h3{margin-top:0;color:var(--ink);letter-spacing:0;text-align:left;word-break:keep-all;overflow-wrap:normal}
-    h1{margin-bottom:18px;font-family:Georgia,"Noto Serif KR","Times New Roman",serif;font-size:clamp(1.78rem,3.15vw,2.7rem);line-height:1.12;white-space:nowrap}
-    h2{margin-bottom:0;font-family:Georgia,"Noto Serif KR","Times New Roman",serif;font-size:clamp(1.65rem,3vw,2.45rem);line-height:1.18;white-space:nowrap}
-    h3{margin-bottom:10px;font-size:1.08rem;line-height:1.35;white-space:nowrap}
-    .lead{max-width:760px;margin:0;color:#5a5145;font-size:clamp(1rem,1.45vw,1.13rem)}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-    .ted-map{min-height:390px;border:1px solid rgba(185,144,54,.26);border-radius:24px;background:rgba(255,253,248,.78);padding:190px 22px 22px;box-shadow:0 20px 44px -38px rgba(58,46,24,.55)}
-    .ted-map::before{content:"";position:absolute;left:26px;right:26px;top:92px;height:4px;border-radius:999px;background:linear-gradient(90deg,var(--teal),var(--gold),var(--terra),var(--plum))}
-    .map-node{position:absolute;width:min(132px,calc(50% - 18px));min-height:66px;border:1px solid var(--line);border-radius:17px;background:var(--paper);padding:10px 12px;box-shadow:0 18px 40px -32px rgba(58,46,24,.62)}
-    .map-node strong{display:block;color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.2;white-space:nowrap}.map-node span{display:block;margin-top:3px;color:var(--muted);font-size:.72rem;line-height:1.35;white-space:nowrap}
-    .node-a{left:7%;top:22px}.node-b{right:11%;top:16px}.node-c{left:22%;top:116px}.node-d{right:3%;top:122px}
-    .ted-map dl{position:relative;z-index:1;margin:0}.ted-map div:not(.map-node){display:grid;grid-template-columns:minmax(74px,86px) minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}.ted-map div:last-child{border-bottom:0}.ted-map dt{color:var(--muted);font-weight:850}.ted-map dd{margin:0;color:var(--ink);font-weight:850}
-    .quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;padding:24px 0 0}
-    .quick-grid article,.module,.assignment-card,.rubric-card,.download-card,.progress-box{min-width:0;border:1px solid var(--line);border-radius:20px;background:rgba(255,253,248,.84);box-shadow:0 20px 44px -38px rgba(58,46,24,.52)}
-    .quick-grid article{padding:20px}.quick-grid span{color:var(--gold);font-weight:950}.quick-grid h2{margin:6px 0 4px;font-family:inherit;font-size:1.08rem}.quick-grid p,.module p,.module li,.assignment-card p,.rubric-card p,.download-card em{margin:0;color:var(--muted)}
-    .section{padding:clamp(42px,6vw,74px) 0 0;scroll-margin-top:90px}.section-head{margin-bottom:18px}.section-head.row{display:flex;align-items:flex-end;justify-content:space-between;gap:14px}
-    .controls{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;margin-bottom:14px}.controls input{min-height:43px;border:1px solid var(--line);border-radius:999px;padding:9px 15px;background:var(--paper);font:inherit;color:var(--ink)}
-    .filters{display:flex;flex-wrap:wrap;gap:8px}.filter{min-height:39px;border:1px solid var(--line);border-radius:999px;padding:8px 13px;background:var(--paper);color:var(--muted);font:inherit;font-size:.88rem;font-weight:850;cursor:pointer}.filter.active{background:var(--ink);border-color:var(--ink);color:#fff}
-    .progress-box{display:grid;grid-template-columns:minmax(160px,.3fr) minmax(0,1fr);gap:16px;align-items:center;margin-bottom:16px;padding:17px 19px}.progress-box span{display:block;color:var(--muted);font-size:.92rem}.progress-box strong{display:block;color:var(--ink)}.track{overflow:hidden;height:12px;border-radius:999px;background:var(--soft)}.track i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--teal),var(--gold),var(--terra));transition:width .2s ease}
-    .module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px}.module{display:flex;flex-direction:column;padding:20px}.module.hidden{display:none}.module-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}.week-badge{display:grid;place-items:center;min-width:54px;height:38px;border:1px solid rgba(61,136,120,.18);border-radius:14px;background:rgba(61,136,120,.1);color:var(--teal);font-weight:950;flex:0 0 auto;white-space:nowrap}.tag{display:inline-flex;align-items:center;min-height:25px;margin-bottom:6px;border-radius:999px;padding:3px 9px;background:var(--soft);color:var(--muted);font-size:.76rem;font-weight:900;white-space:nowrap}.module h3{flex:1;min-width:0;margin:0}.module .row{margin-top:10px}.module .row b{display:block;color:var(--ink);font-size:.82rem;white-space:nowrap}.module-foot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:auto;padding-top:12px}.done{margin-left:auto;display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:.9rem;font-weight:850;white-space:nowrap}
-    .download-link{display:inline-flex;align-items:center;justify-content:center;min-height:34px;border:1px solid rgba(61,136,120,.28);border-radius:999px;padding:6px 12px;background:rgba(61,136,120,.1);color:#2f685b;font-size:.9rem;font-weight:900;text-align:center;text-decoration:none;line-height:1.3;white-space:nowrap}.download-link:hover{border-color:var(--teal);background:rgba(61,136,120,.16)}
-    .assignment-grid,.rubric-grid,.download-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.assignment-card,.rubric-card{padding:20px}.assignment-card span{display:inline-flex;margin-bottom:8px;border-radius:999px;padding:3px 9px;background:rgba(61,136,120,.1);color:var(--teal);font-size:.78rem;font-weight:950;white-space:nowrap}
-    .rubric-card strong{display:block;color:var(--ink);margin-bottom:5px;white-space:nowrap}.bar{overflow:hidden;height:10px;margin:0 0 12px;border-radius:999px;background:var(--soft)}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--gold),var(--terra))}
-    .download-card{display:grid;grid-template-columns:58px minmax(0,1fr);gap:5px 13px;align-items:center;min-height:88px;padding:16px;color:var(--ink);text-decoration:none}.download-card span{grid-row:span 2;display:grid;place-items:center;min-height:46px;border-radius:16px;background:rgba(61,136,120,.1);color:var(--teal);font-size:.82rem;font-weight:950;white-space:nowrap}.download-card strong{line-height:1.35;white-space:nowrap}.download-card em{font-style:normal;font-size:.9rem;white-space:nowrap}
-    footer{display:flex;justify-content:space-between;gap:18px;margin-top:78px;padding:30px clamp(18px,5vw,64px) 58px;border-top:1px solid var(--line);background:rgba(255,253,248,.7);color:var(--muted)}
-    footer strong{color:var(--ink)}
-    @media(max-width:980px){.site-header{align-items:flex-start;flex-direction:column}nav{justify-content:flex-start}.hero{grid-template-columns:1fr}.ted-map{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-height:0;padding-top:22px;gap:12px}.ted-map::before{display:none}.map-node{position:static;width:auto;min-height:0}.ted-map dl{grid-column:1/-1}.section-head.row{align-items:flex-start;flex-direction:column}.controls{grid-template-columns:1fr}}
-    @media(max-width:660px){.site-header{padding:12px 14px}.brand{width:100%}.brand-mark{width:40px;height:40px;border-radius:13px}.brand span:last-child{min-width:0}.brand strong{font-size:.95rem}.brand small{font-size:.72rem}nav{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}nav a{min-height:38px;padding:8px 6px;font-size:.86rem}main,.quick-grid,.section{width:calc(100% - 28px)}.hero{margin-top:18px;padding:26px 18px;border-radius:24px}h1{font-size:clamp(1.2rem,5vw,1.55rem);line-height:1.16}h2{font-size:clamp(1.42rem,6.6vw,1.7rem)}h3,.module h3,.quick-grid h2,.download-card strong{font-size:clamp(.95rem,4.35vw,1.08rem)}.lead{font-size:1rem}.hero-actions .button{flex:1 1 150px}.ted-map,.module-grid,.assignment-grid,.rubric-grid,.download-grid{grid-template-columns:1fr}.ted-map div:not(.map-node){grid-template-columns:1fr;gap:2px}.progress-box{grid-template-columns:1fr}.week-badge{min-width:46px;height:34px;font-size:.88rem}footer{flex-direction:column;padding:24px 14px 40px}}
-  </style>
+  <link rel="stylesheet" href="assets/ai-ted-page.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#home"><span class="brand-mark">AI</span><span><strong>인공지능 TED</strong><small>AI & TED Global Communication</small></span></a>
+    <a class="brand" href="student-pdf.html"><span class="brand-mark">AI</span><span><strong>인공지능 TED</strong><small>AI & TED Global Communication</small></span></a>
     <nav aria-label="주요 메뉴">
-      <a href="#routine">학습 루틴</a>
-      <a href="#modules">주차별 학습</a>
-      <a href="#assignments">과제</a>
-      <a href="#resources">PDF 자료</a>
+      <a class="active" href="student-pdf.html">Home</a>
+      <a href="routine.html">학습 루틴</a>
+      <a href="modules.html">주차별 학습</a>
+      <a href="assignments.html">과제</a>
+      <a href="resources.html">PDF 자료</a>
     </nav>
   </header>
-
-  <main id="home">
+  <main>
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">AI & TED Learning Studio</p>
         <h1>인공지능과 TED로 글로벌 소통을 배우다</h1>
-        <p class="lead">TED 주제 읽기, 영어 토론, AI 리터러시, 프로젝트형 발표를 하나의 흐름으로 연결한 온라인 LMS입니다. 각 단원 자료는 버튼을 누르면 PDF로 내려받아 학습에 활용할 수 있습니다.</p>
+        <p class="lead">TED 주제 읽기, 영어 토론, AI 리터러시, 프로젝트형 발표를 하나의 흐름으로 연결한 온라인 LMS입니다. 각 메뉴는 별도 페이지로 열리며 자료는 PDF로 내려받아 활용할 수 있습니다.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#modules">주차별 학습 시작</a>
-          <a class="button" href="#resources">전체 자료 보기</a>
+          <a class="button primary" href="modules.html">주차별 학습 시작</a>
+          <a class="button" href="resources.html">전체 자료 보기</a>
         </div>
       </div>
       <aside class="ted-map" aria-label="학습 구성">
@@ -94,164 +42,23 @@
         </dl>
       </aside>
     </section>
-
-    <section class="quick-grid" aria-label="핵심 학습 요소">
-      <article><span>01</span><h2>TED Reading</h2><p>TED 기반 주제를 읽고 핵심 아이디어를 영어로 정리합니다.</p></article>
-      <article><span>02</span><h2>AI Literacy</h2><p>AI 도구를 학습 보조로 활용하고 사용 과정을 투명하게 기록합니다.</p></article>
-      <article><span>03</span><h2>Communication</h2><p>질문, 토론, 발표 활동을 통해 글로벌 의사소통 능력을 확장합니다.</p></article>
-      <article><span>04</span><h2>Portfolio</h2><p>학습 결과와 프로젝트 산출물을 개인 포트폴리오로 축적합니다.</p></article>
-    </section>
-
-    <section class="section" id="routine">
+    <section class="section">
       <div class="section-head">
-        <p class="eyebrow">Weekly Routine</p>
-        <h2>매주 이렇게 학습해요</h2>
+        <p class="eyebrow">Page Navigation</p>
+        <h2>메뉴별 독립 페이지</h2>
+        <p class="lead">각 메뉴는 더 이상 한 페이지 안의 탭처럼 이동하지 않고, 별도 HTML 페이지로 따로 열립니다.</p>
       </div>
-      <div class="assignment-grid">
-        <article class="assignment-card"><span>01</span><h3>오늘 주제 확인</h3><p>핵심 질문, 활동, 다운로드 자료를 먼저 확인합니다.</p></article>
-        <article class="assignment-card"><span>02</span><h3>TED 읽기와 토론</h3><p>주제별 자료를 읽고 영어 질문과 의견을 정리합니다.</p></article>
-        <article class="assignment-card"><span>03</span><h3>AI 활용 기록</h3><p>도구명, 사용 목적, 수정 내용을 과제에 함께 기록합니다.</p></article>
-        <article class="assignment-card"><span>04</span><h3>포트폴리오 축적</h3><p>매주 결과물을 기말 포트폴리오로 발전시킵니다.</p></article>
+      <div class="page-grid">
+        <a class="page-card" href="routine.html"><span>01</span><h2>학습 루틴</h2><p>매주 수업에서 반복되는 학습 흐름을 확인합니다.</p><strong>새 페이지 열기</strong></a>
+        <a class="page-card" href="modules.html"><span>02</span><h2>주차별 학습</h2><p>16주차 모듈, 검색, 진행률, 자료 버튼을 제공합니다.</p><strong>새 페이지 열기</strong></a>
+        <a class="page-card" href="assignments.html"><span>03</span><h2>과제와 평가</h2><p>프로젝트, 포트폴리오, 평가 비율을 확인합니다.</p><strong>새 페이지 열기</strong></a>
+        <a class="page-card" href="resources.html"><span>04</span><h2>PDF 자료</h2><p>전체 학습 자료를 PDF로 생성해 다운로드합니다.</p><strong>새 페이지 열기</strong></a>
       </div>
-    </section>
-
-    <section class="section" id="modules">
-      <div class="section-head">
-        <p class="eyebrow">Weekly Modules</p>
-        <h2>주차별 학습</h2>
-      </div>
-      <div class="controls">
-        <input id="search" type="search" placeholder="leadership, AI, infographic, portfolio 등으로 검색">
-        <div class="filters" id="filters">
-          <button class="filter active" data-filter="all">전체</button>
-          <button class="filter" data-filter="ted">TED·읽기</button>
-          <button class="filter" data-filter="ai">AI 활용</button>
-          <button class="filter" data-filter="project">프로젝트</button>
-        </div>
-      </div>
-      <div class="progress-box">
-        <div><span>나의 학습 진행</span><strong id="progressText">0 / 16 완료</strong></div>
-        <div class="track"><i id="progressBar"></i></div>
-      </div>
-      <div class="module-grid" id="moduleGrid"></div>
-    </section>
-
-    <section class="section" id="assignments">
-      <div class="section-head">
-        <p class="eyebrow">Assignments</p>
-        <h2>과제와 평가 흐름</h2>
-      </div>
-      <div class="assignment-grid">
-        <article class="assignment-card"><span>매주</span><h3>학습 활동</h3><p>TED 주제 읽기, 핵심 어휘 정리, 토론 질문, 영어 의견문을 작성합니다.</p></article>
-        <article class="assignment-card"><span>중간</span><h3>팀 프로젝트</h3><p>글로벌 이슈를 디지털 콘텐츠로 구성하고 발표합니다.</p></article>
-        <article class="assignment-card"><span>기말</span><h3>개인 포트폴리오</h3><p>TED 분석, AI 활용 과정, 영어 산출물, 자기성찰을 모읍니다.</p></article>
-      </div>
-      <div class="rubric-grid" style="margin-top:14px">
-        <article class="rubric-card"><div class="bar"><i style="width:20%"></i></div><strong>출석 및 참여 20%</strong><p>토론, 활동지, 동료 피드백 참여를 확인합니다.</p></article>
-        <article class="rubric-card"><div class="bar"><i style="width:40%"></i></div><strong>중간 프로젝트 40%</strong><p>문제 정의, 콘텐츠 완성도, 발표 협업을 평가합니다.</p></article>
-        <article class="rubric-card"><div class="bar"><i style="width:40%"></i></div><strong>기말 프로젝트 40%</strong><p>TED 분석, AI 사용 기록, 영어 표현, 포트폴리오를 평가합니다.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="resources">
-      <div class="section-head row">
-        <div>
-          <p class="eyebrow">Resources</p>
-          <h2>전체 PDF 자료</h2>
-          <p class="lead">버튼을 누르면 자료가 PDF로 생성되어 다운로드됩니다.</p>
-        </div>
-      </div>
-      <div class="download-grid" id="resourceGrid"></div>
     </section>
   </main>
-
   <footer>
     <strong>인공지능 TED LMS</strong>
     <span>TED · AI · Global Communication</span>
   </footer>
-
-  <script>
-    const base = "downloads/";
-    const modules = [
-      {w:1,c:"ai",t:"강의 소개와 AI 리터러시",d:"수업 목표, 평가 기준, AI 활용 원칙을 확인합니다.",p:"개인 학습 목표 3문장 작성",dl:[["수업 안내","course-syllabus-ai-ted.md"],["AI 리터러시","ai-literacy-guide.md"]]},
-      {w:2,c:"ted",t:"Leadership and Movements",d:"Sinek의 belief 리더십과 Sivers의 first follower를 비교합니다.",p:"Why do people follow leaders?",dl:[["Unit 1 활동지","unit1-leadership-movements.md"]]},
-      {w:3,c:"ted",t:"Simple Ideas for Big Problems",d:"복잡한 사회문제를 단순하고 창의적인 해결책으로 접근합니다.",p:"문제 정의 카드와 영어 요약문",dl:[["Unit 3 활동지","unit3-simple-ideas.md"]]},
-      {w:4,c:"ted",t:"Game Changers",d:"게임의 몰입, 전략적 사고, 문제 해결 가능성을 토론합니다.",p:"사회문제 해결 게임 아이디어",dl:[["Unit 4 활동지","unit4-game-changers.md"]]},
-      {w:5,c:"ted",t:"Lessons in Learning",d:"학습 참여, Studio School, grit, growth mindset을 연결합니다.",p:"학습 성공에 영향을 주는 조건 토론",dl:[["Unit 5 활동지","unit5-lessons-learning.md"]]},
-      {w:6,c:"ted",t:"Food Revolution",d:"건강한 식문화, 학교 급식, 식생활 교육의 사회적 의미를 분석합니다.",p:"Food Revolution Day 플라이어",dl:[["Unit 6 활동지","unit6-food-revolution.md"]]},
-      {w:7,c:"project",t:"중간 프로젝트 준비",d:"팀별 주제 선정, 문제 정의, 자료 수집, 역할 분담을 수행합니다.",p:"기획안, AI 활용 계획, 참고자료 목록",dl:[]},
-      {w:8,c:"project",t:"중간 프로젝트 발표",d:"팀 디지털 콘텐츠를 발표하고 동료 피드백을 받습니다.",p:"내용 구성, 전달력, 시각적 완성도 피드백",dl:[]},
-      {w:9,c:"ted",t:"Body Signs",d:"비언어적 의사소통과 power posing을 발표 수행과 연결합니다.",p:"발표 자세 자기평가",dl:[["Unit 7 활동지","unit7-body-signs.md"]]},
-      {w:10,c:"ted",t:"New Perspectives",d:"disability를 limitation이 아니라 difference와 strength로 읽습니다.",p:"2분 영어 발표",dl:[["Unit 9 활동지","unit9-new-perspectives.md"]]},
-      {w:11,c:"ted",t:"Data Detectives",d:"데이터 시각화와 infographic의 소통 효과를 학습합니다.",p:"미니 인포그래픽",dl:[["Unit 10 활동지","unit10-data-detectives.md"]]},
-      {w:12,c:"ted",t:"Sleep",d:"수면 부족이 학업, 업무, 건강, 안전에 미치는 영향을 분석합니다.",p:"영어 의견문 1단락",dl:[["Unit 11 활동지","unit11-sleep.md"]]},
-      {w:13,c:"ai",t:"AI, Cyborgs and Language Learning",d:"기술이 인간 역량을 확장하는 방식을 읽고 AI 언어학습을 실습합니다.",p:"AI 초안 수정과 사용 기록",dl:[["Unit 12 활동지","unit12-ai-cyborgs.md"]]},
-      {w:14,c:"project",t:"기말 프로젝트 준비",d:"개인 주제, TED 분석, AI 활용, 디지털 콘텐츠를 포트폴리오로 구성합니다.",p:"포트폴리오 가이드 확인",dl:[["포트폴리오 안내","final-portfolio-guide.md"]]},
-      {w:15,c:"project",t:"보강과 기말 피드백",d:"포트폴리오 구성, 영어 표현, AI 활용 기록을 최종 보완합니다.",p:"개별 상담과 동료 점검",dl:[]},
-      {w:16,c:"project",t:"기말 프로젝트 제출과 성찰",d:"개인 디지털 포트폴리오를 제출하고 한 학기 성장을 성찰합니다.",p:"개인 디지털 포트폴리오",dl:[["포트폴리오 안내","final-portfolio-guide.md"]]}
-    ];
-    const labels = {ted:"TED·읽기", project:"프로젝트", ai:"AI 활용"};
-    const key = "ai-ted-lms-progress";
-    const done = new Set(JSON.parse(localStorage.getItem(key) || "[]"));
-    let activeFilter = "all";
-    const $ = (s) => document.querySelector(s);
-
-    function downloadButton(item) {
-      return `<a class="download-link" href="${base + item[1]}" download>${item[0]} PDF</a>`;
-    }
-
-    function moduleCard(item) {
-      const downloads = item.dl.length ? item.dl.map(downloadButton).join("") : `<span class="download-link">수업 활동 중심</span>`;
-      return `<article class="module ${item.c}">
-        <div class="module-top"><span class="week-badge">${item.w}주</span><div><span class="tag">${labels[item.c]}</span><h3>${item.t}</h3></div></div>
-        <p>${item.d}</p>
-        <p class="row"><b>수업 활동</b>${item.p}</p>
-        <div class="module-foot">${downloads}<label class="done"><input type="checkbox" data-week="${item.w}" ${done.has(item.w) ? "checked" : ""}> 완료</label></div>
-      </article>`;
-    }
-
-    function renderModules() {
-      const query = $("#search").value.trim().toLowerCase();
-      const filtered = modules.filter((item) => activeFilter === "all" || item.c === activeFilter).filter((item) => !query || [item.t,item.d,item.p,labels[item.c]].join(" ").toLowerCase().includes(query));
-      $("#moduleGrid").innerHTML = filtered.length ? filtered.map(moduleCard).join("") : `<p class="lead">검색 결과가 없습니다.</p>`;
-      updateProgress();
-    }
-
-    function updateProgress() {
-      const percent = Math.round((done.size / modules.length) * 100);
-      $("#progressBar").style.width = `${percent}%`;
-      $("#progressText").textContent = `${done.size} / ${modules.length} 완료`;
-    }
-
-    const seen = new Set();
-    const resources = [];
-    modules.forEach((item) => item.dl.forEach((entry) => {
-      if (!seen.has(entry[1])) {
-        seen.add(entry[1]);
-        resources.push(entry);
-      }
-    }));
-    $("#resourceGrid").innerHTML = resources.map((entry) => `<a class="download-card download-link" href="${base + entry[1]}" download><span>PDF</span><strong>${entry[0]}</strong><em>${entry[1].replace(".md", ".pdf")}</em></a>`).join("");
-
-    document.addEventListener("change", (event) => {
-      if (!event.target.matches("[data-week]")) return;
-      const week = Number(event.target.dataset.week);
-      if (event.target.checked) done.add(week); else done.delete(week);
-      localStorage.setItem(key, JSON.stringify([...done]));
-      updateProgress();
-    });
-
-    $("#filters").addEventListener("click", (event) => {
-      const button = event.target.closest(".filter");
-      if (!button) return;
-      document.querySelectorAll(".filter").forEach((item) => item.classList.remove("active"));
-      button.classList.add("active");
-      activeFilter = button.dataset.filter;
-      renderModules();
-    });
-    $("#search").addEventListener("input", renderModules);
-    renderModules();
-  </script>
-  <script src="assets/pdf-downloads.js"></script>
 </body>
 </html>
