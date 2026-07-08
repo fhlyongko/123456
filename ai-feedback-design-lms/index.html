@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Feedback Design LMS</title>
+<meta name="description" content="AI-mediated feedback, learner agency, speaking avatar practice, Padlet writing revision, and process-based assessment LMS.">
+<meta name="theme-color" content="#3f8a78">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#262119;--text:#3d362e;--mut:#8f8576;--line:#e9e2d4;
+  --gold:#b8902f;--teal:#3f8a78;--terra:#cf7a4f;--plum:#8f6fa3;
+  --paper:#fffdf8;--bg:#f7f3ea;--soft:#fbf7ee;--green:#e8f1ec;--lav:#eee9f6;
+  --shadow:0 26px 64px -40px rgba(58,46,24,.52);--max:1180px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(184,144,47,.16),transparent 28%),radial-gradient(circle at 92% 12%,rgba(63,138,120,.14),transparent 26%),var(--bg);color:var(--text);font-family:Pretendard,"Segoe UI",Arial,sans-serif;line-height:1.68;letter-spacing:0;word-break:keep-all;overflow-wrap:anywhere}
+a{color:inherit}
+h1,h2,h3{font-family:"Noto Serif KR",Georgia,serif;color:var(--ink);letter-spacing:0}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.top{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(184,144,47,.22)}
+.top .wrap{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{font-weight:900;color:var(--teal);text-decoration:none;white-space:nowrap}
+.nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.nav a{font-size:13.5px;text-decoration:none;color:#62594b;border-radius:999px;padding:7px 11px;border:1px solid transparent;white-space:nowrap}
+.nav a:hover{background:var(--paper);border-color:var(--line);color:var(--ink)}
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#fffaf0 0%,#f7efe1 48%,#f0eadc 100%)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(330px,.92fr);gap:34px;align-items:center;padding-top:76px;padding-bottom:56px}
+.eyebrow{margin:0 0 12px;color:var(--teal);font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:clamp(2.55rem,6vw,5.3rem);line-height:1.04;margin:0 0 18px}
+.lead{font-size:1.08rem;color:#5b5348;max-width:760px;margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:999px;padding:9px 15px;border:1px solid var(--line);background:var(--paper);text-decoration:none;font-weight:850;color:var(--ink)}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn:hover{transform:translateY(-1px);box-shadow:0 14px 26px -20px rgba(38,33,25,.46)}
+.visual{position:relative;background:rgba(255,253,248,.78);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:var(--shadow);overflow:hidden}
+.visual:after{content:"";position:absolute;right:-36px;bottom:-48px;width:180px;height:180px;border-radius:50%;background:rgba(63,138,120,.14)}
+.visual-title{font-size:12px;font-weight:900;color:var(--mut);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.flow{display:grid;gap:11px;position:relative;z-index:1}
+.flow-row{display:grid;grid-template-columns:86px 1fr;gap:14px;align-items:center;background:#fffaf0;border:1px solid #eadfcf;border-radius:16px;padding:13px 14px}
+.flow-row strong{font-family:"Noto Serif KR",Georgia,serif;color:var(--gold)}
+.flow-row span{font-weight:850;color:var(--ink)}
+.flow-row small{display:block;color:var(--mut);font-size:12px;margin-top:2px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px auto 0}
+.metric{background:rgba(255,253,248,.86);border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:0 20px 44px -38px rgba(58,46,24,.52)}
+.metric b{display:block;font-family:"Noto Serif KR",Georgia,serif;font-size:1.55rem;color:var(--teal);line-height:1}
+.metric span{font-size:12px;color:var(--mut)}
+section{padding:50px 0;border-bottom:1px solid var(--line)}
+.section-head{margin-bottom:24px}
+.kicker{margin:0 0 7px;color:var(--terra);font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+h2{font-size:clamp(1.55rem,3.1vw,2.35rem);line-height:1.25;margin:0}
+.section-lead{color:var(--mut);max-width:820px;margin:8px 0 0}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);min-width:0;overflow:hidden}
+.tag{display:inline-flex;border:1px solid #eadfcf;background:#fbf3e5;color:#7d6330;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:900;margin-bottom:12px}
+.card h3{font-size:1.15rem;margin:0 0 8px}
+.card p{margin:0;color:#615a4e}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+.chips span{font-size:12px;font-weight:850;color:#665d51;background:#f5eee2;border:1px solid #eadfcf;border-radius:999px;padding:4px 9px}
+.timeline{display:grid;gap:12px}
+.step{display:grid;grid-template-columns:92px 1fr;gap:16px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 18px 42px -38px rgba(58,46,24,.45)}
+.time{font-family:"Noto Serif KR",Georgia,serif;color:var(--teal);font-weight:700}
+.step h3{font-size:1.06rem;margin:0 0 4px}
+.step p{margin:0;color:#615a4e}
+.lab{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.panel{background:linear-gradient(180deg,#fffdf8,#fbf7ee);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:var(--shadow)}
+.panel h3{font-size:1.25rem;margin:0 0 12px}
+.panel ol,.panel ul{margin:0;padding-left:20px;color:#5f574b}
+.panel li{margin:7px 0}
+.quote{border-left:5px solid var(--teal);background:#edf5f1;border-radius:16px;padding:16px 18px;margin-top:16px;color:#39584f;font-weight:750}
+.downloads{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.download{display:flex;flex-direction:column;gap:10px;min-height:210px;text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 18px 42px -36px rgba(58,46,24,.38)}
+.download:hover{transform:translateY(-2px);box-shadow:0 22px 50px -38px rgba(58,46,24,.55)}
+.download small{font-size:12px;font-weight:900;color:var(--terra);letter-spacing:.08em;text-transform:uppercase}
+.download h3{font-size:1.06rem;margin:0}
+.download p{margin:0;color:#615a4e;font-size:.94rem}
+.download strong{margin-top:auto;color:var(--teal)}
+.rubric{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.rubric div{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}
+.rubric b{display:block;color:var(--ink);margin-bottom:6px}
+.rubric span{font-size:13px;color:#62594b}
+.footer{padding:30px 20px;text-align:center;color:var(--mut);background:#f0eadf}
+@media(max-width:980px){.hero .wrap{grid-template-columns:1fr}.cards,.downloads{grid-template-columns:repeat(2,minmax(0,1fr))}.rubric{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.top .wrap{align-items:flex-start;flex-direction:column;padding-top:12px;padding-bottom:12px}.nav{width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap}.wrap{padding:0 16px}.metrics,.cards,.downloads,.lab{grid-template-columns:1fr}.step{grid-template-columns:1fr}.hero .wrap{padding-top:50px}.actions{flex-direction:column}.btn{width:100%}.flow-row{grid-template-columns:1fr}.rubric{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">AI Feedback LMS</a>
+    <div class="nav">
+      <a href="#overview">Overview</a>
+      <a href="#path">50-Min Path</a>
+      <a href="#activities">Activities</a>
+      <a href="#assessment">Assessment</a>
+      <a href="#materials">Materials</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Graduate Seminar LMS</p>
+      <h1>AI Feedback Design</h1>
+      <p class="lead">학습자 주도성, 인지적 참여, 과정 중심 평가를 강화하는 AI-mediated feedback 수업 설계 LMS입니다. 핵심 질문은 단순합니다. AI가 학습자의 사고를 대신하는가, 아니면 사고를 더 잘 보이게 만드는가?</p>
+      <div class="actions">
+        <a class="btn primary" href="#materials">자료 바로가기</a>
+        <a class="btn gold" href="#path">50분 수업 흐름</a>
+        <a class="btn" href="https://drive.google.com/drive/folders/1mhtdvsCD_s8ZWNxsxnlGO09JxTeksxY0?usp=sharing">Google Drive 원본 폴더</a>
+      </div>
+    </div>
+    <aside class="visual" aria-label="AI feedback design flow">
+      <div class="visual-title">Feedback Flow</div>
+      <div class="flow">
+        <div class="flow-row"><strong>01</strong><div><span>Diagnose</span><small>AI flags one or two points, not full corrections.</small></div></div>
+        <div class="flow-row"><strong>02</strong><div><span>Question</span><small>Learners notice, compare, and locate the problem.</small></div></div>
+        <div class="flow-row"><strong>03</strong><div><span>Guide</span><small>Hints appear only when learners are stuck.</small></div></div>
+        <div class="flow-row"><strong>04</strong><div><span>Reflect</span><small>Learners revise and explain what changed.</small></div></div>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="metrics">
+    <div class="metric"><b>50</b><span>minute lecture plan</span></div>
+    <div class="metric"><b>22</b><span>slide teaching demo</span></div>
+    <div class="metric"><b>2</b><span>speaking and writing labs</span></div>
+    <div class="metric"><b>5</b><span>process evidence types</span></div>
+  </div>
+</div>
+
+<main>
+<section id="overview">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Overview</p>
+      <h2>AI가 답을 대신하지 않고 학습자의 사고를 보이게 만드는 수업</h2>
+      <p class="section-lead">Google Drive 자료의 핵심 수업 주제는 영어 말하기와 쓰기에서 AI 피드백을 자동 교정기가 아니라 단계적 스캐폴드로 설계하는 것입니다.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><span class="tag">Central Claim</span><h3>AI should not think for learners</h3><p>AI 피드백은 완성된 답을 주기보다 학습자가 문제를 발견하고, 선택하고, 수정하고, 설명하도록 도와야 합니다.</p><div class="chips"><span>Learner agency</span><span>Cognitive engagement</span></div></article>
+      <article class="card"><span class="tag">Speaking</span><h3>Soul Machines-type avatar</h3><p>아바타는 점수화 장치가 아니라 대화 파트너로 사용됩니다. 의미 확인, 오류 발견 질문, 재시도 과정을 통해 구어 수정을 보이게 합니다.</p><div class="chips"><span>Clarify</span><span>Repair</span><span>Second attempt</span></div></article>
+      <article class="card"><span class="tag">Writing</span><h3>Padlet process evidence board</h3><p>초안, AI 질문, 수정본, 수정 이유, 교사 피드백을 한 화면에 남겨 결과물이 아니라 수정 과정을 평가할 수 있게 합니다.</p><div class="chips"><span>Draft</span><span>AI questions</span><span>Rationale</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="path">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">50-Minute Path</p>
+      <h2>문제 제기에서 수업 설계까지 이어지는 50분 흐름</h2>
+      <p class="section-lead">레슨플랜 자료의 시간 구성을 학생들이 바로 따라갈 수 있도록 재구성했습니다.</p>
+    </div>
+    <div class="timeline">
+      <article class="step"><div class="time">0-5 min</div><div><h3>Opening problem</h3><p>AI가 교정한 산출물과 학습자가 스스로 수정·설명한 산출물을 비교하며, 무엇이 실제 학습 증거인지 토론합니다.</p></div></article>
+      <article class="step"><div class="time">5-10 min</div><div><h3>Concept framing</h3><p>AI-dependent learning, cognitive offloading, learner agency, cognitive engagement를 핵심 개념으로 정리합니다.</p></div></article>
+      <article class="step"><div class="time">10-17 min</div><div><h3>Mini lecture</h3><p>Interactive AI feedback, scaffolding, feedback literacy, process-based assessment의 원리를 연결합니다.</p></div></article>
+      <article class="step"><div class="time">17-27 min</div><div><h3>Speaking demonstration</h3><p>Soul Machines-type avatar를 활용해 clarification, repair, extension, second attempt가 어떻게 일어나는지 분석합니다.</p></div></article>
+      <article class="step"><div class="time">27-38 min</div><div><h3>Writing demonstration</h3><p>Padlet을 활용해 first draft, AI questions, revision, rationale, teacher response가 보이는 피드백 구조를 설계합니다.</p></div></article>
+      <article class="step"><div class="time">38-50 min</div><div><h3>Assessment and synthesis</h3><p>avatar logs, Padlet drafts, AI questions, revision rationales를 평가 증거로 연결하고 exit ticket을 작성합니다.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="activities">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Activities</p>
+      <h2>말하기와 쓰기 활동을 바로 실행할 수 있는 수업 실험실</h2>
+    </div>
+    <div class="lab">
+      <article class="panel">
+        <h3>Speaking Lab: Avatar as Partner</h3>
+        <ol>
+          <li>Prompt: Tell me about your weekend. Use yesterday or last weekend.</li>
+          <li>Avatar first asks for meaning: “Who did you go with?”</li>
+          <li>Avatar asks a noticing question: “It was yesterday. What is the past word for go?”</li>
+          <li>Learner repairs and tells the whole story again.</li>
+        </ol>
+        <div class="quote">Evidence: first attempt, clarification response, repair, extension, second attempt, short reflection.</div>
+      </article>
+      <article class="panel">
+        <h3>Writing Lab: Padlet Revision Board</h3>
+        <ol>
+          <li>Post 1: first draft without AI rewriting.</li>
+          <li>Post 2: AI questions or hints only.</li>
+          <li>Post 3: revised draft written by the learner.</li>
+          <li>Post 4: revision rationale explaining what changed and why.</li>
+          <li>Post 5: teacher response with one gain and one next step.</li>
+        </ol>
+        <div class="quote">Design rule: Do not rewrite the paragraph. Ask questions so the learner can revise.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="assessment">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Assessment</p>
+      <h2>최종 결과물이 아니라 학습 과정의 증거를 평가하기</h2>
+      <p class="section-lead">AI-rich classroom에서는 누가 사고했는지 확인하기 위해 과정 증거를 모아야 합니다.</p>
+    </div>
+    <div class="rubric">
+      <div><b>Learner choice</b><span>Did the learner make a decision rather than accept a correction?</span></div>
+      <div><b>Cognitive engagement</b><span>Did the learner notice, compare, revise, and explain?</span></div>
+      <div><b>Speaking repair</b><span>Did the learner improve speech from a question?</span></div>
+      <div><b>Writing revision</b><span>Did the learner revise with reasons?</span></div>
+      <div><b>Teacher design</b><span>Did the teacher guide the AI feedback conditions?</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="materials">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Materials</p>
+      <h2>Google Drive 원본 자료와 PDF 다운로드</h2>
+      <p class="section-lead">수업에 필요한 핵심 자료를 바로 열거나 PDF로 내려받을 수 있도록 연결했습니다.</p>
+    </div>
+    <div class="downloads">
+      <a class="download" href="https://docs.google.com/presentation/d/1oH1TfITgvm2-LYafdVHrRQNBbBwmVB6J4E1Rao8db3M/export/pdf"><small>Slides PDF</small><h3>AI Feedback Design Lecture</h3><p>22-slide academic teaching demo deck.</p><strong>PDF 다운로드</strong></a>
+      <a class="download" href="https://docs.google.com/document/d/16iXFRsN_-NtzM3R3UeUTp6syUPf5bdc0VbfTD4Oon88/export?format=pdf"><small>Script PDF</small><h3>교수자 대본</h3><p>Slide-by-slide visible content, teaching move, and instructor script.</p><strong>PDF 다운로드</strong></a>
+      <a class="download" href="https://docs.google.com/document/d/14YGGl-Q1valoPFsURtRcUuydAedHKfg-VQcizDK48Oc/export?format=pdf"><small>Lesson Plan PDF</small><h3>50-Minute Lesson Plan</h3><p>Teaching context, objectives, timeline, speaking/writing design, and rubric.</p><strong>PDF 다운로드</strong></a>
+      <a class="download" href="https://docs.google.com/document/d/1sMj8gaN3MIxZJuFUaptRv69uf69zgOSZ42mQgBmudQQ/export?format=pdf"><small>Worksheet PDF</small><h3>Appendix Activity Materials</h3><p>Avatar speaking cards, prompt builder, transcript log, Padlet sheets, and checklist.</p><strong>PDF 다운로드</strong></a>
+      <a class="download" href="https://drive.google.com/file/d/1csZr0B5EjNDJD6_THBE0MnKU4YU93mXo/view?usp=drivesdk"><small>Video</small><h3>AI Feedback Design MP4</h3><p>Recorded demonstration video for review or classroom preparation.</p><strong>영상 열기</strong></a>
+      <a class="download" href="https://drive.google.com/drive/folders/1LdRbPOXIexEyKGOMi_gyw0C6dr3hGR9h"><small>Drive Folder</small><h3>0714 광주교대 최종 제출본</h3><p>Final submission folder with editable slides, documents, and additional resources.</p><strong>폴더 열기</strong></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">AI Feedback Design LMS · GitHub Pages · Source materials from Google Drive</footer>
+</body>
+</html>
