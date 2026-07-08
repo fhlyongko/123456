@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학술대회 발표 LMS</title>
+  <meta name="description" content="AI 리터러시, 생성형 AI 리터러시, 글로벌 역량, 영어교육 학술대회 발표 자료를 학습하고 다운로드할 수 있는 온라인 LMS입니다.">
+  <meta name="theme-color" content="#355e75">
+  <style>
+    :root {
+      --ink:#1f2a33;
+      --text:#36434d;
+      --muted:#71808b;
+      --line:#dce5e8;
+      --bg:#f3f7f6;
+      --paper:#fffdf8;
+      --soft:#eef5f3;
+      --navy:#355e75;
+      --green:#4f8a79;
+      --gold:#b8953f;
+      --coral:#c87358;
+      --shadow:0 24px 60px -42px rgba(31,42,51,.48);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 8% 0%,rgba(184,149,63,.13),transparent 32%),
+        radial-gradient(circle at 92% 8%,rgba(79,138,121,.14),transparent 30%),
+        linear-gradient(180deg,#fbfaf4 0%,var(--bg) 54%,#edf4f1 100%);
+      font-family:"Segoe UI","Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif;
+      line-height:1.68;
+      word-break:keep-all;
+      overflow-wrap:anywhere;
+    }
+    a{color:inherit}
+    .skip{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip:focus{left:16px;top:16px;width:auto;height:auto;background:var(--ink);color:white;padding:10px 12px;border-radius:10px;z-index:100}
+    .top{
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:12px clamp(16px,4vw,54px);
+      border-bottom:1px solid rgba(53,94,117,.15);
+      background:rgba(255,253,248,.92);
+      backdrop-filter:blur(14px);
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+    .mark{
+      display:grid;
+      place-items:center;
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      color:#fff;
+      font-weight:950;
+      background:linear-gradient(135deg,var(--navy),var(--green));
+      box-shadow:0 18px 36px -28px rgba(31,42,51,.7);
+      flex:0 0 auto;
+    }
+    .brand strong{display:block;color:var(--ink);font-weight:950;line-height:1.2}
+    .brand small{display:block;color:var(--muted);font-size:.78rem;line-height:1.25}
+    nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
+    nav a,.button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:38px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:8px 13px;
+      background:rgba(255,253,248,.84);
+      color:#4c5961;
+      text-decoration:none;
+      font-size:.88rem;
+      font-weight:850;
+      line-height:1.25;
+      text-align:center;
+    }
+    nav a:hover,.button:hover{border-color:var(--navy);color:var(--ink);box-shadow:0 14px 28px -26px rgba(31,42,51,.55)}
+    .button.primary{background:var(--navy);border-color:var(--navy);color:#fff}
+    .button.green{background:var(--green);border-color:var(--green);color:#fff}
+    .button.gold{background:var(--gold);border-color:var(--gold);color:#fff}
+    main,.wrap{width:min(1180px,calc(100% - 36px));margin:0 auto}
+    .hero{
+      position:relative;
+      display:grid;
+      grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);
+      gap:clamp(26px,5vw,54px);
+      align-items:stretch;
+      margin:28px auto 0;
+      padding:clamp(30px,5vw,58px);
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:30px;
+      background:linear-gradient(135deg,rgba(255,253,248,.98),rgba(237,246,242,.96));
+      box-shadow:var(--shadow);
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      right:-10%;
+      bottom:-30%;
+      width:56%;
+      height:310px;
+      border-radius:999px;
+      background:rgba(53,94,117,.10);
+      transform:rotate(-8deg);
+    }
+    .hero-copy,.hero-panel{position:relative;z-index:1;min-width:0}
+    .eyebrow{margin:0 0 10px;color:var(--gold);font-size:.78rem;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
+    h1,h2,h3{margin-top:0;color:var(--ink);letter-spacing:0;text-align:left;line-height:1.24}
+    h1{margin-bottom:16px;font-family:Georgia,"Noto Serif KR","Times New Roman",serif;font-size:clamp(2.05rem,4.8vw,4.15rem);line-height:1.08}
+    h2{margin-bottom:0;font-family:Georgia,"Noto Serif KR","Times New Roman",serif;font-size:clamp(1.55rem,3vw,2.35rem)}
+    h3{margin-bottom:8px;font-size:1.1rem}
+    .lead{max-width:760px;margin:0;color:#52606a;font-size:clamp(1rem,1.45vw,1.13rem)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .hero-panel{
+      display:grid;
+      gap:12px;
+      padding:22px;
+      border:1px solid rgba(53,94,117,.17);
+      border-radius:24px;
+      background:rgba(255,253,248,.78);
+      box-shadow:0 18px 44px -36px rgba(31,42,51,.45);
+    }
+    .route{display:grid;grid-template-columns:82px minmax(0,1fr);gap:13px;align-items:center;padding:13px;border:1px solid #e3ecec;border-radius:16px;background:#fbfaf4}
+    .route b{color:var(--green);font-family:Georgia,"Times New Roman",serif}
+    .route strong{display:block;color:var(--ink)}
+    .route span{display:block;color:var(--muted);font-size:.86rem}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 0}
+    .stat{padding:17px;border:1px solid var(--line);border-radius:18px;background:rgba(255,253,248,.86);box-shadow:0 18px 40px -36px rgba(31,42,51,.42)}
+    .stat strong{display:block;color:var(--navy);font-family:Georgia,"Times New Roman",serif;font-size:1.6rem;line-height:1}
+    .stat span{display:block;margin-top:6px;color:var(--muted);font-size:.85rem}
+    section{padding:clamp(44px,6vw,72px) 0 0;scroll-margin-top:94px}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px}
+    .section-head p{max-width:760px;margin:8px 0 0;color:var(--muted)}
+    .pill{display:inline-flex;align-items:center;min-height:28px;border:1px solid rgba(200,115,88,.22);border-radius:999px;padding:4px 10px;background:rgba(200,115,88,.08);color:var(--coral);font-size:.78rem;font-weight:950}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .card,.module,.download,.rubric-item{
+      min-width:0;
+      max-width:100%;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(255,253,248,.88);
+      box-shadow:var(--shadow);
+    }
+    .card{padding:21px}
+    .card p,.module p,.module li,.download p,.rubric-item p{margin:0;color:#5d6a73}
+    .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+    .chips span{display:inline-flex;align-items:center;min-height:25px;border:1px solid #e3ecec;border-radius:999px;padding:4px 9px;background:#f4f8f6;color:#58676e;font-size:.76rem;font-weight:850}
+    .module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .module{padding:22px}
+    .module .num{display:inline-grid;place-items:center;min-width:44px;height:34px;margin-bottom:12px;border-radius:12px;background:rgba(79,138,121,.12);color:var(--green);font-weight:950}
+    .module ul{margin:10px 0 0;padding-left:18px}
+    .flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+    .flow article{min-width:0;padding:17px;border:1px solid var(--line);border-radius:18px;background:rgba(255,253,248,.88)}
+    .flow span{display:block;color:var(--gold);font-weight:950}
+    .flow strong{display:block;margin:6px 0;color:var(--ink);line-height:1.35}
+    .flow p{margin:0;color:var(--muted);font-size:.9rem}
+    .download-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .download{
+      display:flex;
+      flex-direction:column;
+      min-height:228px;
+      padding:20px;
+      color:var(--ink);
+      text-decoration:none;
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .download:hover{transform:translateY(-2px);box-shadow:0 28px 58px -40px rgba(31,42,51,.58)}
+    .download small{display:block;margin-bottom:8px;color:var(--coral);font-size:.76rem;font-weight:950;letter-spacing:.06em;text-transform:uppercase}
+    .download h3{font-size:1.04rem;margin-bottom:8px}
+    .download strong{margin-top:auto;color:var(--green)}
+    .download .alt{display:inline-block;margin-top:8px;color:var(--muted);font-size:.82rem}
+    .rubric{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .rubric-item{padding:18px}
+    .rubric-item b{display:block;color:var(--ink);margin-bottom:6px}
+    .note{margin-top:16px;padding:17px 18px;border-left:5px solid var(--green);border-radius:16px;background:rgba(79,138,121,.11);color:#385c54;font-weight:760}
+    footer{display:flex;justify-content:space-between;gap:18px;margin-top:72px;padding:30px clamp(18px,5vw,64px) 54px;border-top:1px solid var(--line);background:rgba(255,253,248,.75);color:var(--muted)}
+    footer strong{color:var(--ink)}
+    @media(max-width:1040px){
+      .hero{grid-template-columns:1fr}
+      .grid,.download-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .flow{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .rubric{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:720px){
+      .top{align-items:flex-start;flex-direction:column;padding:12px 14px}
+      nav{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));justify-content:stretch}
+      nav a{padding:8px 6px;font-size:.84rem}
+      main,.wrap{width:calc(100% - 28px)}
+      .hero{margin-top:18px;padding:24px 18px;border-radius:24px}
+      h1{font-size:clamp(1.78rem,8vw,2.35rem)}
+      .hero-actions{display:grid;grid-template-columns:1fr}
+      .stats,.grid,.module-grid,.download-grid,.rubric,.flow{grid-template-columns:1fr}
+      .section-head{align-items:flex-start;flex-direction:column}
+      .route{grid-template-columns:1fr}
+      footer{flex-direction:column;padding:24px 14px 42px}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="top">
+    <a class="brand" href="#main" aria-label="학술대회 발표 LMS 홈">
+      <span class="mark">P</span>
+      <span><strong>학술대회 발표 LMS</strong><small>Conference Presentation Learning Hub</small></span>
+    </a>
+    <nav aria-label="주요 메뉴">
+      <a href="#tracks">발표 주제</a>
+      <a href="#modules">학습 모듈</a>
+      <a href="#workflow">발표 준비</a>
+      <a href="#materials">자료 다운로드</a>
+      <a href="#qa">질의응답</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Academic Conference Presentation</p>
+        <h1 id="page-title">학술대회 발표 자료실과 발표 준비 LMS</h1>
+        <p class="lead">AI 리터러시, 생성형 AI 리터러시, 글로벌 역량, 영어교육, 다문화교육 관련 학술대회 발표 자료를 한곳에서 확인하고 발표 준비 과정에 맞추어 학습할 수 있도록 구성한 온라인 LMS입니다.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#materials">발표 자료 다운로드</a>
+          <a class="button green" href="#modules">학습 모듈 보기</a>
+          <a class="button" href="https://drive.google.com/drive/folders/1fQP-PLulPYTFLJIwwx_5PICDULE7Xlxx?usp=sharing" target="_blank" rel="noopener">Google Drive 원본</a>
+        </div>
+      </div>
+      <aside class="hero-panel" aria-label="학습 흐름 요약">
+        <div class="route"><b>01</b><div><strong>주제 파악</strong><span>발표 제목, 학회 맥락, 핵심 연구문제를 먼저 확인합니다.</span></div></div>
+        <div class="route"><b>02</b><div><strong>자료 검토</strong><span>슬라이드, 포스터, 발표 시연 영상을 연결해서 봅니다.</span></div></div>
+        <div class="route"><b>03</b><div><strong>발표 훈련</strong><span>도입, 방법, 결과, 시사점, 질의응답 순서로 연습합니다.</span></div></div>
+      </aside>
+    </section>
+
+    <div class="stats" aria-label="자료 구성">
+      <article class="stat"><strong>5</strong><span>핵심 발표 주제</span></article>
+      <article class="stat"><strong>15+</strong><span>Drive 발표 자료</span></article>
+      <article class="stat"><strong>PDF</strong><span>Google Slides PDF 연결</span></article>
+      <article class="stat"><strong>Q&A</strong><span>학술대회 응답 훈련</span></article>
+    </div>
+
+    <section id="tracks" aria-labelledby="tracks-title">
+      <div class="section-head">
+        <div>
+          <span class="pill">Research Tracks</span>
+          <h2 id="tracks-title">발표 주제 구성</h2>
+          <p>Drive 자료의 제목과 발표 내용을 기준으로 학습자가 바로 이해할 수 있도록 연구 주제별로 묶었습니다.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>생성형 AI 리터러시와 국제 학생</h3>
+          <p>KATE 발표 자료를 중심으로 국제 학생의 GenAI 활용, 프롬프트 언어, 학업 적응, AI 리터러시 교육 지원을 탐색합니다.</p>
+          <div class="chips"><span>KATE</span><span>GenAI Literacy</span><span>International Students</span></div>
+        </article>
+        <article class="card">
+          <h3>대학생 AI 리터러시 탐색 연구</h3>
+          <p>전공별 차이를 바탕으로 AI+X 교양교육의 필요성과 대학 수준의 AI 리터러시 교육 방향을 살펴봅니다.</p>
+          <div class="chips"><span>AI+X</span><span>전공별 분석</span><span>교양교육</span></div>
+        </article>
+        <article class="card">
+          <h3>자유전공과 글로벌 역량</h3>
+          <p>자유전공 학생의 진로 탐색, 전공 선택, 글로벌 역량 형성 과정을 질적 연구 관점에서 정리합니다.</p>
+          <div class="chips"><span>자유전공</span><span>Global Competency</span><span>Qualitative Study</span></div>
+        </article>
+        <article class="card">
+          <h3>예비 영어교사와 글로벌 역량</h3>
+          <p>예비 영어교사의 세계시민성, 문화 이해, 영어교육 전문성, 교사 정체성 형성과 관련된 발표 자료를 다룹니다.</p>
+          <div class="chips"><span>Pre-service Teachers</span><span>English Education</span><span>Teacher Identity</span></div>
+        </article>
+        <article class="card">
+          <h3>EFL 학습과 GenAI 참여</h3>
+          <p>일본 학회 및 JACET 발표 자료를 중심으로 EFL 환경에서 생성형 AI와 학습자 참여를 연결해 봅니다.</p>
+          <div class="chips"><span>JACET</span><span>EFL</span><span>Learner Engagement</span></div>
+        </article>
+        <article class="card">
+          <h3>학회 포스터와 발표 시연</h3>
+          <p>포스터, 발표 시연 영상, 학회별 최종본을 활용하여 실제 발표 장면에 맞는 자료 구성과 발표 전략을 학습합니다.</p>
+          <div class="chips"><span>Poster</span><span>Presentation Demo</span><span>Conference Practice</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="modules" aria-labelledby="modules-title">
+      <div class="section-head">
+        <div>
+          <span class="pill">Learning Modules</span>
+          <h2 id="modules-title">학습 모듈</h2>
+          <p>학술대회 발표를 처음 준비하는 학생도 자료를 순서대로 따라가며 발표 구조를 만들 수 있도록 설계했습니다.</p>
+        </div>
+      </div>
+      <div class="module-grid">
+        <article class="module">
+          <span class="num">1</span>
+          <h3>발표 주제와 연구문제 정리</h3>
+          <p>슬라이드 제목, 학회명, 연구 대상, 핵심 개념을 확인하고 발표의 중심 질문을 한 문장으로 정리합니다.</p>
+          <ul>
+            <li>연구 배경과 문제의식 구분</li>
+            <li>발표 제목과 연구문제 연결</li>
+            <li>청중이 기억할 핵심 메시지 작성</li>
+          </ul>
+        </article>
+        <article class="module">
+          <span class="num">2</span>
+          <h3>선행연구와 이론 틀 설명</h3>
+          <p>AI 리터러시, 글로벌 역량, EFL 학습, 질적 연구와 관련된 개념을 발표용 언어로 간결하게 변환합니다.</p>
+          <ul>
+            <li>개념 정의는 짧게, 연결은 명확하게</li>
+            <li>연구 필요성을 자료와 사례로 제시</li>
+            <li>전공 청중과 비전공 청중 모두 고려</li>
+          </ul>
+        </article>
+        <article class="module">
+          <span class="num">3</span>
+          <h3>방법과 결과 발표 구성</h3>
+          <p>연구 참여자, 자료 수집, 분석 절차, 주요 결과를 발표 시간 안에 이해되도록 구조화합니다.</p>
+          <ul>
+            <li>방법은 신뢰성을 보여주는 정도로 제시</li>
+            <li>결과는 2-3개의 핵심 발견 중심으로 구성</li>
+            <li>표와 도식은 청중의 이해를 돕는 방식으로 사용</li>
+          </ul>
+        </article>
+        <article class="module">
+          <span class="num">4</span>
+          <h3>시사점과 질의응답 준비</h3>
+          <p>발표 결론이 교육 현장, 연구 설계, 후속 연구에 어떤 의미를 갖는지 정리하고 예상 질문에 대비합니다.</p>
+          <ul>
+            <li>한계와 후속 연구를 방어적으로 말하지 않기</li>
+            <li>질문에는 인정, 설명, 연결의 순서로 응답</li>
+            <li>발표 후 네트워킹을 위한 30초 요약 준비</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="workflow" aria-labelledby="workflow-title">
+      <div class="section-head">
+        <div>
+          <span class="pill">Presentation Workflow</span>
+          <h2 id="workflow-title">학술대회 발표 준비 6단계</h2>
+          <p>학생들이 자료를 다운로드한 뒤 실제 발표 준비에 바로 적용할 수 있는 절차입니다.</p>
+        </div>
+      </div>
+      <div class="flow">
+        <article><span>Step 1</span><strong>자료 선택</strong><p>학회명과 주제를 보고 본인이 연습할 발표 자료를 고릅니다.</p></article>
+        <article><span>Step 2</span><strong>초록 읽기</strong><p>연구 목적, 대상, 방법, 결과, 시사점을 5문장으로 요약합니다.</p></article>
+        <article><span>Step 3</span><strong>슬라이드 구조화</strong><p>도입, 이론, 방법, 결과, 논의, 결론의 흐름을 표시합니다.</p></article>
+        <article><span>Step 4</span><strong>발표 대본 작성</strong><p>각 슬라이드마다 핵심 문장 1개와 전환 문장 1개를 만듭니다.</p></article>
+        <article><span>Step 5</span><strong>리허설</strong><p>시간을 재면서 발표하고, 설명이 길어지는 부분을 줄입니다.</p></article>
+        <article><span>Step 6</span><strong>Q&A 준비</strong><p>방법, 표본, 한계, 시사점 관련 예상 질문을 미리 작성합니다.</p></article>
+      </div>
+      <p class="note">발표 연습의 목표는 슬라이드를 읽는 것이 아니라, 연구의 흐름을 청중이 따라올 수 있게 안내하는 것입니다.</p>
+    </section>
+
+    <section id="materials" aria-labelledby="materials-title">
+      <div class="section-head">
+        <div>
+          <span class="pill">Download Materials</span>
+          <h2 id="materials-title">발표 자료 다운로드</h2>
+          <p>Google Slides 자료는 PDF로 바로 저장할 수 있도록 연결했고, PPTX·영상·이미지 자료는 Drive 원본 보기 또는 다운로드로 연결했습니다.</p>
+        </div>
+      </div>
+      <div class="download-grid">
+        <a class="download" href="https://docs.google.com/presentation/d/1QYD8q5Ibj0NwOHDUXdJJxZpwx-obbWedRJIdatKBAi4/export/pdf" target="_blank" rel="noopener">
+          <small>PDF Export</small>
+          <h3>KATE_GenAI_Literacy_Intl_Students_UPGRADED</h3>
+          <p>국제 학생의 생성형 AI 리터러시와 프롬프트 언어 역량을 다루는 KATE 발표 자료입니다.</p>
+          <strong>PDF 다운로드</strong>
+        </a>
+        <a class="download" href="https://docs.google.com/presentation/d/1dEdxORULUZjigbF9ovAW2UHcrfLV87t3AsbWHdkBoNc/export/pdf" target="_blank" rel="noopener">
+          <small>PDF Export</small>
+          <h3>대학생의 AI 리터러시 탐색연구</h3>
+          <p>전공별 분석을 기반으로 대학 AI 리터러시 교육 방향을 제시하는 발표 자료입니다.</p>
+          <strong>PDF 다운로드</strong>
+        </a>
+        <a class="download" href="https://docs.google.com/presentation/d/16cZS-YAmoG0yrN-6UI25_uJuK4r10lhijcc34FtCIaE/export/pdf" target="_blank" rel="noopener">
+          <small>PDF Export</small>
+          <h3>학회발표_자유전공_글로벌역량_질적</h3>
+          <p>자유전공 학생의 글로벌 역량을 질적 연구 관점에서 다루는 발표 자료입니다.</p>
+          <strong>PDF 다운로드</strong>
+        </a>
+        <a class="download" href="https://docs.google.com/presentation/d/1oY7ewlIJyESKj97xOWPEXu6qcWYDuO9i6uvpBYorXzQ/export/pdf" target="_blank" rel="noopener">
+          <small>PDF Export</small>
+          <h3>학회발표_예비영어교사_글로벌역량_질적</h3>
+          <p>예비 영어교사의 글로벌 역량과 영어교육 전문성을 다루는 발표 자료입니다.</p>
+          <strong>PDF 다운로드</strong>
+        </a>
+        <a class="download" href="https://docs.google.com/presentation/d/1YldYkAywWj_7EERV2NlkCchpjd7dpqYIb6GlSeYoLd0/export/pdf" target="_blank" rel="noopener">
+          <small>PDF Export</small>
+          <h3>AI리터러시_질적분석</h3>
+          <p>AI 리터러시 관련 질적 분석 발표 자료입니다.</p>
+          <strong>PDF 다운로드</strong>
+        </a>
+        <a class="download" href="https://docs.google.com/presentation/d/1mQ6GVN5lbMl8xfiAKy7xmN29tZCuupucGC8t0CDNACw/export/pdf" target="_blank" rel="noopener">
+          <small>PDF Export</small>
+          <h3>자율전공_글로벌역량</h3>
+          <p>자율전공 학생과 글로벌 역량 주제의 발표 자료입니다.</p>
+          <strong>PDF 다운로드</strong>
+        </a>
+        <a class="download" href="https://docs.google.com/presentation/d/1LvGpfG-mkEwllJBu5U-sz3qVmF-c5sx1aiPWojekHus/export/pdf" target="_blank" rel="noopener">
+          <small>PDF Export</small>
+          <h3>예비교사_글로벌역량</h3>
+          <p>예비교사 교육과 글로벌 역량을 연결한 발표 자료입니다.</p>
+          <strong>PDF 다운로드</strong>
+        </a>
+        <a class="download" href="https://docs.google.com/presentation/d/1ZjOQo6p2gvmEuT2ahgoBMZOKzcmalTJzC4AEKNR5jag/export/pdf" target="_blank" rel="noopener">
+          <small>PDF Export</small>
+          <h3>EFL_GenAI_Engagement_Japan2026_UPGRADED</h3>
+          <p>일본 학회 발표용 EFL 학습자와 생성형 AI 참여 주제 자료입니다.</p>
+          <strong>PDF 다운로드</strong>
+        </a>
+        <a class="download" href="https://drive.google.com/file/d/1MAWx4mD-IVGexnLzpUNNFHSKhSvY4pqZ/view?usp=sharing" target="_blank" rel="noopener">
+          <small>Video</small>
+          <h3>KATE_유학생 대상_발표시연.mp4</h3>
+          <p>실제 발표 흐름과 전달 방식을 확인할 수 있는 발표 시연 영상입니다.</p>
+          <strong>영상 보기</strong>
+        </a>
+        <a class="download" href="https://drive.google.com/uc?export=download&id=1BzdETLtMshrgJrtojge-RWzuOWXcmel3" target="_blank" rel="noopener">
+          <small>PPTX Download</small>
+          <h3>KATE.pptx</h3>
+          <p>KATE 경북대 발표 폴더에 포함된 원본 PowerPoint 자료입니다.</p>
+          <strong>PPTX 다운로드</strong>
+        </a>
+        <a class="download" href="https://drive.google.com/uc?export=download&id=1YRBqt07lU6__CDPfCU2LhqzAplf9NkRc" target="_blank" rel="noopener">
+          <small>PPTX Download</small>
+          <h3>일본학회_2026</h3>
+          <p>일본 학회 발표용 원본 PowerPoint 자료입니다.</p>
+          <strong>PPTX 다운로드</strong>
+        </a>
+        <a class="download" href="https://drive.google.com/file/d/1rxBVzkJyRQ7d9g3R77i0cgOKIjwS4ncw/view?usp=sharing" target="_blank" rel="noopener">
+          <small>Poster</small>
+          <h3>Poster.png</h3>
+          <p>학술대회 포스터 자료를 이미지로 확인합니다.</p>
+          <strong>포스터 보기</strong>
+        </a>
+        <a class="download" href="https://drive.google.com/uc?export=download&id=1nK88JbYMSmr1vP_9S8xKZ0KyjgKl5b8q" target="_blank" rel="noopener">
+          <small>PPTX Download</small>
+          <h3>KAME_Yong Jik Lee.pptx</h3>
+          <p>다문화교육학회 발표 폴더에 포함된 원본 PowerPoint 자료입니다.</p>
+          <strong>PPTX 다운로드</strong>
+        </a>
+        <a class="download" href="https://drive.google.com/uc?export=download&id=14dV1KfvxNbuM1_x5165wxMr_etJYOqta" target="_blank" rel="noopener">
+          <small>PPTX Download</small>
+          <h3>산학기술 이용직.pptx</h3>
+          <p>산학기술학회 제주도 발표 폴더에 포함된 발표 자료입니다.</p>
+          <strong>PPTX 다운로드</strong>
+        </a>
+        <a class="download" href="https://drive.google.com/uc?export=download&id=1et52XevKlBg9DFJTbj9jzenhDTgzagym" target="_blank" rel="noopener">
+          <small>PPTX Download</small>
+          <h3>발표 최종본.pptx</h3>
+          <p>산학기술학회 제주도 발표 최종본 자료입니다.</p>
+          <strong>PPTX 다운로드</strong>
+        </a>
+        <a class="download" href="https://drive.google.com/drive/folders/1fQP-PLulPYTFLJIwwx_5PICDULE7Xlxx?usp=sharing" target="_blank" rel="noopener">
+          <small>Drive Folder</small>
+          <h3>전체 학술대회 발표 자료 폴더</h3>
+          <p>9월, 10월, 1월 학회 준비 폴더와 발표 PPT 모음을 포함한 원본 Drive 폴더입니다.</p>
+          <strong>전체 자료 열기</strong>
+        </a>
+      </div>
+    </section>
+
+    <section id="qa" aria-labelledby="qa-title">
+      <div class="section-head">
+        <div>
+          <span class="pill">Q&A Practice</span>
+          <h2 id="qa-title">학술대회 질의응답 준비</h2>
+          <p>발표 이후 질문을 받을 때 바로 활용할 수 있는 응답 구조입니다.</p>
+        </div>
+      </div>
+      <div class="rubric">
+        <article class="rubric-item">
+          <b>연구 필요성 질문</b>
+          <p>왜 이 주제가 중요한지, 기존 연구와 어떤 차이가 있는지 한 문장으로 먼저 답합니다.</p>
+        </article>
+        <article class="rubric-item">
+          <b>방법론 질문</b>
+          <p>참여자, 자료 수집, 분석 절차를 간단히 설명하고 연구 설계의 타당성을 연결합니다.</p>
+        </article>
+        <article class="rubric-item">
+          <b>결과 해석 질문</b>
+          <p>결과를 과장하지 않고 자료가 보여주는 범위 안에서 교육적 의미를 설명합니다.</p>
+        </article>
+        <article class="rubric-item">
+          <b>후속 연구 질문</b>
+          <p>표본 확대, 장기 추적, 수행 기반 평가, 비교 연구 등 다음 단계 연구로 연결합니다.</p>
+        </article>
+      </div>
+      <p class="note">추천 응답 구조: “좋은 질문 감사합니다. 이 연구에서는 ...로 보았습니다. 다만 ...의 한계가 있어, 후속 연구에서는 ...를 확장할 필요가 있습니다.”</p>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>학술대회 발표 LMS</strong><br>AI 리터러시, 글로벌 역량, 영어교육 학술발표 자료실</div>
+    <div>Google Drive 자료 기반 · GitHub Pages 배포</div>
+  </footer>
+</body>
+</html>
