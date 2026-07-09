@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Utah Korea Visit Program LMS</title>
+  <meta name="description" content="2026년과 2027년 Utah Korea Visit Program 자료, 일정, 발표자료, 학교 방문, 세미나, 질문지를 정리한 수업형 LMS입니다.">
+  <meta name="theme-color" content="#2f5f74">
+  <style>
+    :root{--ink:#1f2b33;--text:#3b4850;--muted:#72818a;--line:#dce6e8;--bg:#f3f7f6;--paper:#fffdf8;--navy:#2f5f74;--green:#4f8a79;--gold:#b9933e;--coral:#c87458;--shadow:0 24px 60px -42px rgba(31,43,51,.5)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;color:var(--text);background:radial-gradient(circle at 8% 0%,rgba(185,147,62,.14),transparent 31%),radial-gradient(circle at 90% 8%,rgba(79,138,121,.13),transparent 28%),linear-gradient(180deg,#fbfaf4 0%,var(--bg) 58%,#edf4f1 100%);font-family:"Segoe UI","Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif;line-height:1.68;word-break:keep-all;overflow-wrap:anywhere}
+    a{color:inherit}.skip{position:absolute;left:-999px;top:auto}.skip:focus{left:16px;top:16px;background:var(--ink);color:#fff;padding:10px 12px;border-radius:10px;z-index:100}
+    .top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px clamp(16px,4vw,54px);border-bottom:1px solid rgba(47,95,116,.16);background:rgba(255,253,248,.92);backdrop-filter:blur(14px)}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0;text-decoration:none}.mark{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--navy),var(--green));color:#fff;font-weight:950;box-shadow:0 18px 36px -28px rgba(31,43,51,.7);flex:0 0 auto}.brand strong{display:block;color:var(--ink);font-weight:950;line-height:1.2}.brand small{display:block;color:var(--muted);font-size:.78rem;line-height:1.25}
+    nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}nav a,.button{display:inline-flex;align-items:center;justify-content:center;min-height:38px;border:1px solid var(--line);border-radius:999px;padding:8px 13px;background:rgba(255,253,248,.86);color:#4e5b63;text-decoration:none;font-size:.88rem;font-weight:850;line-height:1.25;text-align:center}nav a:hover,.button:hover{border-color:var(--navy);color:var(--ink);box-shadow:0 14px 28px -26px rgba(31,43,51,.55)}
+    .page-home nav a[href="index.html"],.page-2026 nav a[href="program-2026.html"],.page-2027 nav a[href="program-2027.html"],.page-materials nav a[href="materials.html"],.page-guide nav a[href="guide.html"]{background:var(--navy);border-color:var(--navy);color:#fff}.button.primary{background:var(--navy);border-color:var(--navy);color:#fff}.button.green{background:var(--green);border-color:var(--green);color:#fff}
+    main,.wrap{width:min(1180px,calc(100% - 36px));margin:0 auto}.hero{position:relative;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:clamp(26px,5vw,54px);align-items:stretch;margin:28px auto 0;padding:clamp(30px,5vw,58px);overflow:hidden;border:1px solid var(--line);border-radius:30px;background:linear-gradient(135deg,rgba(255,253,248,.98),rgba(237,246,242,.96));box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;right:-10%;bottom:-30%;width:56%;height:310px;border-radius:999px;background:rgba(47,95,116,.1);transform:rotate(-8deg)}.hero-copy,.hero-panel{position:relative;z-index:1;min-width:0}.eyebrow{margin:0 0 10px;color:var(--gold);font-size:.78rem;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
+    h1,h2,h3{margin-top:0;color:var(--ink);letter-spacing:0;text-align:left;line-height:1.24}h1{margin-bottom:16px;font-family:Georgia,"Noto Serif KR","Times New Roman",serif;font-size:clamp(2.05rem,4.8vw,4.15rem);line-height:1.08}h2{margin-bottom:0;font-family:Georgia,"Noto Serif KR","Times New Roman",serif;font-size:clamp(1.55rem,3vw,2.35rem)}h3{margin-bottom:8px;font-size:1.1rem}.lead{max-width:780px;margin:0;color:#52606a;font-size:clamp(1rem,1.45vw,1.13rem)}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .hero-panel{display:grid;gap:12px;padding:22px;border:1px solid rgba(47,95,116,.17);border-radius:24px;background:rgba(255,253,248,.78);box-shadow:0 18px 44px -36px rgba(31,43,51,.45)}.route{display:grid;grid-template-columns:82px minmax(0,1fr);gap:13px;align-items:center;padding:13px;border:1px solid #e3ecec;border-radius:16px;background:#fbfaf4}.route b{color:var(--green);font-family:Georgia,"Times New Roman",serif}.route strong{display:block;color:var(--ink)}.route span{display:block;color:var(--muted);font-size:.86rem}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 0}.stat{padding:17px;border:1px solid var(--line);border-radius:18px;background:rgba(255,253,248,.86);box-shadow:0 18px 40px -36px rgba(31,43,51,.42)}.stat strong{display:block;color:var(--navy);font-family:Georgia,"Times New Roman",serif;font-size:1.6rem;line-height:1}.stat span{display:block;margin-top:6px;color:var(--muted);font-size:.85rem}
+    section{padding:clamp(44px,6vw,72px) 0 0;scroll-margin-top:94px}body:not(.page-home) .hero,body:not(.page-home) .stats{display:none}.page-home section:not(#overview),.page-2026 section:not(#program2026),.page-2027 section:not(#program2027),.page-materials section:not(#materials),.page-guide section:not(#guide){display:none}body:not(.page-home) section{min-height:calc(100vh - 180px);padding-top:58px}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:18px}.section-head p{max-width:800px;margin:8px 0 0;color:var(--muted)}.pill{display:inline-flex;align-items:center;min-height:28px;border:1px solid rgba(200,116,88,.22);border-radius:999px;padding:4px 10px;background:rgba(200,116,88,.08);color:var(--coral);font-size:.78rem;font-weight:950}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card,.module,.download,.rubric-item{min-width:0;max-width:100%;overflow:hidden;border:1px solid var(--line);border-radius:20px;background:rgba(255,253,248,.88);box-shadow:var(--shadow)}.card,.module,.rubric-item{padding:21px}.card p,.module p,.module li,.download p,.rubric-item p{margin:0;color:#5d6a73}.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.chips span{display:inline-flex;align-items:center;min-height:25px;border:1px solid #e3ecec;border-radius:999px;padding:4px 9px;background:#f4f8f6;color:#58676e;font-size:.76rem;font-weight:850}.module .num{display:inline-grid;place-items:center;min-width:46px;height:34px;margin-bottom:12px;border-radius:12px;background:rgba(79,138,121,.12);color:var(--green);font-weight:950}.module ul{margin:10px 0 0;padding-left:18px}
+    .timeline{display:grid;gap:12px}.day{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,253,248,.9);box-shadow:0 18px 42px -38px rgba(31,43,51,.45)}.day b{font-family:Georgia,"Times New Roman",serif;color:var(--green)}.day h3{margin:0 0 4px}.day p{margin:0;color:#5d6a73}
+    .download-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.download{display:flex;flex-direction:column;min-height:218px;padding:20px;color:var(--ink);text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}.download:hover{transform:translateY(-2px);box-shadow:0 28px 58px -40px rgba(31,43,51,.58)}.download small{display:block;margin-bottom:8px;color:var(--coral);font-size:.76rem;font-weight:950;letter-spacing:.06em;text-transform:uppercase}.download h3{font-size:1.04rem;margin-bottom:8px}.download strong{margin-top:auto;color:var(--green)}
+    .rubric{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.rubric-item b{display:block;color:var(--ink);margin-bottom:6px}.note{margin-top:16px;padding:17px 18px;border-left:5px solid var(--green);border-radius:16px;background:rgba(79,138,121,.11);color:#385c54;font-weight:760}footer{display:flex;justify-content:space-between;gap:18px;margin-top:72px;padding:30px clamp(18px,5vw,64px) 54px;border-top:1px solid var(--line);background:rgba(255,253,248,.75);color:var(--muted)}footer strong{color:var(--ink)}
+    @media(max-width:1040px){.hero{grid-template-columns:1fr}.grid,.download-grid,.two{grid-template-columns:repeat(2,minmax(0,1fr))}.rubric{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:720px){.top{align-items:flex-start;flex-direction:column;padding:12px 14px}nav{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));justify-content:stretch}nav a{padding:8px 6px;font-size:.84rem}main,.wrap{width:calc(100% - 28px)}.hero{margin-top:18px;padding:24px 18px;border-radius:24px}h1{font-size:clamp(1.78rem,8vw,2.35rem)}.hero-actions{display:grid;grid-template-columns:1fr}.stats,.grid,.download-grid,.two,.rubric{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.route,.day{grid-template-columns:1fr}footer{flex-direction:column;padding:24px 14px 42px}}
+  </style>
+</head>
+<body class="page-guide">
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="top">
+    <a class="brand" href="index.html" aria-label="Utah Korea Visit Program LMS 홈">
+      <span class="mark">U</span>
+      <span><strong>Utah Korea Visit Program LMS</strong><small>2026 · 2027 Pre-service Teacher Program</small></span>
+    </a>
+    <nav aria-label="주요 메뉴">
+      <a href="index.html">홈</a>
+      <a href="program-2026.html">2026 프로그램</a>
+      <a href="program-2027.html">2027 프로그램</a>
+      <a href="materials.html">자료실</a>
+      <a href="guide.html">토론 질문</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Korea Visit Program</p>
+        <h1 id="page-title">Utah Korea Visit Program LMS</h1>
+        <p class="lead">2026년과 2027년 예비교사 한국 방문 프로그램 자료를 정리한 온라인 학습 공간입니다. 창원대학교 캠퍼스, 한국 학교 방문, 부산 세미나, AI 교육, 한국 교육과정, 영어교사 질문 자료를 한곳에서 확인할 수 있습니다.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="program-2026.html">2026 프로그램 보기</a>
+          <a class="button green" href="program-2027.html">2027 프로그램 보기</a>
+          <a class="button" href="materials.html">자료실 바로가기</a>
+        </div>
+      </div>
+      <aside class="hero-panel" aria-label="프로그램 핵심 구성">
+        <div class="route"><b>01</b><div><strong>현장 방문</strong><span>초·중·고 학교 방문, 수업 관찰, 교사와의 토론을 포함합니다.</span></div></div>
+        <div class="route"><b>02</b><div><strong>세미나와 발표</strong><span>부산대 BK 세미나, AI 교육 세미나, 학생 발표 자료를 연결합니다.</span></div></div>
+        <div class="route"><b>03</b><div><strong>문화와 캠퍼스</strong><span>창원대학교 캠퍼스, 창원의 집, 부산 도시 탐방 자료를 제공합니다.</span></div></div>
+      </aside>
+    </section>
+
+    <div class="stats" aria-label="자료 구성">
+      <article class="stat"><strong>2</strong><span>연도별 프로그램</span></article>
+      <article class="stat"><strong>6</strong><span>방문 일정</span></article>
+      <article class="stat"><strong>15+</strong><span>발표·참고 자료</span></article>
+      <article class="stat"><strong>Q&A</strong><span>교사 토론 질문</span></article>
+    </div>
+
+    <section id="overview" aria-labelledby="overview-title">
+      <div class="section-head"><div><span class="pill">Overview</span><h2 id="overview-title">프로그램 개요</h2><p>두 해의 프로그램을 비교하며 한국 교육 현장, 영어교육, AI 교육, 대학 캠퍼스 경험을 통합적으로 살펴볼 수 있도록 구성했습니다.</p></div></div>
+      <div class="grid">
+        <article class="card"><h3>2026 프로그램</h3><p>창원과 부산을 중심으로 고등학교, 중학교, 초등학교 방문, 교사 면담, 부산대 BK 세미나, 한국 AI 동향 발표가 포함됩니다.</p><div class="chips"><span>Feb 22-27</span><span>School Visits</span><span>AI Trends</span></div></article>
+        <article class="card"><h3>2027 프로그램</h3><p>예비교사를 위한 한국 방문 프로그램으로 한국어 세션, 창원의 집, 부산대 세미나, 초등학교·고등학교 방문, 전공 세미나가 포함됩니다.</p><div class="chips"><span>Spring Utah</span><span>Pre-service Teachers</span><span>Korea Visit</span></div></article>
+        <article class="card"><h3>핵심 자료</h3><p>일정표, 발표자료, 캠퍼스 소개, AI 디지털 교과서, 한국 교육과정, 영어교사 질문지를 바로 열거나 내려받을 수 있습니다.</p><div class="chips"><span>Schedule</span><span>Presentations</span><span>Discussion</span></div></article>
+      </div>
+    </section>
+
+    <section id="program2026" aria-labelledby="p2026-title">
+      <div class="section-head"><div><span class="pill">2026 Program</span><h2 id="p2026-title">2026년도 프로그램</h2><p>2026년 2월 22일부터 27일까지 진행된 방문 일정과 발표·면담 자료입니다.</p></div></div>
+      <div class="timeline">
+        <article class="day"><b>Day 0</b><div><h3>창원 도착과 체크인</h3><p>창원중앙역 도착, 숙소 체크인, 창원 지역 탐방과 저녁 일정으로 프로그램을 시작합니다.</p></div></article>
+        <article class="day"><b>Day 1</b><div><h3>캠퍼스 투어와 고등학교 방문</h3><p>창원대학교 캠퍼스 투어 후 김해 대청고등학교를 방문하고, 글로벌센터 관계자와 만납니다.</p></div></article>
+        <article class="day"><b>Day 2</b><div><h3>창원중앙고 교사 면담</h3><p>창원중앙고 영어교사와 만나 한국 고등학교 영어교육과 학교 문화에 대해 논의합니다.</p></div></article>
+        <article class="day"><b>Day 3</b><div><h3>중학교와 초등 영어교사 면담</h3><p>반림중학교 방문, 초등 영어교사와의 면담을 통해 한국 학교 현장의 다양성을 살펴봅니다.</p></div></article>
+        <article class="day"><b>Day 4</b><div><h3>부산대 BK 세미나와 부산 탐방</h3><p>부산대학교 교육학과 BK 세미나에 참여하고 해운대 등 부산 지역을 탐방합니다.</p></div></article>
+        <article class="day"><b>Day 5</b><div><h3>한국 AI 최신 동향 발표</h3><p>AI 융합교육 관련 발표를 듣고, 서울 이동 및 귀국 일정으로 프로그램을 마무리합니다.</p></div></article>
+      </div>
+    </section>
+
+    <section id="program2027" aria-labelledby="p2027-title">
+      <div class="section-head"><div><span class="pill">2027 Program</span><h2 id="p2027-title">2027년도 프로그램</h2><p>2027 Spring Utah Korea Visit Program for Pre-service Teachers 일정과 자료를 정리했습니다.</p></div></div>
+      <div class="timeline">
+        <article class="day"><b>Day 0</b><div><h3>기숙사 체크인과 캠퍼스 투어</h3><p>창원대학교 기숙사 체크인 후 글로벌 코디네이터와 캠퍼스 투어를 진행합니다.</p></div></article>
+        <article class="day"><b>Day 1</b><div><h3>한국어 세션과 창원 문화 탐방</h3><p>한국어교육원 세션, 창원의 집 영어 안내, 국제교류원 관계자 면담으로 구성됩니다.</p></div></article>
+        <article class="day"><b>Day 2</b><div><h3>부산대 BK 세미나</h3><p>부산대학교 교육학과 BK 세미나에 참여하고 Utah 학생과 부산대 학생 발표를 함께 진행합니다.</p></div></article>
+        <article class="day"><b>Day 3</b><div><h3>초등학교 수업 관찰</h3><p>가고파초등학교와 회원초등학교를 방문하여 수업 관찰과 교사 토론을 진행합니다.</p></div></article>
+        <article class="day"><b>Day 4</b><div><h3>고등학교 방문과 전공 세미나</h3><p>창원중앙고등학교 방문 후 글로벌자율전공·국제관계학 관련 세미나를 진행합니다.</p></div></article>
+        <article class="day"><b>Day 5</b><div><h3>한국어 세션과 서울 이동</h3><p>한국어교육원 세션 후 서울로 이동하며 프로그램을 마무리합니다.</p></div></article>
+      </div>
+    </section>
+
+    <section id="materials" aria-labelledby="materials-title">
+      <div class="section-head"><div><span class="pill">Materials</span><h2 id="materials-title">자료실</h2><p>일정표, 발표자료, 캠퍼스 소개, 질문지를 바로 열거나 다운로드할 수 있습니다.</p></div></div>
+      <div class="download-grid">
+        <a class="download" href="https://docs.google.com/document/d/1exTc4cglwHFn_d6pJ3btyGF3g0H_eJMS-pdZlZxTyR0/export?format=pdf" target="_blank" rel="noopener"><small>2026 PDF</small><h3>2026 Tentative Schedule</h3><p>2026년 2월 22-27일 방문 일정표입니다.</p><strong>PDF 다운로드</strong></a>
+        <a class="download" href="https://docs.google.com/document/d/1NeWtwMp0JY2mR3_Kkr7TPUZ-PTU5SddZXUSCOOvKM44/export?format=pdf" target="_blank" rel="noopener"><small>2027 PDF</small><h3>2027 Spring Utah Schedule</h3><p>2027년 예비교사 한국 방문 프로그램 일정표입니다.</p><strong>PDF 다운로드</strong></a>
+        <a class="download" href="https://docs.google.com/document/d/1Z3-6NIMNZhG3_O_WFlP_WdEXPzYiouIGkN4MVl2tMwQ/export?format=pdf" target="_blank" rel="noopener"><small>Discussion PDF</small><h3>Guiding Questions for English Teachers</h3><p>한국 영어교사와의 면담을 위한 질문지입니다.</p><strong>PDF 다운로드</strong></a>
+        <a class="download" href="https://drive.google.com/uc?export=download&id=1GQBdrleJp0Q5t8zGYJJPHWr4MF3vqTlt" target="_blank" rel="noopener"><small>2026 PPTX</small><h3>University of Utah - Cheng</h3><p>2026 Dr. Cheng AI 발표자료입니다.</p><strong>PPTX 다운로드</strong></a>
+        <a class="download" href="https://drive.google.com/uc?export=download&id=1suL0M-A4uogqghdq21yzJPWMfPkOlTUV" target="_blank" rel="noopener"><small>2027 PPTX</small><h3>University of Utah - Cheng</h3><p>2027 Dr. Cheng AI 발표자료입니다.</p><strong>PPTX 다운로드</strong></a>
+        <a class="download" href="https://drive.google.com/uc?export=download&id=1fJn-Vi5Qb71Y18BeKfAFTjnG6xvK1NG-" target="_blank" rel="noopener"><small>2027 PPTX</small><h3>AI Digital Textbook</h3><p>AI 디지털 교과서 관련 발표자료입니다.</p><strong>PPTX 다운로드</strong></a>
+        <a class="download" href="https://drive.google.com/uc?export=download&id=1Rxc4gpWETNeo-sLxNhXCfcENTO0gUUzU" target="_blank" rel="noopener"><small>2026 PPTX</small><h3>Busan Presentation</h3><p>부산 세미나 발표자료입니다.</p><strong>PPTX 다운로드</strong></a>
+        <a class="download" href="https://drive.google.com/uc?export=download&id=18vxAJhQCesPJCrH3JlyYVPxHajjUFHkF" target="_blank" rel="noopener"><small>2026 PPTX</small><h3>Translanguaging Korea</h3><p>한국 맥락의 translanguaging 발표자료입니다.</p><strong>PPTX 다운로드</strong></a>
+        <a class="download" href="https://drive.google.com/uc?export=download&id=1or94TQOrgWG-5O7Pgoc1KIErBnjznaKZ" target="_blank" rel="noopener"><small>2026 PPTX</small><h3>American School System</h3><p>미국 학교 시스템 관련 발표자료입니다.</p><strong>PPTX 다운로드</strong></a>
+        <a class="download" href="https://drive.google.com/file/d/17NQpWpBAAb7zMW7ZDHAKa57ArF2BsoOM/view?usp=sharing" target="_blank" rel="noopener"><small>2027 PDF</small><h3>Introduction to CWNU Brochure</h3><p>창원대학교 영문 브로슈어입니다.</p><strong>자료 열기</strong></a>
+        <a class="download" href="https://drive.google.com/file/d/1hAMPDzxgFeeyjdtAVwN5qgMC6kpLtQ5h/view?usp=sharing" target="_blank" rel="noopener"><small>2027 PDF</small><h3>CWNU Exchange Student Program</h3><p>교환학생 프로그램 안내 자료입니다.</p><strong>자료 열기</strong></a>
+        <a class="download" href="https://drive.google.com/file/d/1T8LTDG4B4AVKiuor2m7N2IbVhJGbcqHp/view?usp=sharing" target="_blank" rel="noopener"><small>2027 PDF</small><h3>CWNU English Course List</h3><p>영어 강의 목록 안내 자료입니다.</p><strong>자료 열기</strong></a>
+        <a class="download" href="https://drive.google.com/drive/folders/1OCW8pAvJA0einDs77nOseoO9QulBCLmU?usp=sharing" target="_blank" rel="noopener"><small>2026 Folder</small><h3>2026 전체 자료 폴더</h3><p>2026년도 프로그램 전체 자료입니다.</p><strong>전체 자료 열기</strong></a>
+        <a class="download" href="https://drive.google.com/drive/folders/1aYD0FbRD2sgHGrSqYvyrFmDKsErjNXlH?usp=sharing" target="_blank" rel="noopener"><small>2027 Folder</small><h3>2027 전체 자료 폴더</h3><p>2027년도 프로그램 전체 자료입니다.</p><strong>전체 자료 열기</strong></a>
+      </div>
+    </section>
+
+    <section id="guide" aria-labelledby="guide-title">
+      <div class="section-head"><div><span class="pill">Discussion Guide</span><h2 id="guide-title">교사 면담과 토론 질문</h2><p>한국 영어교사와의 면담에서 활용할 수 있는 질문을 주제별로 정리했습니다.</p></div></div>
+      <div class="rubric">
+        <article class="rubric-item"><b>학교생활과 문화</b><p>청소 문화, 쉬는 시간, 방학, 동아리, 스포츠, 비교과 활동을 질문합니다.</p></article>
+        <article class="rubric-item"><b>교육과정과 평가</b><p>교육과정 설계 주체, 표준화 시험, 고등학교 유형과 입학 방식을 살펴봅니다.</p></article>
+        <article class="rubric-item"><b>교사 역할</b><p>교사 자격, 수업 준비, 학습 지원, 어려움을 겪는 학생과 영재 학생 지도 전략을 묻습니다.</p></article>
+        <article class="rubric-item"><b>가정과 사교육</b><p>숙제, 학원, 학부모 기대, 의무교육 비용과 지원 체계를 비교합니다.</p></article>
+      </div>
+      <p class="note">추천 활용 방식: 학교 방문 전 질문을 3개 고르고, 방문 후 답변을 한국 교육문화, 교사 전문성, 학생 지원 체계로 나누어 정리합니다.</p>
+    </section>
+  </main>
+  <footer><div><strong>Utah Korea Visit Program LMS</strong><br>2026·2027 예비교사 한국 방문 프로그램 자료실</div><div>GitHub Pages 배포</div></footer>
+</body>
+</html>
