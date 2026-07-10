@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>대학생의 글로벌 역량 인터랙티브 보드</title>
+  <meta name="description" content="대학생의 글로벌 역량 비교과 프로그램 자료를 모은 인터랙티브 보드와 다운로드 자료실입니다.">
+  <link rel="stylesheet" href="../assets/interactive-board.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#home" aria-label="대학생의 글로벌 역량">
+        <span class="brand-mark">G</span>
+        <span><strong>대학생의 글로벌 역량</strong><small>Global Competency Board</small></span>
+      </a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="#board-section">프로그램 보드</a>
+        <a href="#studio">실천 도구</a>
+        <a href="#resources">자료 다운로드</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Global Competency Program</p>
+          <h1>대학생의 글로벌 역량</h1>
+          <p class="lead">영어 학습, AI 활용, 학술 영어 글쓰기, 유학 준비, 글로벌 진로 설계를 비교과 프로그램 흐름에 맞춰 확인할 수 있는 인터랙티브 자료실입니다.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#board-section">프로그램 보드 보기</a>
+            <a class="button" href="downloads/sarim-honors-global-all-materials.zip" download>전체 자료 ZIP</a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="프로그램 구성">
+          <p class="eyebrow">Program Map</p>
+          <dl class="map-list">
+            <div class="map-row"><dt>영어</dt><dd>AI 활용 영어학습과 글로벌 의사소통 역량 강화</dd></div>
+            <div class="map-row"><dt>글쓰기</dt><dd>영어논문작성법과 학술 영어 글쓰기 훈련</dd></div>
+            <div class="map-row"><dt>진로</dt><dd>유학 준비, 글로벌 진로 탐색, 비교과 활동 설계</dd></div>
+            <div class="map-row"><dt>운영</dt><dd>프로그램 계획, 인증, 운영 자료 통합 관리</dd></div>
+          </dl>
+          <div class="stats">
+            <div class="stat-card"><strong>4</strong><span>프로그램 영역</span></div>
+            <div class="stat-card"><strong>10</strong><span>다운로드 자료</span></div>
+            <div class="stat-card"><strong>ZIP</strong><span>전체 자료 제공</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="board-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Interactive Board</p>
+            <h2>비교과 프로그램 보드</h2>
+            <p class="lead">영역별 자료를 보드 카드로 정리했습니다. 필요한 자료를 카드에서 바로 내려받을 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="controls">
+          <input class="search" id="searchInput" type="search" placeholder="영어, AI, 논문쓰기, 유학, 글로벌 역량으로 검색">
+          <div class="chips" id="filterChips" aria-label="프로그램 분류"></div>
+        </div>
+        <div class="progress-panel">
+          <div><span>나의 확인 현황</span><strong id="progressText">0 / 10 완료</strong></div>
+          <div class="track"><i id="progressBar"></i></div>
+        </div>
+        <div class="board" id="board"></div>
+        <p class="empty" id="emptyState" hidden>검색 조건에 맞는 항목이 없습니다.</p>
+      </div>
+    </section>
+
+    <section class="section" id="studio">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Action Studio</p>
+            <h2>글로벌 역량 실천 도구</h2>
+            <p class="lead">프로그램 참여 후 개인 학습 계획과 진로 계획을 정리할 수 있는 문장 틀입니다.</p>
+          </div>
+        </div>
+        <div class="prompt-grid" id="promptGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="resources">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Materials</p>
+            <h2>자료 다운로드</h2>
+            <p class="lead">비교과 프로그램 운영 자료와 학습 자료를 모두 다운로드할 수 있습니다.</p>
+          </div>
+          <a class="button primary" href="downloads/sarim-honors-global-all-materials.zip" download>전체 자료 ZIP</a>
+        </div>
+        <div class="resource-grid" id="resourceGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">대학생의 글로벌 역량 | 영어, AI, 글쓰기, 유학 준비를 연결하는 비교과 프로그램 자료실</footer>
+
+  <script id="course-data" type="application/json">
+{
+  "slug": "sarim-global-competency",
+  "filters": [
+    {"id": "program", "label": "운영자료"},
+    {"id": "english", "label": "영어·AI"},
+    {"id": "writing", "label": "학술글쓰기"},
+    {"id": "global", "label": "유학·진로"}
+  ],
+  "columns": [
+    {"id": "program", "title": "프로그램 운영"},
+    {"id": "english", "title": "영어와 AI"},
+    {"id": "writing", "title": "학술 영어 글쓰기"},
+    {"id": "global", "title": "글로벌 진로"}
+  ],
+  "items": [
+    {"id": "program-overview", "column": "program", "category": "program", "week": "운영", "tag": "개요", "title": "대학생의 글로벌 역량 프로그램 개요", "summary": "비교과 프로그램의 목적, 구성, 핵심 역량을 확인하는 자료입니다.", "href": "downloads/sarim-honors-global-overview.pdf", "downloadLabel": "PDF 다운로드"},
+    {"id": "program-plan", "column": "program", "category": "program", "week": "운영", "tag": "계획", "title": "프로그램 운영 계획안", "summary": "프로그램 운영 방향과 세부 일정, 활동 구성을 정리한 문서입니다.", "href": "downloads/sarim-honors-global-plan.hwp", "downloadLabel": "HWP 다운로드"},
+    {"id": "program-application", "column": "program", "category": "program", "week": "운영", "tag": "인증", "title": "비교과인증 대상 프로그램 신청서", "summary": "비교과 인증과 프로그램 신청에 필요한 행정 문서입니다.", "href": "downloads/sarim-honors-global-certification-application.hwp", "downloadLabel": "HWP 다운로드"},
+    {"id": "program-survey", "column": "program", "category": "program", "week": "운영", "tag": "조사", "title": "비교과교육 운영 계획 조사서", "summary": "운영 계획을 구조화해 관리하기 위한 조사서입니다.", "href": "downloads/sarim-honors-global-2025-extracurricular-plan.xlsx", "downloadLabel": "XLSX 다운로드"},
+    {"id": "program-image", "column": "program", "category": "program", "week": "운영", "tag": "이미지", "title": "프로그램 대표 이미지", "summary": "프로그램 안내와 홍보에 활용할 수 있는 이미지 자료입니다.", "href": "downloads/sarim-honors-global-program-image.png", "downloadLabel": "PNG 다운로드"},
+    {"id": "ai-english", "column": "english", "category": "english", "week": "영어", "tag": "AI", "title": "AI 활용 영어학습 특강", "summary": "AI 도구를 활용해 영어 학습 전략과 글로벌 의사소통 능력을 강화하는 자료입니다.", "href": "downloads/ai-english-learning-special-lecture.pptx", "downloadLabel": "PPTX 다운로드"},
+    {"id": "research-writing", "column": "writing", "category": "writing", "week": "글쓰기", "tag": "논문작성", "title": "영어논문작성법", "summary": "학술 영어 글쓰기의 기본 구조, 표현, 논증 방식을 다루는 자료입니다.", "href": "downloads/english-research-paper-writing.pptx", "downloadLabel": "PPTX 다운로드"},
+    {"id": "paper-writing-2", "column": "writing", "category": "writing", "week": "글쓰기", "tag": "심화", "title": "영어논문쓰기 심화", "summary": "영어논문 작성 과정을 심화하여 초안, 수정, 발표까지 연결하는 자료입니다.", "href": "downloads/english-paper-writing-2-final.pptx", "downloadLabel": "PPTX 다운로드"},
+    {"id": "study-abroad", "column": "global", "category": "global", "week": "진로", "tag": "유학", "title": "유학준비특강", "summary": "유학 준비 과정, 지원 전략, 글로벌 진로 설계를 안내하는 자료입니다.", "href": "downloads/study-abroad-prep-special-lecture.pptx", "downloadLabel": "PPTX 다운로드"},
+    {"id": "us-prep", "column": "global", "category": "global", "week": "진로", "tag": "미주", "title": "미주 유학준비반", "summary": "미주권 유학 준비를 위한 기본 정보와 준비 절차를 정리한 자료입니다.", "href": "downloads/us-study-prep-class.hwp", "downloadLabel": "HWP 다운로드"}
+  ],
+  "resources": [
+    {"type": "ZIP", "title": "전체 자료 모음", "summary": "프로그램 관련 전체 자료 압축 파일", "href": "downloads/sarim-honors-global-all-materials.zip", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "대학생의 글로벌 역량 프로그램 개요", "summary": "비교과 프로그램 소개 자료", "href": "downloads/sarim-honors-global-overview.pdf", "downloadLabel": "다운로드"},
+    {"type": "HWP", "title": "프로그램 운영 계획안", "summary": "비교과 프로그램 운영 계획", "href": "downloads/sarim-honors-global-plan.hwp", "downloadLabel": "다운로드"},
+    {"type": "HWP", "title": "비교과인증 대상 프로그램 신청서", "summary": "인증 신청 문서", "href": "downloads/sarim-honors-global-certification-application.hwp", "downloadLabel": "다운로드"},
+    {"type": "XLSX", "title": "비교과교육 운영 계획 조사서", "summary": "운영 계획 조사 자료", "href": "downloads/sarim-honors-global-2025-extracurricular-plan.xlsx", "downloadLabel": "다운로드"},
+    {"type": "PNG", "title": "프로그램 대표 이미지", "summary": "홍보 및 안내 이미지", "href": "downloads/sarim-honors-global-program-image.png", "downloadLabel": "다운로드"},
+    {"type": "PPTX", "title": "AI 활용 영어학습 특강", "summary": "AI 기반 영어학습 자료", "href": "downloads/ai-english-learning-special-lecture.pptx", "downloadLabel": "다운로드"},
+    {"type": "PPTX", "title": "영어논문작성법", "summary": "학술 영어 글쓰기 기초", "href": "downloads/english-research-paper-writing.pptx", "downloadLabel": "다운로드"},
+    {"type": "PPTX", "title": "영어논문쓰기 심화", "summary": "영어논문 작성 심화 자료", "href": "downloads/english-paper-writing-2-final.pptx", "downloadLabel": "다운로드"},
+    {"type": "PPTX", "title": "유학준비특강", "summary": "글로벌 진로와 유학 준비", "href": "downloads/study-abroad-prep-special-lecture.pptx", "downloadLabel": "다운로드"},
+    {"type": "HWP", "title": "미주 유학준비반", "summary": "미주권 유학 준비 자료", "href": "downloads/us-study-prep-class.hwp", "downloadLabel": "다운로드"}
+  ],
+  "prompts": [
+    {"title": "Global Goal Statement", "summary": "글로벌 역량 목표를 정리하는 문장 틀입니다.", "lines": ["My global learning goal is ...", "I need to improve ...", "I will practice this goal through ...", "I will check my progress by ..."]},
+    {"title": "AI English Learning Plan", "summary": "AI 활용 영어학습 계획을 세울 때 사용할 수 있습니다.", "lines": ["I will use AI tools to practice ...", "I will verify AI-generated expressions by ...", "I will keep a learning log about ...", "I will not submit AI-generated text without revision and reflection."]},
+    {"title": "Academic Writing Plan", "summary": "영어논문쓰기 자료를 활용한 글쓰기 계획입니다.", "lines": ["My writing topic is ...", "My main argument is ...", "The evidence I need is ...", "The section I should revise first is ..."]},
+    {"title": "Study Abroad Preparation", "summary": "유학 준비 로드맵을 만드는 문장 틀입니다.", "lines": ["My target program or country is ...", "The admission requirements I need to check are ...", "My language preparation plan is ...", "My next concrete action is ..."]}
+  ]
+}
+  </script>
+  <script src="../assets/interactive-board.js"></script>
+</body>
+</html>
