@@ -3,259 +3,162 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>대학생을 위한 영어글쓰기 LMS</title>
-  <meta name="description" content="대학생을 위한 영어글쓰기 온라인 LMS입니다. 주제 탐색, 자료 읽기, 학술 문단 작성, 인용 윤리, AI 활용 윤리, 최종 포트폴리오를 단계적으로 학습합니다.">
-  <style>
-    :root {
-      --ink:#2a241c; --text:#443a2e; --muted:#887b69; --line:#eadfcd;
-      --bg:#f7f0e4; --paper:#fffdf8; --soft:#f1e7d4;
-      --gold:#b99036; --teal:#3d8878; --terra:#cf764f; --plum:#8f6fa3;
-      --shadow:0 28px 70px -42px rgba(61,49,29,.52);
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;background:var(--bg)}
-    body{margin:0;color:var(--text);background:radial-gradient(circle at 8% 0%,rgba(185,144,54,.14),transparent 34%),radial-gradient(circle at 92% 12%,rgba(61,136,120,.13),transparent 32%),linear-gradient(180deg,#fbf6ec 0%,var(--bg) 52%,#f4ebdd 100%);font-family:"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",Arial,sans-serif;line-height:1.68;word-break:keep-all;overflow-wrap:anywhere;overflow-x:hidden}
-    a{color:inherit}
-    .site-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:70px;padding:11px clamp(18px,4vw,58px);border-bottom:1px solid rgba(185,144,54,.22);background:rgba(255,253,248,.92);backdrop-filter:blur(14px)}
-    .brand{display:flex;align-items:center;gap:12px;min-width:0;color:var(--ink);text-decoration:none}
-    .brand-mark{display:grid;place-items:center;width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,var(--teal),var(--gold));color:#fff;font-weight:950;box-shadow:0 16px 30px -24px rgba(38,33,25,.7);flex:0 0 auto}
-    .brand strong,.brand small{display:block;line-height:1.25;white-space:normal}.brand strong{font-size:1rem;font-weight:950}.brand small{color:var(--muted);font-size:.76rem}
-    nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
-    nav a,.button{display:inline-flex;align-items:center;justify-content:center;min-width:0;min-height:39px;border:1px solid transparent;border-radius:999px;padding:8px 14px;background:var(--paper);color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:850;line-height:1.25;text-align:center;white-space:normal}
-    nav a:hover,.button:hover{border-color:var(--line);color:var(--ink);box-shadow:0 10px 26px -22px rgba(58,46,24,.6)}
-    .button.primary{background:var(--ink);border-color:var(--ink);color:#fff}
-    main,.quick-grid,.section{width:min(1180px,calc(100% - 36px));margin:0 auto}
-    .hero{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:clamp(28px,5vw,58px);align-items:stretch;margin:28px auto 0;padding:clamp(32px,5vw,60px);overflow:hidden;border:1px solid var(--line);border-radius:30px;background:linear-gradient(135deg,rgba(255,253,248,.98),rgba(246,237,221,.94));color:var(--ink);box-shadow:var(--shadow)}
-    .hero::after{content:"";position:absolute;right:-10%;bottom:-35%;width:58%;height:320px;border-radius:999px;background:rgba(61,136,120,.13);transform:rotate(-8deg)}
-    .hero-copy,.writing-map{position:relative;z-index:1;min-width:0}.hero-copy{display:flex;flex-direction:column;justify-content:center}
-    .eyebrow{margin:0 0 10px;color:var(--gold);font-size:.78rem;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
-    h1,h2,h3{margin-top:0;color:var(--ink);letter-spacing:0;text-align:left;word-break:keep-all;overflow-wrap:anywhere}
-    h1{margin-bottom:18px;font-family:Georgia,"Noto Serif KR","Times New Roman",serif;font-size:clamp(1.85rem,3.35vw,2.85rem);line-height:1.12;white-space:normal}
-    h2{margin-bottom:0;font-family:Georgia,"Noto Serif KR","Times New Roman",serif;font-size:clamp(1.65rem,3vw,2.45rem);line-height:1.18;white-space:normal}
-    h3{margin-bottom:10px;font-size:1.08rem;line-height:1.35;white-space:normal}
-    .lead{max-width:760px;margin:0;color:#5a5145;font-size:clamp(1rem,1.45vw,1.13rem)}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-    .writing-map{min-height:390px;border:1px solid rgba(185,144,54,.26);border-radius:24px;background:rgba(255,253,248,.78);padding:190px 22px 22px;box-shadow:0 20px 44px -38px rgba(58,46,24,.55)}
-    .writing-map::before{content:"";position:absolute;left:26px;right:26px;top:92px;height:4px;border-radius:999px;background:linear-gradient(90deg,var(--teal),var(--gold),var(--terra),var(--plum))}
-    .map-node{position:absolute;width:min(132px,calc(50% - 18px));min-height:66px;border:1px solid var(--line);border-radius:17px;background:var(--paper);padding:10px 12px;box-shadow:0 18px 40px -32px rgba(58,46,24,.62)}
-    .map-node strong{display:block;color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.2;white-space:normal}.map-node span{display:block;margin-top:3px;color:var(--muted);font-size:.72rem;line-height:1.35;white-space:normal}
-    .node-a{left:7%;top:22px}.node-b{right:11%;top:16px}.node-c{left:22%;top:116px}.node-d{right:3%;top:122px}
-    .writing-map dl{position:relative;z-index:1;margin:0}.writing-map div:not(.map-node){display:grid;grid-template-columns:minmax(74px,86px) minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}.writing-map div:last-child{border-bottom:0}.writing-map dt{color:var(--muted);font-weight:850}.writing-map dd{margin:0;color:var(--ink);font-weight:850}
-    .quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;padding:24px 0 0}
-    .quick-grid article,.module,.tool,.rubric article,.download-card,.progress-box{min-width:0;max-width:100%;overflow:hidden;border:1px solid var(--line);border-radius:20px;background:rgba(255,253,248,.84);box-shadow:0 20px 44px -38px rgba(58,46,24,.52)}
-    .quick-grid article{padding:20px}.quick-grid span{color:var(--gold);font-weight:950}.quick-grid h2{margin:6px 0 4px;font-family:inherit;font-size:1.08rem}.quick-grid p,.module p,.module li,.tool p,.tool li,.rubric p,.download-card em{margin:0;color:var(--muted)}
-    .section{padding:clamp(42px,6vw,74px) 0 0;scroll-margin-top:90px}.section-head{margin-bottom:18px}.section-head.row{display:flex;align-items:flex-end;justify-content:space-between;gap:14px}
-    .controls{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;margin-bottom:14px}.controls input{min-height:43px;border:1px solid var(--line);border-radius:999px;padding:9px 15px;background:var(--paper);font:inherit;color:var(--ink)}
-    .filters{display:flex;flex-wrap:wrap;gap:8px}.filter{min-height:39px;border:1px solid var(--line);border-radius:999px;padding:8px 13px;background:var(--paper);color:var(--muted);font:inherit;font-size:.88rem;font-weight:850;cursor:pointer}.filter.active{background:var(--ink);border-color:var(--ink);color:#fff}
-    .progress-box{display:grid;grid-template-columns:minmax(160px,.3fr) minmax(0,1fr);gap:16px;align-items:center;margin-bottom:16px;padding:17px 19px}.progress-box span{display:block;color:var(--muted);font-size:.92rem}.progress-box strong{display:block;color:var(--ink)}.track{overflow:hidden;height:12px;border-radius:999px;background:var(--soft)}.track i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--teal),var(--gold),var(--terra));transition:width .2s ease}
-    .module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:14px}.module{display:flex;flex-direction:column;padding:20px}.module.hidden{display:none}.module-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;min-width:0}.module-top > div{min-width:0}.week-badge{display:grid;place-items:center;min-width:54px;height:38px;border:1px solid rgba(61,136,120,.18);border-radius:14px;background:rgba(61,136,120,.1);color:var(--teal);font-weight:950;flex:0 0 auto;white-space:normal}.tag{display:inline-flex;align-items:center;min-height:25px;margin-bottom:6px;border-radius:999px;padding:3px 9px;background:var(--soft);color:var(--muted);font-size:.76rem;font-weight:900;white-space:normal}.module h3{flex:1;min-width:0;margin:0}.module .row{margin-top:10px}.module .row b{display:block;color:var(--ink);font-size:.82rem;white-space:normal}.module details{margin:12px 0}.module summary{cursor:pointer;color:var(--teal);font-weight:850;white-space:normal}.module ul{margin:7px 0 0;padding-left:18px}.module-foot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:auto;padding-top:8px}.download-link{display:inline-flex;align-items:center;justify-content:center;max-width:100%;min-height:34px;border:1px solid rgba(61,136,120,.28);border-radius:999px;padding:6px 12px;background:rgba(61,136,120,.1);color:#2f685b;font-size:.9rem;font-weight:900;text-align:center;text-decoration:none;line-height:1.3;white-space:normal}.download-link:hover{border-color:var(--teal);background:rgba(61,136,120,.16)}.download-link.none{color:var(--faint);border-style:dashed;background:transparent}.done{margin-left:0;display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:.9rem;font-weight:850;white-space:normal}
-    .tool-grid,.rubric-grid,.download-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px}.tool,.rubric article{padding:20px}.tool ul{margin:10px 0 14px;padding-left:18px}.copy{border:1px solid var(--teal);border-radius:999px;background:transparent;color:var(--teal);padding:7px 13px;font:inherit;font-size:.88rem;font-weight:900;cursor:pointer;white-space:normal}.copy:hover{background:var(--teal);color:#fff}
-    .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}.flow article{padding:18px;border:1px solid var(--line);border-radius:20px;background:rgba(255,253,248,.84)}.flow span{color:var(--gold);font-weight:950}.flow strong{display:block;color:var(--ink);margin:4px 0}.flow p{margin:0;color:var(--muted);font-size:.92rem}
-    .download-card{display:grid;grid-template-columns:58px minmax(0,1fr);gap:5px 13px;align-items:center;min-height:88px;padding:16px;color:var(--ink);text-decoration:none}.download-card span{grid-row:span 2;display:grid;place-items:center;min-height:46px;border-radius:16px;background:rgba(61,136,120,.1);color:var(--teal);font-size:.82rem;font-weight:950;white-space:normal}.download-card strong{line-height:1.35;white-space:normal;min-width:0}.download-card em{font-style:normal;font-size:.9rem;white-space:normal;min-width:0}
-    footer{display:flex;justify-content:space-between;gap:18px;margin-top:78px;padding:30px clamp(18px,5vw,64px) 58px;border-top:1px solid var(--line);background:rgba(255,253,248,.7);color:var(--muted)}
-    footer strong{color:var(--ink)}
-    @media(max-width:980px){.site-header{align-items:flex-start;flex-direction:column}nav{justify-content:flex-start}.hero{grid-template-columns:1fr}.writing-map{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-height:0;padding-top:22px;gap:12px}.writing-map::before{display:none}.map-node{position:static;width:auto;min-height:0}.writing-map dl{grid-column:1/-1}.section-head.row{align-items:flex-start;flex-direction:column}.controls{grid-template-columns:1fr}}
-    @media(max-width:660px){.site-header{padding:12px 14px}.brand{width:100%}.brand-mark{width:40px;height:40px;border-radius:13px}.brand span:last-child{min-width:0}.brand strong{font-size:.95rem}.brand small{font-size:.72rem}nav{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}nav a{min-height:38px;padding:8px 6px;font-size:.86rem}main,.quick-grid,.section{width:calc(100% - 28px)}.hero{margin-top:18px;padding:26px 18px;border-radius:24px}h1{font-size:clamp(1.42rem,6vw,1.72rem);line-height:1.16}h2{font-size:clamp(1.42rem,6.6vw,1.7rem)}h3,.module h3,.quick-grid h2,.download-card strong{font-size:clamp(.95rem,4.35vw,1.08rem)}.lead{font-size:1rem}.hero-actions .button{flex:1 1 150px}.writing-map,.module-grid,.tool-grid,.rubric-grid,.download-grid,.flow{grid-template-columns:1fr}.writing-map div:not(.map-node){grid-template-columns:1fr;gap:2px}.progress-box{grid-template-columns:1fr}.module-grid{grid-template-columns:1fr}.module-top{align-items:flex-start}.week-badge{min-width:46px;height:34px;font-size:.88rem}footer{flex-direction:column;padding:24px 14px 40px}}
-  </style>
+  <title>대학생을 위한 영어글쓰기 인터랙티브 보드</title>
+  <meta name="description" content="대학생을 위한 영어글쓰기 수업 자료를 주차별 보드와 PDF 다운로드 자료실로 정리한 온라인 학습 공간입니다.">
+  <link rel="stylesheet" href="../assets/interactive-board.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#home"><span class="brand-mark">W</span><span><strong>대학생을 위한 영어글쓰기</strong><small>Academic Writing LMS</small></span></a>
-    <nav aria-label="주요 메뉴">
-      <a href="#modules">주차별 학습</a>
-      <a href="#studio">글쓰기 도구</a>
-      <a href="#assessment">평가 흐름</a>
-      <a href="#materials">PDF 자료</a>
-    </nav>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#home" aria-label="대학생을 위한 영어글쓰기">
+        <span class="brand-mark">W</span>
+        <span><strong>대학생을 위한 영어글쓰기</strong><small>Interactive Writing Board</small></span>
+      </a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="#board-section">학습 보드</a>
+        <a href="#studio">작성 도구</a>
+        <a href="#resources">자료 다운로드</a>
+      </nav>
+    </div>
   </header>
 
   <main id="home">
     <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">College Academic Writing</p>
-        <h1>대학생을 위한 영어글쓰기</h1>
-        <p class="lead">주제 탐색부터 자료 읽기, 학술 문단 구성, 인용 윤리, AI 활용 윤리, 최종 글쓰기 포트폴리오까지 대학생이 바로 활용할 수 있도록 구성한 15주차 온라인 LMS입니다.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#modules">학습 시작</a>
-          <a class="button" href="#materials">PDF 자료 보기</a>
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">College Academic Writing</p>
+          <h1>대학생을 위한 영어글쓰기</h1>
+          <p class="lead">주제 탐색, 자료 읽기, 문단 구성, 인용 윤리, AI 활용 윤리, 최종 글쓰기 포트폴리오까지 한 화면에서 따라갈 수 있는 인터랙티브 보드입니다.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#board-section">학습 보드 시작</a>
+            <a class="button" href="#resources">PDF 자료 다운로드</a>
+          </div>
         </div>
+        <aside class="hero-panel" aria-label="수업 구성">
+          <p class="eyebrow">Course Map</p>
+          <dl class="map-list">
+            <div class="map-row"><dt>1단계</dt><dd>학술 글쓰기의 목적과 독자 이해</dd></div>
+            <div class="map-row"><dt>2단계</dt><dd>연구 주제, 자료 읽기, 문헌 기반 주장 만들기</dd></div>
+            <div class="map-row"><dt>3단계</dt><dd>문단, 시각자료, 결과 설명, 문장 수정</dd></div>
+            <div class="map-row"><dt>4단계</dt><dd>인용 윤리, AI 활용, 최종 포트폴리오</dd></div>
+          </dl>
+          <div class="stats">
+            <div class="stat-card"><strong>15</strong><span>주차 보드</span></div>
+            <div class="stat-card"><strong>14</strong><span>PDF 자료</span></div>
+            <div class="stat-card"><strong>4</strong><span>작성 도구</span></div>
+          </div>
+        </aside>
       </div>
-      <aside class="writing-map" aria-label="학습 구성">
-        <div class="map-node node-a"><strong>Topic</strong><span>주제 탐색</span></div>
-        <div class="map-node node-b"><strong>Evidence</strong><span>자료 읽기</span></div>
-        <div class="map-node node-c"><strong>Writing</strong><span>문단 작성</span></div>
-        <div class="map-node node-d"><strong>Ethics</strong><span>인용과 AI</span></div>
-        <dl>
-          <div><dt>대상</dt><dd>대학생</dd></div>
-          <div><dt>구성</dt><dd>15주차 학습 모듈</dd></div>
-          <div><dt>목표</dt><dd>학술적 영어 글쓰기 역량 강화</dd></div>
-          <div><dt>자료</dt><dd>주차별 PDF 다운로드 제공</dd></div>
-        </dl>
-      </aside>
     </section>
 
-    <section class="quick-grid" aria-label="핵심 학습 역량">
-      <article><span>01</span><h2>Academic Topic</h2><p>관심사를 학술적 주제와 연구 질문으로 바꾸는 방법을 익힙니다.</p></article>
-      <article><span>02</span><h2>Source Reading</h2><p>자료를 요약, 비교, 평가하고 자신의 주장과 연결합니다.</p></article>
-      <article><span>03</span><h2>Paragraph Writing</h2><p>주장, 근거, 해석이 연결되는 명료한 영어 문단을 작성합니다.</p></article>
-      <article><span>04</span><h2>Ethical Writing</h2><p>인용, 참고문헌, AI 활용을 투명하고 책임 있게 관리합니다.</p></article>
-    </section>
-
-    <section class="section" id="modules">
-      <div class="section-head">
-        <p class="eyebrow">Weekly Modules</p>
-        <h2>주차별 학습</h2>
-      </div>
-      <div class="controls">
-        <input id="search" type="search" placeholder="주제, 인용, 문단, AI 윤리, 발표 등으로 검색">
-        <div class="filters" id="filters">
-          <button class="filter active" data-filter="all">전체</button>
-          <button class="filter" data-filter="planning">주제탐색</button>
-          <button class="filter" data-filter="writing">학술글쓰기</button>
-          <button class="filter" data-filter="ethics">윤리·AI</button>
-          <button class="filter" data-filter="career">발표·성장</button>
+    <section class="section" id="board-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Interactive Board</p>
+            <h2>주차별 학습 보드</h2>
+            <p class="lead">검색과 분류 버튼으로 필요한 주차를 빠르게 찾고, 완료 체크로 학습 진행 상황을 저장할 수 있습니다.</p>
+          </div>
         </div>
+        <div class="controls">
+          <input class="search" id="searchInput" type="search" placeholder="주제, 문단, 인용, AI, 포트폴리오로 검색">
+          <div class="chips" id="filterChips" aria-label="학습 분류"></div>
+        </div>
+        <div class="progress-panel">
+          <div><span>나의 진행률</span><strong id="progressText">0 / 15 완료</strong></div>
+          <div class="track"><i id="progressBar"></i></div>
+        </div>
+        <div class="board" id="board"></div>
+        <p class="empty" id="emptyState" hidden>검색 조건에 맞는 항목이 없습니다.</p>
       </div>
-      <div class="progress-box">
-        <div><span>나의 학습 진행</span><strong id="progressText">0 / 15 완료</strong></div>
-        <div class="track"><i id="progressBar"></i></div>
-      </div>
-      <div class="module-grid" id="moduleGrid"></div>
     </section>
 
     <section class="section" id="studio">
-      <div class="section-head">
-        <p class="eyebrow">Writing Studio</p>
-        <h2>영어글쓰기 도구</h2>
-        <p class="lead">수업 중 바로 활용할 수 있는 문장 틀입니다. 버튼을 누르면 템플릿이 복사됩니다.</p>
-      </div>
-      <div class="tool-grid" id="toolGrid"></div>
-    </section>
-
-    <section class="section" id="assessment">
-      <div class="section-head">
-        <p class="eyebrow">Coursework & Assessment</p>
-        <h2>평가와 작성 흐름</h2>
-        <p class="lead">읽기, 쓰기, 피드백, 수정의 과정을 반복하며 최종 글쓰기 포트폴리오를 완성합니다.</p>
-      </div>
-      <div class="flow">
-        <article><span>01</span><strong>Topic Proposal</strong><p>주제, 문제의식, 예상 독자, 근거를 정리합니다.</p></article>
-        <article><span>02</span><strong>Source Reading Notes</strong><p>자료 요약, 핵심 개념, 인용 후보를 정리합니다.</p></article>
-        <article><span>03</span><strong>Academic Essay Draft</strong><p>서론, 본론, 결론 구조의 영어 글 초안을 작성합니다.</p></article>
-        <article><span>04</span><strong>Final Writing Portfolio</strong><p>최종 글, 수정 이력, 자기평가, 발표 자료를 정리합니다.</p></article>
-      </div>
-      <div class="rubric-grid">
-        <article><h3>Topic & Argument</h3><p>주제, 주장, 근거, 예상 독자가 하나의 논리로 연결되는지 평가합니다.</p></article>
-        <article><h3>Academic Writing</h3><p>명확한 문장, 학술 표현, 문단 구조, 인용 정확성을 확인합니다.</p></article>
-        <article><h3>Revision Process</h3><p>피드백을 반영해 글을 개선하고 수정 이유를 설명하는지 봅니다.</p></article>
-        <article><h3>Ethics & AI Use</h3><p>인용 윤리, AI 사용 투명성, 표절 방지 기준을 지키는지 확인합니다.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="materials">
-      <div class="section-head row">
-        <div>
-          <p class="eyebrow">Materials</p>
-          <h2>PDF 강의자료</h2>
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Writing Studio</p>
+            <h2>영어글쓰기 작성 도구</h2>
+            <p class="lead">수업 중 바로 활용할 수 있는 영어 문장 틀입니다. 필요한 문장 묶음을 복사해 초안 작성에 사용할 수 있습니다.</p>
+          </div>
         </div>
+        <div class="prompt-grid" id="promptGrid"></div>
       </div>
-      <div class="download-grid" id="materialGrid"></div>
+    </section>
+
+    <section class="section" id="resources">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Materials</p>
+            <h2>PDF 자료 다운로드</h2>
+            <p class="lead">각 주차 자료는 학생이 바로 내려받아 예습, 복습, 과제 작성에 활용할 수 있도록 연결했습니다.</p>
+          </div>
+        </div>
+        <div class="resource-grid" id="resourceGrid"></div>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <strong>대학생을 위한 영어글쓰기 LMS</strong>
-    <span>Academic writing connects purpose, question, evidence, structure, and contribution.</span>
-  </footer>
+  <footer class="footer">대학생을 위한 영어글쓰기 | Academic writing connects questions, evidence, structure, and contribution.</footer>
 
-  <script>
-    const base = "../materials/";
-    const modules = [
-      {w:1,c:"writing",t:"학술적 글쓰기의 기본 구조",g:"학술적 글쓰기의 목적, 독자, 주장, 근거, 구조를 이해합니다.",act:"관심 주제를 한 문장으로 쓰고 예상 독자와 글의 목적을 정리합니다.",as:"학술적 글쓰기 주제 1개를 목적, 독자, 핵심 주장과 함께 작성합니다.",ck:["주제가 한 문장으로 표현되는가?","독자와 목적이 분명한가?","주장과 근거의 방향이 보이는가?"],f:"week1-academic-writing-summary-40slides-redesign.pdf"},
-      {w:2,c:"planning",t:"주제 탐색과 문제의식 만들기",g:"관심사를 학술적 질문으로 바꾸고 글의 범위를 좁힙니다.",act:"넓은 관심사를 구체적인 문제 상황과 질문으로 바꿉니다.",as:"관심사, 문제 상황, 중요성, 예상 근거를 담은 topic memo를 작성합니다.",ck:["주제가 너무 넓지 않은가?","왜 중요한 문제가 되는지 설명했는가?","자료로 뒷받침할 수 있는 질문인가?"],f:"week2-research-planning-academic-writing-40slides-redesign.pdf"},
-      {w:3,c:"planning",t:"자료 읽기와 문헌 정리",g:"자료를 요약하는 데서 그치지 않고 비교, 연결, 평가하는 방법을 익힙니다.",act:"자료의 주장, 근거, 한계, 내 글과의 관련성을 표로 정리합니다.",as:"자료 읽기 노트와 비판적 질문을 제출합니다.",ck:["자료의 핵심 주장을 구분했는가?","자료 간 공통점과 차이를 적었는가?","내 글에 어떻게 사용할지 정리했는가?"],f:"week3-theory-literature-submission-40slides.pdf"},
-      {w:4,c:"writing",t:"서론, 본론, 결론 구성하기",g:"학술 보고서의 기본 구조를 이해하고 문단 배치를 설계합니다.",act:"자신의 주제로 서론, 본론, 결론 개요를 작성합니다.",as:"제목, 서론 핵심문장, 본론 문단 3개, 결론 방향을 포함한 outline을 작성합니다.",ck:["서론이 주제와 필요성을 제시하는가?","각 본론 문단이 하나의 역할을 갖는가?","결론이 의미를 정리하는가?"],f:"week4-methodology-results-discussion-40slides.pdf"},
-      {w:5,c:"writing",t:"독자 관점에서 초안 평가하기",g:"읽는 사람이 이해하기 쉬운 흐름, 정보 순서, 문단 기능을 평가합니다.",act:"초안 한 단락을 동료와 교환하고 독자 관점의 피드백을 작성합니다.",as:"초안의 강점 3개와 보완점 3개를 revision memo로 작성합니다.",ck:["첫 문장에서 문단의 방향이 보이는가?","문장 순서가 자연스러운가?","독자가 더 알고 싶은 정보가 빠지지 않았는가?"],f:"week5-reviewer-view-paper-sections-40slides.pdf"},
-      {w:6,c:"ethics",t:"인용, 표절, 자료 사용 윤리",g:"직접 인용, 간접 인용, 요약, 참고문헌 작성의 기본 윤리를 익힙니다.",act:"자료 문장 2개를 직접 인용, 간접 인용, 요약 방식으로 바꿔 봅니다.",as:"인용 방식 비교표와 표절 방지 체크리스트를 작성합니다.",ck:["원문과 내 표현을 구분했는가?","출처가 문장 안과 참고문헌에 표시되는가?","AI나 번역 도구 사용 범위를 설명할 수 있는가?"],f:"week6-research-problem-procedure-ethics-40slides.pdf"},
-      {w:7,c:"writing",t:"근거 문단과 분석 문장 쓰기",g:"자료를 나열하지 않고 주장, 근거, 해석 구조로 문단을 작성합니다.",act:"하나의 근거 자료를 사용해 주장, 증거, 해석 문장으로 문단을 만듭니다.",as:"근거 문단 2개와 각 문단의 역할 설명을 작성합니다.",ck:["근거가 주장과 직접 연결되는가?","자료 제시 뒤 해석이 있는가?","다음 내용으로 자연스럽게 이어지는가?"],f:"week7-methodology-results-writing-functions-40slides.pdf"},
-      {w:8,c:"planning",t:"중간 글쓰기 체크업",g:"1-7주차 산출물을 모아 글의 방향과 구조를 재점검합니다.",act:"주제, 자료, 개요, 문단 초안을 놓고 동료 피드백을 주고받습니다.",as:"중간 수정계획서와 다음 작성 일정표를 완성합니다.",ck:["초안의 중심 주장이 유지되는가?","피드백이 구체적인 수정 계획으로 바뀌었는가?","완성까지 필요한 자료와 시간이 보이는가?"],f:""},
-      {w:9,c:"writing",t:"표, 그림, 시각자료 설명하기",g:"시각자료를 글 속에서 정확하고 학술적으로 설명하는 방법을 학습합니다.",act:"표나 그림 하나를 선택해 설명 문단을 작성합니다.",as:"시각자료 설명 문단과 한계 문장 2개를 작성합니다.",ck:["자료를 번호와 이름으로 정확히 언급했는가?","자료의 의미를 해석했는가?","과장 대신 신중한 표현을 사용했는가?"],f:"week9-visual-references-recommendations-academic-language-40slides.pdf"},
-      {w:10,c:"writing",t:"명확한 문장과 문단 고치기",g:"긴 문장, 모호한 표현, 반복을 줄이고 읽기 쉬운 문장으로 수정합니다.",act:"초안의 모호한 문장 3개를 명확하게 고칩니다.",as:"초안 한 단락의 before/after와 수정 이유를 작성합니다.",ck:["한 문장에 너무 많은 정보가 들어가지 않았는가?","주어와 핵심 동사가 분명한가?","수정 후 개선 이유를 설명할 수 있는가?"],f:"week10-academic-writing-handbook-summary-40slides.pdf"},
-      {w:11,c:"planning",t:"자료 기반 주장 만들기",g:"읽은 자료를 바탕으로 내 주장과 논증 흐름을 강화합니다.",act:"인용 문장을 단순 요약이 아니라 내 주장에 기여하는 논증으로 바꿉니다.",as:"인용 문장 5개와 이를 내 주장에 연결하는 해석 문장을 작성합니다.",ck:["인용이 장식이 아니라 근거로 쓰이는가?","내 주장과 자료의 관계가 분명한가?","자료의 강점과 한계를 균형 있게 다루는가?"],f:"week11-academic-writing-research-process-40slides.pdf"},
-      {w:12,c:"career",t:"좋은 글 사례 분석과 자기 글 소개",g:"샘플 글의 구조와 전략을 분석하고 자기 글을 간결하게 소개합니다.",act:"샘플 글 1개의 주제, 구조, 근거, 결론 전략을 추적합니다.",as:"자기 글 소개문 100단어와 사례 분석표를 작성합니다.",ck:["사례 글의 구조를 구분했는가?","내 글의 주제와 기여를 짧게 설명했는가?","발표나 제출 상황에 맞게 표현했는가?"],f:"week12-academic-career-writing-30slides.pdf"},
-      {w:13,c:"writing",t:"양적 자료와 결과 설명하기",g:"간단한 수치, 설문, 표를 정확하고 과장 없이 설명하는 법을 익힙니다.",act:"간단한 표나 그래프를 보고 핵심 패턴을 문장으로 설명합니다.",as:"자료 설명 문단과 제목 3개를 작성합니다.",ck:["수치를 정확히 읽었는가?","결과와 해석을 구분했는가?","자료가 내 주장에 어떻게 기여하는지 설명했는가?"],f:"week13-quantitative-research-writing-40slides.pdf"},
-      {w:14,c:"ethics",t:"AI 활용과 글쓰기 윤리",g:"AI 도구를 학습 보조로 사용할 때 필요한 투명성, 검증, 책임을 익힙니다.",act:"AI를 사용해 아이디어를 확장하되 사실 확인과 출처 검증 과정을 기록합니다.",as:"AI 사용 기록표와 윤리 선언문 초안을 작성합니다.",ck:["AI가 만든 내용을 그대로 제출하지 않았는가?","사실과 출처를 직접 검증했는가?","AI 사용 범위를 투명하게 밝힐 수 있는가?"],f:"week14-research-ai-ethics-39slides.pdf"},
-      {w:15,c:"career",t:"최종 글 포트폴리오와 발표",g:"학기 동안 작성한 글과 수정 과정을 포트폴리오로 정리하고 발표합니다.",act:"최종 글의 핵심 주장, 근거, 수정 과정을 3분 발표로 준비합니다.",as:"최종 글, 수정 이력, 자기평가, 발표 자료를 제출합니다.",ck:["최종 글이 초안보다 명확해졌는가?","수정 과정과 배운 점이 기록되었는가?","발표가 주제, 근거, 의미 순서로 구성되었는가?"],f:"week15-researcher-growth-20slides.pdf"}
-    ];
-    const tools = [
-      {h:"Topic Builder",p:"관심사를 학술적 글쓰기 주제로 바꾸는 틀입니다.",i:["Topic: I want to write about ...","Problem: This matters because ...","Audience: This essay is written for ...","Claim: I argue that ...","Evidence: I will support this with ..."]},
-      {h:"Paragraph Frame",p:"주장, 근거, 해석 문단을 만드는 기본 구조입니다.",i:["Topic sentence: This paragraph argues that ...","Evidence: For example, ...","Explanation: This evidence shows that ...","Connection: Therefore, this point supports ..."]},
-      {h:"Revision Checklist",p:"제출 전 스스로 점검하는 항목입니다.",i:["Is the main claim clear?","Does each paragraph have one role?","Is every source introduced and cited?","Does the conclusion explain why the topic matters?"]},
-      {h:"Citation & AI Note",p:"인용과 AI 활용을 투명하게 기록하는 틀입니다.",i:["I used this source to support ...","The original idea belongs to ...","AI tools were used only for brainstorming or language revision.","All facts, citations, and final wording were checked by me."]}
-    ];
-    const labels = {planning:"주제탐색", writing:"학술글쓰기", ethics:"윤리·AI", career:"발표·성장"};
-    const key = "undergrad-academic-writing-done";
-    const done = new Set(JSON.parse(localStorage.getItem(key) || "[]"));
-    let activeFilter = "all";
-    const $ = (s) => document.querySelector(s);
-
-    function moduleCard(m) {
-      const checked = done.has(m.w);
-      const pdf = m.f ? `<a class="download-link" href="${base + m.f}" download>${m.w}주차 PDF 다운로드</a>` : `<span class="download-link none">중간 점검 활동</span>`;
-      return `<article class="module ${m.c}" data-text="${[m.t,m.g,m.act,m.as,labels[m.c]].join(" ")}" data-cat="${m.c}">
-        <div class="module-top"><span class="week-badge">${m.w}주</span><div><span class="tag">${labels[m.c]}</span><h3>${m.t}</h3></div></div>
-        <p>${m.g}</p>
-        <p class="row"><b>수업 활동</b>${m.act}</p>
-        <p class="row"><b>과제</b>${m.as}</p>
-        <details><summary>체크리스트</summary><ul>${m.ck.map((c) => `<li>${c}</li>`).join("")}</ul></details>
-        <div class="module-foot">${pdf}<label class="done"><input type="checkbox" data-week="${m.w}" ${checked ? "checked" : ""}> 완료</label></div>
-      </article>`;
-    }
-
-    function renderModules() {
-      const q = $("#search").value.trim().toLowerCase();
-      const items = modules.filter((m) => activeFilter === "all" || m.c === activeFilter).filter((m) => !q || [m.t,m.g,m.act,m.as,labels[m.c]].join(" ").toLowerCase().includes(q));
-      $("#moduleGrid").innerHTML = items.length ? items.map(moduleCard).join("") : `<p class="lead">검색 결과가 없습니다.</p>`;
-      updateProgress();
-    }
-
-    function updateProgress() {
-      const percent = Math.round((done.size / modules.length) * 100);
-      $("#progressBar").style.width = `${percent}%`;
-      $("#progressText").textContent = `${done.size} / ${modules.length} 완료`;
-    }
-
-    $("#toolGrid").innerHTML = tools.map((t, i) => `<article class="tool"><h3>${t.h}</h3><p>${t.p}</p><ul>${t.i.map((x) => `<li>${x}</li>`).join("")}</ul><button class="copy" data-tool="${i}">템플릿 복사</button></article>`).join("");
-    $("#materialGrid").innerHTML = modules.filter((m) => m.f).map((m) => `<a class="download-card" href="${base + m.f}" download><span>PDF</span><strong>${m.w}주차 ${m.t}</strong><em>${labels[m.c]} · 강의자료 다운로드</em></a>`).join("");
-
-    document.addEventListener("change", (event) => {
-      if (!event.target.matches("[data-week]")) return;
-      const week = Number(event.target.dataset.week);
-      if (event.target.checked) done.add(week); else done.delete(week);
-      localStorage.setItem(key, JSON.stringify([...done]));
-      updateProgress();
-    });
-
-    document.addEventListener("click", async (event) => {
-      const button = event.target.closest(".copy");
-      if (!button) return;
-      const tool = tools[Number(button.dataset.tool)];
-      await navigator.clipboard.writeText(`${tool.h}\n\n${tool.i.join("\n")}`);
-      button.textContent = "복사 완료";
-      setTimeout(() => { button.textContent = "템플릿 복사"; }, 1400);
-    });
-
-    $("#filters").addEventListener("click", (event) => {
-      const button = event.target.closest(".filter");
-      if (!button) return;
-      document.querySelectorAll(".filter").forEach((item) => item.classList.remove("active"));
-      button.classList.add("active");
-      activeFilter = button.dataset.filter;
-      renderModules();
-    });
-
-    $("#search").addEventListener("input", renderModules);
-    renderModules();
+  <script id="course-data" type="application/json">
+{
+  "slug": "undergraduate-academic-writing",
+  "filters": [
+    {"id": "foundation", "label": "기초"},
+    {"id": "planning", "label": "주제·자료"},
+    {"id": "writing", "label": "문단·초안"},
+    {"id": "ethics", "label": "윤리·AI"},
+    {"id": "portfolio", "label": "포트폴리오"}
+  ],
+  "columns": [
+    {"id": "start", "title": "시작과 설계"},
+    {"id": "evidence", "title": "자료와 근거"},
+    {"id": "draft", "title": "초안과 수정"},
+    {"id": "finish", "title": "윤리와 완성"}
+  ],
+  "items": [
+    {"id": "w01", "column": "start", "category": "foundation", "week": "1주차", "tag": "기초", "title": "학술 글쓰기의 기본 구조", "summary": "학술 글쓰기의 목적, 독자, 주장, 근거, 구조를 이해하고 자신의 관심 주제를 글쓰기 과제로 전환합니다.", "href": "../materials/week1-academic-writing-summary-40slides-redesign.pdf", "downloadLabel": "1주차 PDF"},
+    {"id": "w02", "column": "start", "category": "planning", "week": "2주차", "tag": "주제 탐색", "title": "연구 주제와 문제의식 만들기", "summary": "넓은 관심사를 구체적인 연구 질문과 글쓰기 범위로 좁히는 방법을 연습합니다.", "href": "../materials/week2-research-planning-academic-writing-40slides-redesign.pdf", "downloadLabel": "2주차 PDF"},
+    {"id": "w03", "column": "evidence", "category": "planning", "week": "3주차", "tag": "자료 읽기", "title": "문헌 읽기와 자료 정리", "summary": "자료의 주장, 근거, 한계, 자신의 글과의 관련성을 표로 정리하며 비판적으로 읽습니다.", "href": "../materials/week3-theory-literature-submission-40slides.pdf", "downloadLabel": "3주차 PDF"},
+    {"id": "w04", "column": "draft", "category": "writing", "week": "4주차", "tag": "글 구조", "title": "서론, 본론, 결론 구성", "summary": "제목, 서론 핵심문장, 본론 문단, 결론 방향을 포함한 전체 개요를 작성합니다.", "href": "../materials/week4-methodology-results-discussion-40slides.pdf", "downloadLabel": "4주차 PDF"},
+    {"id": "w05", "column": "draft", "category": "writing", "week": "5주차", "tag": "독자 관점", "title": "초안을 독자 관점에서 점검하기", "summary": "독자가 이해하기 쉬운 흐름, 정보 순서, 문단 기능을 기준으로 초안을 검토합니다.", "href": "../materials/week5-reviewer-view-paper-sections-40slides.pdf", "downloadLabel": "5주차 PDF"},
+    {"id": "w06", "column": "finish", "category": "ethics", "week": "6주차", "tag": "인용 윤리", "title": "인용, 표절, 자료 사용 윤리", "summary": "직접 인용, 간접 인용, 요약, 참고문헌 작성의 기본 원칙을 학습합니다.", "href": "../materials/week6-research-problem-procedure-ethics-40slides.pdf", "downloadLabel": "6주차 PDF"},
+    {"id": "w07", "column": "draft", "category": "writing", "week": "7주차", "tag": "문단 작성", "title": "근거 문단과 분석 문장 쓰기", "summary": "주장, 근거, 해석, 연결 문장으로 이루어진 학술 문단을 작성합니다.", "href": "../materials/week7-methodology-results-writing-functions-40slides.pdf", "downloadLabel": "7주차 PDF"},
+    {"id": "w08", "column": "draft", "category": "portfolio", "week": "8주차", "tag": "중간 점검", "title": "중간 글쓰기 체크업", "summary": "주제, 자료, 개요, 문단 초안을 모아 글의 방향과 수정 계획을 점검합니다."},
+    {"id": "w09", "column": "evidence", "category": "writing", "week": "9주차", "tag": "시각자료", "title": "표, 그림, 참고자료 설명하기", "summary": "시각자료를 글 속에서 정확하고 학술적으로 설명하는 방법을 연습합니다.", "href": "../materials/week9-visual-references-recommendations-academic-language-40slides.pdf", "downloadLabel": "9주차 PDF"},
+    {"id": "w10", "column": "draft", "category": "writing", "week": "10주차", "tag": "문장 수정", "title": "명확한 문장과 문단 고치기", "summary": "긴 문장, 모호한 표현, 반복을 줄이고 읽기 쉬운 학술 문장으로 수정합니다.", "href": "../materials/week10-academic-writing-handbook-summary-40slides.pdf", "downloadLabel": "10주차 PDF"},
+    {"id": "w11", "column": "evidence", "category": "planning", "week": "11주차", "tag": "근거 기반", "title": "자료 기반 주장 만들기", "summary": "읽은 자료를 바탕으로 자신의 주장과 논증 흐름을 강화합니다.", "href": "../materials/week11-academic-writing-research-process-40slides.pdf", "downloadLabel": "11주차 PDF"},
+    {"id": "w12", "column": "finish", "category": "portfolio", "week": "12주차", "tag": "글 소개", "title": "좋은 글 사례 분석과 자기 글 소개", "summary": "샘플 글의 구조와 전략을 분석하고 자신의 글을 간결하게 소개합니다.", "href": "../materials/week12-academic-career-writing-30slides.pdf", "downloadLabel": "12주차 PDF"},
+    {"id": "w13", "column": "evidence", "category": "writing", "week": "13주차", "tag": "결과 설명", "title": "양적 자료와 결과 설명하기", "summary": "수치와 표를 정확하고 과장 없이 설명하는 문장을 작성합니다.", "href": "../materials/week13-quantitative-research-writing-40slides.pdf", "downloadLabel": "13주차 PDF"},
+    {"id": "w14", "column": "finish", "category": "ethics", "week": "14주차", "tag": "AI 윤리", "title": "AI 활용과 글쓰기 윤리", "summary": "AI 도구를 학습 보조로 활용하면서 검증, 출처, 책임 원칙을 지키는 방법을 정리합니다.", "href": "../materials/week14-research-ai-ethics-39slides.pdf", "downloadLabel": "14주차 PDF"},
+    {"id": "w15", "column": "finish", "category": "portfolio", "week": "15주차", "tag": "최종 발표", "title": "최종 글쓰기 포트폴리오", "summary": "최종 글, 수정 이력, 자기평가, 발표 자료를 포트폴리오로 정리합니다.", "href": "../materials/week15-researcher-growth-20slides.pdf", "downloadLabel": "15주차 PDF"}
+  ],
+  "resources": [
+    {"type": "PDF", "title": "1주차 학술 글쓰기 개요", "summary": "학술 글쓰기의 목적과 기본 구조", "href": "../materials/week1-academic-writing-summary-40slides-redesign.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "2주차 연구 주제 설계", "summary": "주제 탐색과 문제의식 구성", "href": "../materials/week2-research-planning-academic-writing-40slides-redesign.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "3주차 문헌 읽기", "summary": "이론, 선행연구, 자료 정리", "href": "../materials/week3-theory-literature-submission-40slides.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "4주차 글 구조", "summary": "방법, 결과, 논의와 전체 구조", "href": "../materials/week4-methodology-results-discussion-40slides.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "5주차 독자 관점 검토", "summary": "리뷰어 관점과 글의 각 부분 점검", "href": "../materials/week5-reviewer-view-paper-sections-40slides.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "6주차 연구 윤리", "summary": "문제, 절차, 윤리 기준", "href": "../materials/week6-research-problem-procedure-ethics-40slides.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "7주차 방법과 결과 쓰기", "summary": "방법, 결과, 문장 기능", "href": "../materials/week7-methodology-results-writing-functions-40slides.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "9주차 시각자료와 참고문헌", "summary": "표, 그림, 참고문헌, 학술 언어", "href": "../materials/week9-visual-references-recommendations-academic-language-40slides.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "10주차 학술 글쓰기 핸드북", "summary": "문장 수정과 글의 완성도 높이기", "href": "../materials/week10-academic-writing-handbook-summary-40slides.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "11주차 연구 과정", "summary": "자료 기반 논증과 연구 과정", "href": "../materials/week11-academic-writing-research-process-40slides.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "12주차 학술 커리어 글쓰기", "summary": "자기 글 소개와 학술적 성장", "href": "../materials/week12-academic-career-writing-30slides.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "13주차 양적 연구 글쓰기", "summary": "수치 자료와 결과 설명", "href": "../materials/week13-quantitative-research-writing-40slides.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "14주차 AI와 연구 윤리", "summary": "AI 활용, 검증, 책임 있는 글쓰기", "href": "../materials/week14-research-ai-ethics-39slides.pdf", "downloadLabel": "다운로드"},
+    {"type": "PDF", "title": "15주차 연구자로 성장하기", "summary": "최종 포트폴리오와 발표", "href": "../materials/week15-researcher-growth-20slides.pdf", "downloadLabel": "다운로드"}
+  ],
+  "prompts": [
+    {"title": "Topic Builder", "summary": "관심사를 학술 글쓰기 주제로 바꾸는 문장 틀입니다.", "lines": ["Topic: I want to write about ...", "Problem: This matters because ...", "Audience: This essay is written for ...", "Claim: I argue that ...", "Evidence: I will support this with ..."]},
+    {"title": "Paragraph Frame", "summary": "주장, 근거, 해석 문단을 만드는 기본 구조입니다.", "lines": ["Topic sentence: This paragraph argues that ...", "Evidence: For example, ...", "Explanation: This evidence shows that ...", "Connection: Therefore, this point supports ..."]},
+    {"title": "Revision Checklist", "summary": "제출 전 스스로 점검하는 항목입니다.", "lines": ["Is the main claim clear?", "Does each paragraph have one clear role?", "Is every source introduced and cited?", "Does the conclusion explain why the topic matters?"]},
+    {"title": "Citation & AI Note", "summary": "인용과 AI 사용을 투명하게 기록하는 문장 틀입니다.", "lines": ["I used this source to support ...", "The original idea belongs to ...", "AI tools were used only for brainstorming or language revision.", "All facts, citations, and final wording were checked by me."]}
+  ]
+}
   </script>
+  <script src="../assets/interactive-board.js"></script>
 </body>
 </html>
