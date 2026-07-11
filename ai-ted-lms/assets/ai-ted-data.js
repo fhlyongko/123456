@@ -23,7 +23,7 @@ const done = new Set(JSON.parse(localStorage.getItem(key) || "[]"));
 let activeFilter = "all";
 const $ = (s) => document.querySelector(s);
 function downloadButton(item) {
-  return `<a class="download-link" href="${base + item[1]}" download>${item[0]} PDF</a>`;
+  return `<a class="download-link" href="${base + item[1]}" download>${item[0]} 수업자료</a>`;
 }
 function moduleCard(item) {
   const downloads = item.dl.length ? item.dl.map(downloadButton).join("") : `<span class="download-link">수업 활동 중심</span>`;
@@ -55,7 +55,7 @@ function renderResources() {
       resources.push(entry);
     }
   }));
-  grid.innerHTML = resources.map((entry) => `<a class="download-card download-link" href="${base + entry[1]}" download><span>PDF</span><strong>${entry[0]}</strong><em>${entry[1].replace(".md", ".pdf")}</em></a>`).join("");
+  grid.innerHTML = resources.map((entry) => `<a class="download-card download-link" href="${base + entry[1]}" download><span>수업자료</span><strong>${entry[0]}</strong><em>${entry[1].replace(".md", "")}</em></a>`).join("");
 }
 document.addEventListener("change", (event) => {
   if (!event.target.matches("[data-week]")) return;
