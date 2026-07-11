@@ -3,162 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>대학생을 위한 영어글쓰기 인터랙티브 보드</title>
-  <meta name="description" content="대학생을 위한 영어글쓰기 수업 자료를 주차별 보드와 PDF 다운로드 자료실로 정리한 온라인 학습 공간입니다.">
-  <link rel="stylesheet" href="../assets/interactive-board.css">
+  <title>대학생을 위한 영어글쓰기</title>
+  <meta name="description" content="대학생을 위한 영어글쓰기 수업 자료를 탭별 페이지와 보드형 레이아웃으로 제공하는 온라인 학습 공간입니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/course.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="#home" aria-label="대학생을 위한 영어글쓰기">
-        <span class="brand-mark">W</span>
-        <span><strong>대학생을 위한 영어글쓰기</strong><small>Interactive Writing Board</small></span>
-      </a>
-      <nav class="nav" aria-label="주요 메뉴">
-        <a href="#board-section">학습 보드</a>
-        <a href="#studio">작성 도구</a>
-        <a href="#resources">자료 다운로드</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="home">
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <p class="eyebrow">College Academic Writing</p>
-          <h1>대학생을 위한 영어글쓰기</h1>
-          <p class="lead">주제 탐색, 자료 읽기, 문단 구성, 인용 윤리, AI 활용 윤리, 최종 글쓰기 포트폴리오까지 한 화면에서 따라갈 수 있는 인터랙티브 보드입니다.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="#board-section">학습 보드 시작</a>
-            <a class="button" href="#resources">PDF 자료 다운로드</a>
-          </div>
-        </div>
-        <aside class="hero-panel" aria-label="수업 구성">
-          <p class="eyebrow">Course Map</p>
-          <dl class="map-list">
-            <div class="map-row"><dt>1단계</dt><dd>학술 글쓰기의 목적과 독자 이해</dd></div>
-            <div class="map-row"><dt>2단계</dt><dd>연구 주제, 자료 읽기, 문헌 기반 주장 만들기</dd></div>
-            <div class="map-row"><dt>3단계</dt><dd>문단, 시각자료, 결과 설명, 문장 수정</dd></div>
-            <div class="map-row"><dt>4단계</dt><dd>인용 윤리, AI 활용, 최종 포트폴리오</dd></div>
-          </dl>
-          <div class="stats">
-            <div class="stat-card"><strong>15</strong><span>주차 보드</span></div>
-            <div class="stat-card"><strong>14</strong><span>PDF 자료</span></div>
-            <div class="stat-card"><strong>4</strong><span>작성 도구</span></div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="board-section">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Interactive Board</p>
-            <h2>주차별 학습 보드</h2>
-            <p class="lead">검색과 분류 버튼으로 필요한 주차를 빠르게 찾고, 완료 체크로 학습 진행 상황을 저장할 수 있습니다.</p>
-          </div>
-        </div>
-        <div class="controls">
-          <input class="search" id="searchInput" type="search" placeholder="주제, 문단, 인용, AI, 포트폴리오로 검색">
-          <div class="chips" id="filterChips" aria-label="학습 분류"></div>
-        </div>
-        <div class="progress-panel">
-          <div><span>나의 진행률</span><strong id="progressText">0 / 15 완료</strong></div>
-          <div class="track"><i id="progressBar"></i></div>
-        </div>
-        <div class="board" id="board"></div>
-        <p class="empty" id="emptyState" hidden>검색 조건에 맞는 항목이 없습니다.</p>
-      </div>
-    </section>
-
-    <section class="section" id="studio">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Writing Studio</p>
-            <h2>영어글쓰기 작성 도구</h2>
-            <p class="lead">수업 중 바로 활용할 수 있는 영어 문장 틀입니다. 필요한 문장 묶음을 복사해 초안 작성에 사용할 수 있습니다.</p>
-          </div>
-        </div>
-        <div class="prompt-grid" id="promptGrid"></div>
-      </div>
-    </section>
-
-    <section class="section" id="resources">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Materials</p>
-            <h2>PDF 자료 다운로드</h2>
-            <p class="lead">각 주차 자료는 학생이 바로 내려받아 예습, 복습, 과제 작성에 활용할 수 있도록 연결했습니다.</p>
-          </div>
-        </div>
-        <div class="resource-grid" id="resourceGrid"></div>
-      </div>
-    </section>
+  <nav class="top"><div class="wrap"><a class="brand" href="index.html"><span class="brand-mark">W</span><span>대학생을 위한 영어글쓰기<small>Academic Writing Hub</small></span></a><div class="nav"><a class="active" href="index.html">Home</a><a href="roadmap.html">Roadmap</a><a href="modules.html">Modules</a><a href="studio.html">Writing Studio</a><a href="materials.html">Materials</a><a href="assessment.html">Assessment</a></div></div></nav>
+  <header class="hero"><div class="wrap"><div><p class="eyebrow">Academic Writing LMS</p><h1>대학생을 위한 영어글쓰기</h1><p class="lead">관심 주제를 학술적 질문으로 바꾸고, 자료를 읽고, 근거 문단을 쓰고, 인용과 AI 활용 윤리를 지키며 최종 글쓰기 포트폴리오까지 완성하는 보드형 온라인 학습 공간입니다.</p><div class="hero-actions"><a class="button primary" href="modules.html">주차별 학습 시작</a><a class="button gold" href="materials.html">PDF 자료 다운로드</a><a class="button" href="studio.html">작성 도구 보기</a></div></div><aside class="panel"><div class="map-title">Learning Flow</div><dl class="map-list"><div class="map-row"><dt>Inquiry</dt><dd>주제, 문제의식, 독자, 목적을 정리합니다.</dd></div><div class="map-row"><dt>Evidence</dt><dd>자료를 읽고 주장의 근거로 연결합니다.</dd></div><div class="map-row"><dt>Draft</dt><dd>문단, 시각자료 설명, 결과 해석을 작성합니다.</dd></div><div class="map-row"><dt>Ethics</dt><dd>인용, 표절 예방, AI 사용 기록을 관리합니다.</dd></div></dl><div class="stats"><div class="stat"><strong>15</strong><span>weekly modules</span></div><div class="stat"><strong>14</strong><span>PDF files</span></div><div class="stat"><strong>5</strong><span>separate pages</span></div></div></aside></div></header>
+  <main>
+    <section class="section"><div class="wrap"><div class="section-head"><p class="eyebrow">Page Navigation</p><h2>탭별 독립 페이지</h2><p class="section-lead">참고 사이트의 카드형 탐색 방식을 수업용 LMS에 맞게 변형했습니다. 각 탭은 별도 페이지로 열리며, 학생들이 필요한 내용을 바로 찾을 수 있습니다.</p></div><div class="grid-3"><a class="card page-card" href="roadmap.html"><span class="tag">Roadmap</span><h3>Course Roadmap</h3><p>15주 학습 흐름, 수업 목표, 과제 흐름을 단계별로 확인합니다.</p><strong>Open page</strong></a><a class="card page-card" href="modules.html"><span class="tag teal">Modules</span><h3>Weekly Modules</h3><p>주차별 학습 카드와 PDF 자료를 한 화면에서 탐색합니다.</p><strong>Open page</strong></a><a class="card page-card" href="studio.html"><span class="tag terra">Studio</span><h3>Writing Studio</h3><p>주제문, 문단, 인용, AI 사용 기록 문장 틀을 제공합니다.</p><strong>Open page</strong></a><a class="card page-card" href="materials.html"><span class="tag plum">Materials</span><h3>PDF Materials</h3><p>업로드된 PDF 자료를 주차별로 바로 다운로드합니다.</p><strong>Open page</strong></a><a class="card page-card" href="assessment.html"><span class="tag">Assessment</span><h3>Assessment Guide</h3><p>과제, 평가 루브릭, 최종 포트폴리오 기준을 정리합니다.</p><strong>Open page</strong></a><a class="card page-card" href="modules.html#board"><span class="tag teal">Board</span><h3>Interactive Board</h3><p>보드형 컬럼에서 학습 단계별 카드와 다운로드 링크를 확인합니다.</p><strong>Open board</strong></a></div></div></section>
+    <section class="section"><div class="wrap"><div class="section-head"><p class="eyebrow">Interactive Preview</p><h2>학습 보드 미리보기</h2><p class="section-lead">학습은 시작과 설계, 자료와 근거, 초안과 수정, 윤리와 완성의 네 흐름으로 구성됩니다.</p></div><div class="board" data-module-board></div></div></section>
   </main>
-
-  <footer class="footer">대학생을 위한 영어글쓰기 | Academic writing connects questions, evidence, structure, and contribution.</footer>
-
-  <script id="course-data" type="application/json">
-{
-  "slug": "undergraduate-academic-writing",
-  "filters": [
-    {"id": "foundation", "label": "기초"},
-    {"id": "planning", "label": "주제·자료"},
-    {"id": "writing", "label": "문단·초안"},
-    {"id": "ethics", "label": "윤리·AI"},
-    {"id": "portfolio", "label": "포트폴리오"}
-  ],
-  "columns": [
-    {"id": "start", "title": "시작과 설계"},
-    {"id": "evidence", "title": "자료와 근거"},
-    {"id": "draft", "title": "초안과 수정"},
-    {"id": "finish", "title": "윤리와 완성"}
-  ],
-  "items": [
-    {"id": "w01", "column": "start", "category": "foundation", "week": "1주차", "tag": "기초", "title": "학술 글쓰기의 기본 구조", "summary": "학술 글쓰기의 목적, 독자, 주장, 근거, 구조를 이해하고 자신의 관심 주제를 글쓰기 과제로 전환합니다.", "href": "../materials/week1-academic-writing-summary-40slides-redesign.pdf", "downloadLabel": "1주차 PDF"},
-    {"id": "w02", "column": "start", "category": "planning", "week": "2주차", "tag": "주제 탐색", "title": "연구 주제와 문제의식 만들기", "summary": "넓은 관심사를 구체적인 연구 질문과 글쓰기 범위로 좁히는 방법을 연습합니다.", "href": "../materials/week2-research-planning-academic-writing-40slides-redesign.pdf", "downloadLabel": "2주차 PDF"},
-    {"id": "w03", "column": "evidence", "category": "planning", "week": "3주차", "tag": "자료 읽기", "title": "문헌 읽기와 자료 정리", "summary": "자료의 주장, 근거, 한계, 자신의 글과의 관련성을 표로 정리하며 비판적으로 읽습니다.", "href": "../materials/week3-theory-literature-submission-40slides.pdf", "downloadLabel": "3주차 PDF"},
-    {"id": "w04", "column": "draft", "category": "writing", "week": "4주차", "tag": "글 구조", "title": "서론, 본론, 결론 구성", "summary": "제목, 서론 핵심문장, 본론 문단, 결론 방향을 포함한 전체 개요를 작성합니다.", "href": "../materials/week4-methodology-results-discussion-40slides.pdf", "downloadLabel": "4주차 PDF"},
-    {"id": "w05", "column": "draft", "category": "writing", "week": "5주차", "tag": "독자 관점", "title": "초안을 독자 관점에서 점검하기", "summary": "독자가 이해하기 쉬운 흐름, 정보 순서, 문단 기능을 기준으로 초안을 검토합니다.", "href": "../materials/week5-reviewer-view-paper-sections-40slides.pdf", "downloadLabel": "5주차 PDF"},
-    {"id": "w06", "column": "finish", "category": "ethics", "week": "6주차", "tag": "인용 윤리", "title": "인용, 표절, 자료 사용 윤리", "summary": "직접 인용, 간접 인용, 요약, 참고문헌 작성의 기본 원칙을 학습합니다.", "href": "../materials/week6-research-problem-procedure-ethics-40slides.pdf", "downloadLabel": "6주차 PDF"},
-    {"id": "w07", "column": "draft", "category": "writing", "week": "7주차", "tag": "문단 작성", "title": "근거 문단과 분석 문장 쓰기", "summary": "주장, 근거, 해석, 연결 문장으로 이루어진 학술 문단을 작성합니다.", "href": "../materials/week7-methodology-results-writing-functions-40slides.pdf", "downloadLabel": "7주차 PDF"},
-    {"id": "w08", "column": "draft", "category": "portfolio", "week": "8주차", "tag": "중간 점검", "title": "중간 글쓰기 체크업", "summary": "주제, 자료, 개요, 문단 초안을 모아 글의 방향과 수정 계획을 점검합니다."},
-    {"id": "w09", "column": "evidence", "category": "writing", "week": "9주차", "tag": "시각자료", "title": "표, 그림, 참고자료 설명하기", "summary": "시각자료를 글 속에서 정확하고 학술적으로 설명하는 방법을 연습합니다.", "href": "../materials/week9-visual-references-recommendations-academic-language-40slides.pdf", "downloadLabel": "9주차 PDF"},
-    {"id": "w10", "column": "draft", "category": "writing", "week": "10주차", "tag": "문장 수정", "title": "명확한 문장과 문단 고치기", "summary": "긴 문장, 모호한 표현, 반복을 줄이고 읽기 쉬운 학술 문장으로 수정합니다.", "href": "../materials/week10-academic-writing-handbook-summary-40slides.pdf", "downloadLabel": "10주차 PDF"},
-    {"id": "w11", "column": "evidence", "category": "planning", "week": "11주차", "tag": "근거 기반", "title": "자료 기반 주장 만들기", "summary": "읽은 자료를 바탕으로 자신의 주장과 논증 흐름을 강화합니다.", "href": "../materials/week11-academic-writing-research-process-40slides.pdf", "downloadLabel": "11주차 PDF"},
-    {"id": "w12", "column": "finish", "category": "portfolio", "week": "12주차", "tag": "글 소개", "title": "좋은 글 사례 분석과 자기 글 소개", "summary": "샘플 글의 구조와 전략을 분석하고 자신의 글을 간결하게 소개합니다.", "href": "../materials/week12-academic-career-writing-30slides.pdf", "downloadLabel": "12주차 PDF"},
-    {"id": "w13", "column": "evidence", "category": "writing", "week": "13주차", "tag": "결과 설명", "title": "양적 자료와 결과 설명하기", "summary": "수치와 표를 정확하고 과장 없이 설명하는 문장을 작성합니다.", "href": "../materials/week13-quantitative-research-writing-40slides.pdf", "downloadLabel": "13주차 PDF"},
-    {"id": "w14", "column": "finish", "category": "ethics", "week": "14주차", "tag": "AI 윤리", "title": "AI 활용과 글쓰기 윤리", "summary": "AI 도구를 학습 보조로 활용하면서 검증, 출처, 책임 원칙을 지키는 방법을 정리합니다.", "href": "../materials/week14-research-ai-ethics-39slides.pdf", "downloadLabel": "14주차 PDF"},
-    {"id": "w15", "column": "finish", "category": "portfolio", "week": "15주차", "tag": "최종 발표", "title": "최종 글쓰기 포트폴리오", "summary": "최종 글, 수정 이력, 자기평가, 발표 자료를 포트폴리오로 정리합니다.", "href": "../materials/week15-researcher-growth-20slides.pdf", "downloadLabel": "15주차 PDF"}
-  ],
-  "resources": [
-    {"type": "PDF", "title": "1주차 학술 글쓰기 개요", "summary": "학술 글쓰기의 목적과 기본 구조", "href": "../materials/week1-academic-writing-summary-40slides-redesign.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "2주차 연구 주제 설계", "summary": "주제 탐색과 문제의식 구성", "href": "../materials/week2-research-planning-academic-writing-40slides-redesign.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "3주차 문헌 읽기", "summary": "이론, 선행연구, 자료 정리", "href": "../materials/week3-theory-literature-submission-40slides.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "4주차 글 구조", "summary": "방법, 결과, 논의와 전체 구조", "href": "../materials/week4-methodology-results-discussion-40slides.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "5주차 독자 관점 검토", "summary": "리뷰어 관점과 글의 각 부분 점검", "href": "../materials/week5-reviewer-view-paper-sections-40slides.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "6주차 연구 윤리", "summary": "문제, 절차, 윤리 기준", "href": "../materials/week6-research-problem-procedure-ethics-40slides.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "7주차 방법과 결과 쓰기", "summary": "방법, 결과, 문장 기능", "href": "../materials/week7-methodology-results-writing-functions-40slides.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "9주차 시각자료와 참고문헌", "summary": "표, 그림, 참고문헌, 학술 언어", "href": "../materials/week9-visual-references-recommendations-academic-language-40slides.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "10주차 학술 글쓰기 핸드북", "summary": "문장 수정과 글의 완성도 높이기", "href": "../materials/week10-academic-writing-handbook-summary-40slides.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "11주차 연구 과정", "summary": "자료 기반 논증과 연구 과정", "href": "../materials/week11-academic-writing-research-process-40slides.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "12주차 학술 커리어 글쓰기", "summary": "자기 글 소개와 학술적 성장", "href": "../materials/week12-academic-career-writing-30slides.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "13주차 양적 연구 글쓰기", "summary": "수치 자료와 결과 설명", "href": "../materials/week13-quantitative-research-writing-40slides.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "14주차 AI와 연구 윤리", "summary": "AI 활용, 검증, 책임 있는 글쓰기", "href": "../materials/week14-research-ai-ethics-39slides.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "15주차 연구자로 성장하기", "summary": "최종 포트폴리오와 발표", "href": "../materials/week15-researcher-growth-20slides.pdf", "downloadLabel": "다운로드"}
-  ],
-  "prompts": [
-    {"title": "Topic Builder", "summary": "관심사를 학술 글쓰기 주제로 바꾸는 문장 틀입니다.", "lines": ["Topic: I want to write about ...", "Problem: This matters because ...", "Audience: This essay is written for ...", "Claim: I argue that ...", "Evidence: I will support this with ..."]},
-    {"title": "Paragraph Frame", "summary": "주장, 근거, 해석 문단을 만드는 기본 구조입니다.", "lines": ["Topic sentence: This paragraph argues that ...", "Evidence: For example, ...", "Explanation: This evidence shows that ...", "Connection: Therefore, this point supports ..."]},
-    {"title": "Revision Checklist", "summary": "제출 전 스스로 점검하는 항목입니다.", "lines": ["Is the main claim clear?", "Does each paragraph have one clear role?", "Is every source introduced and cited?", "Does the conclusion explain why the topic matters?"]},
-    {"title": "Citation & AI Note", "summary": "인용과 AI 사용을 투명하게 기록하는 문장 틀입니다.", "lines": ["I used this source to support ...", "The original idea belongs to ...", "AI tools were used only for brainstorming or language revision.", "All facts, citations, and final wording were checked by me."]}
-  ]
-}
-  </script>
-  <script src="../assets/interactive-board.js"></script>
+  <footer class="footer">대학생을 위한 영어글쓰기 · Academic Writing Hub</footer>
+  <script src="assets/course.js"></script>
 </body>
 </html>
