@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 활용 실습</title>
+  <meta name="description" content="다양한 AI 도구를 직접 체험하고 영어학습과 수업 설계에 적용하는 온라인 실습형 수업 공간입니다.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="AI 활용 실습 홈">
+      <span class="brand-mark">AI</span>
+      <span><strong>AI 활용 실습</strong><small>Applied AI Practice Board</small></span>
+    </a>
+    <nav aria-label="주요 메뉴">
+      <a href="#overview">개요</a>
+      <a href="#modules">모듈</a>
+      <a href="#practice">실습</a>
+      <a href="#resources">자료</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="overview">
+      <div class="hero-copy">
+        <p class="eyebrow">Hands-on AI Learning</p>
+        <h1>다양한 AI 도구를 직접 체험하고 학습에 적용합니다</h1>
+        <p class="lead">ChatGPT, Gemini, Claude, Perplexity, Gamma, NotebookLM, Google AI Studio, Grammarly, QuillBot, HeyGen 등 주요 AI 도구를 목적별로 비교하고, 영어학습 활동으로 전환하는 실습형 수업 페이지입니다.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#modules">학습 모듈 열기</a>
+          <a class="button" href="materials/ai-practice.pptx" download>수업자료 다운로드</a>
+        </div>
+      </div>
+      <aside class="hero-panel" aria-label="수업 구성">
+        <div><b>24</b><span>학습 카드</span></div>
+        <div><b>4</b><span>학습 단계</span></div>
+        <div><b>10+</b><span>AI 도구</span></div>
+        <div><b>1</b><span>개인 AI 학습 루틴</span></div>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="eyebrow">Learning Goals</p>
+        <h2>수업이 끝나면 할 수 있는 것</h2>
+      </div>
+      <div class="goal-grid">
+        <article>
+          <span>01</span>
+          <h3>AI 도구 선택</h3>
+          <p>도구의 유행이나 순위보다 과제 목적에 맞는 AI 도구를 선택합니다.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>영어학습 적용</h3>
+          <p>듣기, 말하기, 읽기, 쓰기 활동에 AI를 실제로 연결합니다.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>비판적 검토</h3>
+          <p>AI 결과를 그대로 사용하지 않고 출처, 정확성, 수준, 윤리를 점검합니다.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>학습 루틴 설계</h3>
+          <p>자신에게 맞는 AI 기반 영어학습 루틴 1가지를 설계합니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section board-section" id="modules">
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow">Module Board</p>
+          <h2>24개 학습 모듈</h2>
+          <p>필터를 선택하면 해당 주제의 실습 카드만 볼 수 있습니다. 각 카드는 핵심 이해, 주요 포인트, 학생 실습으로 구성됩니다.</p>
+        </div>
+        <div class="filters" role="group" aria-label="모듈 필터">
+          <button class="filter active" type="button" data-filter="all">전체</button>
+          <button class="filter" type="button" data-filter="foundation">기초 이해</button>
+          <button class="filter" type="button" data-filter="tools">AI 도구</button>
+          <button class="filter" type="button" data-filter="english">영어학습</button>
+          <button class="filter" type="button" data-filter="ethics">윤리</button>
+        </div>
+      </div>
+      <div class="module-grid" id="moduleGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="section practice-wrap" id="practice">
+      <div class="section-head">
+        <p class="eyebrow">Practice Path</p>
+        <h2>수업 중 바로 수행하는 실습 흐름</h2>
+      </div>
+      <div class="practice-layout">
+        <article class="practice-card">
+          <h3>1. 도구 비교</h3>
+          <p>같은 질문을 두 개 이상의 AI 도구에 넣고 답변의 정확성, 구체성, 수정 가능성을 비교합니다.</p>
+        </article>
+        <article class="practice-card">
+          <h3>2. 자료 기반 학습</h3>
+          <p>NotebookLM 또는 Gemini에 수업자료를 넣고 요약, 복습 질문, 용어 정리를 생성합니다.</p>
+        </article>
+        <article class="practice-card">
+          <h3>3. 영어 기능 적용</h3>
+          <p>듣기, 말하기, 읽기, 쓰기 중 하나를 골라 10분짜리 AI 활용 활동으로 설계합니다.</p>
+        </article>
+        <article class="practice-card">
+          <h3>4. 윤리와 검토</h3>
+          <p>AI 결과의 출처, 정확성, 동의, 오용 가능성을 확인하고 자신의 학습 루틴으로 정리합니다.</p>
+        </article>
+      </div>
+      <div class="check-panel">
+        <h3>오늘의 완료 체크</h3>
+        <label><input type="checkbox" data-check="tool"> 목적에 맞는 AI 도구 1개를 선택했다.</label>
+        <label><input type="checkbox" data-check="compare"> 두 도구의 답변 차이를 비교했다.</label>
+        <label><input type="checkbox" data-check="english"> 영어학습 활동 1개를 설계했다.</label>
+        <label><input type="checkbox" data-check="routine"> 나만의 AI 학습 루틴을 작성했다.</label>
+        <div class="meter"><i id="meterBar"></i></div>
+      </div>
+    </section>
+
+    <section class="section" id="resources">
+      <div class="section-head">
+        <p class="eyebrow">Materials</p>
+        <h2>수업자료</h2>
+      </div>
+      <div class="resource-card">
+        <div>
+          <h3>AI 활용 실습 원본 자료</h3>
+          <p>수업에서 사용하는 PowerPoint 자료입니다. 학생들은 내려받은 뒤 도구 비교, 활동 설계, 학습 루틴 작성에 활용할 수 있습니다.</p>
+        </div>
+        <a class="button primary" href="materials/ai-practice.pptx" download>수업자료 다운로드</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <strong>AI 활용 실습</strong>
+    <span>다양한 AI 도구를 영어학습과 수업 설계에 적용하는 실습형 온라인 수업 공간</span>
+  </footer>
+  <script src="assets/app.js"></script>
+</body>
+</html>
