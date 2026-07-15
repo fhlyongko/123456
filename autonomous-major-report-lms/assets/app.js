@@ -51,8 +51,6 @@ function setActiveTab(tabName, options = {}) {
   }
 }
 
-byId("paragraphCount").textContent = data.meta.paragraphCount.toLocaleString("ko-KR");
-
 byId("insightGrid").innerHTML = insights.map((item, index) => `
   <article class="insight-card">
     <span>${index + 1}</span>
