@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>원문 탐색 | 자율전공학부 우수사례 연구</title>
+  <meta name="description" content="자율전공학부 우수사례 연구보고서의 전체 문단을 검색하고 확인하는 페이지입니다.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="reader-page">
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="자율전공학부 우수사례 연구 홈">
+      <span class="brand-mark">AM</span>
+      <span><strong>원문 탐색</strong><small>Full Report Reader</small></span>
+    </a>
+    <nav aria-label="주요 메뉴">
+      <a href="index.html">요약 보드</a>
+      <a href="index.html#curriculum">15주 운영안</a>
+      <a href="index.html#materials">자료</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="reader-hero">
+      <p class="eyebrow">Full Text Search</p>
+      <h1>보고서 원문 전체 탐색</h1>
+      <p class="lead">업로드된 보고서의 전체 문단을 검색할 수 있습니다. 키워드 예: KAIST, 한동대, 전공탐구생활, 성과지표, 멘토링, 학생설계전공.</p>
+      <input class="reader-search" id="readerSearch" type="search" placeholder="원문 검색어 입력" aria-label="원문 검색">
+      <div class="reader-stats" id="readerStats"></div>
+    </section>
+
+    <section class="reader-results" id="readerResults" aria-live="polite"></section>
+  </main>
+
+  <footer class="footer">
+    <strong>원문 탐색</strong>
+    <span>검색어가 없을 때는 첫 80개 문단만 표시됩니다.</span>
+  </footer>
+  <script src="assets/data.js"></script>
+  <script src="assets/reader.js"></script>
+</body>
+</html>
