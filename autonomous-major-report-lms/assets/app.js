@@ -3,28 +3,69 @@ const data = {
   ...window.REPORT_LMS_MANUAL,
   meta: {
     ...window.REPORT_LMS_DATA.meta,
-    title: "전국 대학 자율전공학부 우수사례 연구",
-    subtitle: "전공탐구생활 교과 개편을 위한 벤치마킹 LMS"
+    title: "자율전공학부 우수사례 연구 요약 보드",
+    subtitle: "보고서 전체 논지를 빠르게 파악하기 위한 대시보드"
   }
 };
 
 const byId = id => document.getElementById(id);
+const validTabs = ["summary", "evidence", "factors", "roadmap", "metrics", "materials"];
+
+const insights = [
+  {
+    title: "자유는 구조와 함께 작동한다",
+    body: "무전공·자율전공 제도는 선택권 확대만으로 성공하지 않습니다. 전공 정보, 진입요건, 상담, 탐색 과제가 함께 배치될 때 학생의 선택이 근거 있는 결정으로 바뀝니다."
+  },
+  {
+    title: "우수사례는 탐색 기간을 교육과정으로 설계한다",
+    body: "KAIST·UNIST·DGIST 등은 1학년 탐색 기간을 단순 유예가 아니라 기초교과, 트랙 설계, 자기설계 활동이 결합된 교육 경험으로 운영합니다."
+  },
+  {
+    title: "밀착 지도와 표준화된 정보가 핵심이다",
+    body: "교수 면담, 선배 멘토링, 전공위키, 전공진입 체크리스트가 결합되면 학생 간 정보 격차와 인기 전공 쏠림을 줄일 수 있습니다."
+  },
+  {
+    title: "최종 산출물은 희망 학과명이 아니라 근거 포트폴리오다",
+    body: "보고서는 학생이 전공을 왜 선택했는지 주장, 근거, 대안, 보완계획으로 설명하는 포트폴리오형 평가를 제안합니다."
+  }
+];
+
+function tabFromHash() {
+  const hash = window.location.hash.replace("#", "");
+  return validTabs.includes(hash) ? hash : "summary";
+}
+
+function setActiveTab(tabName, options = {}) {
+  const nextTab = validTabs.includes(tabName) ? tabName : "summary";
+  document.querySelectorAll("[data-tab-target]").forEach(button => {
+    button.classList.toggle("active", button.dataset.tabTarget === nextTab);
+  });
+  document.querySelectorAll("[data-tab-panel]").forEach(panel => {
+    panel.classList.toggle("active", panel.dataset.tabPanel === nextTab);
+  });
+  if (options.updateHash !== false) {
+    history.replaceState(null, "", `#${nextTab}`);
+  }
+  if (options.scroll) {
+    document.querySelector(".tab-board")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
 
 byId("paragraphCount").textContent = data.meta.paragraphCount.toLocaleString("ko-KR");
+
+byId("insightGrid").innerHTML = insights.map((item, index) => `
+  <article class="insight-card">
+    <span>${index + 1}</span>
+    <h3>${item.title}</h3>
+    <p>${item.body}</p>
+  </article>
+`).join("");
 
 byId("questionGrid").innerHTML = data.researchQuestions.map((question, index) => `
   <article class="card">
     <small>RQ ${index + 1}</small>
     <h3>연구 질문 ${index + 1}</h3>
     <p>${question}</p>
-  </article>
-`).join("");
-
-byId("sectionGrid").innerHTML = data.sectionSummaries.map(section => `
-  <article class="card">
-    <small>문단 ${section.start}</small>
-    <h3>${section.title}</h3>
-    <p>${section.summary || "원문 탐색 페이지에서 세부 내용을 확인할 수 있습니다."}</p>
   </article>
 `).join("");
 
@@ -43,10 +84,10 @@ function renderCases(filter = "all") {
     const hidden = filter !== "all" && key !== filter ? " hidden" : "";
     return `
       <article class="case-card${hidden}" data-key="${key}">
-        <p class="type">${item.type}</p>
+        <p class="type">${key} · ${item.type}</p>
         <h3>${item.name}</h3>
         <p>${item.point}</p>
-        <p><strong>적용:</strong> ${item.apply}</p>
+        <p><strong>보고서 활용:</strong> ${item.apply}</p>
       </article>
     `;
   }).join("");
@@ -72,7 +113,7 @@ byId("modelGrid").innerHTML = data.adaptationModels.map((model, index) => `
   <article class="model-card">
     <span>${index + 1}</span>
     <h3>${model.model}</h3>
-    <p><strong>참조:</strong> ${model.source}</p>
+    <p><strong>참조 사례:</strong> ${model.source}</p>
     <p>${model.design}</p>
   </article>
 `).join("");
@@ -83,13 +124,13 @@ byId("weekList").innerHTML = data.weekPlan.map(row => `
     <div>
       <h3>${row[1]}</h3>
       <p>${row[2]}</p>
-      <p><strong>산출물:</strong> ${row[3]}</p>
+      <p><strong>핵심 산출물:</strong> ${row[3]}</p>
     </div>
   </article>
 `).join("");
 
 byId("kpiTable").innerHTML = `
-  <div class="kpi-row header"><div>영역</div><div>지표</div><div>확인 방식</div></div>
+  <div class="kpi-row header"><div>영역</div><div>핵심 지표</div><div>확인 방식</div></div>
   ${data.kpis.map(row => `<div class="kpi-row"><div>${row[0]}</div><div>${row[1]}</div><div>${row[2]}</div></div>`).join("")}
 `;
 
@@ -105,9 +146,28 @@ byId("checkList").innerHTML = data.checklist.map((item, index) => `
 `).join("");
 
 document.querySelectorAll("[data-check]").forEach(check => {
-  const key = `autonomous-major-check-${check.dataset.check}`;
+  const key = `autonomous-major-report-check-${check.dataset.check}`;
   check.checked = localStorage.getItem(key) === "1";
   check.addEventListener("change", () => localStorage.setItem(key, check.checked ? "1" : "0"));
 });
 
+document.querySelectorAll("[data-tab-target]").forEach(button => {
+  button.addEventListener("click", () => {
+    setActiveTab(button.dataset.tabTarget, { scroll: true });
+  });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener("click", event => {
+    const target = link.getAttribute("href").replace("#", "");
+    if (!validTabs.includes(target)) return;
+    event.preventDefault();
+    setActiveTab(target, { scroll: true });
+  });
+});
+
+window.addEventListener("hashchange", () => setActiveTab(tabFromHash(), { updateHash: false }));
+
 renderCases();
+const initialTab = tabFromHash();
+setActiveTab(initialTab, { updateHash: false, scroll: initialTab !== "summary" });

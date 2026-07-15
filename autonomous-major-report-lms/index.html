@@ -3,71 +3,74 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>전국 대학 자율전공학부 우수사례 연구</title>
-  <meta name="description" content="전국 대학 자율전공학부 우수·선진 사례 연구보고서를 바탕으로 구성한 온라인 학습형 자료실입니다.">
+  <title>자율전공학부 우수사례 연구 요약 보드</title>
+  <meta name="description" content="전국 대학 자율전공학부 우수·선진 사례 연구보고서의 핵심 결론, 사례, 성공요인, 적용 방안을 한눈에 볼 수 있는 요약 보드입니다.">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <a class="skip" href="#main">본문으로 이동</a>
   <header class="topbar">
-    <a class="brand" href="index.html" aria-label="자율전공학부 우수사례 연구 홈">
+    <a class="brand" href="index.html" aria-label="자율전공학부 우수사례 연구 요약 보드 홈">
       <span class="brand-mark">AM</span>
-      <span><strong>자율전공학부 우수사례 연구</strong><small>Autonomous Major Case Study Board</small></span>
+      <span><strong>자율전공학부 우수사례 연구</strong><small>Report Summary Board</small></span>
     </a>
     <nav aria-label="주요 메뉴">
-      <a href="#overview">개요</a>
-      <a href="#cases">사례</a>
-      <a href="#curriculum">15주 운영안</a>
+      <a href="#summary">핵심 요약</a>
+      <a href="#evidence">사례 비교</a>
+      <a href="#roadmap">적용 방안</a>
       <a href="reader.html">원문 탐색</a>
-      <a href="#materials">자료</a>
     </nav>
   </header>
 
   <main id="main">
-    <section class="hero" id="overview">
+    <section class="hero compact-hero" id="overview">
       <div>
-        <p class="eyebrow">Benchmarking LMS</p>
-        <h1>전국 대학 자율전공학부 우수·선진 사례를 수업 자료로 재구성했습니다</h1>
-        <p class="lead">두 개의 연구보고서를 바탕으로 자율전공·무전공 제도의 배경, 국내외 우수사례, 성공요인, 「전공탐구생활」 교과 개편 방안, 15주 운영안, 성과지표를 한눈에 탐색할 수 있도록 구성했습니다.</p>
+        <p class="eyebrow">Report Dashboard</p>
+        <h1>보고서 전체를 한눈에 읽는 자율전공학부 우수사례 요약 보드</h1>
+        <p class="lead">두 개의 연구보고서를 핵심 결론, 국내외 사례, 공통 성공요인, 교과 적용 방안, 성과지표로 압축했습니다. 원문을 모두 읽기 전에 보고서의 논지와 활용 방향을 빠르게 파악할 수 있습니다.</p>
         <div class="actions">
-          <a class="button primary" href="#cases">사례 보드 보기</a>
-          <a class="button" href="reader.html">원문 전체 검색</a>
+          <button class="button primary" type="button" data-tab-target="summary">핵심 요약 보기</button>
+          <button class="button" type="button" data-tab-target="materials">원문 자료 열기</button>
         </div>
       </div>
-      <aside class="hero-panel" aria-label="보고서 정보">
+      <aside class="hero-panel" aria-label="보고서 요약 정보">
         <div><b id="paragraphCount">889</b><span>원문 문단</span></div>
         <div><b>18+</b><span>국내 대학·단위</span></div>
         <div><b>5</b><span>성공요인</span></div>
-        <div><b>15</b><span>주차 운영안</span></div>
+        <div><b>15</b><span>적용 주차안</span></div>
       </aside>
     </section>
 
-    <section class="section">
+    <section class="tab-board" aria-label="보고서 요약 탭">
+      <button class="tab-button active" type="button" data-tab-target="summary">핵심 요약</button>
+      <button class="tab-button" type="button" data-tab-target="evidence">사례 비교</button>
+      <button class="tab-button" type="button" data-tab-target="factors">성공요인</button>
+      <button class="tab-button" type="button" data-tab-target="roadmap">적용 방안</button>
+      <button class="tab-button" type="button" data-tab-target="metrics">성과지표</button>
+      <button class="tab-button" type="button" data-tab-target="materials">원문 자료</button>
+    </section>
+
+    <section class="section tab-panel active" id="summary" data-tab-panel="summary">
       <div class="section-head">
-        <p class="eyebrow">Research Frame</p>
-        <h2>연구 질문</h2>
+        <p class="eyebrow">Executive Summary</p>
+        <h2>보고서 핵심 결론</h2>
+        <p>자율전공의 성패는 학생에게 자유를 주는 것만으로 결정되지 않습니다. 보고서는 그 자유를 실제 선택 역량으로 바꾸기 위한 구조, 지도, 정보, 포트폴리오 평가가 함께 설계되어야 한다고 제안합니다.</p>
+      </div>
+      <div class="insight-grid" id="insightGrid"></div>
+
+      <div class="section-head compact-head">
+        <p class="eyebrow">Research Questions</p>
+        <h2>연구 질문 요약</h2>
       </div>
       <div class="question-grid" id="questionGrid"></div>
     </section>
 
-    <section class="section">
+    <section class="section tab-panel" id="evidence" data-tab-panel="evidence">
       <div class="section-head split">
         <div>
-          <p class="eyebrow">Report Map</p>
-          <h2>보고서 전체 구조</h2>
-          <p>보고서의 주요 장을 학습 단위로 재구성했습니다. 각 장은 원문 전체 탐색 페이지에서 문단 단위로 다시 확인할 수 있습니다.</p>
-        </div>
-        <a class="button" href="reader.html">원문 탐색으로 이동</a>
-      </div>
-      <div class="section-grid" id="sectionGrid"></div>
-    </section>
-
-    <section class="section" id="cases">
-      <div class="section-head split">
-        <div>
-          <p class="eyebrow">Case Board</p>
-          <h2>국내 우수·선진 사례 보드</h2>
-          <p>보고서의 사례 분석을 운영 모델별 카드로 정리했습니다.</p>
+          <p class="eyebrow">Case Comparison</p>
+          <h2>우수사례 비교 보드</h2>
+          <p>보고서에 제시된 대학 사례를 운영 모델별로 압축했습니다. 필터를 누르면 탐색, 설계, 밀착지원, 융합 중심 사례만 따로 볼 수 있습니다.</p>
         </div>
         <div class="filters" role="group" aria-label="사례 필터">
           <button class="filter active" type="button" data-filter="all">전체</button>
@@ -80,53 +83,61 @@
       <div class="case-grid" id="caseGrid"></div>
     </section>
 
-    <section class="section">
+    <section class="section tab-panel" id="factors" data-tab-panel="factors">
       <div class="section-head">
         <p class="eyebrow">Success Factors</p>
-        <h2>공통 성공요인</h2>
+        <h2>반복적으로 확인된 성공요인</h2>
+        <p>국내외 사례에서 공통으로 드러난 운영 조건을 다섯 가지로 정리했습니다.</p>
       </div>
       <div class="factor-grid" id="factorGrid"></div>
     </section>
 
-    <section class="section" id="curriculum">
+    <section class="section tab-panel" id="roadmap" data-tab-panel="roadmap">
       <div class="section-head">
-        <p class="eyebrow">Course Redesign</p>
-        <h2>전공탐구생활 5대 반영 모델</h2>
+        <p class="eyebrow">Application Roadmap</p>
+        <h2>전공탐구생활 적용 방안</h2>
+        <p>보고서의 제안은 학과 소개형 강의에서 벗어나, 학생이 전공 후보를 비교하고 면담·체험·AI 검증·포트폴리오를 통해 자신의 선택 근거를 설명하도록 설계하는 데 초점이 있습니다.</p>
       </div>
       <div class="model-grid" id="modelGrid"></div>
-    </section>
 
-    <section class="section">
-      <div class="section-head">
-        <p class="eyebrow">15-Week Plan</p>
-        <h2>선진사례 기반 15주 운영안</h2>
+      <div class="section-head compact-head">
+        <p class="eyebrow">15-Week Snapshot</p>
+        <h2>15주 운영안 압축 보기</h2>
       </div>
-      <div class="week-list" id="weekList"></div>
+      <div class="week-list compact-weeks" id="weekList"></div>
     </section>
 
-    <section class="section">
+    <section class="section tab-panel" id="metrics" data-tab-panel="metrics">
       <div class="section-head">
-        <p class="eyebrow">KPI</p>
-        <h2>성과지표 체계</h2>
+        <p class="eyebrow">Evaluation Frame</p>
+        <h2>성과지표와 실행 점검</h2>
+        <p>만족도만 확인하는 방식에서 벗어나, 전공선택 자기효능감, 탐색 행동, 포트폴리오 품질, 전공 적응을 함께 확인하도록 구성했습니다.</p>
       </div>
       <div class="kpi-table" id="kpiTable"></div>
+
+      <div class="guide-layout summary-guide">
+        <div>
+          <div class="section-head compact-head">
+            <p class="eyebrow">FAQ</p>
+            <h2>운영 쟁점</h2>
+          </div>
+          <div class="faq-list" id="faqList"></div>
+        </div>
+        <div>
+          <div class="section-head compact-head">
+            <p class="eyebrow">Checklist</p>
+            <h2>실행 체크</h2>
+          </div>
+          <div class="checklist" id="checkList"></div>
+        </div>
+      </div>
     </section>
 
-    <section class="section">
+    <section class="section tab-panel" id="materials" data-tab-panel="materials">
       <div class="section-head">
-        <p class="eyebrow">Operation Guide</p>
-        <h2>운영 FAQ와 점검 체크리스트</h2>
-      </div>
-      <div class="guide-layout">
-        <div class="faq-list" id="faqList"></div>
-        <div class="checklist" id="checkList"></div>
-      </div>
-    </section>
-
-    <section class="section" id="materials">
-      <div class="section-head">
-        <p class="eyebrow">Materials</p>
-        <h2>원본 보고서 다운로드</h2>
+        <p class="eyebrow">Source Materials</p>
+        <h2>원문 자료와 전체 탐색</h2>
+        <p>요약 보드에서 확인한 내용을 원문 문서와 검색 페이지에서 다시 검토할 수 있습니다.</p>
       </div>
       <div class="resource-grid">
         <a class="resource-card" href="materials/final-report.docx" download>
@@ -152,8 +163,8 @@
   </main>
 
   <footer class="footer">
-    <strong>자율전공학부 우수사례 연구</strong>
-    <span>전공탐구생활 교과 개편을 위한 벤치마킹 자료실</span>
+    <strong>자율전공학부 우수사례 연구 요약 보드</strong>
+    <span>보고서 전체 논지를 빠르게 파악하기 위한 대시보드</span>
   </footer>
   <script src="assets/data.js"></script>
   <script src="assets/manual.js"></script>
