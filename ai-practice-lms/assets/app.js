@@ -200,7 +200,29 @@ const phaseLabels = {
   ethics: "윤리"
 };
 
+const validTabs = ["overview", "modules", "practice", "resources"];
 const grid = document.getElementById("moduleGrid");
+
+function setActiveTab(tabName, options = {}) {
+  const nextTab = validTabs.includes(tabName) ? tabName : "overview";
+  document.querySelectorAll("[data-tab-target]").forEach(button => {
+    button.classList.toggle("active", button.dataset.tabTarget === nextTab);
+  });
+  document.querySelectorAll("[data-tab-panel]").forEach(panel => {
+    panel.classList.toggle("active", panel.dataset.tabPanel === nextTab);
+  });
+  if (options.updateHash !== false) {
+    history.replaceState(null, "", nextTab === "overview" ? "#overview" : `#${nextTab}`);
+  }
+  if (options.scroll) {
+    document.querySelector(".tab-board")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function tabFromHash() {
+  const hash = window.location.hash.replace("#", "");
+  return validTabs.includes(hash) ? hash : "overview";
+}
 
 function cardTemplate(lesson) {
   const points = lesson.points.map(point => `<li>${point}</li>`).join("");
@@ -233,6 +255,23 @@ document.querySelectorAll("[data-filter]").forEach(button => {
   });
 });
 
+document.querySelectorAll("[data-tab-target]").forEach(button => {
+  button.addEventListener("click", () => {
+    setActiveTab(button.dataset.tabTarget, { scroll: true });
+  });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener("click", event => {
+    const target = link.getAttribute("href").replace("#", "");
+    if (!validTabs.includes(target)) return;
+    event.preventDefault();
+    setActiveTab(target, { scroll: true });
+  });
+});
+
+window.addEventListener("hashchange", () => setActiveTab(tabFromHash(), { updateHash: false }));
+
 const checks = Array.from(document.querySelectorAll("[data-check]"));
 const meter = document.getElementById("meterBar");
 
@@ -252,3 +291,5 @@ checks.forEach(check => {
 
 renderLessons();
 updateMeter();
+const initialTab = tabFromHash();
+setActiveTab(initialTab, { updateHash: false, scroll: initialTab !== "overview" });
