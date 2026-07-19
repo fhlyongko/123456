@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Modules | Graduate Academic Writing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<nav class="top"><div class="wrap"><a class="brand" href="index.html">Graduate Academic Writing</a><div class="nav"><a href="index.html">Home</a><a href="overview.html">Overview</a><a class="active" href="weeks.html">Weekly Modules</a><a href="studio.html">Writing Studio</a><a href="assessment.html">Assessment</a><a href="materials.html">Materials</a><a href="../index.html">Korean</a></div></div></nav>
+<header class="hero simple"><div class="wrap"><p class="eyebrow">Weekly Modules</p><h1>Weekly Learning Sequence</h1><p class="lead">Search by topic, filter by learning domain, and mark each module as completed after reviewing the materials and completing the writing task.</p></div></header>
+<main><section class="section"><div class="wrap">
+<div class="controls"><input id="search" type="search" placeholder="Search: abstract, literature review, IRB, reviewer, AI ethics"><select id="filter" aria-label="Select learning domain"><option value="all">All Domains</option><option value="planning">Research Design</option><option value="writing">Paper Writing</option><option value="ethics">Ethics and AI</option><option value="career">Researcher Development</option></select></div>
+<div class="progress"><span>Progress</span><div class="bar"><span id="bar"></span></div><b id="progressText">0 / 15 completed</b></div>
+<div class="weeks" id="weekList"></div>
+</div></section></main>
+<footer class="footer">Graduate Academic Writing</footer>
+<script src="assets/data.js"></script>
+</body>
+</html>
