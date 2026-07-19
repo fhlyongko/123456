@@ -10,7 +10,7 @@ const papers = [
     topic: "The perceived advantages, limitations, and overreliance risks associated with AI-based writing tools such as Google Translate, Papago, and Grammarly.",
     method: "The study examined how university students evaluated the role of AI-based writing tools in English writing instruction and learning.",
     findings: "Students recognized practical benefits such as translation access and error checking. At the same time, they expressed concern that excessive dependence on AI tools could weaken independent writing processes.",
-    implication: "The central pedagogical question is not whether students should use AI, but at which stage, for what purpose, and under what boundaries AI use should be permitted.",
+    implication: "The central pedagogical question is not whether students should use AI, but at which stage, for what purpose, and within what boundaries AI use should be permitted.",
     questions: ["When do I use AI tools in English writing, and for what purpose?", "Where is the boundary between assistance and overreliance?", "What must I protect if I want my English ability to improve while using AI?"]
   },
   {
@@ -25,7 +25,7 @@ const papers = [
     method: "A generative AI instructional model was implemented in a university English course, and student responses were analyzed in relation to writing and speaking activities.",
     findings: "The study observed changes associated with learner motivation, interest, and confidence when generative AI was integrated through a designed instructional model rather than left to unsupervised tool use.",
     implication: "The educational effect of AI depends strongly on pedagogical design. Students also need personal rules for AI use in independent study.",
-    questions: ["What makes an AI-integrated class feel well designed?", "Which English-learning activities benefit most from AI integration?", "What classroom rules should instructors establish for AI use?"]
+    questions: ["What makes an AI-integrated class pedagogically coherent?", "Which English learning activities benefit most from AI integration?", "What classroom rules should instructors establish for AI use?"]
   },
   {
     id: 3,
@@ -67,7 +67,7 @@ const papers = [
     method: "The study investigated strategy use and learner perceptions in an AI-integrated English writing course involving Korean university English learners.",
     findings: "The study identified concrete strategies used by learners during AI-integrated writing and reported how learners evaluated those strategies.",
     implication: "Effective AI use is learnable. Differences in writing outcomes may reflect differences in strategic knowledge rather than differences in talent.",
-    questions: ["What are three AI-use strategies I currently use?", "Which strategies reported in this study have I not tried?", "How would the writing of a strategic AI user differ from that of an unstrategic user?"]
+    questions: ["What are three AI-use strategies I currently use?", "Which strategies reported in this study have I not tried?", "How would the writing of a strategic AI user differ from that of a less strategic AI user?"]
   },
   {
     id: 6,
@@ -91,11 +91,11 @@ const papers = [
     journal: "Journal of Asia TEFL",
     doi: "10.18823/asiatefl.2026.23.1.10.128",
     participants: "73 university students enrolled in general English courses",
-    topic: "Actual AI tool use, technological readiness, perceived English-learning effects, and the need for AI education.",
+    topic: "Actual AI tool use, technological readiness, perceived effects on English learning, and the need for AI literacy instruction.",
     method: "The study investigated which tools students used, how prepared they were to use them, and how they perceived AI support for English learning.",
     findings: "Students mainly used ChatGPT and Google Translate and valued real-time feedback and translation support. More than half reported that they had not received formal instruction on using AI for English learning.",
-    implication: "Knowing how to access a tool is different from knowing how to use it for learning. Formal or self-directed AI literacy development is necessary to close this gap.",
-    questions: ["Where did I learn how to use AI for English learning?", "What would I most want to learn in an AI literacy course?", "After reading this collection, what should I change in my own AI use?"]
+    implication: "Knowing how to access a tool is different from knowing how to use it for learning. Formal instruction or self-directed AI literacy development is necessary to close this gap.",
+    questions: ["Where did I learn how to use AI for English learning?", "What would I most need to learn in an AI literacy course?", "After reading this collection, what should I change in my own AI use?"]
   }
 ];
 
