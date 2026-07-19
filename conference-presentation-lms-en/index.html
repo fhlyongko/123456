@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conference Presentation Archive</title>
+  <meta name="description" content="An English academic archive of conference presentation materials on AI literacy, generative AI, global competence, English language teaching, and multicultural education.">
+  <meta name="theme-color" content="#355e75">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="page-home">
+  <a class="skip" href="#main">Skip to main content</a>
+  <header class="top">
+    <a class="brand" href="index.html" aria-label="Conference Presentation Archive home">
+      <span class="mark">P</span>
+      <span><strong>Conference Presentation Archive</strong><small>English Academic Edition</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Board</a>
+      <a href="topics.html">Topics</a>
+      <a href="materials.html">Materials</a>
+      <a href="qa.html">Q&amp;A</a>
+      <a href="../conference-presentation-lms/index.html">Korean</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Interactive Conference Board</p>
+        <h1 id="page-title">Conference Presentation Archive</h1>
+        <p class="lead">This English-language archive organizes conference presentation materials related to AI literacy, generative AI, global competence, English language teaching, English as a foreign language, and multicultural education. The board is designed to support rapid review of presentation themes, source materials, and anticipated discussion points.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#board">Open Board</a>
+          <a class="button green" href="materials.html">View Materials</a>
+          <a class="button" href="qa.html">Prepare Q&amp;A</a>
+        </div>
+      </div>
+      <aside class="hero-panel" aria-label="Archive structure">
+        <div class="mini-stat"><b>5</b><span>Core Research Themes</span></div>
+        <div class="mini-stat"><b>15+</b><span>Presentation Resources</span></div>
+        <div class="mini-stat"><b>Q&amp;A</b><span>Discussion Prompts</span></div>
+      </aside>
+    </section>
+
+    <section id="board" aria-labelledby="board-title">
+      <div class="section-head">
+        <div>
+          <span class="pill">Interactive Board</span>
+          <h2 id="board-title">Presentation Navigation Board</h2>
+          <p>Use filters and search to examine presentation topics, conference contexts, source materials, and preparation tasks across the archive.</p>
+        </div>
+      </div>
+      <div class="board-shell">
+        <aside class="control-panel" aria-label="Board controls">
+          <h3>Board Filters</h3>
+          <div class="filters" role="group" aria-label="Presentation card filters">
+            <button class="filter-btn active" data-filter="all" type="button">All</button>
+            <button class="filter-btn" data-filter="ai" type="button">AI</button>
+            <button class="filter-btn" data-filter="global" type="button">Global Competence</button>
+            <button class="filter-btn" data-filter="english" type="button">ELT</button>
+            <button class="filter-btn" data-filter="poster" type="button">Poster</button>
+          </div>
+          <input class="search" id="boardSearch" type="search" placeholder="Search presentation cards" aria-label="Search presentation cards">
+          <h3>Preparation Checklist</h3>
+          <div class="progress-meter" aria-hidden="true"><i id="progressBar"></i></div>
+          <div class="progress-list">
+            <label class="check-row"><input type="checkbox" data-task="topic"><span>I have reviewed the presentation topic and central research question.</span></label>
+            <label class="check-row"><input type="checkbox" data-task="materials"><span>I have opened or downloaded the required presentation materials.</span></label>
+            <label class="check-row"><input type="checkbox" data-task="script"><span>I have organized the presentation sequence: introduction, method, findings, and implications.</span></label>
+            <label class="check-row"><input type="checkbox" data-task="qa"><span>I have prepared anticipated questions and response structures.</span></label>
+          </div>
+        </aside>
+
+        <div class="board-columns" aria-live="polite">
+          <div class="board-column">
+            <div class="column-title"><h3>AI Literacy</h3><span class="count">0</span></div>
+            <article class="board-card" data-theme="ai kate international students genai">
+              <div class="tagline"><span class="tag topic">KATE</span><span class="tag ai">GenAI</span></div>
+              <h3>Understanding the Generative AI Literacy of International Students</h3>
+              <p>This presentation examines international students' engagement with generative AI, prompt language practices, academic adaptation, and institutional support for AI literacy.</p>
+              <footer><span><i class="phase-dot"></i> AI Literacy</span><span>KATE</span></footer>
+            </article>
+            <article class="board-card" data-theme="ai literacy ai+x major analysis">
+              <div class="tagline"><span class="tag topic">AI+X</span><span class="tag ai">AI Literacy</span></div>
+              <h3>Exploring University Students' AI Literacy</h3>
+              <p>Drawing on differences across academic majors, this presentation discusses the need for university-level AI literacy education and AI+X general education curricula.</p>
+              <footer><span><i class="phase-dot"></i> Exploratory Study</span><span>University</span></footer>
+            </article>
+            <article class="board-card" data-theme="ai qualitative analysis">
+              <div class="tagline"><span class="tag ai">AI</span><span class="tag">Qualitative</span></div>
+              <h3>Qualitative Analysis of AI Literacy</h3>
+              <p>This presentation frames AI literacy through a qualitative analytic lens, focusing on learners' interpretations, practices, and educational needs.</p>
+              <footer><span><i class="phase-dot"></i> Analysis</span><span>Slides</span></footer>
+            </article>
+          </div>
+
+          <div class="board-column">
+            <div class="column-title"><h3>Global Competence</h3><span class="count">0</span></div>
+            <article class="board-card" data-theme="global competence qualitative undeclared major">
+              <div class="tagline"><span class="tag topic">Global</span><span class="tag">Qualitative</span></div>
+              <h3>Undeclared Majors and Global Competence</h3>
+              <p>This presentation analyzes how students in flexible major pathways experience career exploration, academic choice, and the development of global competence.</p>
+              <footer><span><i class="phase-dot"></i> Major Exploration</span><span>Qualitative</span></footer>
+            </article>
+            <article class="board-card" data-theme="global competence english teacher">
+              <div class="tagline"><span class="tag topic">Global</span><span class="tag">Teacher</span></div>
+              <h3>Pre-service English Teachers and Global Competence</h3>
+              <p>This presentation connects cultural understanding, English teacher professionalism, and the formation of teacher identity among pre-service English teachers.</p>
+              <footer><span><i class="phase-dot"></i> Teacher Education</span><span>English</span></footer>
+            </article>
+            <article class="board-card" data-theme="global competence autonomous major">
+              <div class="tagline"><span class="tag topic">Global</span><span class="tag">Autonomous Major</span></div>
+              <h3>Autonomous Major Programs and Global Competence</h3>
+              <p>This presentation links autonomous major education with global competence development in university contexts.</p>
+              <footer><span><i class="phase-dot"></i> Competence</span><span>Slides</span></footer>
+            </article>
+          </div>
+
+          <div class="board-column">
+            <div class="column-title"><h3>ELT and EFL</h3><span class="count">0</span></div>
+            <article class="board-card" data-theme="english efl genai japan jacet">
+              <div class="tagline"><span class="tag topic">JACET</span><span class="tag ai">GenAI</span></div>
+              <h3>EFL Students' Engagement with Generative AI: Japan 2026</h3>
+              <p>This presentation explores how generative AI shapes EFL students' learning experiences, engagement patterns, and ethical awareness.</p>
+              <footer><span><i class="phase-dot"></i> EFL</span><span>Japan</span></footer>
+            </article>
+            <article class="board-card" data-theme="english preservice teacher global">
+              <div class="tagline"><span class="tag topic">English</span><span class="tag">Pre-service</span></div>
+              <h3>Pre-service Teachers and Global Competence</h3>
+              <p>This presentation examines the relationship between teacher education and global competence development.</p>
+              <footer><span><i class="phase-dot"></i> Teacher Education</span><span>Slides</span></footer>
+            </article>
+            <article class="board-card" data-theme="english multicultural kame">
+              <div class="tagline"><span class="tag topic">KAME</span><span class="tag">Multicultural</span></div>
+              <h3>KAME Presentation by Yong-Jik Lee</h3>
+              <p>This conference presentation connects English language education with multicultural education and intercultural competence.</p>
+              <footer><span><i class="phase-dot"></i> Conference</span><span>KAME</span></footer>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div><strong>Conference Presentation Archive</strong><br>AI literacy, global competence, and English language education conference materials</div><div>GitHub Pages</div></footer>
+  <script src="assets/app.js"></script>
+</body>
+</html>
