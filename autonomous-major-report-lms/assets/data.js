@@ -3269,7 +3269,7 @@ window.REPORT_LMS_DATA = {
     },
     {
       "n": 784,
-      "text": "2. 운영 FAQ"
+      "text": "2. 운영 질문"
     },
     {
       "n": 785,

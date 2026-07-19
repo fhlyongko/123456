@@ -4,7 +4,7 @@ const data = {
   meta: {
     ...window.REPORT_LMS_DATA.meta,
     title: "자율전공학부 우수사례 연구 요약 보드",
-    subtitle: "보고서 전체 논지를 빠르게 파악하기 위한 대시보드"
+    subtitle: "보고서의 전체 논지를 빠르게 파악하기 위한 요약 보드"
   }
 };
 
@@ -14,19 +14,19 @@ const validTabs = ["summary", "evidence", "factors", "roadmap", "metrics", "mate
 const insights = [
   {
     title: "자유는 구조와 함께 작동한다",
-    body: "무전공·자율전공 제도는 선택권 확대만으로 성공하지 않습니다. 전공 정보, 진입요건, 상담, 탐색 과제가 함께 배치될 때 학생의 선택이 근거 있는 결정으로 바뀝니다."
+    body: "무전공·자율전공 제도는 선택권 확대만으로 성공하기 어렵습니다. 전공 정보, 진입요건, 상담, 탐색 과제가 함께 배치될 때 학생의 선택은 근거 있는 결정으로 발전합니다."
   },
   {
     title: "우수사례는 탐색 기간을 교육과정으로 설계한다",
-    body: "KAIST·UNIST·DGIST 등은 1학년 탐색 기간을 단순 유예가 아니라 기초교과, 트랙 설계, 자기설계 활동이 결합된 교육 경험으로 운영합니다."
+    body: "KAIST·UNIST·DGIST 등은 1학년 탐색 기간을 단순한 유예 기간이 아니라 기초교과, 트랙 설계, 자기설계 활동이 결합된 교육 경험으로 운영합니다."
   },
   {
     title: "밀착 지도와 표준화된 정보가 핵심이다",
-    body: "교수 면담, 선배 멘토링, 전공위키, 전공진입 체크리스트가 결합되면 학생 간 정보 격차와 인기 전공 쏠림을 줄일 수 있습니다."
+    body: "교수 면담, 선배 멘토링, 전공위키, 전공진입 체크리스트가 결합되면 학생 간 정보 격차와 인기 전공 쏠림 현상을 줄일 수 있습니다."
   },
   {
     title: "최종 산출물은 희망 학과명이 아니라 근거 포트폴리오다",
-    body: "보고서는 학생이 전공을 왜 선택했는지 주장, 근거, 대안, 보완계획으로 설명하는 포트폴리오형 평가를 제안합니다."
+    body: "보고서는 학생이 전공을 왜 선택했는지 주장, 근거, 대안, 보완계획으로 설명하도록 하는 포트폴리오형 평가를 제안합니다."
   }
 ];
 
@@ -85,7 +85,7 @@ function renderCases(filter = "all") {
         <p class="type">${key} · ${item.type}</p>
         <h3>${item.name}</h3>
         <p>${item.point}</p>
-        <p><strong>보고서 활용:</strong> ${item.apply}</p>
+        <p><strong>적용 포인트:</strong> ${item.apply}</p>
       </article>
     `;
   }).join("");
@@ -128,7 +128,7 @@ byId("weekList").innerHTML = data.weekPlan.map(row => `
 `).join("");
 
 byId("kpiTable").innerHTML = `
-  <div class="kpi-row header"><div>영역</div><div>핵심 지표</div><div>확인 방식</div></div>
+  <div class="kpi-row header"><div>평가 영역</div><div>핵심 지표</div><div>확인 방식</div></div>
   ${data.kpis.map(row => `<div class="kpi-row"><div>${row[0]}</div><div>${row[1]}</div><div>${row[2]}</div></div>`).join("")}
 `;
 
