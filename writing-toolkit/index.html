@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>영어논문 작성 툴킷</title>
+<meta name="description" content="연구질문·초록 5문장·서론 funnel·방법·논의·리뷰어 체크리스트·AI 공개 문구를 복사해 바로 쓰는 템플릿 뱅크.">
+<style>
+  :root{--ink:#1c1b19;--text:#2f2d2a;--muted:#6b6760;--faint:#8d887f;
+   --line:#e5e1d9;--soft:#f2efe8;--bg:#fbfaf7;--card:#fff;
+   --navy:#1E2761;--navy2:#3B4587;--gold:#D9A441;--goldd:#9C7318;
+   --maxw:1020px;--navh:56px;
+   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+   --serif:Georgia,"Times New Roman",serif;}
+  *{box-sizing:border-box} html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7}
+  a{color:var(--ink)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  nav.top{position:sticky;top:0;z-index:40;background:rgba(251,250,247,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--navh)}
+  nav.top .brand{font-weight:700;font-size:15px;color:var(--navy)}
+  nav.top .links a{color:var(--muted);text-decoration:none;font-size:13.5px;margin-left:15px}
+  nav.top .links a:hover{color:var(--ink)}
+  @media(max-width:760px){nav.top .links{display:none}}
+  header.hero{background:linear-gradient(135deg,#1E2761,#3B4587 65%,#5b63a8);color:#fff;padding:46px 0 38px}
+  .eyebrow{font-size:12.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:0 0 12px}
+  header.hero h1{font-family:var(--serif);font-size:33px;line-height:1.2;margin:0 0 10px;font-weight:700}
+  header.hero p{font-size:16px;color:rgba(255,255,255,.9);margin:0;max-width:660px}
+  .toolbar{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:var(--navh);z-index:30}
+  .toolbar .wrap{padding:12px 22px;display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+  #q{flex:1;min-width:190px;height:38px;border:1px solid var(--line);border-radius:9px;padding:0 13px;font-family:inherit;font-size:14px;background:var(--bg)}
+  .f{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:18px;padding:6px 14px;font-size:12.5px;cursor:pointer;font-family:inherit}
+  .f.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  section{padding:30px 0}
+  h2{font-size:20px;margin:0 0 4px;color:var(--ink);font-weight:700}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 18px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}}
+  .t{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:18px 20px;display:flex;flex-direction:column;gap:9px;border-top:3px solid var(--navy2)}
+  .th{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .cat{font-size:11px;font-weight:700;color:var(--goldd);background:var(--soft);border-radius:5px;padding:3px 9px}
+  .t h3{font-size:16.5px;margin:0;color:var(--ink);font-weight:700}
+  .t .dsc{font-size:13px;color:var(--muted);margin:0}
+  .t pre{background:var(--soft);border-radius:8px;padding:13px 15px;font-size:12.8px;line-height:1.65;white-space:pre-wrap;word-break:break-word;margin:0;font-family:inherit;color:var(--text)}
+  .cp{align-self:flex-start;border:1px solid var(--navy);background:transparent;color:var(--navy);border-radius:7px;padding:6px 14px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit}
+  .cp:hover{background:var(--navy);color:#fff}
+  .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:36px 0}
+  footer{border-top:1px solid var(--line);padding:26px 0 54px;color:var(--faint);font-size:12.5px;text-align:center}
+  footer b{color:var(--muted);display:block;font-size:13.5px;margin-bottom:4px}
+  @media print{nav.top,.toolbar,.cp{display:none}body{background:#fff}.t{break-inside:avoid}}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <span class="brand">영어논문 작성 툴킷</span>
+  <span class="links"><a href="https://fhlyongko.github.io/123456/">포털</a>
+  <a href="https://fhlyongko.github.io/123456/research-ethics-ai/">AI 연구윤리</a>
+  <a href="https://fhlyongko.github.io/123456/graduate-academic-writing-lms/">논문작성 LMS</a></span>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">Academic Writing Toolkit</p>
+  <h1>영어논문 작성 툴킷</h1>
+  <p>연구질문·초록·서론·방법·논의·리뷰어 점검·AI 공개 문구까지, 필요한 문장 틀을 골라 <b>복사</b>해서 바로 쓰세요.</p>
+</div></header>
+
+<div class="toolbar"><div class="wrap">
+  <input id="q" type="search" placeholder="검색: abstract, research question, limitation, reviewer …">
+  <button class="f on" data-f="all">전체</button>
+  <button class="f" data-f="rq">연구질문</button>
+  <button class="f" data-f="ab">초록</button>
+  <button class="f" data-f="in">서론</button>
+  <button class="f" data-f="me">방법</button>
+  <button class="f" data-f="di">결과·논의</button>
+  <button class="f" data-f="rv">리뷰어·윤리</button>
+</div></div>
+
+<section><div class="wrap">
+  <h2 id="st">전체 템플릿</h2>
+  <p class="lead">각 카드의 <b>복사</b> 버튼을 누르면 문장 틀이 클립보드에 저장됩니다. 밑줄(___) 부분만 바꿔 쓰세요.</p>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<footer><div class="wrap"><b>영어논문 작성 툴킷</b>
+<span>국립창원대학교 이용직 · 대학원 영어논문작성 LMS 부속 도구</span></div></footer>
+
+<script>
+const T=[
+{c:"rq",cat:"Research Question",t:"연구질문 만들기 (Builder)",d:"관심 주제를 연구 가능한 질문으로 바꾸는 4단계 틀.",
+x:`Topic: I am interested in examining ___.
+Problem: However, little is known about ___.
+Purpose: This study aims to investigate ___.
+Question 1: How does ___ influence ___?
+Question 2: To what extent does ___ predict ___?`},
+{c:"rq",cat:"Research Question",t:"영역별 RQ (전후 비교형)",d:"동일 구조를 반복해 일관성을 보여주는 방식.",
+x:`Q1: How has ___ changed before and after participating in ___ regarding ___?
+Q2: How has ___ changed before and after participating in ___ regarding ___?
+Q3: How has ___ changed before and after participating in ___ regarding ___?`},
+{c:"ab",cat:"Abstract",t:"초록 5문장 프레임",d:"양적·질적 논문 초록을 빠르게 구성하는 기본 구조.",
+x:`Background: Recent research has emphasized the importance of ___.
+Gap: Nevertheless, limited attention has been paid to ___.
+Objective: This study investigates ___.
+Methods: Data were collected from ___ and analyzed using ___.
+Contribution: The findings suggest that ___.`},
+{c:"ab",cat:"Abstract",t:"초록 점검 체크",d:"제출 전 초록에 빠진 요소가 없는지 확인.",
+x:`□ 연구 문제와 목적이 첫 2문장 안에 드러나는가?
+□ 방법(대상·표본 수·분석)이 구체적인가?
+□ 핵심 결과가 수치·패턴으로 제시되는가?
+□ 결론과 함의(시사점)가 있는가?
+□ 분량 250–300단어, 저널 지침을 확인했는가?`},
+{c:"in",cat:"Introduction",t:"서론 funnel 구조",d:"넓은 주제에서 연구질문으로 좁히는 4단계.",
+x:`(1) 넓은 배경: ___ has become increasingly important in ___.
+(2) 좁히기: Within this context, research on ___ has focused on ___.
+(3) 연구 갭: However, few studies have examined ___.
+(4) 목적·RQ: Therefore, this study examines ___. Specifically, it addresses the following research question(s): ___.`},
+{c:"in",cat:"Introduction",t:"연구 갭 문장 (Gap statement)",d:"선행연구를 인정하면서 빈틈을 드러내는 표현.",
+x:`Although previous research has demonstrated that ___, there has been a lack of research that has specifically focused on ___.
+Thus, this study aims to fill the gap in the literature to better understand ___.`},
+{c:"me",cat:"Methodology",t:"연구 맥락·참여자",d:"복제 가능하도록 맥락과 표본을 기술.",
+x:`This study was conducted at ___ (institution/context) in ___ (period).
+A total of ___ participants (n = ___ female, n = ___ male; M age = ___ years) took part in this study.
+Participants were recruited through ___, and all provided informed consent prior to data collection.`},
+{c:"me",cat:"Methodology",t:"도구·분석 절차",d:"신뢰도·타당도와 분석 방법을 함께 기술.",
+x:`Data were collected using ___ (instrument), which consisted of ___ items measured on a ___-point Likert scale (Cronbach's α = ___).
+Quantitative data were analyzed using ___ (e.g., paired-sample t-tests) in ___ (SPSS/R).
+Qualitative data were analyzed using thematic analysis following ___.`},
+{c:"di",cat:"Results",t:"결과 제시 문장",d:"해석은 빼고 사실만 객관적으로.",
+x:`Table ___ presents ___. As shown in Figure ___, ___.
+The results indicated a statistically significant difference between ___ and ___ (t(__) = __, p = __, d = __).
+Three themes emerged from the analysis: (1) ___, (2) ___, and (3) ___.`},
+{c:"di",cat:"Discussion",t:"논의 연결 문장",d:"결과를 RQ·선행연구와 연결.",
+x:`These findings suggest that ___, which is consistent with previous research (___).
+In contrast to ___, the present study found ___. One possible explanation is that ___.
+Returning to the research question, the results indicate that ___.`},
+{c:"di",cat:"Limitation",t:"한계·향후 연구",d:"과대 해석을 막고 균형을 잡는 문단.",
+x:`This study has several limitations. First, the sample was limited to ___, which may restrict generalizability.
+Second, ___ was measured through self-report, which may introduce ___.
+Future research should ___ with larger and more diverse samples, and employ ___ to further examine ___.`},
+{c:"di",cat:"Hedging",t:"신중한 표현 (Hedging)",d:"단정 대신 한계를 남기는 학술 표현.",
+x:`강한 단정 → 신중한 표현
+"This policy increases growth." → "The findings suggest that this policy may increase growth."
+"X causes Y." → "X appears to be associated with Y."
+"The program is effective." → "The program appears effective in certain contexts."
+자주 쓰는 표현: suggest, indicate, may, appear to, tend to, in certain contexts`},
+{c:"rv",cat:"Reviewer",t:"투고 전 리뷰어 체크리스트",d:"심사자 관점에서 마지막 점검.",
+x:`□ Is the research gap explicit?
+□ Are the research questions aligned with the methods?
+□ Are the results directly connected to the research questions?
+□ Does the discussion explain the contribution and limitations?
+□ Are all references accurate and verifiable (DOI checked)?
+□ Does the abstract summarize purpose, method, results, and contribution?`},
+{c:"rv",cat:"Ethics",t:"연구윤리·AI 활용 공개",d:"동의·윤리 준수와 AI 사용을 함께 밝히는 문구.",
+x:`Participants provided informed consent before data collection.
+The study followed institutional ethical guidelines (IRB No. ___).
+Generative AI tools (___, version ___) were used only for ___ (e.g., language editing) as permitted by the journal's policy.
+All substantive claims, analyses, and citations were verified by the author(s), who take full responsibility for the content.`},
+{c:"rv",cat:"Cover letter",t:"투고 커버레터 첫 문단",d:"편집장에게 보내는 첫 인상.",
+x:`Dear Editor-in-Chief,
+We are pleased to submit our manuscript entitled "___" for consideration as an original research article in ___.
+This manuscript is original, has not been published previously, and is not under consideration elsewhere.
+Our study contributes to ___ by ___, which aligns with the scope of your journal.`},
+];
+const LBL={rq:"연구질문",ab:"초록",in:"서론",me:"방법",di:"결과·논의",rv:"리뷰어·윤리"};
+let flt="all"; const $=s=>document.querySelector(s);
+function draw(){
+ const q=$("#q").value.trim().toLowerCase();
+ const l=T.filter(t=>flt==="all"||t.c===flt).filter(t=>!q||(t.t+t.d+t.x+t.cat).toLowerCase().includes(q));
+ $("#grid").innerHTML=l.length? l.map((t,i)=>`
+  <article class="t"><div class="th"><span class="cat">${t.cat}</span><h3>${t.t}</h3></div>
+  <p class="dsc">${t.d}</p><pre id="x${i}">${t.x.replace(/</g,"&lt;")}</pre>
+  <button class="cp" data-i="x${i}">복사</button></article>`).join("")
+  : '<div class="empty">검색 결과가 없습니다.</div>';
+ $("#st").textContent = flt==="all"?"전체 템플릿":LBL[flt]+" 템플릿";
+}
+document.querySelector(".toolbar").addEventListener("click",e=>{if(!e.target.matches(".f"))return;
+ document.querySelectorAll(".f").forEach(b=>b.classList.remove("on"));e.target.classList.add("on");
+ flt=e.target.dataset.f;draw();});
+$("#q").addEventListener("input",draw);
+document.addEventListener("click",async e=>{const b=e.target.closest(".cp");if(!b)return;
+ await navigator.clipboard.writeText(document.getElementById(b.dataset.i).textContent);
+ const o=b.textContent;b.textContent="복사됨";setTimeout(()=>b.textContent=o,1300);});
+draw();
+</script>
+</body>
+</html>
