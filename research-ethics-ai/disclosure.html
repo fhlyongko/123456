@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>공개서 생성기 | AI 연구윤리 실습 도구</title>
+<meta name="description" content="AI 활용 공개서 자동 생성">
+<style>
+:root{--ink:#1c1b19;--text:#2f2d2a;--muted:#6b6760;--faint:#8d887f;
+--line:#e5e1d9;--soft:#f2efe8;--bg:#fbfaf7;--card:#fff;
+--navy:#1E2761;--navy2:#3B4587;--gold:#D9A441;--goldd:#9C7318;
+--teal:#0f5f57;--teal2:#14746f;--warn:#a8452e;--warnb:#fbeee9;
+--maxw:1020px;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+--serif:Georgia,"Times New Roman",serif;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--ink)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.top{background:#0f5f57;color:#fff;padding:26px 0 0}
+.top .bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.top .brand{font-weight:700;font-size:16px;color:#fff;text-decoration:none}
+.top .home{font-size:12.5px;color:rgba(255,255,255,.8);text-decoration:none;border:1px solid rgba(255,255,255,.3);border-radius:16px;padding:5px 13px}
+.top .home:hover{background:rgba(255,255,255,.14)}
+.top h1{font-family:var(--serif);font-size:29px;margin:16px 0 6px;font-weight:700}
+.top p.sub{font-size:15px;color:rgba(255,255,255,.88);margin:0 0 20px;max-width:680px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.tabs a{display:block;padding:11px 17px;font-size:14px;font-weight:600;color:rgba(255,255,255,.82);text-decoration:none;border-radius:9px 9px 0 0;background:rgba(255,255,255,.10)}
+.tabs a:hover{background:rgba(255,255,255,.2);color:#fff}
+.tabs a.on{background:var(--bg);color:#0f5f57}
+main{padding:32px 0 20px}
+.kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--goldd);font-weight:700;margin:0 0 6px}
+h2{font-size:22px;margin:0 0 8px;color:var(--ink);font-weight:700}
+h3{font-size:16.5px;margin:0 0 4px;color:var(--ink)}
+.lead{color:var(--muted);font-size:15px;margin:0 0 20px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:15px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:18px 20px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:7px;border-top:3px solid #0f5f57}
+.card:hover{box-shadow:0 5px 16px rgba(0,0,0,.07)}
+.card p{font-size:13.5px;color:var(--muted);margin:0;flex:1}
+.go{font-size:12.5px;font-weight:700;color:#0f5f57}
+footer{border-top:1px solid var(--line);padding:26px 0 54px;color:var(--faint);font-size:12.5px;text-align:center;margin-top:24px}
+footer b{color:var(--muted);display:block;font-size:13.5px;margin-bottom:4px}
+@media print{.top{background:#fff;color:#000}.tabs{display:none}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap">
+  <div class="bar"><a class="brand" href="index.html">AI 연구윤리 실습 도구</a><a class="home" href="https://fhlyongko.github.io/123456/">← 통합 포털</a></div>
+  <h1>AI 연구윤리 실습 도구</h1>
+  <p class="sub">연구 단계별 점검 · AI 활용 공개서 생성 · 저널 정책 비교. 탭을 눌러 이동하세요.</p>
+  <nav class="tabs"><a href="index.html" class="">개요</a><a href="checklist.html" class="">체크리스트</a><a href="disclosure.html" class="on">공개서 생성기</a><a href="policy.html" class="">저널 정책</a></nav>
+</div></div>
+<main><div class="wrap">
+<style>
+.gen{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.gen{grid-template-columns:1fr}}
+.fld{margin-bottom:12px}
+.fld label{display:block;font-size:12.5px;font-weight:700;color:#0f5f57;margin-bottom:5px}
+.fld input,.fld select{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-family:inherit;font-size:14px;background:var(--card)}
+.out{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:16px 18px}
+.out h4{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#9C7318;margin:0 0 6px;font-weight:700}
+.out pre{background:var(--soft);border-radius:8px;padding:12px 14px;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin:0 0 8px;font-family:inherit}
+.cp{border:1px solid #14746f;background:transparent;color:#14746f;border-radius:7px;padding:6px 13px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:15px}
+.cp:hover{background:#14746f;color:#fff}
+.note{background:#fbeee9;border:1px solid #f0d5cc;border-radius:10px;padding:15px 18px;margin-top:18px}
+.note h3{font-size:14px;margin:0 0 7px;color:#a8452e}
+.note ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.6}
+</style><p class="kick">Disclosure generator</p><h2>AI 활용 공개서 생성기</h2>
+<p class="lead">도구·버전·용도를 입력하면 네 가지 공개 문구가 자동으로 만들어집니다. 복사해서 논문에 붙여 넣으세요.</p>
+<div class="gen"><div>
+ <div class="fld"><label>AI 도구</label><input id="tool" value="ChatGPT"></div>
+ <div class="fld"><label>제공사</label><input id="vendor" value="OpenAI"></div>
+ <div class="fld"><label>버전</label><input id="ver" value="GPT-5.3"></div>
+ <div class="fld"><label>사용 목적</label><select id="use">
+  <option>문법 및 문장 교정(language editing)</option><option>영문 번역 초안 작성</option>
+  <option>문헌 탐색 및 키워드 도출</option><option>분석 코드 작성 및 디버깅 보조</option>
+  <option>아이디어 브레인스토밍</option></select></div>
+ <div class="fld"><label>사용 기간</label><input id="period" value="2026. 3. 1. ~ 2026. 5. 10."></div>
+ <div class="fld"><label>사용 연도</label><input id="year" value="2026"></div>
+ <div class="fld"><label>도구 URL (APA 인용용)</label><input id="url" value="https://chat.openai.com/"></div>
+</div><div class="out">
+ <h4>각주 (Footnote)</h4><pre id="o1"></pre><button class="cp" data-t="o1">복사</button>
+ <h4>참고문헌 (APA 7판)</h4><pre id="o2"></pre><button class="cp" data-t="o2">복사</button>
+ <h4>Acknowledgment</h4><pre id="o3"></pre><button class="cp" data-t="o3">복사</button>
+ <h4>Methods 섹션</h4><pre id="o4"></pre><button class="cp" data-t="o4">복사</button>
+</div></div>
+<div class="note"><h3>⚠ 공개 전 반드시 확인</h3><ul>
+<li>AI는 저자가 될 수 없으며, 최종 책임은 연구자에게 있습니다.</li>
+<li>AI가 제시한 참고문헌·통계·DOI는 원문으로 직접 검증해야 합니다.</li>
+<li>개인정보·미공개 연구데이터는 입력 금지(입력 시 반드시 비식별화).</li>
+<li>투고 전 해당 학술지의 AI 정책을 반드시 확인하세요.</li></ul></div>
+</div></main>
+<footer><div class="wrap"><b>AI 연구윤리 실습 도구</b><span>국립창원대학교 이용직</span></div></footer>
+<script>
+const F=["tool","vendor","ver","use","period","year","url"].map(i=>document.getElementById(i));
+function nounForm(k){if(k.includes("교정"))return "language editing and grammar correction";
+ if(k.includes("번역"))return "drafting English translations of the manuscript";
+ if(k.includes("문헌"))return "exploring search keywords and mapping the relevant literature";
+ if(k.includes("코드"))return "writing and debugging the analysis code";
+ return "brainstorming research ideas";}
+function verbForm(k){if(k.includes("교정"))return "edit the language and correct grammatical errors";
+ if(k.includes("번역"))return "draft English translations of the manuscript";
+ if(k.includes("문헌"))return "explore search keywords and map the relevant literature";
+ if(k.includes("코드"))return "write and debug the analysis code";
+ return "brainstorm research ideas";}
+function gen(){const [tool,vendor,ver,use,period,year,url]=F.map(x=>x.value.trim());
+ document.getElementById('o1').textContent=`"${use}" ${tool}(${vendor}, ${ver}, ${year}), ${period}. 생성형 AI가 제시한 응답을 연구자가 검토 및 수정하여 본문에 반영하였음.`;
+ document.getElementById('o2').textContent=`${vendor}. (${year}). ${tool} (${ver}) [Large language model]. ${url}`;
+ document.getElementById('o3').textContent=`The author(s) used ${tool} (${vendor}, ${ver}) to assist with ${nounForm(use)} in the preparation of this manuscript. The author(s) reviewed and edited all AI-generated content and take full responsibility for the final version of the manuscript.`;
+ document.getElementById('o4').textContent=`During the preparation of this work, the author(s) used ${tool} (${vendor}, ${ver}) in order to ${verbForm(use)}. After using this tool, the author(s) reviewed and edited the content as necessary and take full responsibility for the content of the published article.`;}
+F.forEach(x=>x.addEventListener("input",gen));
+document.addEventListener("click",async e=>{const b=e.target.closest(".cp");if(!b)return;
+ await navigator.clipboard.writeText(document.getElementById(b.dataset.t).textContent);
+ const o=b.textContent;b.textContent="복사됨";setTimeout(()=>b.textContent=o,1300);});
+gen();</script>
+</body>
+</html>
