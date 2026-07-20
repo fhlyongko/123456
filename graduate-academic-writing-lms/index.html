@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대학원 영어 논문 작성 LMS</title>
+<style>
+  :root{
+    --ink:#1d1c1a;--text:#33312d;--muted:#6f6b63;--faint:#8a857b;
+    --line:#e7e3da;--soft:#f1ede5;--bg:#fbfaf7;--card:#fff;--accent:#2b2b2b;
+    --c1:#3a5a86;--c1b:#e6edf6;--c2:#3a6b6b;--c2b:#e3efed;--c3:#a8602e;--c3b:#f6e9df;--c4:#7a5d8a;--c4b:#efe8f3;
+    --maxw:960px;--navh:56px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--ink)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  nav.top{position:sticky;top:0;z-index:40;background:rgba(251,250,247,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--navh)}
+  nav.top .brand{font-weight:700;font-size:15px}
+  nav.top .links a{color:var(--muted);text-decoration:none;font-size:13.5px;margin-left:16px}
+  nav.top .links a:hover{color:var(--ink)}
+  @media(max-width:680px){nav.top .links{display:none}}
+
+  header.hero{padding:50px 0 28px}
+  .eyebrow{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600;margin:0 0 12px}
+  header.hero h1{font-family:var(--serif);font-size:33px;line-height:1.2;margin:0 0 12px;color:var(--ink)}
+  header.hero p.sub{font-size:16px;color:var(--muted);margin:0 0 20px;max-width:660px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+  .meta-row b{color:var(--ink);font-weight:650}
+
+  section{padding:34px 0;border-top:1px solid var(--soft);scroll-margin-top:calc(var(--navh)+10px)}
+  .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:700;margin:0 0 6px}
+  h2{font-size:22px;margin:0 0 6px;color:var(--ink);font-weight:700}
+  .lead{color:var(--muted);font-size:15px;margin:0 0 20px}
+
+  .controls{margin-bottom:8px}
+  .controls input{width:100%;height:38px;border:1px solid var(--line);border-radius:8px;padding:0 14px;font-family:inherit;font-size:14px;background:var(--card)}
+  .filters{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 16px}
+  .filter{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:18px;padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+  .filter.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .progress{display:flex;align-items:center;gap:12px;margin:0 0 18px;font-size:13.5px;color:var(--muted)}
+  .pbar{flex:1;height:7px;background:var(--soft);border-radius:5px;overflow:hidden;max-width:340px}
+  .pbar span{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+
+  .weeks{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:760px){.weeks{grid-template-columns:1fr}}
+  .wk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;border-left:4px solid var(--line);display:flex;flex-direction:column;gap:8px}
+  .wk.planning{border-left-color:var(--c1)} .wk.writing{border-left-color:var(--c2)} .wk.ethics{border-left-color:var(--c3)} .wk.career{border-left-color:var(--c4)}
+  .wk-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .wbadge{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);background:var(--soft);border-radius:6px;padding:2px 9px}
+  .ctag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:5px}
+  .ctag.planning{color:var(--c1);background:var(--c1b)} .ctag.writing{color:var(--c2);background:var(--c2b)}
+  .ctag.ethics{color:var(--c3);background:var(--c3b)} .ctag.career{color:var(--c4);background:var(--c4b)}
+  .wk h3{font-size:16px;margin:0;color:var(--ink);line-height:1.35}
+  .wk .goals{font-size:13px;color:var(--muted);margin:0;line-height:1.5}
+  .row{font-size:13.5px;color:var(--text);margin:0;line-height:1.5}
+  .row b{color:var(--ink);font-weight:650;font-size:12px;display:block;letter-spacing:.02em}
+  details{margin-top:2px}
+  details summary{font-size:12.5px;color:var(--muted);cursor:pointer;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"▸ ";color:var(--faint)}
+  details[open] summary::before{content:"▾ "}
+  details ul{margin:6px 0 0;padding-left:18px;font-size:12.5px;color:var(--muted);line-height:1.55}
+  .wk-foot{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:auto;padding-top:4px}
+  .pdf{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 10px;text-decoration:none;background:var(--bg)}
+  .pdf:hover{background:var(--soft)} .pdf.none{color:var(--faint);border-style:dashed;cursor:default}
+  .done{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);cursor:pointer;user-select:none}
+
+  .tools{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:680px){.tools{grid-template-columns:1fr}}
+  .tool{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+  .tool h3{font-size:15.5px;margin:0 0 4px;color:var(--ink)}
+  .tool p{font-size:13px;color:var(--muted);margin:0 0 10px}
+  .tool ul{margin:0 0 12px;padding-left:16px;font-size:12.5px;color:var(--text);line-height:1.6}
+  .copy{border:1px solid var(--accent);background:transparent;color:var(--accent);font-family:inherit;font-size:12.5px;font-weight:600;padding:6px 14px;border-radius:6px;cursor:pointer}
+  .copy:hover{background:var(--accent);color:#fff}
+
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.cards3{grid-template-columns:1fr}}
+  .cw{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .cw span{font-size:11.5px;font-weight:700;color:var(--accent);background:var(--soft);border-radius:5px;padding:2px 8px;display:inline-block;margin-bottom:8px}
+  .cw strong{display:block;font-size:15px;color:var(--ink);margin-bottom:4px}
+  .cw p{font-size:13px;color:var(--muted);margin:0;line-height:1.55}
+
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:760px){.flow{grid-template-columns:repeat(2,1fr)}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 16px}
+  .step .no{font-family:var(--serif);font-size:13px;color:var(--faint)}
+  .step strong{display:block;font-size:14px;color:var(--ink);margin:4px 0 4px}
+  .step p{font-size:12.5px;color:var(--muted);margin:0;line-height:1.5}
+  .rubric{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(max-width:680px){.rubric{grid-template-columns:1fr}}
+  .rb{background:var(--soft);border-radius:9px;padding:15px 17px}
+  .rb strong{display:block;font-size:14.5px;color:var(--ink);margin-bottom:4px}
+  .rb p{font-size:13px;color:var(--muted);margin:0;line-height:1.5}
+
+  footer{padding:30px 0 60px;border-top:1px solid var(--line);text-align:center;color:var(--faint);font-size:13px;margin-top:20px}
+  footer b{color:var(--muted);display:block;font-size:14px;margin-bottom:3px}
+  @media print{nav.top{display:none}body{background:#fff}.wk,.tool,.rb{break-inside:avoid}details{display:none}}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <span class="brand">Academic Writing LMS</span>
+  <span class="links"><a href="#modules">주차별</a><a href="#studio">작성 도구</a><a href="#flow">평가</a><a href="#materials">자료</a></span>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">Graduate Academic Writing in English</p>
+  <h1>대학원 유학생을 위한 영어 논문 작성</h1>
+  <p class="sub">연구 아이디어부터 문헌고찰·방법론·결과와 논의·연구윤리·커리어 문서까지, 15주 과정으로 정리한 실전형 LMS입니다.</p>
+  <div class="meta-row">
+    <span>대상 <b>International Graduate Students</b></span>
+    <span>구성 <b>15주 웹 모듈</b></span>
+    <span>핵심 <b>연구설계 · 논문작성 · 윤리/AI · 커리어</b></span>
+  </div>
+</div></header>
+
+<section id="modules"><div class="wrap">
+  <p class="kicker">Weekly Modules</p>
+  <h2>주차별 학습</h2>
+  <p class="lead">검색하거나 주제로 골라 보고, 학습 후 완료를 표시하세요. 체크리스트는 펼쳐서 확인합니다.</p>
+  <div class="controls"><input id="search" type="search" placeholder="검색: abstract, IRB, literature review, AI 윤리 …"></div>
+  <div class="filters" id="filters">
+    <button class="filter active" data-f="all">전체</button>
+    <button class="filter" data-f="planning">연구설계</button>
+    <button class="filter" data-f="writing">논문작성</button>
+    <button class="filter" data-f="ethics">윤리·AI</button>
+    <button class="filter" data-f="career">성장·커리어</button>
+  </div>
+  <div class="progress"><span>진행률</span><div class="pbar"><span id="pbar"></span></div><b id="ptext">0 / 15</b></div>
+  <div class="weeks" id="weeks"></div>
+</div></section>
+
+<section id="studio"><div class="wrap">
+  <p class="kicker">Writing Studio</p>
+  <h2>논문 작성 도구</h2>
+  <p class="lead">수업 중 바로 쓰는 문장 틀입니다. 버튼을 누르면 템플릿이 복사됩니다.</p>
+  <div class="tools" id="tools"></div>
+</div></section>
+
+<section id="flow"><div class="wrap">
+  <p class="kicker">Coursework & Assessment</p>
+  <h2>수업 운영과 평가</h2>
+  <p class="lead">매주: 준비 → 수업 중 생산 → 수정본 제출. 평가는 4개의 산출물로 누적됩니다.</p>
+  <div class="cards3" style="margin-bottom:16px">
+    <div class="cw"><span>Before</span><strong>읽기·초안 준비</strong><p>핵심개념을 확인하고 내 주제와 연결되는 질문·문장·자료를 준비합니다.</p></div>
+    <div class="cw"><span>In Class</span><strong>문장 생산·피드백</strong><p>템플릿으로 실제 논문 문장을 쓰고 동료·교수 피드백으로 방향을 정합니다.</p></div>
+    <div class="cw"><span>After</span><strong>수정본 제출</strong><p>피드백을 반영해 연구 질문·문헌고찰·방법론·초록을 단계적으로 완성합니다.</p></div>
+  </div>
+  <div class="flow">
+    <div class="step"><div class="no">01</div><strong>Research Question Brief</strong><p>주제·공백·목적·연구 질문 1쪽 정리</p></div>
+    <div class="step"><div class="no">02</div><strong>Literature Review Matrix</strong><p>선행연구 비교, 연구 공백 도출</p></div>
+    <div class="step"><div class="no">03</div><strong>Paper Section Draft</strong><p>한 섹션(초록·서론·방법·결과) 완성</p></div>
+    <div class="step"><div class="no">04</div><strong>Final Research Portfolio</strong><p>초안·윤리 점검·수정계획·발표자료</p></div>
+  </div>
+  <h2 style="margin:26px 0 14px;font-size:18px">평가 루브릭</h2>
+  <div class="rubric">
+    <div class="rb"><strong>Research Alignment</strong><p>목적·질문·방법·자료·해석이 하나의 논리로 연결되는가.</p></div>
+    <div class="rb"><strong>Academic Writing</strong><p>명확한 문장, 학술 표현, 문단 구조, 인용의 정확성.</p></div>
+    <div class="rb"><strong>Revision Process</strong><p>피드백을 반영해 개선하고 수정 이유를 설명하는가.</p></div>
+    <div class="rb"><strong>Ethics & AI Use</strong><p>연구윤리·개인정보·AI 투명성·표절 방지 준수.</p></div>
+  </div>
+</div></section>
+
+<section id="materials"><div class="wrap">
+  <p class="kicker">Materials</p>
+  <h2>PDF 강의자료</h2>
+  <p class="lead">주차별 강의 슬라이드를 PDF로 바로 열거나 내려받습니다.</p>
+  <div class="filters" id="matgrid" style="margin-top:0"></div>
+</div></section>
+
+<footer><div class="wrap"><b>대학원 영어 논문 작성 LMS</b><span>Academic writing aligns purpose, questions, methods, evidence, and contribution.</span></div></footer>
+
+<script>
+const B="https://fhlyongko.github.io/123456/materials/";
+const M=[
+ {w:1,c:"writing",t:"영어 논문 작성의 큰 지도",g:"Academic English의 목적과 정렬, 리뷰어 관점으로 구조 보기",act:"내 연구 주제를 한 문장으로 쓰고 목적·질문·방법·기여를 연결한다.",as:"연구 주제 1개의 목적·예상 독자를 150단어 이내로 작성.",ck:["주제가 한 문장으로 표현됐는가?","목적·질문·방법·기여가 연결되는가?","명확성을 복잡함보다 우선했는가?"],f:"week1-academic-writing-summary-40slides-redesign.pdf"},
+ {w:2,c:"planning",t:"연구계획 수립과 문제 설정",g:"논문 계획 단계, 서론 funnel, 문제 정의",act:"관심 주제를 연구 문제로 좁히고 why·what·how 질문을 만든다.",as:"관심사·문제·목적·문헌·연구 질문을 담은 research planning memo.",ck:["관심사가 구체적 연구 문제로 좁혀졌는가?","배경-공백-목적 흐름이 보이는가?","연구 질문이 자료·방법으로 답할 수 있는가?"],f:"week2-research-planning-academic-writing-40slides-redesign.pdf"},
+ {w:3,c:"planning",t:"이론적 기반과 문헌고찰",g:"이론적 기반, 문헌 조직화, 투고 프로필",act:"선행연구 5편을 비교해 공통점·차이·공백을 표로 정리한다.",as:"문헌고찰 매트릭스와 research gap 문장 3개.",ck:["이론이 연구 질문을 뒷받침하는가?","요약이 아니라 비교·대조했는가?","연구 공백이 명시적 문장인가?"],f:"week3-theory-literature-submission-40slides.pdf"},
+ {w:4,c:"writing",t:"방법론·결과·논의와 결론",g:"Methodology와 methods 구분, 결과 제시, 논의·결론 역할",act:"내 방법을 철학적 전제·자료수집·분석 절차로 분리해 설명한다.",as:"방법론 초안 1쪽 또는 결과 문단 2개.",ck:["철학적 근거와 실제 방법이 구분되는가?","결과가 표를 반복하지 않고 의미를 설명하는가?","논의가 결과를 연구 질문에 다시 연결하는가?"],f:"week4-methodology-results-discussion-40slides.pdf"},
+ {w:5,c:"writing",t:"리뷰어 관점에서 섹션 점검",g:"리뷰어 기준, 섹션별 기능, 체크리스트 적용",act:"초록 또는 서론을 리뷰어 체크리스트로 진단한다.",as:"내 초안의 강점 3·보완점 3을 reviewer memo로.",ck:["초록에서 목적·방법·결과·기여가 빠르게 보이는가?","질문·방법·결과·논의가 정렬되는가?","독자에게 필요한 기여가 분명한가?"],f:"week5-reviewer-view-paper-sections-40slides.pdf"},
+ {w:6,c:"ethics",t:"연구 시작·절차·IRB와 윤리",g:"글쓰기 이전의 why, 연구 절차·IRB, 윤리적 글쓰기",act:"대상·자료수집·개인정보·동의 절차의 위험을 점검한다.",as:"연구 절차표와 윤리 체크리스트 초안.",ck:["모집·동의·자료수집 절차가 순서대로인가?","개인정보·자료 보관 계획이 포함됐는가?","연구자 역할과 위험을 점검했는가?"],f:"week6-research-problem-procedure-ethics-40slides.pdf"},
+ {w:7,c:"writing",t:"방법론에서 결론 작성까지",g:"양적·질적·혼합 방법, 결과 시각화, 학술 글쓰기 기능",act:"표·그림 1개로 결과 문단과 논의 문단을 각각 쓴다.",as:"결과 해석 문장 5개와 논의 문단 1개.",ck:["결과 문장이 핵심 패턴을 정확히 설명하는가?","논의가 선행연구와 연결되는가?","결론이 과장 없이 기여·한계를 제시하는가?"],f:"week7-methodology-results-writing-functions-40slides.pdf"},
+ {w:8,c:"planning",t:"중간 점검 워크숍",g:"1–7주 산출물 통합, 정렬 점검, 피드백 반영 계획",act:"연구 질문·문헌고찰·방법론 초안을 교환해 피드백한다.",as:"중간 수정계획서와 다음 3주 일정.",ck:["산출물이 하나의 논문 흐름으로 연결되는가?","피드백이 구체적 수정 계획이 됐는가?","작성 일정이 현실적인가?"],f:""},
+ {w:9,c:"writing",t:"시각 자료·제안·한계·학술 언어",g:"표·그림 참조, 권장·한계 작성, 신중한 표현",act:"표·그림 설명 문장 3개와 한계 문장 2개를 쓴다.",as:"시각자료 참조 문단과 limitation paragraph.",ck:["표·그림을 번호·핵심 패턴으로 참조했는가?","한계가 가치를 약화하지 않게 균형 있는가?","인과·신중 표현을 구분했는가?"],f:"week9-visual-references-recommendations-academic-language-40slides.pdf"},
+ {w:10,c:"writing",t:"학술 영어 논문 작성 핸드북",g:"기본 원칙 종합, 전체 여정, 명확성·정확성·증거",act:"내 초안의 모호한 문장 3개를 명확하게 고친다.",as:"초록·서론 한 단락을 before/after로.",ck:["문장이 길거나 모호하지 않은가?","주장마다 근거가 연결되는가?","수정 전후 개선 이유를 설명할 수 있는가?"],f:"week10-academic-writing-handbook-summary-40slides.pdf"},
+ {w:11,c:"planning",t:"아이디어에서 연구보고까지",g:"연구 과정과 글쓰기 연결, 인용·논증, 보고서→논문",act:"인용 문장을 요약형에서 비판적 논증형으로 수정한다.",as:"문헌 인용 문장 5개와 연구 공백 단락 1개.",ck:["인용이 논증의 근거로 쓰였는가?","공백이 기존 연구 한계와 연결되는가?","보고서식을 논문식 주장으로 바꿨는가?"],f:"week11-academic-writing-research-process-40slides.pdf"},
+ {w:12,c:"career",t:"논문 사례 분석·커리어 문서",g:"논문 구조·기여 분석, Cover Letter·CV, Research Statement",act:"샘플 논문 1편의 공백·방법·결과·기여를 역추적한다.",as:"academic bio와 cover letter 첫 문단.",ck:["사례의 공백·방법·결과·기여를 구분했는가?","bio가 분야·강점을 간결히 보여주는가?","cover letter가 목적·적합성을 분명히 하는가?"],f:"week12-academic-career-writing-30slides.pdf"},
+ {w:13,c:"writing",t:"양적연구 영어 논문 작성",g:"표준 구조, 제목·초록 템플릿, 방법·결과·논의 패턴",act:"내 연구를 5문장 abstract 구조로 압축한다.",as:"Title 3버전과 structured abstract 초안.",ck:["제목이 방법·대상·핵심 변수를 보여주는가?","초록이 배경-공백-목적-방법-기여 흐름인가?","통계 표현이 정확하고 과장 없는가?"],f:"week13-quantitative-research-writing-40slides.pdf"},
+ {w:14,c:"ethics",t:"연구윤리와 AI 윤리",g:"윤리 원칙, FFP·중복게재, AI 투명성",act:"AI 활용 범위와 disclosure 문장을 맥락에 맞게 쓴다.",as:"연구윤리·AI 활용 선언문 초안.",ck:["위조·변조·표절·중복게재를 구분하는가?","AI 사용 범위·검증 책임이 투명한가?","개인정보·자료 보호 기준을 포함했는가?"],f:"week14-research-ai-ethics-39slides.pdf"},
+ {w:15,c:"career",t:"연구자의 성장과 발전",g:"성장 성찰, 연구 확산, 성장 로드맵",act:"이번 학기 산출물로 성장 포트폴리오를 구성한다.",as:"최종 포트폴리오와 6개월 성장 로드맵.",ck:["산출물이 포트폴리오로 정리됐는가?","확산·투고·발표 계획이 구체적 일정인가?","다음 역량 목표가 현실적인가?"],f:"week15-researcher-growth-20slides.pdf"},
+];
+const T=[
+ {h:"Research Question Builder",p:"관심 주제를 연구 질문으로 바꾸는 틀.",i:["Topic: I am interested in examining ...","Problem: However, little is known about ...","Purpose: This study aims to investigate ...","Question: How does ... influence ...?","Question: To what extent does ... predict ...?"]},
+ {h:"Abstract 5-Sentence Frame",p:"초록을 빠르게 구성하는 기본 구조.",i:["Background: Recent research has emphasized ...","Gap: Nevertheless, limited attention has been paid to ...","Objective: This study investigates ...","Methods: Data were collected from ... and analyzed using ...","Contribution: The findings suggest that ..."]},
+ {h:"Reviewer Checklist",p:"제출 전 심사자 관점 점검 항목.",i:["Is the research gap explicit?","Are the research questions aligned with the methods?","Are the results connected to the research questions?","Does the discussion explain contribution and limitations?"]},
+ {h:"Ethics & AI Disclosure",p:"연구윤리·AI 투명성 문장 틀.",i:["Participants provided informed consent before data collection.","The study followed institutional ethical guidelines.","AI tools were used only for language revision or brainstorming as permitted.","All claims, analyses, and citations were verified by the author."]},
+];
+const cat={planning:"연구설계",writing:"논문작성",ethics:"윤리·AI",career:"성장·커리어"};
+const KEY="grad-writing-done";
+const done=new Set(JSON.parse(localStorage.getItem(KEY)||"[]"));
+let flt="all";const $=s=>document.querySelector(s);
+function draw(){
+ const q=$("#search").value.trim().toLowerCase();const host=$("#weeks");host.innerHTML="";
+ M.filter(x=>flt==="all"||x.c===flt).filter(x=>!q||(x.t+x.g+x.act+x.as).toLowerCase().includes(q)).forEach(x=>{
+  const el=document.createElement("article");el.className="wk "+x.c;el.id="w"+x.w;const dn=done.has(x.w);
+  const pdf=x.f?`<a class="pdf" href="${B+x.f}">↓ PDF</a>`:`<span class="pdf none">워크숍 (자료 없음)</span>`;
+  el.innerHTML=`
+   <div class="wk-top"><span class="wbadge">Week ${x.w}</span><span class="ctag ${x.c}">${cat[x.c]}</span></div>
+   <h3>${x.t}</h3>
+   <p class="goals">${x.g}</p>
+   <p class="row"><b>수업 활동</b>${x.act}</p>
+   <p class="row"><b>과제</b>${x.as}</p>
+   <details><summary>체크리스트</summary><ul>${x.ck.map(c=>`<li>${c}</li>`).join("")}</ul></details>
+   <div class="wk-foot">${pdf}<label class="done"><input type="checkbox" data-w="${x.w}" ${dn?"checked":""}> 완료</label></div>`;
+  host.appendChild(el);
+ });
+ if(!host.children.length)host.innerHTML='<p class="lead">검색 결과가 없습니다.</p>';
+ prog();
+}
+function prog(){const p=Math.round(done.size/M.length*100);$("#pbar").style.width=p+"%";$("#ptext").textContent=done.size+" / "+M.length;}
+$("#tools").innerHTML=T.map((t,i)=>`<article class="tool"><h3>${t.h}</h3><p>${t.p}</p><ul>${t.i.map(x=>`<li>${x}</li>`).join("")}</ul><button class="copy" data-i="${i}">템플릿 복사</button></article>`).join("");
+$("#matgrid").innerHTML=M.filter(x=>x.f).map(x=>`<a class="pdf" href="${B+x.f}">↓ W${x.w}</a>`).join("");
+document.addEventListener("change",e=>{if(!e.target.matches("[data-w]"))return;const w=+e.target.dataset.w;e.target.checked?done.add(w):done.delete(w);localStorage.setItem(KEY,JSON.stringify([...done]));prog();});
+document.addEventListener("click",async e=>{const b=e.target.closest(".copy");if(!b)return;const t=T[+b.dataset.i];await navigator.clipboard.writeText(t.h+"\n\n"+t.i.join("\n"));b.textContent="복사 완료";setTimeout(()=>b.textContent="템플릿 복사",1400);});
+$("#filters").addEventListener("click",e=>{if(!e.target.matches(".filter"))return;document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));e.target.classList.add("active");flt=e.target.dataset.f;draw();});
+$("#search").addEventListener("input",draw);
+draw();
+</script>
+</body>
+</html>
