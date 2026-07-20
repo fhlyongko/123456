@@ -70,7 +70,7 @@
 <body>
 <nav class="top"><div class="wrap">
   <span class="brand">수업·비교과 통합 포털</span>
-  <span class="links"><a href="#courses">수업</a><a href="#extra">비교과</a><a href="#research">연구</a></span>
+  <span class="links"><a href="#" data-nav="u">학부</a><a href="#" data-nav="g">대학원</a><a href="#" data-nav="x">비교과</a><a href="#" data-nav="r">연구·도구</a></span>
 </div></nav>
 
 <header class="hero"><div class="wrap">
@@ -138,6 +138,10 @@ $("#filters").addEventListener("click",e=>{if(!e.target.matches(".f"))return;
  document.querySelectorAll(".f").forEach(b=>b.classList.remove("on"));
  e.target.classList.add("on"); flt=e.target.dataset.f; draw();});
 $("#q").addEventListener("input",draw);
+document.querySelectorAll('[data-nav]').forEach(a=>a.addEventListener("click",e=>{
+ e.preventDefault(); const t=a.dataset.nav;
+ document.querySelectorAll(".f").forEach(b=>b.classList.toggle("on",b.dataset.f===t));
+ flt=t; draw(); document.querySelector("#secTitle").scrollIntoView({behavior:"smooth",block:"start"});}));
 $("#nCourse").textContent=SITES.filter(s=>s.c==="u"||s.c==="g").length;
 $("#nExtra").textContent=SITES.filter(s=>s.c==="x").length;
 $("#nRes").textContent=SITES.filter(s=>s.c==="r").length;
