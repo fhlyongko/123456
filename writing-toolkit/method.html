@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>개요 | 영어논문 작성 툴킷</title>
-<meta name="description" content="영어논문 작성 템플릿 뱅크">
+<title>방법 | 영어논문 작성 툴킷</title>
+<meta name="description" content="방법 문장 템플릿">
 <style>
 :root{--ink:#1c1b19;--text:#2f2d2a;--muted:#6b6760;--faint:#8d887f;
 --line:#e5e1d9;--soft:#f2efe8;--bg:#fbfaf7;--card:#fff;
@@ -48,18 +48,25 @@ footer b{color:var(--muted);display:block;font-size:13.5px;margin-bottom:4px}
   <div class="bar"><a class="brand" href="index.html">영어논문 작성 툴킷</a><a class="home" href="https://fhlyongko.github.io/123456/">← 통합 포털</a></div>
   <h1>영어논문 작성 툴킷</h1>
   <p class="sub">필요한 문장 틀을 골라 복사해서 바로 쓰세요. 탭을 눌러 항목별로 이동합니다.</p>
-  <nav class="tabs"><a href="index.html" class="on">개요</a><a href="rq.html" class="">연구질문</a><a href="abstract.html" class="">초록</a><a href="intro.html" class="">서론</a><a href="method.html" class="">방법</a><a href="discussion.html" class="">결과·논의</a><a href="reviewer.html" class="">리뷰어·윤리</a></nav>
+  <nav class="tabs"><a href="index.html" class="">개요</a><a href="rq.html" class="">연구질문</a><a href="abstract.html" class="">초록</a><a href="intro.html" class="">서론</a><a href="method.html" class="on">방법</a><a href="discussion.html" class="">결과·논의</a><a href="reviewer.html" class="">리뷰어·윤리</a></nav>
 </div></div>
 <main><div class="wrap">
-<p class="kick">Overview</p><h2>어떤 문장이 필요하세요?</h2>
-<p class="lead">논문 섹션별로 탭을 나눠 두었습니다. 탭을 클릭하면 해당 템플릿 페이지로 이동합니다.
-각 카드의 <b>복사</b> 버튼을 누르면 문장 틀이 클립보드에 저장됩니다 — 밑줄(___) 부분만 바꿔 쓰세요.</p>
-<div class="cards"><a class="card" href="rq.html"><h3>연구질문</h3><p>연구 가능한 질문으로 좁히는 문장 틀</p><span class="go">템플릿 2개 보기 →</span></a><a class="card" href="abstract.html"><h3>초록</h3><p>초록 구조와 제출 전 점검</p><span class="go">템플릿 2개 보기 →</span></a><a class="card" href="intro.html"><h3>서론</h3><p>funnel 구조와 연구 갭 제시</p><span class="go">템플릿 2개 보기 →</span></a><a class="card" href="method.html"><h3>방법</h3><p>맥락·참여자·도구·분석 기술</p><span class="go">템플릿 2개 보기 →</span></a><a class="card" href="discussion.html"><h3>결과·논의</h3><p>결과 제시, 논의 연결, 한계, Hedging</p><span class="go">템플릿 4개 보기 →</span></a><a class="card" href="reviewer.html"><h3>리뷰어·윤리</h3><p>투고 전 점검, 연구윤리·AI 공개, 커버레터</p><span class="go">템플릿 3개 보기 →</span></a></div>
-<div style="background:var(--soft);border-radius:11px;padding:16px 19px;margin-top:22px;font-size:13.5px;color:var(--muted)">
-함께 쓰면 좋은 도구 · <a href="https://fhlyongko.github.io/123456/research-ethics-ai/"><b>AI 연구윤리 실습 도구</b></a>에서
-연구 단계별 체크리스트와 AI 활용 공개서를 만들 수 있습니다.</div>
+<style>
+.t{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:18px 20px;margin-bottom:15px;border-top:3px solid #1E2761}
+.t h3{font-size:16.5px;margin:0 0 3px;color:var(--ink)}
+.t .dsc{font-size:13px;color:var(--muted);margin:0 0 10px}
+.t pre{background:var(--soft);border-radius:8px;padding:13px 15px;font-size:12.8px;line-height:1.65;white-space:pre-wrap;word-break:break-word;margin:0 0 10px;font-family:inherit}
+.cp{border:1px solid #1E2761;background:transparent;color:#1E2761;border-radius:7px;padding:6px 14px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit}
+.cp:hover{background:#1E2761;color:#fff}
+</style><p class="kick">방법</p><h2>방법 템플릿</h2><p class="lead">맥락·참여자·도구·분석 기술 · 총 2개</p><article class="t"><h3>연구 맥락·참여자</h3><p class="dsc">복제 가능하도록 맥락과 표본을 기술.</p><pre id="xme0">This study was conducted at ___ (institution/context) in ___ (period).
+A total of ___ participants (n = ___ female, n = ___ male; M age = ___ years) took part in this study.
+Participants were recruited through ___, and all provided informed consent prior to data collection.</pre><button class="cp" data-i="xme0">복사</button></article><article class="t"><h3>도구·분석 절차</h3><p class="dsc">신뢰도·타당도와 분석 방법을 함께 기술.</p><pre id="xme1">Data were collected using ___ (instrument), which consisted of ___ items measured on a ___-point Likert scale (Cronbach's α = ___).
+Quantitative data were analyzed using ___ (e.g., paired-sample t-tests) in ___ (SPSS/R).
+Qualitative data were analyzed using thematic analysis following ___.</pre><button class="cp" data-i="xme1">복사</button></article>
 </div></main>
 <footer><div class="wrap"><b>영어논문 작성 툴킷</b><span>국립창원대학교 이용직</span></div></footer>
-
+<script>document.addEventListener("click",async e=>{const b=e.target.closest(".cp");if(!b)return;
+await navigator.clipboard.writeText(document.getElementById(b.dataset.i).textContent);
+const o=b.textContent;b.textContent="복사됨";setTimeout(()=>b.textContent=o,1300);});</script>
 </body>
 </html>

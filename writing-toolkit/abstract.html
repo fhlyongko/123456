@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>개요 | 영어논문 작성 툴킷</title>
-<meta name="description" content="영어논문 작성 템플릿 뱅크">
+<title>초록 | 영어논문 작성 툴킷</title>
+<meta name="description" content="초록 문장 템플릿">
 <style>
 :root{--ink:#1c1b19;--text:#2f2d2a;--muted:#6b6760;--faint:#8d887f;
 --line:#e5e1d9;--soft:#f2efe8;--bg:#fbfaf7;--card:#fff;
@@ -48,18 +48,29 @@ footer b{color:var(--muted);display:block;font-size:13.5px;margin-bottom:4px}
   <div class="bar"><a class="brand" href="index.html">영어논문 작성 툴킷</a><a class="home" href="https://fhlyongko.github.io/123456/">← 통합 포털</a></div>
   <h1>영어논문 작성 툴킷</h1>
   <p class="sub">필요한 문장 틀을 골라 복사해서 바로 쓰세요. 탭을 눌러 항목별로 이동합니다.</p>
-  <nav class="tabs"><a href="index.html" class="on">개요</a><a href="rq.html" class="">연구질문</a><a href="abstract.html" class="">초록</a><a href="intro.html" class="">서론</a><a href="method.html" class="">방법</a><a href="discussion.html" class="">결과·논의</a><a href="reviewer.html" class="">리뷰어·윤리</a></nav>
+  <nav class="tabs"><a href="index.html" class="">개요</a><a href="rq.html" class="">연구질문</a><a href="abstract.html" class="on">초록</a><a href="intro.html" class="">서론</a><a href="method.html" class="">방법</a><a href="discussion.html" class="">결과·논의</a><a href="reviewer.html" class="">리뷰어·윤리</a></nav>
 </div></div>
 <main><div class="wrap">
-<p class="kick">Overview</p><h2>어떤 문장이 필요하세요?</h2>
-<p class="lead">논문 섹션별로 탭을 나눠 두었습니다. 탭을 클릭하면 해당 템플릿 페이지로 이동합니다.
-각 카드의 <b>복사</b> 버튼을 누르면 문장 틀이 클립보드에 저장됩니다 — 밑줄(___) 부분만 바꿔 쓰세요.</p>
-<div class="cards"><a class="card" href="rq.html"><h3>연구질문</h3><p>연구 가능한 질문으로 좁히는 문장 틀</p><span class="go">템플릿 2개 보기 →</span></a><a class="card" href="abstract.html"><h3>초록</h3><p>초록 구조와 제출 전 점검</p><span class="go">템플릿 2개 보기 →</span></a><a class="card" href="intro.html"><h3>서론</h3><p>funnel 구조와 연구 갭 제시</p><span class="go">템플릿 2개 보기 →</span></a><a class="card" href="method.html"><h3>방법</h3><p>맥락·참여자·도구·분석 기술</p><span class="go">템플릿 2개 보기 →</span></a><a class="card" href="discussion.html"><h3>결과·논의</h3><p>결과 제시, 논의 연결, 한계, Hedging</p><span class="go">템플릿 4개 보기 →</span></a><a class="card" href="reviewer.html"><h3>리뷰어·윤리</h3><p>투고 전 점검, 연구윤리·AI 공개, 커버레터</p><span class="go">템플릿 3개 보기 →</span></a></div>
-<div style="background:var(--soft);border-radius:11px;padding:16px 19px;margin-top:22px;font-size:13.5px;color:var(--muted)">
-함께 쓰면 좋은 도구 · <a href="https://fhlyongko.github.io/123456/research-ethics-ai/"><b>AI 연구윤리 실습 도구</b></a>에서
-연구 단계별 체크리스트와 AI 활용 공개서를 만들 수 있습니다.</div>
+<style>
+.t{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:18px 20px;margin-bottom:15px;border-top:3px solid #1E2761}
+.t h3{font-size:16.5px;margin:0 0 3px;color:var(--ink)}
+.t .dsc{font-size:13px;color:var(--muted);margin:0 0 10px}
+.t pre{background:var(--soft);border-radius:8px;padding:13px 15px;font-size:12.8px;line-height:1.65;white-space:pre-wrap;word-break:break-word;margin:0 0 10px;font-family:inherit}
+.cp{border:1px solid #1E2761;background:transparent;color:#1E2761;border-radius:7px;padding:6px 14px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit}
+.cp:hover{background:#1E2761;color:#fff}
+</style><p class="kick">초록</p><h2>초록 템플릿</h2><p class="lead">초록 구조와 제출 전 점검 · 총 2개</p><article class="t"><h3>초록 5문장 프레임</h3><p class="dsc">양적·질적 논문 초록을 빠르게 구성하는 기본 구조.</p><pre id="xab0">Background: Recent research has emphasized the importance of ___.
+Gap: Nevertheless, limited attention has been paid to ___.
+Objective: This study investigates ___.
+Methods: Data were collected from ___ and analyzed using ___.
+Contribution: The findings suggest that ___.</pre><button class="cp" data-i="xab0">복사</button></article><article class="t"><h3>초록 점검 체크</h3><p class="dsc">제출 전 초록에 빠진 요소가 없는지 확인.</p><pre id="xab1">□ 연구 문제와 목적이 첫 2문장 안에 드러나는가?
+□ 방법(대상·표본 수·분석)이 구체적인가?
+□ 핵심 결과가 수치·패턴으로 제시되는가?
+□ 결론과 함의(시사점)가 있는가?
+□ 분량 250–300단어, 저널 지침을 확인했는가?</pre><button class="cp" data-i="xab1">복사</button></article>
 </div></main>
 <footer><div class="wrap"><b>영어논문 작성 툴킷</b><span>국립창원대학교 이용직</span></div></footer>
-
+<script>document.addEventListener("click",async e=>{const b=e.target.closest(".cp");if(!b)return;
+await navigator.clipboard.writeText(document.getElementById(b.dataset.i).textContent);
+const o=b.textContent;b.textContent="복사됨";setTimeout(()=>b.textContent=o,1300);});</script>
 </body>
 </html>
