@@ -116,6 +116,7 @@
         </select></div>
       <div class="fld"><label>사용 기간</label><input id="period" value="2026. 3. 1. ~ 2026. 5. 10."></div>
       <div class="fld"><label>사용 연도</label><input id="year" value="2026"></div>
+      <div class="fld"><label>도구 URL (APA 인용용)</label><input id="url" value="https://chat.openai.com/"></div>
     </div>
     <div class="out">
       <h4>각주 (Footnote)</h4><pre id="o1"></pre><button class="cp" data-t="o1">복사</button>
@@ -209,20 +210,27 @@ $("#reset").addEventListener("click",()=>{done.clear();localStorage.setItem(KEY,
 render();
 
 // generator
-const F=["tool","vendor","ver","use","period","year"].map(i=>document.getElementById(i));
-function gen(){
- const [tool,vendor,ver,use,period,year]=F.map(x=>x.value.trim());
- $("#o1").textContent=`"${use}" ${tool}(${vendor}, ${ver}, ${year}), ${period}. 생성형 AI가 제시한 응답을 연구자가 검토 및 수정하여 본문에 반영하였음.`;
- $("#o2").textContent=`${vendor}. (${year}). ${tool} (${ver}) [Large language model].`;
- $("#o3").textContent=`Generative AI (${tool}, ${vendor}, ${ver}) was used to assist with ${engUse(use)} in the preparation of this manuscript. The authors reviewed and edited all content and take full responsibility for the final version.`;
- $("#o4").textContent=`During the preparation of this work, the author(s) used ${tool} (${vendor}, ${ver}) in order to ${engUse(use)}. After using this tool, the author(s) reviewed and edited the content as necessary and take(s) full responsibility for the content of the published article.`;
-}
-function engUse(k){
+const F=["tool","vendor","ver","use","period","year","url"].map(i=>document.getElementById(i));
+function nounForm(k){
  if(k.includes("교정"))return "language editing and grammar correction";
- if(k.includes("번역"))return "drafting English translations";
- if(k.includes("문헌"))return "exploring search keywords and mapping literature";
- if(k.includes("코드"))return "assisting with analysis code and debugging";
+ if(k.includes("번역"))return "drafting English translations of the manuscript";
+ if(k.includes("문헌"))return "exploring search keywords and mapping the relevant literature";
+ if(k.includes("코드"))return "writing and debugging the analysis code";
  return "brainstorming research ideas";
+}
+function verbForm(k){
+ if(k.includes("교정"))return "edit the language and correct grammatical errors";
+ if(k.includes("번역"))return "draft English translations of the manuscript";
+ if(k.includes("문헌"))return "explore search keywords and map the relevant literature";
+ if(k.includes("코드"))return "write and debug the analysis code";
+ return "brainstorm research ideas";
+}
+function gen(){
+ const [tool,vendor,ver,use,period,year,url]=F.map(x=>x.value.trim());
+ $("#o1").textContent=`"${use}" ${tool}(${vendor}, ${ver}, ${year}), ${period}. 생성형 AI가 제시한 응답을 연구자가 검토 및 수정하여 본문에 반영하였음.`;
+ $("#o2").textContent=`${vendor}. (${year}). ${tool} (${ver}) [Large language model]. ${url}`;
+ $("#o3").textContent=`The author(s) used ${tool} (${vendor}, ${ver}) to assist with ${nounForm(use)} in the preparation of this manuscript. The author(s) reviewed and edited all AI-generated content and take full responsibility for the final version of the manuscript.`;
+ $("#o4").textContent=`During the preparation of this work, the author(s) used ${tool} (${vendor}, ${ver}) in order to ${verbForm(use)}. After using this tool, the author(s) reviewed and edited the content as necessary and take full responsibility for the content of the published article.`;
 }
 F.forEach(x=>x.addEventListener("input",gen));
 document.addEventListener("click",async e=>{
