@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>전자책 읽기 | E-Book</title>
+  <meta name="description" content="학술적 영어 글쓰기, 교육 연구 절차, 연구윤리, 문헌검토, 방법론, 결과 작성, 논의와 결론, 연구 성과 확산까지 한 권으로 읽는 전자책">
+  <link rel="stylesheet" href="assets/styles.css">
+  
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">AW</span>
+      <span><strong>Academic Writing E-Book</strong><small>Graduate Research Writing</small></span>
+    </a>
+    <nav class="top-nav" aria-label="Main navigation">
+      <a class="nav-link" href="index.html">Home</a>
+<a class="nav-link active" href="reader.html">E-Book Reader</a>
+<a class="nav-link" href="contents.html">Contents</a>
+<a class="nav-link" href="brunchbook.html">Brunchbook View</a>
+<a class="nav-link" href="downloads.html">Download</a>
+    </nav>
+  </header>
+  <main>
+    
+    <section class="reader-shell">
+      <aside class="reader-panel">
+        <p class="eyebrow">E-Book Reader</p>
+        <h1>전자책 읽기</h1>
+        <label class="search-label" for="searchInput">본문 검색</label>
+        <input id="searchInput" class="search-input" type="search" placeholder="검색어를 입력하세요">
+        <div class="reader-controls">
+          <button id="prevPage" type="button">이전</button>
+          <input id="pageInput" type="number" min="1" value="1" aria-label="Page number">
+          <button id="nextPage" type="button">다음</button>
+        </div>
+        <div class="reader-controls compact">
+          <button id="zoomOut" type="button">축소</button>
+          <button id="zoomIn" type="button">확대</button>
+        </div>
+        <p id="pageMeta" class="page-meta"></p>
+        <div id="searchResults" class="search-results"></div>
+      </aside>
+      <section class="page-stage" aria-label="Book page">
+        <img id="pageImage" src="assets/pages/page-001.jpg" alt="E-book page 1">
+      </section>
+    </section>
+    <script src="assets/ebook-data.js"></script>
+    <script src="assets/reader.js"></script>
+    
+  </main>
+  <footer class="site-footer">
+    <p>글로벌 역량 증진: 대학원생을 위한 학술 논문 작성</p>
+    <p>Designed as a web-based e-book with full-page reading, chapter navigation, and PDF download.</p>
+  </footer>
+</body>
+</html>
