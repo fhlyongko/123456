@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>에듀테크의 이해</title>
+  <meta name="description" content="에듀테크의 이해 온라인 수업강의실">
+  <style>
+    :root {
+      --ink: #20243a;
+      --text: #3f4354;
+      --muted: #6d7282;
+      --line: #e4e7ef;
+      --bg: #f7f8fb;
+      --paper: #ffffff;
+      --blue: #2d5bd1;
+      --teal: #168378;
+      --gold: #bd7b18;
+      --shadow: 0 22px 60px -44px rgba(20, 30, 60, .45);
+      --max: 1120px;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(45, 91, 209, .11), transparent 28%),
+        radial-gradient(circle at 92% 10%, rgba(22, 131, 120, .10), transparent 30%),
+        var(--bg);
+      font-family: var(--sans);
+      line-height: 1.7;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+    a { color: inherit; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 22px; }
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .top .wrap {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand { font-weight: 900; color: var(--blue); white-space: nowrap; }
+    .nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+    .nav a {
+      text-decoration: none;
+      color: #555b6e;
+      font-size: 14px;
+      font-weight: 750;
+      border-radius: 999px;
+      padding: 7px 11px;
+    }
+    .nav a:hover { background: #eef3ff; color: var(--ink); }
+    .hero { padding: 58px 0 34px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+      gap: 26px;
+      align-items: stretch;
+    }
+    .hero-copy, .hero-card, .section-card {
+      background: rgba(255,255,255,.92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+    .hero-copy { padding: clamp(26px, 5vw, 50px); }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { color: var(--ink); margin-top: 0; letter-spacing: 0; }
+    h1 { font-size: clamp(2.25rem, 5vw, 4.4rem); line-height: 1.08; margin-bottom: 16px; }
+    h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); margin-bottom: 8px; }
+    h3 { font-size: 1.08rem; margin-bottom: 7px; }
+    .lead { margin: 0; color: #4d5364; font-size: 1.04rem; max-width: 760px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--blue);
+      padding: 9px 15px;
+      text-decoration: none;
+      font-weight: 850;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .btn.gold { background: var(--gold); border-color: var(--gold); color: #fff; }
+    .hero-card { padding: 22px; }
+    .map { display: grid; gap: 12px; }
+    .map-row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 12px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfcff;
+    }
+    .map-row strong {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: #eef3ff;
+      color: var(--blue);
+    }
+    .map-row span { display: block; color: var(--ink); font-weight: 850; }
+    .map-row small { display: block; color: var(--muted); margin-top: 2px; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+    .metric { border: 1px solid var(--line); border-radius: 16px; padding: 12px; background: #fff; }
+    .metric strong { display: block; color: var(--teal); font-size: 24px; line-height: 1; }
+    .metric span { color: var(--muted); font-size: 12px; }
+    section { padding: 34px 0; }
+    .section-card { padding: clamp(22px, 4vw, 34px); }
+    .section-head { margin-bottom: 18px; }
+    .section-lead { margin: 0; color: var(--muted); max-width: 780px; }
+    .cards, .download-grid, .rubric {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .card, .download, .rubric-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      padding: 18px;
+      min-width: 0;
+    }
+    .tag {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: #ecfdf3;
+      color: #067647;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .module-list { display: grid; gap: 14px; }
+    .module {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      padding: 16px;
+    }
+    .unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 64px;
+      border-radius: 16px;
+      background: #eef3ff;
+      color: var(--blue);
+      font-weight: 900;
+    }
+    .unit small { color: var(--muted); font-weight: 750; }
+    .concepts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .concepts span {
+      border-radius: 999px;
+      background: #f2f4f7;
+      color: #475467;
+      padding: 3px 8px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .download h3, .rubric-card h3, .card h3, .module h3 { margin-bottom: 6px; }
+    .download p, .rubric-card p, .card p, .module p { margin: 0; color: var(--muted); }
+    .download .btn, .module .btn { margin-top: 12px; }
+    .footer { padding: 30px 22px 54px; color: var(--muted); text-align: center; border-top: 1px solid var(--line); }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .cards, .download-grid, .rubric { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .module { grid-template-columns: 70px 1fr; }
+      .module-side { grid-column: 1 / -1; }
+    }
+    @media (max-width: 640px) {
+      .top .wrap { align-items: flex-start; flex-direction: column; padding-top: 12px; padding-bottom: 12px; }
+      .nav { justify-content: flex-start; }
+      .cards, .download-grid, .rubric, .metrics { grid-template-columns: 1fr; }
+      .hero-actions, .module-side { display: flex; flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top">
+    <div class="wrap">
+      <div class="brand">에듀테크의 이해</div>
+      <div class="nav">
+        <a href="#overview">개요</a>
+        <a href="#modules">단원별 학습</a>
+        <a href="#downloads">수업자료 다운로드</a>
+        <a href="#activities">활동과 평가</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Online Learning Room</p>
+        <h1>에듀테크의 이해</h1>
+        <p class="lead">디지털 교육, 모바일 학습, 실감미디어, 멀티미디어 학습 설계, 메타버스, 인공지능과 교육의 미래를 체계적으로 살펴보는 온라인 수업강의실입니다.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#modules">단원별 학습 시작</a>
+          <a class="btn gold" href="#downloads">수업자료 다운로드</a>
+          <button class="btn" onclick="window.print()">페이지 저장</button>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="course map">
+        <div class="map">
+          <div class="map-row"><strong>01</strong><div><span>디지털 교육의 출발</span><small>에듀테크, 디지털 교육, 모바일 학습</small></div></div>
+          <div class="map-row"><strong>02</strong><div><span>학습 경험의 설계</span><small>멀티미디어 학습과 설계 원리</small></div></div>
+          <div class="map-row"><strong>03</strong><div><span>확장된 학습 공간</span><small>AR, VR, XR, 메타버스</small></div></div>
+          <div class="map-row"><strong>04</strong><div><span>미래 교육 기술</span><small>인공지능과 교수학습 설계</small></div></div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><strong>9</strong><span>수업자료</span></div>
+          <div class="metric"><strong>12</strong><span>학습 단원</span></div>
+          <div class="metric"><strong>즉시</strong><span>다운로드</span></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="overview">
+      <div class="wrap">
+        <div class="section-card">
+          <div class="section-head">
+            <p class="eyebrow">Overview</p>
+            <h2>수업 개요</h2>
+            <p class="section-lead">이 페이지는 학생들이 에듀테크의 핵심 개념을 순서대로 학습하고, 각 단원의 수업자료를 내려받아 복습할 수 있도록 구성되어 있습니다.</p>
+          </div>
+          <div class="cards">
+            <article class="card"><span class="tag">핵심 주제</span><h3>교육과 기술의 통합</h3><p>교육 현장에서 기술이 학습 경험, 상호작용, 평가, 교수 설계에 미치는 영향을 이해합니다.</p></article>
+            <article class="card"><span class="tag">학습 목표</span><h3>개념 이해와 적용</h3><p>디지털 학습 환경을 분석하고 실제 수업 상황에 적합한 에듀테크 활용 방안을 설계합니다.</p></article>
+            <article class="card"><span class="tag">활용 방식</span><h3>자료 기반 학습</h3><p>단원별 수업자료를 통해 핵심 개념을 정리하고 토론, 사례 분석, 적용 과제로 확장합니다.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="modules">
+      <div class="wrap">
+        <div class="section-card">
+          <div class="section-head">
+            <p class="eyebrow">Modules</p>
+            <h2>단원별 학습</h2>
+            <p class="section-lead">각 단원은 개념 이해, 사례 분석, 수업 적용이라는 흐름으로 학습할 수 있습니다.</p>
+          </div>
+          <div class="module-list">
+            <article class="module"><div class="unit">1<small>단원</small></div><div><h3>에듀테크와 디지털 교육</h3><p>에듀테크의 개념과 디지털 교육의 변화 흐름을 이해합니다.</p><div class="concepts"><span>에듀테크</span><span>디지털 교육</span></div></div><div class="module-side"><a class="btn primary" href="files/lesson01-edutech-digital-education.pdf" download>수업자료 다운로드</a></div></article>
+            <article class="module"><div class="unit">2<small>단원</small></div><div><h3>디지털 학습</h3><p>모바일 학습, 소셜미디어, 스마트러닝의 교육적 의미를 살펴봅니다.</p><div class="concepts"><span>모바일 학습</span><span>스마트러닝</span></div></div><div class="module-side"><a class="btn primary" href="files/lesson02-digital-learning.pdf" download>수업자료 다운로드</a></div></article>
+            <article class="module"><div class="unit">3<small>단원</small></div><div><h3>실감미디어</h3><p>AR, VR, XR 기반 학습 경험과 몰입형 교육 환경을 분석합니다.</p><div class="concepts"><span>AR</span><span>VR</span><span>XR</span></div></div><div class="module-side"><a class="btn primary" href="files/lesson03-immersive-media.pdf" download>수업자료 다운로드</a></div></article>
+            <article class="module"><div class="unit">4<small>단원</small></div><div><h3>멀티미디어 학습</h3><p>인지 처리와 학습자료 설계의 관계를 이해합니다.</p><div class="concepts"><span>멀티미디어</span><span>인지 처리</span></div></div><div class="module-side"><a class="btn primary" href="files/lesson04-multimedia-learning.pdf" download>수업자료 다운로드</a></div></article>
+            <article class="module"><div class="unit">5-6<small>단원</small></div><div><h3>멀티미디어 설계 원리</h3><p>학습 효과를 높이는 멀티미디어 설계 원리를 실제 자료 분석에 적용합니다.</p><div class="concepts"><span>설계 원리</span><span>학습 효과</span></div></div><div class="module-side"><a class="btn primary" href="files/lesson05-06-multimedia-design-principles.pdf" download>수업자료 다운로드</a></div></article>
+            <article class="module"><div class="unit">7<small>단원</small></div><div><h3>실감미디어 학습환경</h3><p>몰입형 학습 환경을 설계할 때 고려해야 할 요소를 정리합니다.</p><div class="concepts"><span>몰입</span><span>학습환경</span></div></div><div class="module-side"><a class="btn primary" href="files/lesson07-immersive-learning-environment.pdf" download>수업자료 다운로드</a></div></article>
+            <article class="module"><div class="unit">8<small>단원</small></div><div><h3>가상현실의 적용</h3><p>가상현실이 교육, 훈련, 시뮬레이션에 적용되는 방식을 탐색합니다.</p><div class="concepts"><span>VR</span><span>시뮬레이션</span></div></div><div class="module-side"><a class="btn primary" href="files/lesson08-virtual-reality-application.pdf" download>수업자료 다운로드</a></div></article>
+            <article class="module"><div class="unit">9-10<small>단원</small></div><div><h3>메타버스</h3><p>메타버스의 개념과 교육적 활용 가능성을 검토합니다.</p><div class="concepts"><span>메타버스</span><span>가상공간</span></div></div><div class="module-side"><a class="btn primary" href="files/lesson09-10-metaverse.pdf" download>수업자료 다운로드</a></div></article>
+            <article class="module"><div class="unit">11-12<small>단원</small></div><div><h3>인공지능과 교육의 미래</h3><p>AI가 교수학습 설계와 미래 교육에 미치는 영향을 탐색합니다.</p><div class="concepts"><span>AI</span><span>미래 교육</span></div></div><div class="module-side"><a class="btn primary" href="files/lesson11-12-ai-future-of-education.pdf" download>수업자료 다운로드</a></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="downloads">
+      <div class="wrap">
+        <div class="section-card">
+          <div class="section-head">
+            <p class="eyebrow">Resources</p>
+            <h2>수업자료 다운로드</h2>
+            <p class="section-lead">아래 버튼을 누르면 각 단원의 수업자료를 바로 내려받을 수 있습니다.</p>
+          </div>
+          <div class="download-grid">
+            <article class="download"><h3>1단원 에듀테크와 디지털 교육</h3><p>에듀테크 개념과 디지털 교육의 변화</p><a class="btn primary" href="files/lesson01-edutech-digital-education.pdf" download>수업자료 다운로드</a></article>
+            <article class="download"><h3>2단원 디지털 학습</h3><p>모바일 학습과 스마트러닝</p><a class="btn primary" href="files/lesson02-digital-learning.pdf" download>수업자료 다운로드</a></article>
+            <article class="download"><h3>3단원 실감미디어</h3><p>AR, VR, XR 기반 학습 경험</p><a class="btn primary" href="files/lesson03-immersive-media.pdf" download>수업자료 다운로드</a></article>
+            <article class="download"><h3>4단원 멀티미디어 학습</h3><p>멀티미디어 학습과 인지 처리</p><a class="btn primary" href="files/lesson04-multimedia-learning.pdf" download>수업자료 다운로드</a></article>
+            <article class="download"><h3>5-6단원 멀티미디어 설계 원리</h3><p>학습 효과를 높이는 설계 원리</p><a class="btn primary" href="files/lesson05-06-multimedia-design-principles.pdf" download>수업자료 다운로드</a></article>
+            <article class="download"><h3>7단원 실감미디어 학습환경</h3><p>몰입형 학습 환경과 설계 요소</p><a class="btn primary" href="files/lesson07-immersive-learning-environment.pdf" download>수업자료 다운로드</a></article>
+            <article class="download"><h3>8단원 가상현실의 적용</h3><p>가상현실과 교육적 시뮬레이션</p><a class="btn primary" href="files/lesson08-virtual-reality-application.pdf" download>수업자료 다운로드</a></article>
+            <article class="download"><h3>9-10단원 메타버스</h3><p>메타버스 플랫폼과 교육 활용</p><a class="btn primary" href="files/lesson09-10-metaverse.pdf" download>수업자료 다운로드</a></article>
+            <article class="download"><h3>11-12단원 인공지능과 교육의 미래</h3><p>AI와 미래 교수학습 설계</p><a class="btn primary" href="files/lesson11-12-ai-future-of-education.pdf" download>수업자료 다운로드</a></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="activities">
+      <div class="wrap">
+        <div class="section-card">
+          <div class="section-head">
+            <p class="eyebrow">Activities</p>
+            <h2>학습 활동과 평가</h2>
+            <p class="section-lead">수업자료를 읽는 것에서 끝나지 않고, 개념 정리와 적용 활동으로 학습을 확장합니다.</p>
+          </div>
+          <div class="rubric">
+            <article class="rubric-card"><h3>개념 정리</h3><p>각 단원의 핵심 용어를 자신의 말로 정의하고 실제 교육 장면과 연결합니다.</p></article>
+            <article class="rubric-card"><h3>적용 활동</h3><p>하나의 수업 상황을 선택해 디지털 도구, 멀티미디어 원리, AI 활용 방안을 설계합니다.</p></article>
+            <article class="rubric-card"><h3>성찰 과제</h3><p>에듀테크가 학습 경험을 어떻게 바꾸는지 가능성과 한계를 함께 정리합니다.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">에듀테크의 이해 · 온라인 수업강의실 · 수업자료 다운로드 지원</footer>
+</body>
+</html>
