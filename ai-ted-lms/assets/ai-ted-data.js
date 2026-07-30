@@ -1,6 +1,6 @@
 const base = "downloads/";
 const modules = [
-  {w:1,c:"ai",t:"강의 소개와 AI 리터러시",d:"수업 목표, 평가 기준, AI 활용 원칙을 확인합니다.",p:"개인 학습 목표 3문장 작성",dl:[["수업 안내","course-syllabus-ai-ted.md"],["AI 리터러시","ai-literacy-guide.md"]]},
+  {w:1,c:"ai",t:"강의 소개와 AI 리터러시",d:"수업 목표, 평가 기준, AI 활용 원칙을 확인합니다.",p:"개인 학습 목표 3문장 작성과 인터넷·AI 사용 서약",dl:[["수업 안내","course-syllabus-ai-ted.md"],["AI 리터러시","ai-literacy-guide.md"],["인터넷·AI 사용 서약서","ai-internet-use-pledge.md"],["AI 피드백 루브릭","ai-feedback-rubric.md"]]},
   {w:2,c:"ted",t:"Leadership and Movements",d:"Sinek의 belief 리더십과 Sivers의 first follower를 비교합니다.",p:"Why do people follow leaders?",dl:[["Unit 1 활동지","unit1-leadership-movements.md"]]},
   {w:3,c:"ted",t:"Simple Ideas for Big Problems",d:"복잡한 사회문제를 단순하고 창의적인 해결책으로 접근합니다.",p:"문제 정의 카드와 영어 요약문",dl:[["Unit 3 활동지","unit3-simple-ideas.md"]]},
   {w:4,c:"ted",t:"Game Changers",d:"게임의 몰입, 전략적 사고, 문제 해결 가능성을 토론합니다.",p:"사회문제 해결 게임 아이디어",dl:[["Unit 4 활동지","unit4-game-changers.md"]]},

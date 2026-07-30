@@ -1,19 +1,29 @@
-# Unit 1. Leadership and Movements
+# Unit 1: Leadership and Movements
 
-## 핵심 질문
+## 목표
+
+Sinek의 belief 중심 리더십과 Sivers의 first follower 관점을 비교하고,
+자신의 주장을 영어로 설명한다.
+
+## Soul Machines 말하기
+
+아바타와 2분간 대화한다.
+
 - Why do people follow leaders?
-- How does a movement start?
+- Can a follower also be a leader?
+- Give one example and explain why it matters.
 
-## 학습 목표
-- Sinek의 belief 중심 리더십을 설명한다.
-- main idea와 supporting idea를 구분한다.
-- Sivers의 first follower 개념을 이해한다.
-- leader와 follower의 역할을 비교해 말한다.
+대화 후 가장 어려웠던 질문과 개선할 표현을 기록한다.
 
-## 활동
-1. inspiring leader의 조건 네 가지를 적는다.
-2. 리더십이 권위가 아니라 공감과 신념 전달의 과정인지 토론한다.
-3. movement가 시작되는 과정을 first follower 관점에서 설명한다.
+## Padlet 영작문
 
-## 산출물
-리더십과 사회적 움직임을 비교하는 영어 요약문 1단락.
+`A movement begins when...`으로 시작하는 120-150단어 단락을 게시한다.
+AI에는 직접 수정 대신 질문 세 개만 요청한다. 수정본과 수정 이유를 함께
+게시한 후 교사 피드백을 반영한다.
+
+## 제출
+
+- 초안
+- AI 질문
+- 수정본
+- 수용·거부 이유

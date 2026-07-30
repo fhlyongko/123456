@@ -1,17 +1,16 @@
-# Unit 6. Food Revolution
+# Unit 6: Food Revolution
 
-## 핵심 질문
-- Is healthy eating only a personal choice, or also an educational issue?
+## 목표
 
-## 학습 목표
-- 식습관 문제를 home, school, Main Street 관점으로 분류한다.
-- school food와 food education의 중요성을 설명한다.
-- Food Revolution Day 행사를 설계한다.
+건강한 식문화와 학교 급식의 사회적 의미를 설명하고 청중에 맞는 캠페인
+메시지를 제작한다.
 
 ## 활동
-1. 최근 먹은 convenience food를 적고 이유를 분류한다.
-2. 건강한 식문화가 개인과 사회에 미치는 영향을 토론한다.
-3. 설득력 있는 플라이어 문구를 만든다.
 
-## 산출물
-Food Revolution Day 플라이어 초안.
+- 문제: 학교 식문화에서 개선할 점
+- 청중: 학생, 학부모 또는 학교
+- 핵심 메시지: 15단어 이내
+- 근거: 수업자료에서 확인한 사실
+- 행동 요청: 청중이 할 수 있는 한 가지
+
+AI가 만든 통계나 사실은 사용하지 않고 출처가 확인된 정보만 활용한다.

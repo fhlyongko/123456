@@ -1,17 +1,23 @@
-# Unit 4. Game Changers
+# Unit 4: Game Changers
 
-## 핵심 질문
-- Is online gaming a waste of time or a practice space for solving real-world problems?
+## 목표
 
-## 학습 목표
-- 온라인 게임의 긍정적 효과와 한계를 근거로 설명한다.
-- Jane McGonigal의 gamer superpowers를 사례와 연결한다.
-- 사회문제를 다루는 게임 아이디어를 설계한다.
+게임의 협력·전략·피드백 원리를 사회문제 해결 아이디어에 적용하고
+90초 영어 피치로 설명한다.
 
-## 활동
-1. 온라인 게임에 필요한 역량을 적는다.
-2. 협력, 전략적 사고, 문제 해결과 게임의 관계를 토론한다.
-3. 사회문제를 해결하는 게임 아이디어를 팀별로 만든다.
+## Soul Machines 피치
 
-## 산출물
-게임 아이디어 발표 초안.
+아바타에게 다음 순서로 설명한다.
+
+1. The problem is...
+2. Our game asks players to...
+3. Players learn by...
+4. One possible limitation is...
+
+아바타의 질문에 답한 후 논리가 약했던 부분을 수정한다.
+
+## Padlet 협업 피드백
+
+동료는 `clear`, `unclear`, `question`을 하나씩 남긴다. AI는 완성문을
+제공하지 않고 논리·청중·실행가능성 질문만 제시한다. 최종 수정은 학생이
+선택하고 교사가 학습목표와 사실성을 확인한다.

@@ -1,17 +1,21 @@
-# Unit 3. Simple Ideas for Big Problems
+# Unit 3: Simple Ideas for Big Problems
 
-## 핵심 질문
-- Can a simple idea solve a complex global problem?
+## 목표
 
-## 학습 목표
-- 글로벌 문제를 구체적으로 정의한다.
-- 저비용, 고효율 해결책의 조건을 설명한다.
-- 사례를 바탕으로 문제 해결 아이디어를 영어로 제안한다.
+복잡한 글로벌 문제를 한 문장으로 정의하고, 실행 가능한 해결책과 근거를
+영어로 제시한다.
 
 ## 활동
-1. 해결하고 싶은 글로벌 문제를 하나 선택한다.
-2. 문제의 원인과 영향을 정리한다.
-3. 단순하지만 실천 가능한 해결 아이디어를 만든다.
 
-## 산출물
-문제 정의 카드와 영어 요약문.
+1. 문제의 영향을 받는 사람을 정한다.
+2. 문제를 25단어 이내 영어 문장으로 작성한다.
+3. AI에 문제 정의의 모호한 부분을 질문하게 한다.
+4. 해결책, 예상 이점, 한계를 각 한 문장으로 작성한다.
+
+## Padlet 제출
+
+- Problem:
+- Simple idea:
+- Evidence or example:
+- Limitation:
+- What I revised after feedback:

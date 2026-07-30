@@ -1,17 +1,17 @@
-# Unit 10. Data Detectives
+# Unit 10: Data Detectives
 
-## 핵심 질문
-- Does more data always make understanding easier?
+## 목표
 
-## 학습 목표
-- data glut와 information overload 문제를 설명한다.
-- language of the eye와 language of the mind를 구분한다.
-- 데이터를 바탕으로 간단한 infographic을 설계한다.
+데이터 시각화의 주장, 근거, 한계를 구분하고 오해를 줄이는 인포그래픽을
+설계한다.
 
-## 활동
-1. 이해하기 쉬웠던 그래프와 어려웠던 그래프를 비교한다.
-2. 좋은 infographic의 조건을 정리한다.
-3. 조사한 데이터를 시각화해 핵심 메시지를 만든다.
+## 확인 질문
 
-## 산출물
-미니 인포그래픽과 1분 설명문.
+- 데이터 출처와 연도는 무엇인가?
+- 표본과 측정 단위가 표시되어 있는가?
+- 축이나 비율이 왜곡되어 있지 않은가?
+- 시각자료가 실제로 말할 수 없는 결론은 무엇인가?
+
+## 제출
+
+미니 인포그래픽과 100단어 해설. 확인되지 않은 수치를 만들지 않는다.
