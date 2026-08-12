@@ -1,18 +1,18 @@
 const base = "downloads/";
 const modules = [
-  {w:1,c:"ai",t:"강의 소개와 AI 리터러시",d:"수업 목표, 평가 기준, AI 활용 원칙을 확인합니다.",p:"개인 학습 목표 3문장 작성과 인터넷·AI 사용 서약",dl:[["수업 안내","course-syllabus-ai-ted.md"],["AI 리터러시","ai-literacy-guide.md"],["인터넷·AI 사용 서약서","ai-internet-use-pledge.md"],["AI 피드백 루브릭","ai-feedback-rubric.md"]]},
-  {w:2,c:"ted",t:"Leadership and Movements",d:"Sinek의 belief 리더십과 Sivers의 first follower를 비교합니다.",p:"Why do people follow leaders?",dl:[["Unit 1 활동지","unit1-leadership-movements.md"]]},
+  {w:1,c:"ai",t:"강의 소개와 AI 리터러시",d:"수업 목표, 평가 기준, AI 활용 원칙을 확인합니다.",p:"개인 학습 목표 3문장 작성과 인터넷·AI 사용 서약",dl:[["수업 안내","course-syllabus-ai-ted.hwpx"],["AI 리터러시","ai-literacy-guide.pdf"],["인터넷·AI 사용 서약서","ai-internet-use-pledge.md"],["AI 피드백 루브릭","ai-feedback-rubric.md"]]},
+  {w:2,c:"ted",t:"Leadership and Movements",d:"Sinek의 belief 리더십과 Sivers의 first follower를 비교합니다.",p:"Why do people follow leaders?",dl:[["Unit 1 활동지","unit1-leadership-movements.pdf"]]},
   {w:3,c:"ted",t:"Simple Ideas for Big Problems",d:"복잡한 사회문제를 단순하고 창의적인 해결책으로 접근합니다.",p:"문제 정의 카드와 영어 요약문",dl:[["Unit 3 활동지","unit3-simple-ideas.md"]]},
-  {w:4,c:"ted",t:"Game Changers",d:"게임의 몰입, 전략적 사고, 문제 해결 가능성을 토론합니다.",p:"사회문제 해결 게임 아이디어",dl:[["Unit 4 활동지","unit4-game-changers.md"]]},
-  {w:5,c:"ted",t:"Lessons in Learning",d:"학습 참여, Studio School, grit, growth mindset을 연결합니다.",p:"학습 성공에 영향을 주는 조건 토론",dl:[["Unit 5 활동지","unit5-lessons-learning.md"]]},
-  {w:6,c:"ted",t:"Food Revolution",d:"건강한 식문화, 학교 급식, 식생활 교육의 사회적 의미를 분석합니다.",p:"Food Revolution Day 플라이어",dl:[["Unit 6 활동지","unit6-food-revolution.md"]]},
+  {w:4,c:"ted",t:"Game Changers",d:"게임의 몰입, 전략적 사고, 문제 해결 가능성을 토론합니다.",p:"사회문제 해결 게임 아이디어",dl:[["Unit 4 활동지","unit4-game-changers.pdf"]]},
+  {w:5,c:"ted",t:"Lessons in Learning",d:"학습 참여, Studio School, grit, growth mindset을 연결합니다.",p:"학습 성공에 영향을 주는 조건 토론",dl:[["Unit 5 활동지","unit5-lessons-learning.pdf"]]},
+  {w:6,c:"ted",t:"Food Revolution",d:"건강한 식문화, 학교 급식, 식생활 교육의 사회적 의미를 분석합니다.",p:"Food Revolution Day 플라이어",dl:[["Unit 6 활동지","unit6-food-revolution.pdf"]]},
   {w:7,c:"project",t:"중간 프로젝트 준비",d:"팀별 주제 선정, 문제 정의, 자료 수집, 역할 분담을 수행합니다.",p:"기획안, AI 활용 계획, 참고자료 목록",dl:[]},
   {w:8,c:"project",t:"중간 프로젝트 발표",d:"팀 디지털 콘텐츠를 발표하고 동료 피드백을 받습니다.",p:"내용 구성, 전달력, 시각적 완성도 피드백",dl:[]},
-  {w:9,c:"ted",t:"Body Signs",d:"비언어적 의사소통과 power posing을 발표 수행과 연결합니다.",p:"발표 자세 자기평가",dl:[["Unit 7 활동지","unit7-body-signs.md"]]},
-  {w:10,c:"ted",t:"New Perspectives",d:"disability를 limitation이 아니라 difference와 strength로 읽습니다.",p:"2분 영어 발표",dl:[["Unit 9 활동지","unit9-new-perspectives.md"]]},
-  {w:11,c:"ted",t:"Data Detectives",d:"데이터 시각화와 infographic의 소통 효과를 학습합니다.",p:"미니 인포그래픽",dl:[["Unit 10 활동지","unit10-data-detectives.md"]]},
-  {w:12,c:"ted",t:"Sleep",d:"수면 부족이 학업, 업무, 건강, 안전에 미치는 영향을 분석합니다.",p:"영어 의견문 1단락",dl:[["Unit 11 활동지","unit11-sleep.md"]]},
-  {w:13,c:"ai",t:"AI, Cyborgs and Language Learning",d:"기술이 인간 역량을 확장하는 방식을 읽고 AI 언어학습을 실습합니다.",p:"AI 초안 수정과 사용 기록",dl:[["Unit 12 활동지","unit12-ai-cyborgs.md"]]},
+  {w:9,c:"ted",t:"Body Signs",d:"비언어적 의사소통과 power posing을 발표 수행과 연결합니다.",p:"발표 자세 자기평가",dl:[["Unit 7 활동지","unit7-body-signs.pdf"]]},
+  {w:10,c:"ted",t:"New Perspectives",d:"disability를 limitation이 아니라 difference와 strength로 읽습니다.",p:"2분 영어 발표",dl:[["Unit 9 활동지","unit9-new-perspectives.pdf"]]},
+  {w:11,c:"ted",t:"Data Detectives",d:"데이터 시각화와 infographic의 소통 효과를 학습합니다.",p:"미니 인포그래픽",dl:[["Unit 10 활동지","unit10-data-detectives.pdf"]]},
+  {w:12,c:"ted",t:"Sleep",d:"수면 부족이 학업, 업무, 건강, 안전에 미치는 영향을 분석합니다.",p:"영어 의견문 1단락",dl:[["Unit 11 활동지","unit11-sleep.pdf"]]},
+  {w:13,c:"ai",t:"AI, Cyborgs and Language Learning",d:"기술이 인간 역량을 확장하는 방식을 읽고 AI 언어학습을 실습합니다.",p:"AI 초안 수정과 사용 기록",dl:[["Unit 12 활동지","unit12-ai-cyborgs.pdf"]]},
   {w:14,c:"project",t:"기말 프로젝트 준비",d:"개인 주제, TED 분석, AI 활용, 디지털 콘텐츠를 포트폴리오로 구성합니다.",p:"포트폴리오 가이드 확인",dl:[["포트폴리오 안내","final-portfolio-guide.md"]]},
   {w:15,c:"project",t:"보강과 기말 피드백",d:"포트폴리오 구성, 영어 표현, AI 활용 기록을 최종 보완합니다.",p:"개별 상담과 동료 점검",dl:[]},
   {w:16,c:"project",t:"기말 프로젝트 제출과 성찰",d:"개인 디지털 포트폴리오를 제출하고 한 학기 성장을 성찰합니다.",p:"개인 디지털 포트폴리오",dl:[["포트폴리오 안내","final-portfolio-guide.md"]]}
@@ -55,7 +55,7 @@ function renderResources() {
       resources.push(entry);
     }
   }));
-  grid.innerHTML = resources.map((entry) => `<a class="download-card download-link" href="${base + entry[1]}" download><span>수업자료</span><strong>${entry[0]}</strong><em>${entry[1].replace(".md", "")}</em></a>`).join("");
+  grid.innerHTML = resources.map((entry) => `<a class="download-card download-link" href="${base + entry[1]}" download><span>수업자료</span><strong>${entry[0]}</strong><em>${entry[1].replace(/\.(md|pdf|hwpx)$/i, "")}</em></a>`).join("");
 }
 document.addEventListener("change", (event) => {
   if (!event.target.matches("[data-week]")) return;
