@@ -3,104 +3,111 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>인공지능 TED 인터랙티브 보드</title>
-  <meta name="description" content="인공지능 TED 수업 자료를 주차, 주제, 프로젝트, 수업자료 중심으로 탐색하는 인터랙티브 보드입니다.">
-  <link rel="stylesheet" href="assets/ai-ted-page.css">
-  <style>
-    .board-hero{grid-template-columns:minmax(0,1.02fr) minmax(330px,.98fr)}
-    .board-panel{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;min-width:0;border:1px solid rgba(185,144,54,.26);border-radius:24px;background:rgba(255,253,248,.78);padding:22px;box-shadow:0 20px 44px -38px rgba(58,46,24,.55)}
-    .metric{min-width:0;border:1px solid var(--line);border-radius:18px;background:var(--paper);padding:16px}
-    .metric b{display:block;color:var(--teal);font-family:Georgia,"Times New Roman",serif;font-size:1.65rem;line-height:1}
-    .metric span{display:block;margin-top:6px;color:var(--muted);font-size:.86rem}
-    .board-shell{display:grid;grid-template-columns:280px minmax(0,1fr);gap:16px;align-items:start}
-    .control-panel{position:sticky;top:88px;min-width:0;border:1px solid var(--line);border-radius:22px;background:rgba(255,253,248,.9);box-shadow:var(--shadow);padding:18px}
-    .control-panel h3{margin-bottom:12px}
-    .board-search{width:100%;min-height:43px;border:1px solid var(--line);border-radius:999px;padding:9px 15px;background:var(--paper);font:inherit;color:var(--ink);margin:12px 0 14px}
-    .board-progress{overflow:hidden;height:12px;border-radius:999px;background:var(--soft);margin:12px 0}
-    .board-progress i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--teal),var(--gold),var(--terra));transition:width .2s ease}
-    .check-list{display:grid;gap:9px;margin-top:12px}
-    .check-row{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;align-items:start;color:var(--muted);font-size:.9rem}
-    .check-row input{margin-top:4px;accent-color:var(--teal)}
-    .board-columns{display:grid;grid-template-columns:repeat(4,minmax(210px,1fr));gap:14px}
-    .board-column{min-width:0;border:1px solid var(--line);border-radius:22px;background:rgba(255,253,248,.72);padding:14px;box-shadow:0 18px 42px -38px rgba(58,46,24,.45)}
-    .column-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
-    .column-title h3{margin:0;font-size:1rem}
-    .count{display:inline-flex;min-width:28px;min-height:28px;align-items:center;justify-content:center;border-radius:999px;background:rgba(61,136,120,.1);color:var(--teal);font-weight:950;font-size:.82rem}
-    .board-card{min-width:0;margin-bottom:10px;border:1px solid var(--line);border-radius:18px;background:var(--paper);padding:16px;box-shadow:0 18px 38px -36px rgba(58,46,24,.45)}
-    .board-card.hidden,.resource-board-card.hidden{display:none}
-    .tagline{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-    .board-tag{display:inline-flex;align-items:center;min-height:24px;border-radius:999px;padding:3px 8px;background:var(--soft);color:var(--muted);font-size:.74rem;font-weight:900}
-    .board-tag.ai{background:rgba(61,136,120,.12);color:var(--teal)}.board-tag.project{background:rgba(207,118,79,.12);color:var(--terra)}.board-tag.ted{background:rgba(185,144,54,.14);color:#826222}
-    .board-card p,.resource-board-card p{margin:0;color:var(--muted);font-size:.94rem}
-    .board-card footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;padding:0;border:0;background:transparent;color:var(--muted);font-size:.82rem}
-    .dot{width:10px;height:10px;border-radius:50%;background:var(--teal);display:inline-block}
-    .resource-toolbar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;margin-bottom:14px}
-    .resource-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-    .resource-board-card{display:flex;flex-direction:column;min-height:170px;min-width:0;border:1px solid var(--line);border-radius:20px;background:rgba(255,253,248,.9);box-shadow:0 20px 44px -38px rgba(58,46,24,.52);padding:18px;text-decoration:none;color:var(--ink)}
-    .resource-board-card:hover{transform:translateY(-2px);box-shadow:0 28px 58px -40px rgba(58,46,24,.58)}
-    .resource-board-card small{display:block;margin-bottom:8px;color:var(--terra);font-size:.76rem;font-weight:950;letter-spacing:.06em;text-transform:uppercase}
-    .resource-board-card strong{margin-top:auto;color:var(--teal);padding-top:14px}
-    .prompt-board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-    .prompt-card{min-width:0;border:1px solid var(--line);border-radius:20px;background:rgba(255,253,248,.88);padding:20px;box-shadow:var(--shadow)}
-    .prompt-card b{display:block;color:var(--ink);margin-bottom:8px}
-    .prompt-card p{margin:0;color:var(--muted)}
-    @media(max-width:1080px){.board-hero,.board-shell{grid-template-columns:1fr}.control-panel{position:static}.board-columns,.resource-board{grid-template-columns:repeat(2,minmax(0,1fr))}.prompt-board{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:660px){.board-panel,.board-columns,.resource-board,.prompt-board{grid-template-columns:1fr}.resource-toolbar{grid-template-columns:1fr}}
-  </style>
+  <title>인공지능 TED · Learning Signal Board</title>
+  <meta name="description" content="TED 읽기, AI 리터러시, 영어 커뮤니케이션, 프로젝트 포트폴리오를 16주 학습 신호로 탐색하는 인터랙티브 수업 보드입니다.">
+  <meta name="theme-color" content="#f4f0e7">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif&family=Manrope:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/student-board-tokens.css">
+  <link rel="stylesheet" href="assets/student-board.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
   <header class="site-header">
-    <a class="brand" href="student-pdf.html"><span class="brand-mark">AI</span><span><strong>인공지능 TED</strong><small>Interactive Learning Board</small></span></a>
+    <a class="brand" href="student-pdf.html" aria-label="인공지능 TED 보드 홈">
+      <span class="brand-mark" aria-hidden="true">AI</span>
+      <span><strong>인공지능 TED</strong><small>Learning Signal Board</small></span>
+    </a>
     <nav aria-label="주요 메뉴">
-      <a class="active" href="student-pdf.html">Board</a>
+      <a class="active" href="student-pdf.html" aria-current="page">Board</a>
       <a href="routine.html">학습 루틴</a>
       <a href="modules.html">주차별 학습</a>
       <a href="assignments.html">과제</a>
       <a href="resources.html">수업자료</a>
     </nav>
   </header>
-  <main>
-    <section class="hero board-hero">
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">AI & TED Interactive Board</p>
-        <h1>인공지능 TED 인터랙티브 보드</h1>
-        <p class="lead">TED 기반 글로벌 커뮤니케이션, AI 리터러시, 영어 표현 활동, 프로젝트형 포트폴리오를 보드 방식으로 탐색합니다. 주차별 카드, 자료 검색, 진행 체크리스트를 한 화면에서 활용할 수 있습니다.</p>
+        <p class="eyebrow">00 · AI + TED COURSE SYSTEM</p>
+        <h1 id="hero-title">듣고, 묻고, <em>만드는</em> 16주.</h1>
+        <p class="lead">TED의 아이디어를 영어로 읽고 토론하며, AI가 만든 답을 검토하고, 나만의 디지털 결과물로 다시 설계합니다. 검색·필터·진행 기록·수업자료를 하나의 작업대에서 관리하세요.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#board">보드 시작</a>
-          <a class="button" href="#resources-board">수업자료 찾기</a>
+          <a class="button primary" href="#board">학습 보드 열기</a>
+          <a class="button" href="#resources-board">자료 인덱스 보기</a>
         </div>
       </div>
-      <aside class="board-panel" aria-label="보드 요약">
-        <div class="metric"><b>16</b><span>주차별 모듈</span></div>
-        <div class="metric"><b>4</b><span>보드 영역</span></div>
-        <div class="metric"><b>자료</b><span>원본 자료 즉시 다운로드</span></div>
-        <div class="metric"><b>AI</b><span>리터러시와 프로젝트</span></div>
-      </aside>
+
+      <div class="apparatus-wrap">
+        <figure class="apparatus" aria-label="TED 읽기에서 AI 검토와 프로젝트 제작까지 이어지는 16주 학습 흐름 시각화">
+          <div class="apparatus-screen" aria-hidden="true">
+            <div class="signal-line">
+              <svg viewBox="0 0 520 160" preserveAspectRatio="none" role="img" aria-label="16주 학습 신호 파형">
+                <path class="ghost" d="M0 104 L28 94 L55 99 L82 67 L110 77 L137 50 L165 86 L192 58 L220 70 L247 39 L275 62 L302 45 L330 83 L357 55 L385 67 L412 35 L440 53 L468 27 L495 51 L520 42"/>
+                <path d="M0 92 L28 82 L55 87 L82 55 L110 65 L137 38 L165 74 L192 46 L220 58 L247 27 L275 50 L302 33 L330 71 L357 43 L385 55 L412 23 L440 41 L468 15 L495 39 L520 30"/>
+              </svg>
+            </div>
+            <span class="apparatus-node node-1"></span><span class="apparatus-node node-2"></span>
+            <span class="apparatus-node node-3"></span><span class="apparatus-node node-4"></span>
+            <span class="apparatus-core">TED</span>
+          </div>
+          <div class="apparatus-callout callout-1"><span>01 · LISTEN</span><span>핵심 주장 포착</span></div>
+          <div class="apparatus-callout callout-2"><span>02 · QUESTION</span><span>근거와 관점 검토</span></div>
+          <div class="apparatus-callout callout-3"><span>03 · REVISE</span><span>AI 초안 비판</span></div>
+          <div class="apparatus-callout callout-4"><span>04 · PUBLISH</span><span>포트폴리오 완성</span></div>
+          <figcaption class="apparatus-caption"><span>LEARNING SIGNAL · 16 WEEKS</span><span>TED / AI / ENGLISH / PROJECT</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <aside class="meter" aria-label="16주 수업 흐름 표시">
+      <p class="meter-label">WEEK 01 · ORIENTATION</p>
+      <div class="meter-bars" aria-hidden="true">
+        <span style="--h:28%;--o:.35"></span><span style="--h:42%;--o:.45"></span><span style="--h:58%;--o:.58"></span><span style="--h:73%;--o:.72"></span>
+        <span style="--h:88%;--o:.82"></span><span style="--h:65%;--o:.64"></span><span style="--h:76%;--o:.73"></span><span style="--h:98%;--o:.92"></span>
+        <span style="--h:48%;--o:.48"></span><span style="--h:63%;--o:.6"></span><span style="--h:80%;--o:.76"></span><span style="--h:68%;--o:.65"></span>
+        <span style="--h:92%;--o:.87"></span><span style="--h:77%;--o:.72"></span><span style="--h:86%;--o:.81"></span><span style="--h:100%;--o:1"></span>
+      </div>
+      <p class="meter-label">WEEK 16 · REFLECTION</p>
+    </aside>
+
+    <section class="stats" aria-label="강의 구성 요약">
+      <dl class="stats-grid">
+        <div class="stat"><dt class="stat-label">COURSE MODULES</dt><dd><span class="stat-num">16</span><span class="stat-unit">주차</span></dd></div>
+        <div class="stat"><dt class="stat-label">DOWNLOADABLE FILES</dt><dd><span class="stat-num">15</span><span class="stat-unit">자료</span></dd></div>
+        <div class="stat"><dt class="stat-label">LEARNING MODES</dt><dd><span class="stat-num">04</span><span class="stat-unit">트랙</span></dd></div>
+      </dl>
     </section>
 
     <section class="section" id="board">
-      <div class="section-head">
-        <p class="eyebrow">Interactive Board</p>
-        <h2>주차별 탐색 보드</h2>
-        <p class="lead">필터와 검색을 사용해 TED 읽기, AI 활용, 프로젝트 활동을 빠르게 찾고 완료 여부를 표시할 수 있습니다.</p>
-      </div>
+      <header class="section-head">
+        <div><p class="eyebrow">01 · COURSE WORKBENCH</p><h2>이번 주에 필요한 것만 꺼내 쓰세요.</h2></div>
+        <p class="lead">주제 필터와 검색으로 16주 모듈을 좁혀 보고, 완료 체크는 이 브라우저에 자동 저장됩니다.</p>
+      </header>
       <div class="board-shell">
         <aside class="control-panel" aria-label="보드 조작">
-          <h3>보드 필터</h3>
-          <div class="filters" id="boardFilters">
-            <button class="filter active" data-board-filter="all">전체</button>
-            <button class="filter" data-board-filter="ted">TED·읽기</button>
-            <button class="filter" data-board-filter="ai">AI 활용</button>
-            <button class="filter" data-board-filter="project">프로젝트</button>
+          <div>
+            <h3>트랙 필터</h3>
+            <div class="filters" id="boardFilters">
+              <button class="filter active" type="button" data-board-filter="all" aria-pressed="true">전체</button>
+              <button class="filter" type="button" data-board-filter="ted" aria-pressed="false">TED·읽기</button>
+              <button class="filter" type="button" data-board-filter="ai" aria-pressed="false">AI 활용</button>
+              <button class="filter" type="button" data-board-filter="project" aria-pressed="false">프로젝트</button>
+            </div>
           </div>
-          <input class="board-search" id="boardSearch" type="search" placeholder="leadership, AI, infographic, portfolio 등으로 검색">
-          <h3>나의 진행 체크</h3>
-          <div class="board-progress"><i id="boardProgressBar"></i></div>
-          <div class="check-list">
-            <label class="check-row"><input type="checkbox" data-board-task="orientation"><span>강의 목표와 AI 활용 원칙을 확인했습니다.</span></label>
-            <label class="check-row"><input type="checkbox" data-board-task="ted"><span>TED 주제 읽기와 토론 준비를 진행했습니다.</span></label>
-            <label class="check-row"><input type="checkbox" data-board-task="project"><span>중간 또는 기말 프로젝트 자료를 정리했습니다.</span></label>
-            <label class="check-row"><input type="checkbox" data-board-task="portfolio"><span>포트폴리오와 성찰 자료를 준비했습니다.</span></label>
+          <input class="board-search" id="boardSearch" type="search" aria-label="주차별 보드 검색" placeholder="leadership, AI, infographic…">
+          <div>
+            <h3>나의 진행 체크</h3>
+            <div class="progress-meta"><span>STUDIO PROGRESS</span><span id="boardProgressText">0 / 4</span></div>
+            <div class="board-progress" aria-hidden="true"><i id="boardProgressBar"></i></div>
+            <div class="check-list">
+              <label class="check-row"><input type="checkbox" data-board-task="orientation"><span>강의 목표와 AI 활용 원칙 확인</span></label>
+              <label class="check-row"><input type="checkbox" data-board-task="ted"><span>TED 읽기와 토론 준비</span></label>
+              <label class="check-row"><input type="checkbox" data-board-task="project"><span>중간·기말 프로젝트 자료 정리</span></label>
+              <label class="check-row"><input type="checkbox" data-board-task="portfolio"><span>포트폴리오와 성찰 준비</span></label>
+            </div>
           </div>
         </aside>
         <div class="board-columns" id="aiTedBoard" aria-live="polite"></div>
@@ -108,53 +115,58 @@
     </section>
 
     <section class="section" id="resources-board">
-      <div class="section-head">
-        <p class="eyebrow">Resource Board</p>
-        <h2>수업자료 보드</h2>
-        <p class="lead">필요한 활동지와 안내 자료를 검색한 뒤 원본 PDF 또는 수업 활동지로 다운로드할 수 있습니다.</p>
-      </div>
+      <header class="section-head">
+        <div><p class="eyebrow">02 · RESOURCE INDEX</p><h2>자료를 찾는 시간이 수업보다 길어지지 않도록.</h2></div>
+        <p class="lead">파일 유형과 주차 맥락을 한 줄에서 확인하고 원본 PDF·활동지·안내 파일을 바로 내려받으세요.</p>
+      </header>
       <div class="resource-toolbar">
-        <input class="board-search" id="resourceSearch" type="search" placeholder="Unit, AI, 포트폴리오 등으로 검색">
+        <input class="board-search" id="resourceSearch" type="search" aria-label="수업자료 검색" placeholder="Unit, AI, 포트폴리오…">
         <div class="filters" id="resourceFilters">
-          <button class="filter active" data-resource-filter="all">전체</button>
-          <button class="filter" data-resource-filter="unit">Unit</button>
-          <button class="filter" data-resource-filter="ai">AI</button>
-          <button class="filter" data-resource-filter="portfolio">Portfolio</button>
+          <button class="filter active" type="button" data-resource-filter="all" aria-pressed="true">전체</button>
+          <button class="filter" type="button" data-resource-filter="unit" aria-pressed="false">Unit</button>
+          <button class="filter" type="button" data-resource-filter="ai" aria-pressed="false">AI</button>
+          <button class="filter" type="button" data-resource-filter="portfolio" aria-pressed="false">Portfolio</button>
         </div>
       </div>
-      <div class="resource-board" id="resourceBoard"></div>
+      <div class="resource-board" id="resourceBoard" aria-live="polite"></div>
     </section>
 
-    <section class="section">
-      <div class="section-head">
-        <p class="eyebrow">Discussion Prompts</p>
-        <h2>활동 설계 보드</h2>
-      </div>
-      <div class="prompt-board">
-        <article class="prompt-card"><b>TED Reading</b><p>핵심 주장, 근거, 사례를 구분하고 토론 질문으로 전환합니다.</p></article>
-        <article class="prompt-card"><b>AI Literacy</b><p>AI가 생성한 결과를 검토하고 출처, 윤리, 수정 과정을 기록합니다.</p></article>
-        <article class="prompt-card"><b>English Communication</b><p>의견 제시, 비교, 반박, 요약 표현을 발표와 토론에 연결합니다.</p></article>
-        <article class="prompt-card"><b>Portfolio</b><p>주제 선정, 자료 정리, AI 활용 기록, 최종 성찰을 하나의 결과물로 구성합니다.</p></article>
+    <section class="section" id="practice">
+      <header class="section-head">
+        <div><p class="eyebrow">03 · PRACTICE LOOP</p><h2>읽은 아이디어가 내 언어가 되는 네 번의 전환.</h2></div>
+        <p class="lead">각 활동은 단순 시청이 아니라 근거 확인, 영어 표현, AI 검토, 결과물 제작으로 이어집니다.</p>
+      </header>
+      <div class="practice-grid">
+        <article class="practice-item"><span class="practice-num">01</span><h3>TED Reading</h3><p>핵심 주장, 근거, 사례를 구분하고 토론 질문으로 전환합니다.</p></article>
+        <article class="practice-item"><span class="practice-num">02</span><h3>AI Literacy</h3><p>AI가 생성한 결과를 검토하고 출처, 윤리, 수정 과정을 기록합니다.</p></article>
+        <article class="practice-item"><span class="practice-num">03</span><h3>English Communication</h3><p>의견 제시, 비교, 반박, 요약 표현을 발표와 토론에 연결합니다.</p></article>
+        <article class="practice-item"><span class="practice-num">04</span><h3>Portfolio</h3><p>주제 선정, 자료 정리, AI 활용 기록, 최종 성찰을 하나의 결과물로 구성합니다.</p></article>
       </div>
     </section>
   </main>
-  <footer>
-    <strong>인공지능 TED 인터랙티브 보드</strong>
-    <span>TED · AI · Global Communication</span>
+
+  <footer class="site-footer">
+    <p class="footer-statement">아이디어를 듣고, 검토하고, 내 언어로 다시 만듭니다.</p>
+    <div class="footer-meta">
+      <div class="footer-links"><a href="#board">Course board</a><a href="#resources-board">Resources</a><a href="#practice">Practice loop</a></div>
+      <p>AI + TED · GLOBAL COMMUNICATION · 16-WEEK STUDIO</p>
+    </div>
   </footer>
+
   <script src="assets/ai-ted-data.js"></script>
   <script>
     const boardKey = "ai-ted-interactive-board-tasks";
     const boardDone = new Set(JSON.parse(localStorage.getItem(key) || "[]"));
     const taskState = JSON.parse(localStorage.getItem(boardKey) || "{}");
     const boardColumns = [
-      {id:"orientation", title:"Orientation"},
-      {id:"ted", title:"TED Reading"},
-      {id:"ai", title:"AI Literacy"},
-      {id:"project", title:"Project Studio"}
+      {id:"orientation", title:"Orientation", kicker:"Start"},
+      {id:"ted", title:"TED Reading", kicker:"Read"},
+      {id:"ai", title:"AI Literacy", kicker:"Review"},
+      {id:"project", title:"Project Studio", kicker:"Make"}
     ];
     let boardFilter = "all";
     let resourceFilter = "all";
+
     function moduleCategory(item){
       if(item.w === 1) return "orientation";
       if(item.c === "ai") return "ai";
@@ -163,26 +175,25 @@
     }
     function boardDownloadLinks(item){
       if(!item.dl.length) return `<span class="download-link">활동 중심</span>`;
-      return item.dl.map((entry)=>`<a class="download-link" href="${base + entry[1]}" download>${entry[0]} 수업자료</a>`).join("");
+      return item.dl.map((entry)=>`<a class="download-link" href="${base + entry[1]}" download>${entry[0]}</a>`).join("");
     }
     function renderBoard(){
       const root = document.getElementById("aiTedBoard");
       if(!root) return;
       const query = (document.getElementById("boardSearch")?.value || "").trim().toLowerCase();
       root.innerHTML = boardColumns.map((column)=>{
-        const cards = modules.filter((item)=>moduleCategory(item) === column.id)
+        const items = modules.filter((item)=>moduleCategory(item) === column.id)
           .filter((item)=>boardFilter === "all" || item.c === boardFilter || moduleCategory(item) === boardFilter)
-          .filter((item)=>!query || [item.t,item.d,item.p,labels[item.c],String(item.w)].join(" ").toLowerCase().includes(query))
-          .map((item)=>`<article class="board-card ${item.c}" data-week="${item.w}">
-            <div class="tagline"><span class="board-tag ${item.c}">${labels[item.c]}</span><span class="board-tag">${item.w}주</span></div>
-            <h3>${item.t}</h3>
-            <p>${item.d}</p>
-            <p style="margin-top:10px"><strong>활동:</strong> ${item.p}</p>
-            <div class="module-foot">${boardDownloadLinks(item)}</div>
-            <footer><span><i class="dot"></i> Week ${item.w}</span><label class="done"><input type="checkbox" data-week="${item.w}" ${boardDone.has(item.w) ? "checked" : ""}> 완료</label></footer>
-          </article>`).join("");
-        const count = cards ? (cards.match(/board-card/g) || []).length : 0;
-        return `<section class="board-column"><div class="column-title"><h3>${column.title}</h3><span class="count">${count}</span></div>${cards || `<p class="lead">표시할 카드가 없습니다.</p>`}</section>`;
+          .filter((item)=>!query || [item.t,item.d,item.p,labels[item.c],String(item.w)].join(" ").toLowerCase().includes(query));
+        const cards = items.map((item)=>`<article class="board-card ${item.c}" data-week="${item.w}">
+          <div class="tagline"><span class="board-tag ${item.c}">${labels[item.c]}</span><span class="board-tag">Week ${String(item.w).padStart(2,"0")}</span></div>
+          <h3>${item.t}</h3>
+          <p>${item.d}</p>
+          <p><strong>활동</strong> · ${item.p}</p>
+          <div class="module-foot">${boardDownloadLinks(item)}</div>
+          <footer><span><i class="dot"></i>W${String(item.w).padStart(2,"0")}</span><label class="done"><input type="checkbox" data-week="${item.w}" ${boardDone.has(item.w) ? "checked" : ""}> 완료</label></footer>
+        </article>`).join("");
+        return `<section class="board-column"><div class="column-title"><div><p class="column-kicker">${column.kicker}</p><h3>${column.title}</h3></div><span class="count">${String(items.length).padStart(2,"0")}</span></div>${cards || `<p class="empty-state">표시할 모듈이 없습니다.</p>`}</section>`;
       }).join("");
       updateProgress();
     }
@@ -190,7 +201,9 @@
       const checks = Array.from(document.querySelectorAll("[data-board-task]"));
       const doneTasks = checks.filter((item)=>item.checked).length;
       const bar = document.getElementById("boardProgressBar");
+      const text = document.getElementById("boardProgressText");
       if(bar) bar.style.width = checks.length ? `${Math.round(doneTasks / checks.length * 100)}%` : "0%";
+      if(text) text.textContent = `${doneTasks} / ${checks.length}`;
     }
     function renderResourceBoard(){
       const root = document.getElementById("resourceBoard");
@@ -204,43 +217,37 @@
         const type = entry[1].includes("unit") ? "unit" : entry[1].includes("ai") ? "ai" : entry[1].includes("portfolio") ? "portfolio" : "guide";
         resources.push({entry,item,type});
       }));
-      const cards = resources
-        .filter(({entry,item,type})=>resourceFilter === "all" || type === resourceFilter || item.c === resourceFilter)
-        .filter(({entry,item,type})=>!query || [entry[0],entry[1],item.t,item.d,type].join(" ").toLowerCase().includes(query))
-        .map(({entry,item,type})=>`<a class="resource-board-card download-link" href="${base + entry[1]}" download data-type="${type}">
-          <small>수업자료</small><h3>${entry[0]}</h3><p>${item.t} 관련 자료입니다.</p><strong>수업자료 다운로드</strong>
-        </a>`).join("");
-      root.innerHTML = cards || `<p class="lead">검색 결과가 없습니다.</p>`;
+      const filtered = resources
+        .filter(({item,type})=>resourceFilter === "all" || type === resourceFilter || item.c === resourceFilter)
+        .filter(({entry,item,type})=>!query || [entry[0],entry[1],item.t,item.d,type].join(" ").toLowerCase().includes(query));
+      root.innerHTML = filtered.map(({entry,item,type},index)=>`<a class="resource-row" href="${base + entry[1]}" download data-type="${type}">
+        <span class="resource-index">${String(index + 1).padStart(2,"0")}</span><h3>${entry[0]}</h3><p>W${String(item.w).padStart(2,"0")} · ${item.t}</p><span class="resource-arrow" aria-hidden="true">↘</span>
+      </a>`).join("") || `<p class="resource-empty">검색 결과가 없습니다.</p>`;
     }
     document.addEventListener("click",(event)=>{
       const boardButton = event.target.closest("[data-board-filter]");
       if(boardButton){
-        document.querySelectorAll("[data-board-filter]").forEach((item)=>item.classList.remove("active"));
-        boardButton.classList.add("active");
-        boardFilter = boardButton.dataset.boardFilter;
-        renderBoard();
+        document.querySelectorAll("[data-board-filter]").forEach((item)=>{ item.classList.remove("active"); item.setAttribute("aria-pressed","false"); });
+        boardButton.classList.add("active"); boardButton.setAttribute("aria-pressed","true");
+        boardFilter = boardButton.dataset.boardFilter; renderBoard();
       }
       const resourceButton = event.target.closest("[data-resource-filter]");
       if(resourceButton){
-        document.querySelectorAll("[data-resource-filter]").forEach((item)=>item.classList.remove("active"));
-        resourceButton.classList.add("active");
-        resourceFilter = resourceButton.dataset.resourceFilter;
-        renderResourceBoard();
+        document.querySelectorAll("[data-resource-filter]").forEach((item)=>{ item.classList.remove("active"); item.setAttribute("aria-pressed","false"); });
+        resourceButton.classList.add("active"); resourceButton.setAttribute("aria-pressed","true");
+        resourceFilter = resourceButton.dataset.resourceFilter; renderResourceBoard();
       }
     });
     document.addEventListener("change",(event)=>{
       if(event.target.matches("[data-board-task]")){
         taskState[event.target.dataset.boardTask] = event.target.checked;
-        localStorage.setItem(boardKey, JSON.stringify(taskState));
-        updateBoardProgress();
+        localStorage.setItem(boardKey, JSON.stringify(taskState)); updateBoardProgress();
       }
     });
     document.getElementById("boardSearch")?.addEventListener("input", renderBoard);
     document.getElementById("resourceSearch")?.addEventListener("input", renderResourceBoard);
     document.querySelectorAll("[data-board-task]").forEach((item)=>{ item.checked = !!taskState[item.dataset.boardTask]; });
-    renderBoard();
-    renderResourceBoard();
-    updateBoardProgress();
+    renderBoard(); renderResourceBoard(); updateBoardProgress();
   </script>
   <script src="assets/pdf-downloads.js"></script>
 </body>
