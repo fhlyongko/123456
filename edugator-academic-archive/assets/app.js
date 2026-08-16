@@ -27,15 +27,10 @@ const posts = [
   ["Pedro Noguera: Are We Failing Our Students?","2015-10-11",["Multicultural Education","Talks & Media"],"https://blog.naver.com/yongjiklee00/220505258664"],
   ["The SIOP Model","2015-10-11",["TESOL"],"https://blog.naver.com/yongjiklee00/220505258470"],
   ["Podcasting for the Flipped Classroom (팟캐스트)","2015-10-11",["Flipped Learning","Educational Technology"],"https://blog.naver.com/yongjiklee00/220505258381"],
-  ["Linguistically Responsive Teacher Education: Preparing Teachers of English Learners","2015-10-11",["TESOL","Multicultural Education"],"https://blog.naver.com/yongjiklee00/220505257167"],
   ["Shaping a Vision of Academic Success for All Students","2015-09-22",["TESOL","Education"],"https://blog.naver.com/yongjiklee00/220488365456"],
   ["Differentiated Instruction by Carol Ann Tomlinson","2015-09-22",["Theory & Research"],"https://blog.naver.com/yongjiklee00/220488363985"],
   ["Flipped Learning with Prezi and Video","2015-09-22",["Flipped Learning","Educational Technology"],"https://blog.naver.com/yongjiklee00/220488363302"],
   ["Forbes: Flipped Learning in Korea","2015-06-27",["Flipped Learning"],"https://blog.naver.com/yongjiklee00/220403454147"],
-  ["Multicultural Education Journal Research in Korea (2015)","2015-06-27",["Multicultural Education","Theory & Research"],"https://blog.naver.com/yongjiklee00/220403445834"],
-  ["A Literature Review of the Flipped Classroom","2015-06-27",["Flipped Learning","Theory & Research"],"https://blog.naver.com/yongjiklee00/220403443524"],
-  ["Vygotsky and the Sociocultural Lens (비고츠키 자료)","2015-06-27",["Theory & Research"],"https://blog.naver.com/yongjiklee00/220403442170"],
-  ["A Review of Flipped-Classroom Research, Practice, and Technologies","2015-06-27",["Flipped Learning","Theory & Research"],"https://blog.naver.com/yongjiklee00/220403440252"],
   ["Shaping a Vision of Academic Success for All Students — Video","2015-06-27",["Education","Talks & Media"],"https://blog.naver.com/yongjiklee00/220402867925"],
   ["How to Fix a Broken School — TED Talk","2015-06-27",["Education","Talks & Media"],"https://blog.naver.com/yongjiklee00/220402867485"],
   ["Teaching Artists: Creative Ways to Teach English to Immigrant Children","2015-06-27",["TESOL","Multicultural Education"],"https://blog.naver.com/yongjiklee00/220402867015"],
@@ -43,11 +38,9 @@ const posts = [
   ["What Makes Good Teaching and a Good Classroom? (세바시)","2015-06-27",["Education","Talks & Media"],"https://blog.naver.com/yongjiklee00/220402866385"],
   ["Future Classroom Network (미래교실 네트워크)","2015-06-20",["Flipped Learning","Educational Technology"],"https://blog.naver.com/yongjiklee00/220395727795"],
   ["Resources for the Flipped Classroom (거꾸로 교실 자료)","2015-06-20",["Flipped Learning"],"https://blog.naver.com/yongjiklee00/220395726515"],
-  ["Collaboration between NESTs and NNESTs","2015-04-11",["TESOL","Theory & Research"],"https://blog.naver.com/yongjiklee00/220327235535"],
   ["Education Reform in the United States and Finland","2015-04-11",["Education","Talks & Media"],"https://blog.naver.com/yongjiklee00/220327235005"],
   ["Education Reform Experts — TED Talks","2015-04-11",["Education","Talks & Media"],"https://blog.naver.com/yongjiklee00/220327234854"],
   ["Kenji Hakuta — Stanford University","2015-04-11",["TESOL","Talks & Media"],"https://blog.naver.com/yongjiklee00/220327234711"],
-  ["Critical Pedagogy and Systemic Functional Linguistics (SFL)","2015-01-28",["Theory & Research"],"https://blog.naver.com/yongjiklee00/220255606463"],
   ["Ofelia García: Reimagining Bilingualism in Twenty-First-Century Education","2015-01-14",["Multicultural Education","TESOL","Talks & Media"],"https://blog.naver.com/yongjiklee00/220239498608"],
   ["Culturally Responsive Teaching — Brown University","2015-01-13",["Multicultural Education"],"https://blog.naver.com/yongjiklee00/220238621777"],
   ["Bridging the Achievement Gap","2015-01-12",["Multicultural Education","Talks & Media"],"https://blog.naver.com/yongjiklee00/220237396357"],
@@ -68,7 +61,7 @@ const themeMap = {
   "Educational Technology": "technology",
   "Theory & Research": "research",
   "Talks & Media": "video",
-  "Education": "research"
+  "Education": "video"
 };
 
 const themeLabels = {
@@ -87,14 +80,19 @@ const resultCount = document.querySelector("#result-count");
 const emptyState = document.querySelector("#empty-state");
 let activeFilter = "all";
 
-const normalizedPosts = posts.map(([title, date, categories, url], index) => ({
-  title,
-  date,
-  categories,
-  url,
-  index: index + 1,
-  themes: [...new Set(categories.map(category => themeMap[category] || "research"))]
-}));
+const chronologicalPosts = [...posts].reverse().sort((a, b) => a[1].localeCompare(b[1]));
+
+const normalizedPosts = chronologicalPosts.map(([title, date, categories, url], index) => {
+  const theme = themeMap[categories[0]] || "research";
+  return {
+    title,
+    date,
+    categories,
+    url,
+    index: index + 1,
+    theme
+  };
+});
 
 function escapeHTML(value) {
   return value.replace(/[&<>'"]/g, character => ({
@@ -105,15 +103,13 @@ function escapeHTML(value) {
 function renderArchive() {
   const query = search.value.trim().toLocaleLowerCase();
   const filtered = normalizedPosts.filter(post => {
-    const matchesTheme = activeFilter === "all" || post.themes.includes(activeFilter);
+    const matchesTheme = activeFilter === "all" || post.theme === activeFilter;
     const haystack = `${post.title} ${post.categories.join(" ")}`.toLocaleLowerCase();
     return matchesTheme && haystack.includes(query);
   });
 
   list.innerHTML = filtered.map(post => {
-    const primaryTheme = activeFilter !== "all" && post.themes.includes(activeFilter)
-      ? activeFilter
-      : post.themes[0];
+    const primaryTheme = post.theme;
     return `
       <a class="archive-item" href="${post.url}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeHTML(post.title)} on Naver Blog">
         <span class="item-number">${String(post.index).padStart(2, "0")}</span>
