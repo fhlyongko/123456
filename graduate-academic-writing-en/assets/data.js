@@ -27,7 +27,12 @@ const tools=[
 
 const label={planning:"Research Design",writing:"Paper Writing",ethics:"Ethics and AI",career:"Researcher Development"};
 const stateKey="graduate-writing-en-progress-v1";
-let completed=new Set(JSON.parse(localStorage.getItem(stateKey)||"[]"));
+let completed=new Set();
+try{
+  completed=new Set(JSON.parse(localStorage.getItem(stateKey)||"[]"));
+}catch(_error){
+  localStorage.removeItem(stateKey);
+}
 
 function renderWeeks(){
   const host=document.getElementById("weekList");
@@ -40,7 +45,8 @@ function renderWeeks(){
   modules.filter(m=>f==="all"||m.c===f).filter(m=>!q||(m.t+m.g+m.act+m.as+m.ck.join(" ")).toLowerCase().includes(q)).forEach(m=>{
     const article=document.createElement("article");
     article.className="week";
-    article.innerHTML=`<div class="unit"><strong>${m.w}</strong><span>Week</span></div><div class="week-main"><h3>${m.t}</h3><p>${m.g}</p><div class="concepts"><span>${label[m.c]}</span><span>${m.act}</span></div><p><b>Task</b> ${m.as}</p><ul class="checklist">${m.ck.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="week-side">${m.f?`<a class="btn primary" href="${base+m.f}" download>Download Course Material</a>`:`<span class="btn">Workshop</span>`}<label class="done"><input type="checkbox" data-week="${m.w}" ${completed.has(m.w)?"checked":""}> Completed</label></div>`;
+    article.setAttribute("aria-labelledby",`week-${m.w}-title`);
+    article.innerHTML=`<div class="unit"><strong>${String(m.w).padStart(2,"0")}</strong><span>Week</span></div><div class="week-main"><h3 id="week-${m.w}-title">${m.t}</h3><p>${m.g}</p><div class="concepts"><span>${label[m.c]}</span><span>${m.act}</span></div><p><b>Submission</b> ${m.as}</p><ul class="checklist">${m.ck.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="week-side">${m.f?`<a class="btn primary" href="${base+m.f}" download>Download PDF</a>`:`<span class="btn" aria-label="Week 8 is an in-class workshop">Workshop</span>`}<label class="done"><input type="checkbox" data-week="${m.w}" aria-label="Mark Week ${m.w} as completed" ${completed.has(m.w)?"checked":""}> Completed</label></div>`;
     host.appendChild(article);
   });
   if(!host.children.length)host.innerHTML='<p class="section-lead">No modules match your search.</p>';
@@ -50,13 +56,13 @@ function renderWeeks(){
 function renderTools(){
   const host=document.getElementById("toolList");
   if(!host)return;
-  host.innerHTML=tools.map((tool,index)=>`<article class="tool"><h3>${tool.h}</h3><p>${tool.p}</p><ul>${tool.i.map(x=>`<li>${x}</li>`).join("")}</ul><button class="copy" data-index="${index}">Copy Template</button></article>`).join("");
+  host.innerHTML=tools.map((tool,index)=>`<article class="tool"><p class="mini-label">Template ${String(index+1).padStart(2,"0")}</p><h3>${tool.h}</h3><p>${tool.p}</p><ul>${tool.i.map(x=>`<li>${x}</li>`).join("")}</ul><button class="copy" data-index="${index}" type="button">Copy template</button></article>`).join("");
 }
 
 function renderDownloads(){
   const host=document.getElementById("downloadGrid");
   if(!host)return;
-  host.innerHTML=modules.filter(m=>m.f).map(m=>`<article class="download"><span class="tag">Week ${m.w} | ${label[m.c]}</span><h3>${m.t}</h3><p>${m.g}</p><a class="btn primary" href="${base+m.f}" download>Download Course Material</a></article>`).join("");
+  host.innerHTML=modules.filter(m=>m.f).map(m=>`<article class="download"><span class="tag">Week ${String(m.w).padStart(2,"0")} · ${label[m.c]}</span><h3>${m.t}</h3><p>${m.g}</p><a class="btn primary" href="${base+m.f}" download>Download PDF</a></article>`).join("");
 }
 
 function updateProgress(){
@@ -87,10 +93,10 @@ document.addEventListener("click",async event=>{
   try{
     await navigator.clipboard.writeText(text);
     button.textContent="Copied";
-    setTimeout(()=>button.textContent="Copy Template",1400);
+    setTimeout(()=>button.textContent="Copy template",1400);
   }catch(_error){
-    button.textContent="Copy Failed";
-    setTimeout(()=>button.textContent="Copy Template",1400);
+    button.textContent="Copy failed";
+    setTimeout(()=>button.textContent="Copy template",1400);
   }
 });
 
