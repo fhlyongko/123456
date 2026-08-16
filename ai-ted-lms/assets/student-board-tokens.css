@@ -1,0 +1,55 @@
+/* Hallmark · macrostructure: Workbench · tone: Lumen Day Foundry · anchor hue: signal coral */
+:root {
+  --color-paper: oklch(97.2% 0.012 88);
+  --color-paper-2: oklch(94.5% 0.018 88);
+  --color-surface: oklch(99.2% 0.006 88);
+  --color-surface-raised: oklch(100% 0 0);
+  --color-ink: oklch(19% 0.035 256);
+  --color-ink-2: oklch(30% 0.03 256);
+  --color-muted: oklch(53% 0.025 256);
+  --color-faint: oklch(69% 0.02 256);
+  --color-rule: oklch(84% 0.025 88);
+  --color-rule-strong: oklch(69% 0.035 256);
+  --color-accent: oklch(62% 0.19 28);
+  --color-accent-soft: oklch(93% 0.045 28);
+  --color-signal: oklch(58% 0.15 247);
+  --color-signal-soft: oklch(93% 0.035 247);
+  --color-project: oklch(58% 0.12 155);
+  --color-project-soft: oklch(93% 0.035 155);
+  --color-gold: oklch(70% 0.12 78);
+  --color-focus: oklch(56% 0.18 247);
+
+  --font-display: "Instrument Serif", "Noto Serif KR", Georgia, serif;
+  --font-body: "Manrope", "Noto Sans KR", sans-serif;
+  --font-label: "IBM Plex Mono", "Noto Sans Mono CJK KR", monospace;
+
+  --text-xs: 0.72rem;
+  --text-sm: 0.84rem;
+  --text-base: 1rem;
+  --text-lg: clamp(1.03rem, 1.2vw, 1.18rem);
+  --text-xl: clamp(1.4rem, 2.2vw, 2rem);
+  --text-2xl: clamp(2.2rem, 5.7vw, 5.8rem);
+  --text-stat: clamp(2.7rem, 5vw, 5.4rem);
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: clamp(4rem, 8vw, 8rem);
+  --page-gutter: clamp(1rem, 4vw, 4.5rem);
+  --page-width: 92rem;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.6rem;
+  --radius-lg: 1rem;
+  --radius-pill: 999px;
+  --rule-hairline: 1px solid var(--color-rule);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 150ms;
+  --dur-base: 240ms;
+}
