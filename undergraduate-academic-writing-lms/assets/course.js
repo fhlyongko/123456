@@ -100,7 +100,11 @@ function attachFilters() {
   filters.forEach((button) => {
     button.addEventListener("click", () => {
       active = button.dataset.filter;
-      filters.forEach((b) => b.classList.toggle("active", b === button));
+      filters.forEach((b) => {
+        const selected = b === button;
+        b.classList.toggle("active", selected);
+        b.setAttribute("aria-pressed", String(selected));
+      });
       apply();
     });
   });
@@ -110,13 +114,39 @@ function attachFilters() {
 
 function renderFilters() {
   document.querySelectorAll("[data-filter-row]").forEach((row) => {
-    row.innerHTML = [`<button class="filter active" data-filter="all" type="button">All</button>`]
-      .concat(Object.entries(labels).map(([id, label]) => `<button class="filter" data-filter="${id}" type="button">${label}</button>`))
+    row.innerHTML = [`<button class="filter active" data-filter="all" type="button" aria-pressed="true">All</button>`]
+      .concat(Object.entries(labels).map(([id, label]) => `<button class="filter" data-filter="${id}" type="button" aria-pressed="false">${label}</button>`))
       .join("");
   });
 }
 
+function initNavigation() {
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".nav");
+  if (!toggle || !nav) return;
+
+  const close = () => {
+    nav.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "메뉴 열기");
+    toggle.textContent = "☰";
+  };
+
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
+    toggle.textContent = open ? "×" : "☰";
+  });
+
+  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", close));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") close();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  initNavigation();
   renderFilters();
   renderModuleBoard();
   renderModuleDetails();
