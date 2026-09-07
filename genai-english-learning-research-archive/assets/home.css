@@ -800,3 +800,6 @@ h1 {
 
   .hero::before { display: none; }
 }
+
+
+.archive-note{font-size:.9rem;line-height:1.6;color:#4e5b54;max-width:620px}
