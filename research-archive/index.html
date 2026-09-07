@@ -292,7 +292,10 @@
       .section__head { grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); }
     }
     @media (max-width: 48rem) {
-      .topnav a:nth-child(2), .topnav a:nth-child(3), .topnav a:nth-child(4) { display: none; }
+      .topbar__inner { flex-wrap:wrap; gap:.3rem; padding-block:.6rem; }
+.topnav { flex-wrap:wrap; gap:.6rem 1rem; }
+.topnav a { min-height:30px; }
+.section,.hero { scroll-margin-top:8rem; }
       .hero { grid-template-columns: 1fr; align-items: start; padding-top: var(--space-xl); }
       .hero__identity { display: grid; grid-template-columns: 8.5rem minmax(0,1fr); gap: var(--space-md); align-items: end; }
       .portrait { width: 100%; margin: 0; }
@@ -344,7 +347,7 @@
       .section, .publication, .project-feature, .timeline li { break-inside: avoid; }
       body { background: var(--color-light); }
     }
-  </style>
+  .archive-note{font-size:.82rem;line-height:1.65;color:var(--color-ink-soft)}[hidden]{display:none!important}.contact__links a{overflow-wrap:anywhere}.section__title,.hero__title{line-height:1.08}.project-copy h3{font-size:clamp(1.7rem,3vw,2.8rem);line-height:1.25} .hero__title{letter-spacing:-.045em} :root{--color-muted:#5d6058}</style>
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -359,6 +362,7 @@
         <a href="#research">Research</a>
         <a href="#publications">Publications</a>
         <a href="#projects">Projects</a>
+<a href="#cv">CV</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -384,9 +388,9 @@
     <main id="main">
       <section class="hero" id="profile" aria-labelledby="hero-title">
         <div class="hero__copy">
-          <p class="eyebrow">Professor · Researcher · Educator</p>
+          <p class="eyebrow">Assistant Professor · Researcher · Educator</p>
           <h1 class="hero__title" id="hero-title">Human agency <span class="accent">in the age of AI.</span></h1>
-          <p class="hero__lede">생성형 인공지능이 영어 학습과 대학 교육을 어떻게 변화시키는지 탐구합니다. 기술의 효율성뿐 아니라 학습자의 판단, 주도성, 윤리적 책임이 함께 성장하는 교육 설계를 연구합니다.</p>
+          <p class="hero__lede">생성형 인공지능이 영어 학습과 대학 교육을 어떻게 변화시키는지 탐구합니다. 기술의 효율성뿐 아니라 학습자의 판단, 주도성, 윤리적 책임이 함께 성장하는 교육 설계를 연구합니다.</p><p class="hero__lede" lang="en">I investigate how generative AI can support English language learning and higher education, with a focus on learner agency, critical judgment, and responsible AI use.</p>
         </div>
         <div class="hero__identity">
           <figure class="portrait">
@@ -395,7 +399,7 @@
           </figure>
           <div>
             <p class="identity__name">이용직 <span lang="en">Yong-Jik Lee</span></p>
-            <p class="identity__role">국립창원대학교 사림아너스학부 교수</p>
+            <p class="identity__role">국립창원대학교 사림아너스학부 조교수</p>
             <p class="identity__affiliation" lang="en">School of Sarim Honors · Changwon National University</p>
           </div>
           <div class="profile-links" aria-label="학술 프로필 링크">
@@ -409,9 +413,9 @@
       </section>
 
       <ul class="metrics" aria-label="주요 연구 성과">
-        <li class="metric"><strong>19</strong><span>Peer-reviewed<br>publications</span></li>
-        <li class="metric"><strong>17</strong><span>SSCI · Scopus<br>indexed</span></li>
-        <li class="metric"><strong>6</strong><span>Published<br>in 2026</span></li>
+        <li class="metric"><strong id="total-count">18</strong><span>Selected journal<br>articles listed</span></li>
+        <li class="metric"><strong>2022–26</strong><span>Selected research<br>coverage</span></li>
+        <li class="metric"><strong id="current-year-count">5</strong><span>2026 journal<br>articles listed</span></li>
         <li class="metric"><strong>NRF</strong><span>Principal investigator<br>2026–2029</span></li>
       </ul>
 
@@ -435,11 +439,11 @@
         </div>
         <div class="output-grid">
           <div class="chart-panel">
-            <div class="chart__top"><h3>연도별 논문 수</h3><span>2022—2026</span></div>
+            <div class="chart__top"><h3>연도별 수록 논문 수</h3><span>2022—2026</span></div>
             <div class="chart" id="chart" role="img" aria-label="2022년부터 2026년까지의 연도별 논문 수"></div>
           </div>
           <aside class="index-panel" aria-label="색인별 논문 수">
-            <h3>Index distribution</h3>
+            <h3>Archive categories</h3>
             <ul class="index-list" id="index-summary"></ul>
           </aside>
         </div>
@@ -448,9 +452,9 @@
       <section class="section" id="publications" aria-labelledby="publications-title">
         <div class="section__head">
           <div><p class="eyebrow">Selected bibliography</p><h2 class="section__title" id="publications-title">논문 실적</h2></div>
-          <p class="section__intro">논문명, 학술지명 또는 연구어로 검색할 수 있으며 색인 유형별로 결과를 좁힐 수 있습니다. DOI가 확인된 논문은 원문 페이지로 연결됩니다.</p>
+          <p class="section__intro">논문명·저자명·학술지명·연구어로 검색할 수 있습니다. 제목은 출판 기록을 따르며 DOI는 출판사 페이지로 연결됩니다. 이 목록은 주요 논문을 선별한 것으로 전체 연구실적을 의미하지 않습니다.</p>
         </div>
-        <div class="publication-tools">
+        <p class="archive-note">통계는 아래 수록 논문만 집계합니다. 온라인 선게재 연도와 권·호 발행연도는 다를 수 있습니다. 색인은 기존 아카이브의 분류로, 현재 등재 상태와 개별 논문의 색인 여부는 해당 데이터베이스에서 확인해 주세요.</p><div class="publication-tools" hidden>
           <div class="search-box"><label for="publication-search">논문 검색</label><input id="publication-search" type="search" placeholder="논문명·학술지·연구어 검색" autocomplete="off"></div>
           <div class="filters" id="filters" aria-label="색인 유형 필터">
             <button class="filter" type="button" data-filter="all" aria-pressed="true">전체</button>
@@ -459,21 +463,184 @@
             <button class="filter" type="button" data-filter="KCI" aria-pressed="false">KCI</button>
           </div>
         </div>
-        <div class="result-meta" aria-live="polite"><span id="result-count">19편</span><span>최근 연도순</span></div>
-        <div class="publication-list" id="publication-list"></div>
+        <div class="result-meta" aria-live="polite"><span id="result-count">18편</span><span>최근 연도순</span></div>
+        <div class="publication-list" id="publication-list"><article class="publication">
+        <span class="publication__no">01</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.11591/ijere.v15i1.35223" aria-label="University students' perspectives on integrating generative AI into English language learning 논문 페이지 열기">University students' perspectives on integrating generative AI into English language learning</a></h3>
+          <p class="publication__authors"><b>Yong-Jik Lee</b>, Masashi Otani</p>
+          <p class="publication__journal"><cite>International Journal of Evaluation and Research in Education</cite></p>
+          <div class="publication__tags"><span>생성형 AI</span><span>영어학습</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2026</span><span class="badge badge--SCOPUS">SCOPUS</span></div>
+      </article><article class="publication">
+        <span class="publication__no">02</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.18823/asiatefl.2026.23.1.10.128" aria-label="Integrating Generative AI into English Learning: Insights from Korean University EFL Students 논문 페이지 열기">Integrating Generative AI into English Learning: Insights from Korean University EFL Students</a></h3>
+          <p class="publication__authors"><b>Yong-Jik Lee</b>, Robert O. Davis, Jungin Choi</p>
+          <p class="publication__journal"><cite>The Journal of Asia TEFL</cite></p>
+          <div class="publication__tags"><span>Generative AI</span><span>EFL</span><span>higher education</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2026</span><span class="badge badge--SCOPUS">SCOPUS</span></div>
+      </article><article class="publication">
+        <span class="publication__no">03</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.3390/jintelligence14050074" aria-label="Cognitive Load and Working Memory in Multimedia Video Podcasts: Effects of Elaborative and Seductive Details 논문 페이지 열기">Cognitive Load and Working Memory in Multimedia Video Podcasts: Effects of Elaborative and Seductive Details</a></h3>
+          <p class="publication__authors">Robert O. Davis, <b>Yong-Jik Lee</b>, Joseph Vincent, Ji Hae Lee</p>
+          <p class="publication__journal"><cite>Journal of Intelligence</cite></p>
+          <div class="publication__tags"><span>cognitive load</span><span>multimedia learning</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2026</span><span class="badge badge--SSCI">SSCI</span></div>
+      </article><article class="publication">
+        <span class="publication__no">04</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.5430/jct.v15n2p284" aria-label="Examining Artificial Intelligence (AI) Literacy Among First-Year Students in Korean Higher Education 논문 페이지 열기">Examining Artificial Intelligence (AI) Literacy Among First-Year Students in Korean Higher Education</a></h3>
+          <p class="publication__authors"><b>Yong-Jik Lee</b>, Seung-Hoon Jeong</p>
+          <p class="publication__journal"><cite>Journal of Curriculum and Teaching</cite></p>
+          <div class="publication__tags"><span>AI literacy</span><span>first-year students</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2026</span><span class="badge badge--SCOPUS">SCOPUS</span></div>
+      </article><article class="publication">
+        <span class="publication__no">05</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.18178/ijiet.2026.16.6.2613" aria-label="Disciplinary Differences in University Students' AI Adoption: A Technology Acceptance Model Approach 논문 페이지 열기">Disciplinary Differences in University Students' AI Adoption: A Technology Acceptance Model Approach</a></h3>
+          <p class="publication__authors"><b>Yong-Jik Lee</b>, Hyun-Cheol Choi</p>
+          <p class="publication__journal"><cite>International Journal of Information and Education Technology</cite></p>
+          <div class="publication__tags"><span>AI adoption</span><span>TAM</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2026</span><span class="badge badge--SCOPUS">SCOPUS</span></div>
+      </article><article class="publication">
+        <span class="publication__no">06</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.24071/llt.v28i2.11518" aria-label="EFL University Students' Motivation, Cognitive Load, and Satisfaction with Using GenAI for English Learning 논문 페이지 열기">EFL University Students' Motivation, Cognitive Load, and Satisfaction with Using GenAI for English Learning</a></h3>
+          <p class="publication__authors"><b>Yong-Jik Lee</b>, Masashi Otani</p>
+          <p class="publication__journal"><cite>LLT Journal: A Journal on Language and Language Teaching</cite></p>
+          <div class="publication__tags"><span>GenAI</span><span>영어학습</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2025</span><span class="badge badge--SCOPUS">SCOPUS</span></div>
+      </article><article class="publication">
+        <span class="publication__no">07</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.3390/info16040277" aria-label="Assessing the Impact of Prior Coding and AI Learning on Non-Computing Majors' Perception of AI in a University Context 논문 페이지 열기">Assessing the Impact of Prior Coding and AI Learning on Non-Computing Majors' Perception of AI in a University Context</a></h3>
+          <p class="publication__authors"><b>Yong-Jik Lee</b>, Robert Davis</p>
+          <p class="publication__journal"><cite>Information</cite></p>
+          <div class="publication__tags"><span>AI/디지털교육</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2025</span><span class="badge badge--SCOPUS">SCOPUS</span></div>
+      </article><article class="publication">
+        <span class="publication__no">08</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.34245/jed.45.1.301" aria-label="An Exploratory Study on English Pre-service Teachers' AI Literacy 논문 페이지 열기">An Exploratory Study on English Pre-service Teachers' AI Literacy</a></h3>
+          <p class="publication__authors">Hyoung Sook Cho, <b>Yong Jik Lee</b></p>
+          <p class="publication__journal"><cite>The Journal of Educational Development</cite></p>
+          <div class="publication__tags"><span>예비교사</span><span>AI 리터러시</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2025</span><span class="badge badge--KCI">KCI</span></div>
+      </article><article class="publication">
+        <span class="publication__no">09</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.30935/ojcmt/14195" aria-label="University students' perceptions of artificial intelligence-based tools for English writing courses 논문 페이지 열기">University students' perceptions of artificial intelligence-based tools for English writing courses</a></h3>
+          <p class="publication__authors"><b>Yong-Jik Lee</b>, Robert O. Davis, Sun Ok Lee</p>
+          <p class="publication__journal"><cite>Online Journal of Communication and Media Technologies</cite></p>
+          <div class="publication__tags"><span>AI/디지털교육</span><span>영어쓰기</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2024</span><span class="badge badge--SCOPUS">SCOPUS</span></div>
+      </article><article class="publication">
+        <span class="publication__no">10</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.30935/cedtech/15218" aria-label="A case study of implementing generative AI in university's general English courses 논문 페이지 열기">A case study of implementing generative AI in university's general English courses</a></h3>
+          <p class="publication__authors"><b>Yong Jik Lee</b>, Robert O. Davis</p>
+          <p class="publication__journal"><cite>Contemporary Educational Technology</cite></p>
+          <div class="publication__tags"><span>생성형 AI</span><span>교양영어</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2024</span><span class="badge badge--SCOPUS">SCOPUS</span></div>
+      </article><article class="publication">
+        <span class="publication__no">11</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.20487/kasee.17.3.202406.73" aria-label="A case study of implementing ChatGPT for university's general English courses: Focusing on English language learners' self-regulated learning and grit 논문 페이지 열기">A case study of implementing ChatGPT for university's general English courses: Focusing on English language learners' self-regulated learning and grit</a></h3>
+          <p class="publication__authors"><b>Yong-Jik Lee</b>, Robert O. Davis</p>
+          <p class="publication__journal"><cite>Secondary English Education</cite></p>
+          <div class="publication__tags"><span>ChatGPT</span><span>교양영어</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2024</span><span class="badge badge--KCI">KCI</span></div>
+      </article><article class="publication">
+        <span class="publication__no">12</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.1080/14664208.2024.2315682" aria-label="Reimagining raciolinguistic ideologies through an analysis of localized language-in-education policies in Turkey and Korea 논문 페이지 열기">Reimagining raciolinguistic ideologies through an analysis of localized language-in-education policies in Turkey and Korea</a></h3>
+          <p class="publication__authors">Hyunjin Jinna Kim, Tuba Yilmaz, <b>Yong-Jik Lee</b></p>
+          <p class="publication__journal"><cite>Current Issues in Language Planning</cite></p>
+          <div class="publication__tags"><span>언어교육정책</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2024</span><span class="badge badge--SSCI">SSCI</span></div>
+      </article><article class="publication">
+        <span class="publication__no">13</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.1080/01434632.2024.2314659" aria-label="A multilingualism-as-resource approach in a graduate-level English-medium instruction (EMI) program at a Korean University 논문 페이지 열기">A multilingualism-as-resource approach in a graduate-level English-medium instruction (EMI) program at a Korean University</a></h3>
+          <p class="publication__authors">Tuba Yilmaz, Shuzhan Li, <b>Yong-Jik Lee</b></p>
+          <p class="publication__journal"><cite>Journal of Multilingual and Multicultural Development</cite></p><p class="archive-note" lang="en">First published online in 2024.</p>
+          <div class="publication__tags"><span>EMI</span><span>다중언어</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2024</span><span class="badge badge--SSCI">SSCI</span></div>
+      </article><article class="publication">
+        <span class="publication__no">14</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.1080/09500782.2023.2221221" aria-label="Rethinking linguistic capitals and asset-based language learning: an examination of bilingual Korean-Chinese instruction for international students in South Korea 논문 페이지 열기">Rethinking linguistic capitals and asset-based language learning: an examination of bilingual Korean-Chinese instruction for international students in South Korea</a></h3>
+          <p class="publication__authors">Hyunjin Jinna Kim, Yue Li, <b>Yong-Jik Lee</b></p>
+          <p class="publication__journal"><cite>Language and Education</cite></p><p class="archive-note" lang="en">First published online in 2023; assigned to volume 38(2) in 2024.</p>
+          <div class="publication__tags"><span>언어교육</span><span>다중언어</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2023</span><span class="badge badge--SSCI">SSCI</span></div>
+      </article><article class="publication">
+        <span class="publication__no">15</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.61871/mj.v46n2-12" aria-label="English Teachers' Experiences of Participating in a Long-Term Professional Development for Teaching English through English 논문 페이지 열기">English Teachers' Experiences of Participating in a Long-Term Professional Development for Teaching English through English</a></h3>
+          <p class="publication__authors"><b>Yong-Jik Lee</b>, Robert Davis</p>
+          <p class="publication__journal"><cite>MEXTESOL Journal</cite></p>
+          <div class="publication__tags"><span>교사교육</span><span>영어교육</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2022</span><span class="badge badge--SCOPUS">SCOPUS</span></div>
+      </article><article class="publication">
+        <span class="publication__no">16</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.12973/eu-jer.11.3.1303" aria-label="Preparing Mainstream Teacher Candidates to Work with English Language Learners: Dissonance and Care Developing Agency 논문 페이지 열기">Preparing Mainstream Teacher Candidates to Work with English Language Learners: Dissonance and Care Developing Agency</a></h3>
+          <p class="publication__authors">Hyunjin Jinna Kim, <b>Yong-Jik Lee</b>, Ester Johanna de Jong</p>
+          <p class="publication__journal"><cite>European Journal of Educational Research</cite></p>
+          <div class="publication__tags"><span>교사교육</span><span>영어학습자</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2022</span><span class="badge badge--SCOPUS">SCOPUS</span></div>
+      </article><article class="publication">
+        <span class="publication__no">17</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.12973/ijem.8.3.421" aria-label="International Students' Experiences of Content Language Integrated Learning in a Korean University: Focusing on Korean as a Medium of Instruction 논문 페이지 열기">International Students' Experiences of Content Language Integrated Learning in a Korean University: Focusing on Korean as a Medium of Instruction</a></h3>
+          <p class="publication__authors"><b>Yong-Jik Lee</b>, Hyunjin Jinna Kim, Yue Li</p>
+          <p class="publication__journal"><cite>International Journal of Educational Methodology</cite></p>
+          <div class="publication__tags"><span>EMI</span><span>국제학생</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2022</span><span class="badge badge--SCOPUS">SCOPUS</span></div>
+      </article><article class="publication">
+        <span class="publication__no">18</span>
+        <div>
+          <h3 class="publication__title"><a href="https://doi.org/10.12973/ijem.8.4.711" aria-label="Korean Pre-service Teachers' Flipped Learning Experiences in a Teacher Education Program 논문 페이지 열기">Korean Pre-service Teachers' Flipped Learning Experiences in a Teacher Education Program</a></h3>
+          <p class="publication__authors"><b>Yong-Jik Lee</b>, Seung-Hoon Jeong, Yue Li</p>
+          <p class="publication__journal"><cite>International Journal of Educational Methodology</cite></p>
+          <div class="publication__tags"><span>교사교육</span></div>
+        </div>
+        <div class="publication__meta"><span class="publication__year">2022</span><span class="badge badge--SCOPUS">SCOPUS</span></div>
+      </article></div>
       </section>
 
-      <section class="section" id="projects" aria-labelledby="projects-title">
+      <section class="section" id="record-review" aria-labelledby="record-review-title"><h2 id="record-review-title">출판정보 확인 중</h2><p lang="en">Exploring EFL Students' Engagement with Generative AI: Experiences, Perceptions, and Ethical Concerns</p><p class="archive-note">기존 아카이브 수록 항목입니다. 학술지 게재 여부와 서지정보가 확인되지 않아 위 논문 목록 및 통계에서 제외했습니다.</p></section>
+<section class="section" id="projects" aria-labelledby="projects-title">
         <div class="section__head">
           <div><p class="eyebrow">Funded project</p><h2 class="section__title" id="projects-title">현재 연구과제</h2></div>
           <p class="section__intro">학습자의 글로벌 역량을 진단하는 데서 멈추지 않고, 실제 성장 과정과 증거를 축적하는 디지털 연구·학습 환경을 개발합니다.</p>
         </div>
         <article class="project-feature">
-          <div class="project-visual" aria-hidden="true"><span class="orbit orbit--1"></span><span class="orbit orbit--2"></span><span class="orbit orbit--3"></span><span class="project-visual__label">A connected system for evidence, reflection and personalized learning pathways.</span></div>
+          <div class="project-visual" aria-hidden="true"><span class="orbit orbit--1"></span><span class="orbit orbit--2"></span><span class="orbit orbit--3"></span><span class="project-visual__label">Connecting evidence, reflection, and personalized learning pathways.</span></div>
           <div class="project-copy">
             <div>
               <h3>자율전공학부생의 글로벌 역량 개발을 지원하는 AI 기반 디지털 포트폴리오 시스템 개발</h3>
-              <p class="project-copy__en" lang="en">Developing an AI-Enabled Digital Portfolio System to Support Personalized Global Competence for Undeclared-Major Students</p>
+              <p class="project-copy__en" lang="en">Developing an AI-Based Digital Portfolio System to Support Global Competence Development among Students with Undeclared Majors</p>
               <p class="project-copy__desc">자율전공학부 학생의 글로벌 역량을 진단·관리·강화하는 인공지능 기반 디지털 포트폴리오 시스템을 개발하고, 역량 측정 도구·맞춤형 학습경로·학습분석 피드백을 구축하는 3년 과제입니다.</p>
             </div>
             <div class="project-meta">
@@ -494,8 +661,8 @@
           <div class="cv-column">
             <h3>Education</h3>
             <ol class="timeline">
-              <li><time>2014–2018</time><div><strong>Ph.D., ESOL / Bilingual Education</strong><span>University of Florida · Curriculum and Instruction</span></div></li>
-              <li><time>2010–2012</time><div><strong>M.A., TESL</strong><span>Indiana State University</span></div></li>
+              <li><time>2014–2018</time><div><strong>Ph.D. in Curriculum and Instruction</strong><span>University of Florida · ESOL and Bilingual Education</span></div></li>
+              <li><time>2010–2012</time><div><strong>M.A. in Teaching English as a Second Language (TESL)</strong><span>Indiana State University</span></div></li>
               <li><time>2003–2009</time><div><strong>B.A., English</strong><span>Chung-Ang University</span></div></li>
             </ol>
             <div class="dissertation"><span>Doctoral dissertation</span><p lang="en">An Exploratory Study of Pre-service Teachers and Their Self-Efficacy Beliefs as Teachers of English Language Learners Using Micro-Teaching Experiences</p></div>
@@ -517,6 +684,7 @@
         <div class="contact">
           <div><p class="eyebrow" style="color:var(--color-light)">Academic profiles</p><h2 id="contact-title">Read, connect, collaborate.</h2></div>
           <div class="contact__links">
+<a href="mailto:yongjiklee@changwon.ac.kr">yongjiklee@changwon.ac.kr</a>
             <a href="https://scholar.google.com/citations?hl=ko&amp;user=Jzv1a7MAAAAJ&amp;view_op=list_works&amp;sortby=pubdate">Google Scholar</a>
             <a href="https://orcid.org/0000-0001-8783-2237">ORCID</a>
             <a href="https://www.scopus.com/authid/detail.uri?authorId=57215574762">Scopus Author</a>
@@ -524,35 +692,232 @@
             <a href="https://sites.google.com/view/dr-yong-jik-lee/home">Personal Website</a>
           </div>
         </div>
-        <footer class="site-footer"><span>© 2026 이용직 · Yong-Jik Lee</span><span>국립창원대학교 · Updated 2026-08</span></footer>
+        <footer class="site-footer"><span>© 2026 이용직 · Yong-Jik Lee</span><span>국립창원대학교 · Updated 7 September 2026</span></footer>
       </section>
     </main>
   </div>
 
   <script>
     const publications = [
-      {title:"University students' perspectives on integrating generative AI into English language learning",authors:"이용직, Masashi Otani",journal:"International Journal of Evaluation and Research in Education",year:2026,index:"SCOPUS",doi:"https://doi.org/10.11591/ijere.v15i1.35223",tags:["생성형 AI","영어학습"]},
-      {title:"Integrating Generative AI into English Learning: Insights from Korean University EFL Students",authors:"Yong-Jik Lee, Robert O. Davis, Jungin Choi",journal:"The Journal of Asia TEFL",year:2026,index:"SCOPUS",doi:"https://doi.org/10.18823/asiatefl.2026.23.1.10.128",tags:["Generative AI","EFL","higher education"]},
-      {title:"Cognitive Load and Working Memory in Multimedia Video Podcasts: Effects of Elaborative and Seductive Details",authors:"Robert O. Davis, Yong-Jik Lee, Joseph Vincent, Ji Hae Lee",journal:"Journal of Intelligence",year:2026,index:"SSCI",doi:"https://doi.org/10.3390/jintelligence14050074",tags:["cognitive load","multimedia learning"]},
-      {title:"Examining Artificial Intelligence (AI) Literacy Among First-Year Students in Korean Higher Education",authors:"Yong-Jik Lee, Seung-Hoon Jeong",journal:"Journal of Curriculum and Teaching",year:2026,index:"SCOPUS",doi:"https://doi.org/10.5430/jct.v15n2p284",tags:["AI literacy","first-year students"]},
-      {title:"Disciplinary Differences in University Students' AI Adoption: a Technology Acceptance Model Approach",authors:"Yong-Jik Lee, Hyun Cheol Choi",journal:"International Journal of Information and Education Technology",year:2026,index:"SCOPUS",doi:"https://doi.org/10.18178/ijiet.2026.16.6.2613",tags:["AI adoption","TAM"]},
-      {title:"Exploring EFL Students' Engagement with Generative AI: Experiences, Perceptions, and Ethical Concerns",authors:"Yong-Jik Lee, Robert Davis",journal:"Journal of Education and Learning (EduLearn)",year:2026,index:"SCOPUS",doi:"",tags:["EFL","Generative AI","ethics"]},
-      {title:"EFL University Students' Motivation, Cognitive Load, and Satisfaction with Using GenAI for English Learning",authors:"이용직, Masashi Otani",journal:"LLT Journal: A Journal on Language and Language Teaching",year:2025,index:"SCOPUS",doi:"https://doi.org/10.24071/llt.v28i2.11518",tags:["GenAI","영어학습"]},
-      {title:"Assessing the Impact of Prior Coding and AI Learning on Non-Computing Majors' Perception of AI in a University Context",authors:"이용직, Robert Davis",journal:"Information",year:2025,index:"SCOPUS",doi:"https://doi.org/10.3390/info16040277",tags:["AI/디지털교육"]},
-      {title:"An Exploratory Study on English Pre-service Teachers' AI Literacy",authors:"이용직, 조형숙",journal:"교육발전",year:2025,index:"KCI",doi:"https://doi.org/10.34245/jed.45.1.301",tags:["예비교사","AI 리터러시"]},
-      {title:"University students' perceptions of artificial intelligence-based tools for English writing courses",authors:"이용직, Robert Davis, 이선옥",journal:"Online Journal of Communication and Media Technologies",year:2024,index:"SCOPUS",doi:"https://doi.org/10.30935/ojcmt/14195",tags:["AI/디지털교육","영어쓰기"]},
-      {title:"A case study of implementing generative AI in university's general English courses",authors:"이용직, Robert Davis",journal:"Contemporary Educational Technology",year:2024,index:"SCOPUS",doi:"https://doi.org/10.30935/cedtech/15218",tags:["생성형 AI","교양영어"]},
-      {title:"A Case Study of Implementing ChatGPT for University's General English Courses: Self-Regulated Learning and Grit",authors:"이용직, Robert Davis",journal:"중등영어교육",year:2024,index:"KCI",doi:"https://doi.org/10.20487/kasee.17.3.202406.73",tags:["ChatGPT","교양영어"]},
-      {title:"Reimagining raciolinguistic ideologies through localized language-in-education policies in Turkey and Korea",authors:"이용직, 김현진, Tuba Yilmaz",journal:"Current Issues in Language Planning",year:2024,index:"SSCI",doi:"https://doi.org/10.1080/14664208.2024.2315682",tags:["언어교육정책"]},
-      {title:"A multilingualism-as-resource approach in a graduate-level EMI program at a Korean university",authors:"이용직, Tuba Yilmaz, Shuzhan Li",journal:"Journal of Multilingual and Multicultural Development",year:2024,index:"SSCI",doi:"https://doi.org/10.1080/01434632.2024.2314659",tags:["EMI","다중언어"]},
-      {title:"Rethinking linguistic capitals and asset-based language learning: bilingual Korean-Chinese instruction for international students",authors:"이용직, 김현진, Yue Li",journal:"Language and Education",year:2023,index:"SSCI",doi:"https://doi.org/10.1080/09500782.2023.2221221",tags:["언어교육","다중언어"]},
-      {title:"English Teachers' Experiences of a Long-Term Professional Development for Teaching English through English",authors:"이용직, Robert Davis",journal:"MEXTESOL Journal",year:2022,index:"SCOPUS",doi:"https://doi.org/10.61871/mj.v46n2-12",tags:["교사교육","영어교육"]},
-      {title:"Preparing Mainstream Teacher Candidates to Work with English Language Learners: Dissonance and Care Developing Agency",authors:"이용직, 김현진, Ester de Jong",journal:"European Journal of Educational Research",year:2022,index:"SCOPUS",doi:"https://doi.org/10.12973/eu-jer.11.3.1303",tags:["교사교육","영어학습자"]},
-      {title:"International Students' Experiences of Content Language Integrated Learning in a Korean University",authors:"이용직, 김현진, Yue Li",journal:"International Journal of Educational Methodology",year:2022,index:"SCOPUS",doi:"https://doi.org/10.12973/ijem.8.3.421",tags:["EMI","국제학생"]},
-      {title:"Korean Pre-service Teachers' Flipped Learning Experiences in a Teacher Education Program",authors:"이용직, 정승훈, Yue Li",journal:"International Journal of Educational Methodology",year:2022,index:"SCOPUS",doi:"https://doi.org/10.12973/ijem.8.4.711",tags:["교사교육"]}
-    ];
+  {
+    "title": "University students' perspectives on integrating generative AI into English language learning",
+    "authors": "Yong-Jik Lee, Masashi Otani",
+    "journal": "International Journal of Evaluation and Research in Education",
+    "year": 2026,
+    "index": "SCOPUS",
+    "doi": "https://doi.org/10.11591/ijere.v15i1.35223",
+    "tags": [
+      "생성형 AI",
+      "영어학습"
+    ]
+  },
+  {
+    "title": "Integrating Generative AI into English Learning: Insights from Korean University EFL Students",
+    "authors": "Yong-Jik Lee, Robert O. Davis, Jungin Choi",
+    "journal": "The Journal of Asia TEFL",
+    "year": 2026,
+    "index": "SCOPUS",
+    "doi": "https://doi.org/10.18823/asiatefl.2026.23.1.10.128",
+    "tags": [
+      "Generative AI",
+      "EFL",
+      "higher education"
+    ]
+  },
+  {
+    "title": "Cognitive Load and Working Memory in Multimedia Video Podcasts: Effects of Elaborative and Seductive Details",
+    "authors": "Robert O. Davis, Yong-Jik Lee, Joseph Vincent, Ji Hae Lee",
+    "journal": "Journal of Intelligence",
+    "year": 2026,
+    "index": "SSCI",
+    "doi": "https://doi.org/10.3390/jintelligence14050074",
+    "tags": [
+      "cognitive load",
+      "multimedia learning"
+    ]
+  },
+  {
+    "title": "Examining Artificial Intelligence (AI) Literacy Among First-Year Students in Korean Higher Education",
+    "authors": "Yong-Jik Lee, Seung-Hoon Jeong",
+    "journal": "Journal of Curriculum and Teaching",
+    "year": 2026,
+    "index": "SCOPUS",
+    "doi": "https://doi.org/10.5430/jct.v15n2p284",
+    "tags": [
+      "AI literacy",
+      "first-year students"
+    ]
+  },
+  {
+    "title": "Disciplinary Differences in University Students' AI Adoption: A Technology Acceptance Model Approach",
+    "authors": "Yong-Jik Lee, Hyun-Cheol Choi",
+    "journal": "International Journal of Information and Education Technology",
+    "year": 2026,
+    "index": "SCOPUS",
+    "doi": "https://doi.org/10.18178/ijiet.2026.16.6.2613",
+    "tags": [
+      "AI adoption",
+      "TAM"
+    ]
+  },
+  {
+    "title": "EFL University Students' Motivation, Cognitive Load, and Satisfaction with Using GenAI for English Learning",
+    "authors": "Yong-Jik Lee, Masashi Otani",
+    "journal": "LLT Journal: A Journal on Language and Language Teaching",
+    "year": 2025,
+    "index": "SCOPUS",
+    "doi": "https://doi.org/10.24071/llt.v28i2.11518",
+    "tags": [
+      "GenAI",
+      "영어학습"
+    ]
+  },
+  {
+    "title": "Assessing the Impact of Prior Coding and AI Learning on Non-Computing Majors' Perception of AI in a University Context",
+    "authors": "Yong-Jik Lee, Robert Davis",
+    "journal": "Information",
+    "year": 2025,
+    "index": "SCOPUS",
+    "doi": "https://doi.org/10.3390/info16040277",
+    "tags": [
+      "AI/디지털교육"
+    ]
+  },
+  {
+    "title": "An Exploratory Study on English Pre-service Teachers' AI Literacy",
+    "authors": "Hyoung Sook Cho, Yong Jik Lee",
+    "journal": "The Journal of Educational Development",
+    "year": 2025,
+    "index": "KCI",
+    "doi": "https://doi.org/10.34245/jed.45.1.301",
+    "tags": [
+      "예비교사",
+      "AI 리터러시"
+    ]
+  },
+  {
+    "title": "University students' perceptions of artificial intelligence-based tools for English writing courses",
+    "authors": "Yong-Jik Lee, Robert O. Davis, Sun Ok Lee",
+    "journal": "Online Journal of Communication and Media Technologies",
+    "year": 2024,
+    "index": "SCOPUS",
+    "doi": "https://doi.org/10.30935/ojcmt/14195",
+    "tags": [
+      "AI/디지털교육",
+      "영어쓰기"
+    ]
+  },
+  {
+    "title": "A case study of implementing generative AI in university's general English courses",
+    "authors": "Yong Jik Lee, Robert O. Davis",
+    "journal": "Contemporary Educational Technology",
+    "year": 2024,
+    "index": "SCOPUS",
+    "doi": "https://doi.org/10.30935/cedtech/15218",
+    "tags": [
+      "생성형 AI",
+      "교양영어"
+    ]
+  },
+  {
+    "title": "A case study of implementing ChatGPT for university's general English courses: Focusing on English language learners' self-regulated learning and grit",
+    "authors": "Yong-Jik Lee, Robert O. Davis",
+    "journal": "Secondary English Education",
+    "year": 2024,
+    "index": "KCI",
+    "doi": "https://doi.org/10.20487/kasee.17.3.202406.73",
+    "tags": [
+      "ChatGPT",
+      "교양영어"
+    ]
+  },
+  {
+    "title": "Reimagining raciolinguistic ideologies through an analysis of localized language-in-education policies in Turkey and Korea",
+    "authors": "Hyunjin Jinna Kim, Tuba Yilmaz, Yong-Jik Lee",
+    "journal": "Current Issues in Language Planning",
+    "year": 2024,
+    "index": "SSCI",
+    "doi": "https://doi.org/10.1080/14664208.2024.2315682",
+    "tags": [
+      "언어교육정책"
+    ]
+  },
+  {
+    "title": "A multilingualism-as-resource approach in a graduate-level English-medium instruction (EMI) program at a Korean University",
+    "authors": "Tuba Yilmaz, Shuzhan Li, Yong-Jik Lee",
+    "journal": "Journal of Multilingual and Multicultural Development",
+    "year": 2024,
+    "index": "SSCI",
+    "doi": "https://doi.org/10.1080/01434632.2024.2314659",
+    "tags": [
+      "EMI",
+      "다중언어"
+    ],
+    "note": "First published online in 2024."
+  },
+  {
+    "title": "Rethinking linguistic capitals and asset-based language learning: an examination of bilingual Korean-Chinese instruction for international students in South Korea",
+    "authors": "Hyunjin Jinna Kim, Yue Li, Yong-Jik Lee",
+    "journal": "Language and Education",
+    "year": 2023,
+    "index": "SSCI",
+    "doi": "https://doi.org/10.1080/09500782.2023.2221221",
+    "tags": [
+      "언어교육",
+      "다중언어"
+    ],
+    "note": "First published online in 2023; assigned to volume 38(2) in 2024."
+  },
+  {
+    "title": "English Teachers' Experiences of Participating in a Long-Term Professional Development for Teaching English through English",
+    "authors": "Yong-Jik Lee, Robert Davis",
+    "journal": "MEXTESOL Journal",
+    "year": 2022,
+    "index": "SCOPUS",
+    "doi": "https://doi.org/10.61871/mj.v46n2-12",
+    "tags": [
+      "교사교육",
+      "영어교육"
+    ]
+  },
+  {
+    "title": "Preparing Mainstream Teacher Candidates to Work with English Language Learners: Dissonance and Care Developing Agency",
+    "authors": "Hyunjin Jinna Kim, Yong-Jik Lee, Ester Johanna de Jong",
+    "journal": "European Journal of Educational Research",
+    "year": 2022,
+    "index": "SCOPUS",
+    "doi": "https://doi.org/10.12973/eu-jer.11.3.1303",
+    "tags": [
+      "교사교육",
+      "영어학습자"
+    ]
+  },
+  {
+    "title": "International Students' Experiences of Content Language Integrated Learning in a Korean University: Focusing on Korean as a Medium of Instruction",
+    "authors": "Yong-Jik Lee, Hyunjin Jinna Kim, Yue Li",
+    "journal": "International Journal of Educational Methodology",
+    "year": 2022,
+    "index": "SCOPUS",
+    "doi": "https://doi.org/10.12973/ijem.8.3.421",
+    "tags": [
+      "EMI",
+      "국제학생"
+    ]
+  },
+  {
+    "title": "Korean Pre-service Teachers' Flipped Learning Experiences in a Teacher Education Program",
+    "authors": "Yong-Jik Lee, Seung-Hoon Jeong, Yue Li",
+    "journal": "International Journal of Educational Methodology",
+    "year": 2022,
+    "index": "SCOPUS",
+    "doi": "https://doi.org/10.12973/ijem.8.4.711",
+    "tags": [
+      "교사교육"
+    ]
+  }
+];
 
-    const ownName = /이용직|Yong-?Jik Lee/g;
+    const ownName = /이용직|Yong[- ]?Jik Lee/g;
     const listHost = document.querySelector('#publication-list');
     const searchInput = document.querySelector('#publication-search');
     const resultCount = document.querySelector('#result-count');
@@ -571,7 +936,7 @@
         <div>
           <h3 class="publication__title">${title}</h3>
           <p class="publication__authors">${highlightAuthor(item.authors)}</p>
-          <p class="publication__journal"><cite>${item.journal}</cite></p>
+          <p class="publication__journal"><cite>${item.journal}</cite></p>${item.note ? `<p class="archive-note" lang="en">${item.note}</p>` : ""}
           <div class="publication__tags">${item.tags.map(tag => `<span>${tag}</span>`).join('')}</div>
         </div>
         <div class="publication__meta"><span class="publication__year">${item.year}</span><span class="badge badge--${item.index}">${item.index}</span></div>
@@ -633,6 +998,9 @@
     sections.forEach(section => observer.observe(section));
 
     renderPublications();
+    document.querySelector(".publication-tools").hidden=false;
+    document.querySelector("#total-count").textContent=publications.length;
+    document.querySelector("#current-year-count").textContent=publications.filter(p=>p.year===2026).length;
 
     // 기존 다중 페이지 주소를 유지하면서 해당 섹션으로 자연스럽게 이동한다.
     const legacyRouteTargets = {
