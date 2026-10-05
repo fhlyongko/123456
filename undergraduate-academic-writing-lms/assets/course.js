@@ -16,9 +16,69 @@ const modules = [
   { id: "w15", week: "Week 15", cat: "portfolio", col: "finish", title: "Final Writing Portfolio", text: "Submit the final paper, revision history, reflection, and presentation materials.", file: "../materials/week15-researcher-growth-20slides.pdf" }
 ];
 
+const referenceMaterials = {
+  "w01": {
+    "title": "영어 논문 작성법",
+    "summary": "학술 영어, 연구질문과 목적의 정렬, 논문 구조, 리뷰어 관점"
+  },
+  "w02": {
+    "title": "연구계획 수립과 학술적 글쓰기",
+    "summary": "연구계획, 문제 설정, 서론의 깔때기 구조, 연구방법과 글쓰기"
+  },
+  "w03": {
+    "title": "이론적 기반과 문헌고찰",
+    "summary": "이론적 기반, 문헌고찰, 정의·비교·대조, 학술지 투고 준비"
+  },
+  "w04": {
+    "title": "연구방법론, 결과 제시, 논의와 결론",
+    "summary": "방법론과 방법의 차이, 결과 제시, 논의·결론의 역할, 학술 표현"
+  },
+  "w05": {
+    "title": "리뷰어의 관점에서 영어 논문 살펴보기",
+    "summary": "심사 기준, 초록부터 결론까지의 섹션별 기능, 논문의 정렬 점검"
+  },
+  "w06": {
+    "title": "연구 시작부터 연구 절차 및 윤리까지",
+    "summary": "연구문제 설정, 연구계획, 연구 절차, IRB와 연구윤리"
+  },
+  "w07": {
+    "title": "연구 방법론에서 결론 작성까지",
+    "summary": "방법론, 양적·질적·혼합 연구 결과, 논의·결론, 학술 표현 기능"
+  },
+  "w09": {
+    "title": "시각 자료, 제안점, 한계점, 학문적 언어",
+    "summary": "표·그림 참조, 권장사항, 연구 한계, 인과·신중한 언어와 분류 표현"
+  },
+  "w10": {
+    "title": "학술 영어 논문 작성 핸드북",
+    "summary": "연구 설계부터 문헌고찰, 방법론, 결과·논의, 자기점검과 연구 확산까지"
+  },
+  "w11": {
+    "title": "영어학술논문작성: 아이디어에서 연구보고까지",
+    "summary": "학술 글쓰기 원칙, 연구 절차와 윤리, 이론·문헌고찰, 방법과 결과·논의"
+  },
+  "w12": {
+    "title": "논문 사례 분석과 학문 커리어 문서 작성",
+    "summary": "연구논문 사례 분석, Cover Letter, CV, Research Statement, Teaching Statement"
+  },
+  "w13": {
+    "title": "양적연구 영어 논문 작성 가이드",
+    "summary": "양적연구 논문의 제목부터 결론까지의 구조, 템플릿, 통계·학술 표현"
+  },
+  "w14": {
+    "title": "연구 윤리와 AI 윤리의 중요성",
+    "summary": "연구윤리, 연구 부정행위, 저자·데이터 관리, AI 사용 공개와 개인정보 보호"
+  },
+  "w15": {
+    "title": "연구자의 성장과 발전",
+    "summary": "연구 진행 상황의 자기점검, 연구 결과 확산, 역량 개발과 성장 계획"
+  }
+};
+
 const resources = modules.filter((item) => item.file).map((item) => ({
   ...item,
-  title: `${item.week}: ${item.title}`
+  title: `${item.week}: ${referenceMaterials[item.id].title}`,
+  summary: referenceMaterials[item.id].summary
 }));
 
 const labels = {
@@ -45,11 +105,12 @@ function renderModuleBoard() {
 }
 
 function moduleCard(item) {
-  const file = item.file ? `<a class="mini-link" href="${item.file}" download>PDF Download</a>` : `<span class="mini-link">In-class checkpoint</span>`;
-  return `<article class="module-card" data-category="${item.cat}" data-text="${[item.week, item.title, item.text, labels[item.cat]].join(" ").toLowerCase()}">
+  const file = item.file ? `<a class="mini-link" href="${item.file}" download>참고 PDF 다운로드</a>` : `<span class="mini-link">중간 점검 · 별도 PDF 미연결</span>`;
+  return `<article class="module-card" data-category="${item.cat}" data-text="${[item.week, item.title, item.text, referenceMaterials[item.id]?.title, labels[item.cat]].join(" ").toLowerCase()}">
     <div class="module-meta"><span class="pill">${item.week}</span><span class="pill">${labels[item.cat]}</span></div>
     <h3>${item.title}</h3>
     <p>${item.text}</p>
+    ${item.file ? `<p>참고 PDF: ${referenceMaterials[item.id].title}</p>` : ""}
     <div class="module-actions">${file}<a class="mini-link" href="modules.html#${item.id}">Open detail</a></div>
   </article>`;
 }
@@ -57,16 +118,17 @@ function moduleCard(item) {
 function renderModuleDetails() {
   const grid = document.querySelector("[data-module-details]");
   if (!grid) return;
-  grid.innerHTML = modules.map((item) => `<article class="module-card" id="${item.id}" data-category="${item.cat}" data-text="${[item.week, item.title, item.text, labels[item.cat]].join(" ").toLowerCase()}">
+  grid.innerHTML = modules.map((item) => `<article class="module-card" id="${item.id}" data-category="${item.cat}" data-text="${[item.week, item.title, item.text, referenceMaterials[item.id]?.title, labels[item.cat]].join(" ").toLowerCase()}">
     <div class="module-meta"><span class="pill">${item.week}</span><span class="pill">${labels[item.cat]}</span></div>
     <h3>${item.title}</h3>
     <p>${item.text}</p>
+    ${item.file ? `<p>참고 PDF: ${referenceMaterials[item.id].title}</p>` : ""}
     <ul>
-      <li><strong>Before class:</strong> Preview the slides and write two questions.</li>
+      <li><strong>Before class:</strong> ${item.file ? "Preview the reference PDF and write two questions." : "Review your topic, source notes, outline, and paragraph drafts."}</li>
       <li><strong>During class:</strong> Complete the short writing activity connected to the weekly theme.</li>
       <li><strong>After class:</strong> Revise one part of your academic writing portfolio.</li>
     </ul>
-    <div class="module-actions">${item.file ? `<a class="mini-link" href="${item.file}" download>PDF Download</a>` : `<span class="mini-link">Portfolio checkpoint</span>`}</div>
+    <div class="module-actions">${item.file ? `<a class="mini-link" href="${item.file}" download>참고 PDF 다운로드</a>` : `<span class="mini-link">중간 점검 · 별도 PDF 미연결</span>`}</div>
   </article>`).join("");
   attachFilters();
 }
@@ -74,10 +136,10 @@ function renderModuleDetails() {
 function renderResources() {
   const grid = document.querySelector("[data-resources]");
   if (!grid) return;
-  grid.innerHTML = resources.map((item) => `<a class="resource-card" href="${item.file}" download data-category="${item.cat}" data-text="${[item.week, item.title, labels[item.cat]].join(" ").toLowerCase()}">
+  grid.innerHTML = resources.map((item) => `<a class="resource-card" href="${item.file}" download data-category="${item.cat}" data-text="${[item.week, item.title, item.summary, labels[item.cat]].join(" ").toLowerCase()}">
     <span class="tag teal">PDF</span>
     <h3>${item.title}</h3>
-    <p>${labels[item.cat]} material for reading, writing practice, and assignment preparation.</p>
+    <p>${item.summary}</p>
     <span class="button primary">Download PDF</span>
   </a>`).join("");
   attachFilters();
