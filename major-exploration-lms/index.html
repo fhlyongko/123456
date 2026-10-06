@@ -624,6 +624,12 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 @media print{.topbar,.controls,.hero-actions,.resource-search,#toast,#resetBoard{display:none}body{background:white}.hero-grid{box-shadow:none}.task-card,.resource-card,.prompt-card{break-inside:avoid}.board{display:block}.board-column{margin-bottom:20px}.section{padding-top:20px}}
 
+
+/* Final audit: anchor offsets and narrow controls. */
+#home,.section{scroll-margin-top:var(--header-offset,90px)}
+.controls>.search{min-width:0;width:100%}
+.hero-grid>*,.resource-search>*{min-width:0}
+@media(max-width:360px){.controls{grid-template-columns:minmax(0,1fr)}.chips{grid-column:1}.controls>#resetBoard{justify-self:start}.brand strong{font-size:12px}}
 </style>
 </head>
 <body><a class="skip" href="#board-section">학습 콘텐츠로 이동</a>
@@ -714,7 +720,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
             <p class="lead">수업계획서, 주차별 강의자료, 핵심 과제 자료를 모두 PDF로 내려받을 수 있습니다.</p>
           </div>
         </div>
-        <div class="resource-search"><input class="search" id="resourceSearch" type="search" aria-label="PDF 자료 검색" placeholder="PDF 검색: 주차, 계획안, 로드맵 …"><button class="button" id="resetResources" type="button">검색 초기화</button></div><p class="result-count" id="resourceCount" role="status"></p><div class="resource-grid" id="resourceGrid"></div>
+        <div class="resource-search"><input class="search" id="resourceSearch" type="search" aria-label="PDF 자료 검색" placeholder="PDF 검색: 주차, 계획안, 로드맵 …"><button class="button" id="resetResources" type="button">검색 초기화</button></div><p class="result-count" id="resourceCount" role="status"></p><div class="resource-grid" id="resourceGrid"></div><p class="empty" id="resourceEmpty" hidden>검색 조건에 맞는 PDF가 없습니다. 다른 검색어를 입력하거나 검색 초기화를 눌러 주세요.</p>
       </div>
     </section>
   <noscript><div class="wrap"><h2>PDF 자료 바로가기</h2><p>검색과 완료 기록은 JavaScript가 필요합니다. 자료는 아래에서 바로 열 수 있습니다.</p><ul><li><a href="files/course-plan-2026-spring.pdf">2026학년도 1학기 전공탐구생활 계획안</a></li><li><a href="files/week01-course-introduction.pdf">1주차 전공탐구생활 강의소개</a></li><li><a href="files/week02-self-understanding-1.pdf">2주차 자기이해 1</a></li><li><a href="files/week03-self-understanding-career.pdf">3주차 자기이해 2와 진로 이해</a></li><li><a href="files/week04-university-department.pdf">4주차 대학과 학과의 이해</a></li><li><a href="files/week04-career-design-assignment.pdf">4주차 진로탐색 및 설계 보고서</a></li><li><a href="files/week04-lecture-2.pdf">4주차 강의 2</a></li><li><a href="generated/week05.pdf">5주차 전공 정보 탐색</a></li><li><a href="generated/week06.pdf">6주차 전공 비교와 선택 기준</a></li><li><a href="generated/week07.pdf">7주차 전공 역량과 학습 계획</a></li><li><a href="generated/week08.pdf">8주차 중간 진로 설계 점검</a></li><li><a href="generated/week09.pdf">9주차 비교과 활동과 성장 계획</a></li><li><a href="files/week10-ai-literacy.pdf">10주차 AI 리터러시</a></li><li><a href="files/week11-chatgpt-education.pdf">11주차 ChatGPT 교육</a></li><li><a href="files/week12-career-design-jobs.pdf">12주차 전공 기반 진로 설계: 직업</a></li><li><a href="files/week13-career-design.pdf">13주차 전공 기반 진로 설계</a></li><li><a href="files/week14-extracurricular-career-design.pdf">14주차 비교과 기반 진로 설계</a></li><li><a href="files/week15-major-exploration-exhibition.pdf">15주차 전공 탐색 전시회</a></li><li><a href="files/week16-campus-life-design-sharing.pdf">16주차 나의 대학생활 설계 공유</a></li><li><a href="generated/final-roadmap.pdf">최종 로드맵</a></li><li><a href="generated/poster-guide.pdf">포스터 발표 가이드</a></li></ul></div></noscript></main>
@@ -806,7 +812,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
   let activeFilter = "all";
 
   function normalize(value) {
-    return String(value || "").toLowerCase();
+    return String(value || "").normalize("NFKC").toLowerCase().replace(/\s+/g, " ").trim();
   }
 
   function matchItem(item, query) {
@@ -816,6 +822,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
       item.week,
       item.tag,
       item.column,
+      (data.filters.find(filter=>filter.id===item.category)||{}).label,
       item.downloadLabel
     ].join(" "));
     return (!query || haystack.includes(query)) && (activeFilter === "all" || item.category === activeFilter);
@@ -868,6 +875,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
     if (!resourceGrid || !data.resources) return;
     const query=normalize(document.getElementById("resourceSearch").value.trim());
     const resources=data.resources.filter(item=>normalize(item.title+" "+item.summary).includes(query));
+    document.getElementById("resourceEmpty").hidden=resources.length!==0;
     document.getElementById("resourceCount").textContent=resources.length+"개 PDF 표시 / 전체 "+data.resources.length+"개";
     resourceGrid.innerHTML = resources.map((item) => (
       `<article class="resource-card" data-category="${item.category || "all"}">
@@ -886,7 +894,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
         <h3>${item.title}</h3>
         <p>${item.summary}</p>
         <ul>${item.lines.map((line) => `<li>${line}</li>`).join("")}</ul>
-        <button class="copy-button" type="button" data-copy="${index}">문장 복사</button>
+        <button class="copy-button" type="button" aria-label="${item.title} 문장 복사" data-copy="${index}">문장 복사</button>
       </article>`
     )).join("");
   }
@@ -896,6 +904,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
     const total = data.items.length;
     const count = data.items.filter((item) => completed.has(item.id)).length;
     progressText.textContent = `${count} / ${total} 완료`;
+    document.querySelector(".track").setAttribute("aria-valuemax",String(total));
     document.querySelector(".track").setAttribute("aria-valuenow",String(count));
     progressBar.style.width = `${total ? Math.round((count / total) * 100) : 0}%`;
   }
@@ -936,6 +945,9 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
   document.querySelectorAll("[data-reset-board]").forEach(a=>a.addEventListener("click",resetBoard));
   document.getElementById("resourceSearch").addEventListener("input",renderResources);
   document.getElementById("resetResources").addEventListener("click",()=>{document.getElementById("resourceSearch").value="";renderResources();});
+  document.querySelector(".brand").addEventListener("click",resetBoard);
+  const header=document.querySelector(".topbar");
+  if(typeof ResizeObserver!=="undefined"){new ResizeObserver(()=>{document.documentElement.style.setProperty("--header-offset",(header.getBoundingClientRect().height+18)+"px");}).observe(header);}
   const theme=document.getElementById("theme");
   function setTheme(dark){document.documentElement.dataset.theme=dark?"dark":"light";theme.textContent=dark?"라이트 모드":"다크 모드";theme.setAttribute("aria-pressed",String(dark));}
   try{setTheme(localStorage.getItem("major-theme")==="dark");}catch{}
