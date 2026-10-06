@@ -101,30 +101,69 @@
   footer{padding:30px 0 60px;border-top:1px solid var(--line);text-align:center;color:var(--faint);font-size:13px;margin-top:20px}
   footer b{color:var(--muted);display:block;font-size:14px;margin-bottom:3px}
   @media print{nav.top{display:none}body{background:#fff}.wk,.tool,.rb{break-inside:avoid}details{display:none}}
+
+/* Whitepaper-inspired course interface */
+:root{--ink:#202b40;--text:#3f4c60;--muted:#626e80;--faint:#6b7585;--line:#cfd5e0;--soft:#eaf0f8;--bg:#f4f6fa;--accent:#29458c;--maxw:1240px;--serif:Georgia,"Noto Serif KR","Batang",serif}
+body{background-color:var(--bg);background-image:linear-gradient(#29458c06 1px,transparent 1px),linear-gradient(90deg,#29458c06 1px,transparent 1px);background-size:28px 28px}
+nav.top{background:#29458c;color:white;border:0}nav.top .brand{color:#fff;text-decoration:none;letter-spacing:.03em}nav.top .links a{color:#e2e9ff}nav.top .wrap{gap:18px}
+.header-actions{display:flex;gap:20px;align-items:center}
+#theme{background:transparent;border:1px solid #ffffff66;color:#fff;padding:7px 12px;cursor:pointer;font:inherit;font-size:12px}
+.statusline{background:var(--card);border-bottom:1px solid #b23c44;font:11px monospace;letter-spacing:.07em;padding:7px 0}
+.statusline .wrap{display:flex;gap:24px;flex-wrap:wrap}.statusline b{color:#b23c44}.statusline .revision{margin-left:auto}
+header.hero{padding:32px 22px 24px;max-width:1240px;margin:auto}
+header.hero>.wrap{position:relative;background:var(--card);border:1px solid var(--line);box-shadow:0 12px 26px #15233b0b;padding:42px;display:grid;grid-template-columns:1.15fr 1fr;gap:36px;align-items:center}
+header.hero>.wrap:before,header.hero>.wrap:after{content:"";position:absolute;width:36px;height:36px;pointer-events:none}
+header.hero>.wrap:before{top:-1px;left:-1px;border-left:3px solid #b23c44;border-top:3px solid #b23c44}
+header.hero>.wrap:after{right:-1px;bottom:-1px;border-right:3px solid var(--accent);border-bottom:3px solid var(--accent)}
+header.hero h1{font-size:clamp(30px,3.5vw,48px);line-height:1.4;letter-spacing:-.05em;word-break:keep-all}
+.eyebrow,.kicker{font-family:monospace;font-size:11px;letter-spacing:.15em}.hero-en{font:11px monospace;letter-spacing:.16em;color:#b23c44;margin:18px 0}
+header.hero p.sub{line-height:1.9;font-size:15px}.hero-actions{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}
+.hero-actions a{border:1px solid var(--accent);padding:10px 15px;text-decoration:none;color:var(--accent);font-size:13px;font-weight:700}.hero-actions .primary{background:var(--accent);color:var(--card)}
+.meta-row{font-size:11px;gap:10px 18px}.meta-row span{display:grid;gap:3px}.meta-row b{font-size:12px}
+.learning-panel{background:var(--bg);border:1px solid var(--line);padding:22px}.panel-title{display:flex;justify-content:space-between;gap:10px;font:12px monospace;color:var(--muted);margin-bottom:16px}
+.week-map{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.week-map a{background:var(--card);border:1px solid var(--line);text-align:center;text-decoration:none;padding:12px 4px;font:17px var(--serif);color:var(--accent)}
+.week-map a.completed{background:var(--accent);color:var(--card)}.panel-note{font-size:12px;margin:16px 0 0;border-left:3px solid #b23c44;background:var(--card);padding:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px}.stat{background:var(--card);border:1px solid var(--line);border-bottom:3px solid var(--accent);padding:16px 22px}.stat strong{display:block;font:34px var(--serif);color:var(--ink)}.stat span{font-size:12px}
+section{padding:38px 0;background:var(--bg);border-top:1px solid var(--line)}h2{font-family:var(--serif);font-size:27px}
+.wk,.tool,.cw,.step,.rb{border-radius:2px}.wk{padding:22px;gap:12px}.wk h3{font-size:18px}.wk .goals,.row{font-size:14px;line-height:1.7}.wk .row b{color:var(--accent);margin-bottom:4px}
+.wbadge{font:13px monospace;border-radius:0}.filter,.pdf,.copy,.controls input{border-radius:2px}.filter,.pdf,.copy{min-height:38px}.controls input{height:46px}.filters{gap:8px}
+#matgrid{display:grid;grid-template-columns:repeat(2,1fr)}#matgrid .pdf{padding:12px 14px}
+#result-count{font-size:12px;color:var(--muted)}.save-note{font-size:12px;color:var(--muted)}
+:focus-visible{outline:3px solid #c78321;outline-offset:4px}.skip{position:fixed;top:-100px;left:10px;background:var(--card);padding:10px;z-index:100}.skip:focus{top:10px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 20px;z-index:100;max-width:90vw}#toast:empty{display:none}
+[data-theme="dark"]{--ink:#e9edf7;--text:#c8d1e3;--muted:#a8b5cc;--faint:#99a8c1;--line:#39475f;--soft:#28374e;--bg:#152030;--card:#1d2b40;--accent:#adc0ff;--c1:#a4c5fa;--c1b:#253b5b;--c2:#98d1c8;--c2b:#233e3d;--c3:#edba8f;--c3b:#483525;--c4:#d6b4ef;--c4b:#40314f}
+@media(max-width:800px){header.hero>.wrap{grid-template-columns:1fr;padding:28px;gap:24px}header.hero{padding:20px 18px}.stats{grid-template-columns:repeat(2,1fr)}nav.top .links{display:flex;gap:14px;overflow:auto}nav.top .links a{margin:0;white-space:nowrap}nav.top .wrap{height:auto;min-height:56px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}.header-actions{width:100%;justify-content:space-between}#matgrid{grid-template-columns:1fr}}
+@media(max-width:420px){header.hero>.wrap{padding:24px 18px}.wrap{padding:0 18px}.learning-panel{padding:14px}.statusline .revision{margin-left:0}.statusline .wrap{gap:8px 18px}.week-map a{padding:10px 2px}.stats{gap:8px}.stat{padding:12px}.flow{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{.statusline,.hero-actions,#theme,.controls,.filters,#toast{display:none}body,section{background:white;color:black}header.hero>.wrap{display:block;box-shadow:none}.stats{break-inside:avoid}}
+
 </style>
 </head>
 <body>
+<a class="skip" href="#modules">학습 콘텐츠로 이동</a>
 <nav class="top"><div class="wrap">
-  <span class="brand">Academic Writing LMS</span>
-  <span class="links"><a href="#modules">주차별</a><a href="#studio">작성 도구</a><a href="#flow">평가</a><a href="#materials">자료</a></span>
+  <a class="brand" href="#home">영어 논문 작성 <small> / ACADEMIC WRITING</small></a><div class="header-actions">
+  <span class="links"><a href="#modules">주차별</a><a href="#studio">작성 도구</a><a href="#flow">평가</a><a href="#materials">자료</a></span><button id="theme" type="button" aria-pressed="false">다크 모드</button></div>
 </div></nav>
+<div class="statusline"><div class="wrap"><b>COURSE HANDBOOK</b><span>15주 학습 과정</span><span>PDF 14개</span><span class="revision">REV. 2026.10</span></div></div>
 
-<header class="hero"><div class="wrap">
+<main id="home"><header class="hero"><div class="wrap"><div>
   <p class="eyebrow">Graduate Academic Writing in English</p>
   <h1>대학원 유학생을 위한 영어 논문 작성</h1>
-  <p class="sub">연구 아이디어부터 문헌고찰·방법론·결과와 논의·연구윤리·커리어 문서까지, 15주 과정으로 정리한 실전형 LMS입니다.</p>
-  <div class="meta-row">
+  <p class="hero-en">GRADUATE ACADEMIC WRITING · LEARNING GUIDE</p><p class="sub">연구 아이디어부터 문헌고찰·방법론·결과와 논의·연구윤리·커리어 문서까지, 15주 과정으로 정리한 실전형 LMS입니다.</p>
+  <div class="hero-actions"><a class="primary" href="#modules">학습 시작 →</a><a href="#studio">작성 도구</a><a href="#materials">강의자료 보기</a></div><div class="meta-row">
     <span>대상 <b>International Graduate Students</b></span>
     <span>구성 <b>15주 웹 모듈</b></span>
     <span>핵심 <b>연구설계 · 논문작성 · 윤리/AI · 커리어</b></span>
   </div>
-</div></header>
+</div><aside class="learning-panel" aria-label="15주 학습 지도"><div class="panel-title"><span>LEARNING MAP / 학습 지도</span><span>01—15</span></div><div class="week-map"><a href="#w1" data-jump="1" aria-label="1주차로 이동">01</a><a href="#w2" data-jump="2" aria-label="2주차로 이동">02</a><a href="#w3" data-jump="3" aria-label="3주차로 이동">03</a><a href="#w4" data-jump="4" aria-label="4주차로 이동">04</a><a href="#w5" data-jump="5" aria-label="5주차로 이동">05</a><a href="#w6" data-jump="6" aria-label="6주차로 이동">06</a><a href="#w7" data-jump="7" aria-label="7주차로 이동">07</a><a href="#w8" data-jump="8" aria-label="8주차로 이동">08</a><a href="#w9" data-jump="9" aria-label="9주차로 이동">09</a><a href="#w10" data-jump="10" aria-label="10주차로 이동">10</a><a href="#w11" data-jump="11" aria-label="11주차로 이동">11</a><a href="#w12" data-jump="12" aria-label="12주차로 이동">12</a><a href="#w13" data-jump="13" aria-label="13주차로 이동">13</a><a href="#w14" data-jump="14" aria-label="14주차로 이동">14</a><a href="#w15" data-jump="15" aria-label="15주차로 이동">15</a></div><p class="panel-note"><b>나의 학습 기록</b><br>주차를 선택해 활동과 과제를 확인하세요. 완료한 주차는 이 지도에 색으로 표시됩니다.</p></aside></div></header>
+<div class="wrap stats" aria-label="과정 구성"><div class="stat"><strong>15</strong><span>주차별 학습 모듈</span></div><div class="stat"><strong>14</strong><span>PDF 강의자료</span></div><div class="stat"><strong>4</strong><span>핵심 학습 영역</span></div><div class="stat"><strong>4</strong><span>논문 작성 도구</span></div></div>
 
 <section id="modules"><div class="wrap">
   <p class="kicker">Weekly Modules</p>
   <h2>주차별 학습</h2>
   <p class="lead">검색하거나 주제로 골라 보고, 학습 후 완료를 표시하세요. 체크리스트는 펼쳐서 확인합니다.</p>
-  <div class="controls"><input id="search" type="search" placeholder="검색: abstract, IRB, literature review, AI 윤리 …"></div>
+  <div class="controls"><input aria-label="주차별 학습 검색" id="search" type="search" placeholder="검색: abstract, IRB, literature review, AI 윤리 …"></div>
   <div class="filters" id="filters">
     <button class="filter active" data-f="all">전체</button>
     <button class="filter" data-f="planning">연구설계</button>
@@ -133,7 +172,7 @@
     <button class="filter" data-f="career">성장·커리어</button>
   </div>
   <div class="progress"><span>진행률</span><div class="pbar"><span id="pbar"></span></div><b id="ptext">0 / 15</b></div>
-  <div class="weeks" id="weeks"></div>
+  <p id="result-count" role="status"></p><div class="weeks" id="weeks"></div><p class="save-note" id="save-note">완료 표시는 현재 브라우저에 저장됩니다. 공식 출결·성적 또는 과제 제출 기록이 아닙니다.</p>
 </div></section>
 
 <section id="studio"><div class="wrap">
@@ -174,7 +213,7 @@
   <div class="filters" id="matgrid" style="margin-top:0"></div>
 </div></section>
 
-<footer><div class="wrap"><b>대학원 영어 논문 작성 LMS</b><span>Academic writing aligns purpose, questions, methods, evidence, and contribution.</span></div></footer>
+</main><div id="toast" role="status" aria-live="polite"></div><footer><div class="wrap"><b>대학원 영어 논문 작성 LMS</b><span>Academic writing aligns purpose, questions, methods, evidence, and contribution.</span></div></footer>
 
 <script>
 const B="https://fhlyongko.github.io/123456/materials/";
@@ -203,11 +242,12 @@ const T=[
 ];
 const cat={planning:"연구설계",writing:"논문작성",ethics:"윤리·AI",career:"성장·커리어"};
 const KEY="grad-writing-done";
-const done=new Set(JSON.parse(localStorage.getItem(KEY)||"[]"));
+let saved=[];try{const value=JSON.parse(localStorage.getItem(KEY)||"[]");if(Array.isArray(value))saved=value.filter(w=>Number.isInteger(w)&&w>=1&&w<=M.length);}catch{}
+const done=new Set(saved);
 let flt="all";const $=s=>document.querySelector(s);
 function draw(){
  const q=$("#search").value.trim().toLowerCase();const host=$("#weeks");host.innerHTML="";
- M.filter(x=>flt==="all"||x.c===flt).filter(x=>!q||(x.t+x.g+x.act+x.as).toLowerCase().includes(q)).forEach(x=>{
+ M.filter(x=>flt==="all"||x.c===flt).filter(x=>!q||("week "+x.w+" "+x.w+"주차 "+x.t+x.g+x.act+x.as+x.ck.join(" ")+cat[x.c]).toLowerCase().includes(q)).forEach(x=>{
   const el=document.createElement("article");el.className="wk "+x.c;el.id="w"+x.w;const dn=done.has(x.w);
   const pdf=x.f?`<a class="pdf" href="${B+x.f}">↓ PDF</a>`:`<span class="pdf none">워크숍 (자료 없음)</span>`;
   el.innerHTML=`
@@ -221,15 +261,21 @@ function draw(){
   host.appendChild(el);
  });
  if(!host.children.length)host.innerHTML='<p class="lead">검색 결과가 없습니다.</p>';
+ $("#result-count").textContent=host.querySelectorAll(".wk").length+"개 주차 표시";
  prog();
 }
-function prog(){const p=Math.round(done.size/M.length*100);$("#pbar").style.width=p+"%";$("#ptext").textContent=done.size+" / "+M.length;}
+function prog(){const p=Math.round(done.size/M.length*100);$("#pbar").style.width=p+"%";$("#ptext").textContent=done.size+" / "+M.length;document.querySelectorAll("[data-jump]").forEach(a=>{const complete=done.has(+a.dataset.jump);a.classList.toggle("completed",complete);a.setAttribute("aria-label",a.dataset.jump+"주차로 이동"+(complete?" (완료)":""));});}
 $("#tools").innerHTML=T.map((t,i)=>`<article class="tool"><h3>${t.h}</h3><p>${t.p}</p><ul>${t.i.map(x=>`<li>${x}</li>`).join("")}</ul><button class="copy" data-i="${i}">템플릿 복사</button></article>`).join("");
-$("#matgrid").innerHTML=M.filter(x=>x.f).map(x=>`<a class="pdf" href="${B+x.f}">↓ W${x.w}</a>`).join("");
-document.addEventListener("change",e=>{if(!e.target.matches("[data-w]"))return;const w=+e.target.dataset.w;e.target.checked?done.add(w):done.delete(w);localStorage.setItem(KEY,JSON.stringify([...done]));prog();});
-document.addEventListener("click",async e=>{const b=e.target.closest(".copy");if(!b)return;const t=T[+b.dataset.i];await navigator.clipboard.writeText(t.h+"\n\n"+t.i.join("\n"));b.textContent="복사 완료";setTimeout(()=>b.textContent="템플릿 복사",1400);});
-$("#filters").addEventListener("click",e=>{if(!e.target.matches(".filter"))return;document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));e.target.classList.add("active");flt=e.target.dataset.f;draw();});
+$("#matgrid").innerHTML=M.filter(x=>x.f).map(x=>`<a class="pdf" href="${B+x.f}">W${String(x.w).padStart(2,"0")} · ${x.t} ↗</a>`).join("");
+document.addEventListener("change",e=>{if(!e.target.matches("[data-w]"))return;const w=+e.target.dataset.w;e.target.checked?done.add(w):done.delete(w);try{localStorage.setItem(KEY,JSON.stringify([...done]));}catch{$("#save-note").textContent="브라우저 저장이 제한되어 완료 표시는 현재 화면에서만 유지됩니다.";}prog();});
+document.addEventListener("click",async e=>{const b=e.target.closest(".copy");if(!b)return;const t=T[+b.dataset.i];try{await navigator.clipboard.writeText(t.h+"\n\n"+t.i.join("\n"));b.textContent="복사 완료";}catch{$("#toast").textContent="복사할 수 없습니다. 위 템플릿 문장을 선택해 직접 복사해 주세요.";setTimeout(()=>$("#toast").textContent="",5000);}setTimeout(()=>b.textContent="템플릿 복사",1400);});
+$("#filters").addEventListener("click",e=>{if(!e.target.matches(".filter"))return;document.querySelectorAll(".filter").forEach(b=>{b.classList.remove("active");b.setAttribute("aria-pressed","false");});e.target.classList.add("active");e.target.setAttribute("aria-pressed","true");flt=e.target.dataset.f;draw();});
 $("#search").addEventListener("input",draw);
+document.querySelectorAll(".filter").forEach(b=>b.setAttribute("aria-pressed",String(b.classList.contains("active"))));
+document.querySelectorAll("[data-jump]").forEach(a=>a.addEventListener("click",()=>{flt="all";$("#search").value="";document.querySelectorAll(".filter").forEach(b=>{b.classList.toggle("active",b.dataset.f==="all");b.setAttribute("aria-pressed",String(b.dataset.f==="all"));});draw();}));
+function setTheme(dark){document.documentElement.dataset.theme=dark?"dark":"light";$("#theme").textContent=dark?"라이트 모드":"다크 모드";$("#theme").setAttribute("aria-pressed",String(dark));}
+try{setTheme(localStorage.getItem("grad-writing-theme")==="dark");}catch{}
+$("#theme").addEventListener("click",()=>{const dark=document.documentElement.dataset.theme!=="dark";setTheme(dark);try{localStorage.setItem("grad-writing-theme",dark?"dark":"light");}catch{}});
 draw();
 </script>
 </body>
