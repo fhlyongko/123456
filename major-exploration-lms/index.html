@@ -5,9 +5,628 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>전공탐구생활 온라인 수업강의실</title>
   <meta name="description" content="전공탐구생활 수업을 위한 주차별 인터랙티브 보드와 PDF 다운로드 자료실입니다.">
-  <link rel="stylesheet" href="../assets/interactive-board.css">
+  <style>
+:root {
+  --bg: #f6f1e8;
+  --paper: #fffdf8;
+  --ink: #242018;
+  --text: #4d463b;
+  --muted: #7b7163;
+  --line: #e7ddcd;
+  --teal: #347f73;
+  --gold: #b78b2c;
+  --terra: #c96f4b;
+  --plum: #87629a;
+  --soft: #f0e6d6;
+  --shadow: 0 24px 60px -42px rgba(43, 34, 20, .58);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% 4%, rgba(183, 139, 44, .16), transparent 28%),
+    radial-gradient(circle at 92% 2%, rgba(52, 127, 115, .15), transparent 30%),
+    linear-gradient(180deg, #fbf7ee 0%, var(--bg) 60%, #f3eadc 100%);
+  color: var(--text);
+  font-family: "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", Arial, sans-serif;
+  line-height: 1.65;
+  letter-spacing: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+a {
+  color: inherit;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(183, 139, 44, .22);
+  background: rgba(255, 253, 248, .92);
+  backdrop-filter: blur(16px);
+}
+
+.topbar-inner,
+.wrap {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+.topbar-inner {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.brand-mark {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--teal), var(--gold));
+  color: #fff;
+  font-weight: 950;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+  line-height: 1.25;
+}
+
+.brand strong {
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.brand small {
+  color: var(--muted);
+  font-size: .76rem;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.nav a,
+.button,
+.chip,
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 13px;
+  background: var(--paper);
+  color: var(--muted);
+  text-decoration: none;
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 850;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+}
+
+.nav a:hover,
+.button:hover,
+.chip:hover,
+.copy-button:hover {
+  border-color: rgba(52, 127, 115, .35);
+  color: var(--ink);
+  box-shadow: 0 12px 30px -24px rgba(43, 34, 20, .5);
+}
+
+.button.primary,
+.chip.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 253, 248, .95), rgba(245, 236, 221, .9)),
+    radial-gradient(circle at 78% 28%, rgba(135, 98, 154, .16), transparent 32%);
+}
+
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(320px, .94fr);
+  gap: clamp(28px, 5vw, 58px);
+  align-items: center;
+  padding: clamp(42px, 7vw, 86px) 0;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--teal);
+  font-size: .78rem;
+  font-weight: 950;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  color: var(--ink);
+  letter-spacing: 0;
+  text-align: left;
+}
+
+h1 {
+  margin-bottom: 18px;
+  font-family: Georgia, "Noto Serif KR", "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 4.3rem);
+  line-height: 1.08;
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-family: Georgia, "Noto Serif KR", "Times New Roman", serif;
+  font-size: clamp(1.55rem, 3.2vw, 2.55rem);
+  line-height: 1.18;
+}
+
+h3 {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.lead {
+  max-width: 760px;
+  margin: 0;
+  color: #5b5247;
+  font-size: clamp(1rem, 1.35vw, 1.14rem);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.hero-panel,
+.stat-card,
+.board-column,
+.resource-card,
+.prompt-card,
+.progress-panel {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 253, 248, .86);
+  box-shadow: var(--shadow);
+}
+
+.hero-panel {
+  padding: 22px;
+}
+
+.map-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.map-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 13px 14px;
+  border: 1px solid #eadfce;
+  border-radius: 15px;
+  background: #fffaf0;
+}
+
+.map-row dt {
+  color: var(--gold);
+  font-weight: 950;
+}
+
+.map-row dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.stat-card {
+  padding: 15px;
+}
+
+.stat-card strong {
+  display: block;
+  color: var(--teal);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.stat-card span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.section {
+  padding: clamp(42px, 6vw, 74px) 0 0;
+  scroll-margin-top: 88px;
+}
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 15px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.board-column {
+  min-width: 0;
+  padding: 14px;
+}
+
+.column-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.column-title strong {
+  color: var(--ink);
+  font-weight: 950;
+}
+
+.column-title span {
+  border-radius: 999px;
+  padding: 3px 8px;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 900;
+}
+
+.card-list {
+  display: grid;
+  gap: 10px;
+}
+
+.task-card {
+  min-width: 0;
+  border: 1px solid #eadfce;
+  border-radius: 15px;
+  background: #fffaf0;
+  padding: 14px;
+}
+
+.task-card.hidden,
+.resource-card.hidden {
+  display: none;
+}
+
+.task-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border-radius: 999px;
+  padding: 3px 8px;
+  background: rgba(52, 127, 115, .1);
+  color: var(--teal);
+  font-size: .74rem;
+  font-weight: 900;
+}
+
+.task-card h3 {
+  margin: 0 0 7px;
+}
+
+.task-card p {
+  margin: 0;
+  color: #5e564b;
+  font-size: .95rem;
+}
+
+.task-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.check-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 850;
+}
+
+.progress-panel {
+  display: grid;
+  grid-template-columns: minmax(160px, .35fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 16px 18px;
+}
+
+.progress-panel span {
+  display: block;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.progress-panel strong {
+  display: block;
+  color: var(--ink);
+}
+
+.track {
+  height: 11px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--soft);
+}
+
+.track i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--terra));
+  transition: width .2s ease;
+}
+
+.prompt-grid,
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 14px;
+}
+
+.prompt-card,
+.resource-card {
+  min-width: 0;
+  padding: 18px;
+}
+
+.prompt-card ul {
+  margin: 10px 0 14px;
+  padding-left: 19px;
+  color: var(--muted);
+}
+
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.resource-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .94rem;
+}
+
+.resource-card .button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.empty {
+  margin: 0;
+  padding: 18px;
+  border: 1px dashed var(--line);
+  border-radius: 18px;
+  color: var(--muted);
+  background: rgba(255, 253, 248, .6);
+}
+
+.footer {
+  margin-top: 70px;
+  padding: 28px 18px 54px;
+  border-top: 1px solid var(--line);
+  background: rgba(255, 253, 248, .7);
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 920px) {
+  .topbar-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 12px 0;
+  }
+
+  .nav {
+    justify-content: flex-start;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-head,
+  .controls,
+  .progress-panel {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .controls {
+    display: grid;
+  }
+
+  .chips {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar-inner,
+  .wrap {
+    width: calc(100% - 28px);
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .nav a {
+    padding: 8px 6px;
+    font-size: .84rem;
+  }
+
+  h1 {
+    font-size: clamp(1.7rem, 8vw, 2.25rem);
+  }
+
+  .hero-actions .button,
+  .resource-card .button {
+    width: 100%;
+  }
+
+  .map-row {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Course-specific whitepaper design; shared course styles remain untouched. */
+:root{--bg:#f4f6fa;--paper:#fff;--ink:#202b40;--text:#445066;--muted:#626f83;--line:#cdd5e2;--soft:#eaf0f8;--teal:#29458c;--gold:#a63843;--terra:#a63843;--shadow:none}
+body{background-color:var(--bg);background-image:linear-gradient(#29458c07 1px,transparent 1px),linear-gradient(90deg,#29458c07 1px,transparent 1px);background-size:28px 28px}
+.wrap,.topbar-inner{width:min(1240px,calc(100% - 40px))}
+.topbar{background:#29458c;border:0}.topbar-inner{min-height:62px}.brand strong{color:#fff;font-size:15px}.brand small{color:#d2dcf4;font:10px monospace;letter-spacing:.12em;margin-top:5px}
+.brand-mark{border-radius:0;background:transparent;border:1px solid #ffffff66;width:32px;height:36px;font:24px Georgia}
+.nav a,.nav button{color:#eef2ff;background:transparent;border-color:#ffffff44;font-size:12px}
+.button,.chip,.copy-button,.search,.nav a,.nav button{border-radius:2px;font-weight:600;min-height:40px}.button.primary,.chip.active{background:var(--teal);border-color:var(--teal);color:var(--paper)}
+.statusline{background:var(--paper);border-bottom:1px solid #a63843;font:11px monospace;padding:9px 0;letter-spacing:.06em}.statusline .wrap{display:flex;gap:22px;flex-wrap:wrap}.statusline b{color:var(--gold)}.statusline span:last-child{margin-left:auto}
+.hero{border:0;overflow:visible;padding:30px 0}.hero:before{display:none}.hero-grid{padding:42px;background:var(--paper);border:1px solid var(--line);grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;box-shadow:0 12px 26px #1624400b}
+.hero-grid:before,.hero-grid:after{content:"";position:absolute;width:36px;height:36px;pointer-events:none}.hero-grid:before{top:-1px;left:-1px;border-top:3px solid var(--gold);border-left:3px solid var(--gold)}.hero-grid:after{bottom:-1px;right:-1px;border-bottom:3px solid var(--teal);border-right:3px solid var(--teal)}
+.eyebrow{font:11px monospace;color:var(--muted);letter-spacing:.15em;margin-bottom:18px}
+h1{font-family:Georgia,"Batang",serif;font-size:clamp(32px,4vw,51px);line-height:1.4;letter-spacing:-.04em}
+h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color:var(--muted);font-size:15px;line-height:1.9}
+.hero-subtitle{font:11px monospace;color:var(--gold);letter-spacing:.16em;margin:18px 0}.hero-actions .button{padding:12px 16px}
+.hero-panel{background:var(--bg);border-radius:0;padding:22px}.map-row{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:12px 0;grid-template-columns:50px 1fr;font-size:14px}.map-row dt{font:12px monospace;padding-top:4px}.map-list{gap:0}
+.stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.stat-card{border-radius:0;background:var(--paper);padding:14px 10px;border-bottom:3px solid var(--teal)}.stat-card strong{color:var(--ink);font-size:30px}.stat-card span{font-size:11px}
+.hero-meta{margin-top:25px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.section{padding-top:36px;scroll-margin-top:90px}.board{grid-template-columns:repeat(2,minmax(0,1fr))}.board-column,.prompt-card,.resource-card,.progress-panel{border-radius:2px;background:var(--paper)}.board-column{padding:20px;border-top:3px solid var(--teal)}
+.task-card{background:var(--bg);border:1px solid var(--line);border-radius:1px;padding:18px}.task-card p{color:var(--muted);font-size:14px}.task-card h3{font-size:17px;line-height:1.5}.pill{border-radius:2px;background:var(--soft);color:var(--teal);font-weight:600}.task-foot{justify-content:space-between}.check-label{font-size:12px}
+.prompt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.resource-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.resource-card,.prompt-card{padding:22px}
+.track i{background:var(--teal)}.progress-panel{grid-template-columns:minmax(150px,.4fr) 1fr}
+.controls{grid-template-columns:minmax(0,1fr) auto}.chips{grid-column:1/-1;justify-content:flex-start}
+.note,.result-count{font-size:12px;color:var(--muted)}.resource-search{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:20px 0}.resource-search input{flex:1;min-width:160px}.empty{background:var(--paper);border-radius:2px}
+.footer{background:var(--paper)}:focus-visible{outline:3px solid #ca9228;outline-offset:4px}.skip{position:fixed;top:-100px;left:10px;z-index:100;background:var(--paper);padding:10px}.skip:focus{top:10px}input[type=checkbox]{accent-color:var(--teal);width:17px;height:17px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:12px 20px;max-width:90vw;z-index:100}#toast:empty{display:none}
+[data-theme=dark]{--bg:#142031;--paper:#1d2c42;--ink:#edf1fb;--text:#cbd5e8;--muted:#adbbd1;--line:#3a4a62;--soft:#283950;--teal:#b3c5ff;--gold:#efa3aa}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;padding:30px;gap:28px}.topbar-inner{gap:12px}.section{scroll-margin-top:145px}.resource-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.wrap,.topbar-inner{width:calc(100% - 28px)}.hero-grid{padding:24px 18px}.board,.prompt-grid,.resource-grid{grid-template-columns:1fr}.nav{display:flex;flex-wrap:wrap;gap:6px}.nav a,.nav button{padding:7px 10px;font-size:11px}.brand strong{font-size:13px}.map-row{grid-template-columns:45px minmax(0,1fr)}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-panel{padding:16px}.progress-panel{grid-template-columns:1fr;gap:10px}.section{scroll-margin-top:180px}.statusline .wrap{gap:8px 16px}.statusline span:last-child{margin-left:0}.chips{gap:5px}.chip{font-size:12px;padding:7px 10px}.hero-actions .button{width:auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{.topbar,.controls,.hero-actions,.resource-search,#toast,#resetBoard{display:none}body{background:white}.hero-grid{box-shadow:none}.task-card,.resource-card,.prompt-card{break-inside:avoid}.board{display:block}.board-column{margin-bottom:20px}.section{padding-top:20px}}
+
+</style>
 </head>
-<body>
+<body><a class="skip" href="#board-section">학습 콘텐츠로 이동</a>
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="#home" aria-label="전공탐구생활 온라인 수업강의실">
@@ -17,22 +636,22 @@
       <nav class="nav" aria-label="주요 메뉴">
         <a href="#board-section">학습 보드</a>
         <a href="#studio">과제 도구</a>
-        <a href="#resources">PDF 다운로드</a>
+        <a href="#resources">PDF 자료</a><a href="../">통합 포털 ↗</a><button class="button" id="theme" type="button" aria-pressed="false">다크 모드</button>
       </nav>
     </div>
-  </header>
+  </header><div class="statusline"><div class="wrap"><b>COURSE HANDBOOK</b><span>2026학년도 1학기 자료</span><span>REV. 2026.10</span></div></div>
 
   <main id="home">
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
           <p class="eyebrow">Major Exploration</p>
-          <h1>전공탐구생활 온라인 수업강의실</h1>
+          <h1>나를 이해하고,<br>전공과 미래를 설계하다.</h1><p class="hero-subtitle">MAJOR EXPLORATION · LEARNING GUIDE</p>
           <p class="lead">자기이해, 전공 탐색, AI 리터러시, 진로 설계, 대학생활 로드맵을 하나의 인터랙티브 보드에서 확인하고 주차별 PDF 자료를 바로 다운로드할 수 있습니다.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#board-section">학습 보드 시작</a>
+            <a class="button primary" data-reset-board href="#board-section">전체 학습 보기 →</a>
             <a class="button" href="#resources">PDF 자료 다운로드</a>
-          </div>
+          </div><p class="hero-meta">전공탐구생활 · 자기이해에서 대학생활 로드맵까지</p>
         </div>
         <aside class="hero-panel" aria-label="수업 구성">
           <p class="eyebrow">Course Journey</p>
@@ -43,7 +662,7 @@
             <div class="map-row"><dt>4단계</dt><dd>전공 기반 진로 설계와 대학생활 공유</dd></div>
           </dl>
           <div class="stats">
-            <div class="stat-card"><strong>16</strong><span>주차 보드</span></div>
+            <div class="stat-card"><strong>16</strong><span>주차 과정</span></div>
             <div class="stat-card"><strong>21</strong><span>PDF 자료</span></div>
             <div class="stat-card"><strong>4</strong><span>진로 단계</span></div>
           </div>
@@ -61,14 +680,14 @@
           </div>
         </div>
         <div class="controls">
-          <input class="search" id="searchInput" type="search" placeholder="자기이해, 전공, AI, 진로, 대학생활로 검색">
-          <div class="chips" id="filterChips" aria-label="학습 분류"></div>
+          <input class="search" id="searchInput" aria-label="학습 항목 검색" type="search" placeholder="자기이해, 전공, AI, 진로, 대학생활로 검색">
+          <button type="button" class="button" id="resetBoard">검색 초기화</button><div class="chips" id="filterChips" role="group" aria-label="학습 분류"></div>
         </div>
         <div class="progress-panel">
           <div><span>나의 진행률</span><strong id="progressText">0 / 17 완료</strong></div>
-          <div class="track"><i id="progressBar"></i></div>
+          <div class="track" role="progressbar" aria-label="학습 항목 완료율" aria-valuemin="0" aria-valuemax="17" aria-valuenow="0"><i id="progressBar"></i></div>
         </div>
-        <div class="board" id="board"></div>
+        <p class="note" id="saveNote">16주 과정, 총 17개 학습 항목입니다. 4주차는 강의와 과제 2개 항목으로 구성됩니다. 완료 표시는 현재 브라우저에만 저장되며 공식 출결·과제 제출 기록이 아닙니다.</p><p class="result-count" id="resultCount" role="status"></p><div class="board" id="board"></div>
         <p class="empty" id="emptyState" hidden>검색 조건에 맞는 항목이 없습니다.</p>
       </div>
     </section>
@@ -95,12 +714,12 @@
             <p class="lead">수업계획서, 주차별 강의자료, 핵심 과제 자료를 모두 PDF로 내려받을 수 있습니다.</p>
           </div>
         </div>
-        <div class="resource-grid" id="resourceGrid"></div>
+        <div class="resource-search"><input class="search" id="resourceSearch" type="search" aria-label="PDF 자료 검색" placeholder="PDF 검색: 주차, 계획안, 로드맵 …"><button class="button" id="resetResources" type="button">검색 초기화</button></div><p class="result-count" id="resourceCount" role="status"></p><div class="resource-grid" id="resourceGrid"></div>
       </div>
     </section>
-  </main>
+  <noscript><div class="wrap"><h2>PDF 자료 바로가기</h2><p>검색과 완료 기록은 JavaScript가 필요합니다. 자료는 아래에서 바로 열 수 있습니다.</p><ul><li><a href="files/course-plan-2026-spring.pdf">2026학년도 1학기 전공탐구생활 계획안</a></li><li><a href="files/week01-course-introduction.pdf">1주차 전공탐구생활 강의소개</a></li><li><a href="files/week02-self-understanding-1.pdf">2주차 자기이해 1</a></li><li><a href="files/week03-self-understanding-career.pdf">3주차 자기이해 2와 진로 이해</a></li><li><a href="files/week04-university-department.pdf">4주차 대학과 학과의 이해</a></li><li><a href="files/week04-career-design-assignment.pdf">4주차 진로탐색 및 설계 보고서</a></li><li><a href="files/week04-lecture-2.pdf">4주차 강의 2</a></li><li><a href="generated/week05.pdf">5주차 전공 정보 탐색</a></li><li><a href="generated/week06.pdf">6주차 전공 비교와 선택 기준</a></li><li><a href="generated/week07.pdf">7주차 전공 역량과 학습 계획</a></li><li><a href="generated/week08.pdf">8주차 중간 진로 설계 점검</a></li><li><a href="generated/week09.pdf">9주차 비교과 활동과 성장 계획</a></li><li><a href="files/week10-ai-literacy.pdf">10주차 AI 리터러시</a></li><li><a href="files/week11-chatgpt-education.pdf">11주차 ChatGPT 교육</a></li><li><a href="files/week12-career-design-jobs.pdf">12주차 전공 기반 진로 설계: 직업</a></li><li><a href="files/week13-career-design.pdf">13주차 전공 기반 진로 설계</a></li><li><a href="files/week14-extracurricular-career-design.pdf">14주차 비교과 기반 진로 설계</a></li><li><a href="files/week15-major-exploration-exhibition.pdf">15주차 전공 탐색 전시회</a></li><li><a href="files/week16-campus-life-design-sharing.pdf">16주차 나의 대학생활 설계 공유</a></li><li><a href="generated/final-roadmap.pdf">최종 로드맵</a></li><li><a href="generated/poster-guide.pdf">포스터 발표 가이드</a></li></ul></div></noscript></main>
 
-  <footer class="footer">전공탐구생활 온라인 수업강의실 | 나의 전공 선택과 대학생활 설계를 연결하는 학습 공간</footer>
+  <div id="toast" role="status" aria-live="polite"></div><footer class="footer">전공탐구생활 온라인 수업강의실 | 나의 전공 선택과 대학생활 설계를 연결하는 학습 공간</footer>
 
   <script id="course-data" type="application/json">
 {
@@ -167,6 +786,166 @@
   ]
 }
   </script>
-  <script src="../assets/interactive-board.js"></script>
+  <script>
+(function () {
+  const dataElement = document.getElementById("course-data");
+  if (!dataElement) return;
+
+  const data = JSON.parse(dataElement.textContent);
+  const board = document.getElementById("board");
+  const resourceGrid = document.getElementById("resourceGrid");
+  const promptGrid = document.getElementById("promptGrid");
+  const search = document.getElementById("searchInput");
+  const chips = document.getElementById("filterChips");
+  const progressText = document.getElementById("progressText");
+  const progressBar = document.getElementById("progressBar");
+  const empty = document.getElementById("emptyState");
+  const storageKey = `interactive-board:${data.slug}`;
+  let stored=[];try{const parsed=JSON.parse(localStorage.getItem(storageKey)||"[]");if(Array.isArray(parsed))stored=parsed.filter(id=>data.items.some(item=>item.id===id));}catch{}
+  const completed=new Set(stored);
+  let activeFilter = "all";
+
+  function normalize(value) {
+    return String(value || "").toLowerCase();
+  }
+
+  function matchItem(item, query) {
+    const haystack = normalize([
+      item.title,
+      item.summary,
+      item.week,
+      item.tag,
+      item.column,
+      item.downloadLabel
+    ].join(" "));
+    return (!query || haystack.includes(query)) && (activeFilter === "all" || item.category === activeFilter);
+  }
+
+  function renderChips() {
+    const filters = [{ id: "all", label: "전체" }].concat(data.filters || []);
+    chips.innerHTML = filters.map((filter) => (
+      `<button class="chip ${filter.id === activeFilter ? "active" : ""}" type="button" aria-pressed="${filter.id === activeFilter}" data-filter="${filter.id}">${filter.label}</button>`
+    )).join("");
+  }
+
+  function taskCard(item) {
+    const done = completed.has(item.id);
+    const download = item.href
+      ? `<a class="button" href="${item.href}" download>${item.downloadLabel || "자료 다운로드"}</a>`
+      : "";
+    return `<article class="task-card" data-id="${item.id}" data-category="${item.category}">
+      <div class="task-meta">
+        <span class="pill">${item.week || item.tag || "Module"}</span>
+        ${item.tag ? `<span class="pill">${item.tag}</span>` : ""}
+      </div>
+      <h3>${item.title}</h3>
+      <p>${item.summary}</p>
+      <div class="task-foot">
+        ${download}
+        <label class="check-label"><input type="checkbox" aria-label="${item.week} ${item.title} 완료" data-check="${item.id}" ${done ? "checked" : ""}> 완료</label>
+      </div>
+    </article>`;
+  }
+
+  function renderBoard() {
+    const query = normalize(search.value.trim());
+    let visibleCount = 0;
+    board.innerHTML = data.columns.map((column) => {
+      const items = data.items.filter((item) => item.column === column.id && matchItem(item, query));
+      visibleCount += items.length;
+      if(!items.length)return "";
+      return `<section class="board-column" aria-label="${column.title}">
+        <div class="column-title"><strong>${column.title}</strong><span>${items.length}</span></div>
+        <div class="card-list">${items.map(taskCard).join("") || `<p class="empty">표시할 항목이 없습니다.</p>`}</div>
+      </section>`;
+    }).join("");
+    document.getElementById("resultCount").textContent=visibleCount+"개 항목 표시 / 전체 "+data.items.length+"개";
+    if (empty) empty.hidden = visibleCount !== 0;
+    updateProgress();
+  }
+
+  function renderResources() {
+    if (!resourceGrid || !data.resources) return;
+    const query=normalize(document.getElementById("resourceSearch").value.trim());
+    const resources=data.resources.filter(item=>normalize(item.title+" "+item.summary).includes(query));
+    document.getElementById("resourceCount").textContent=resources.length+"개 PDF 표시 / 전체 "+data.resources.length+"개";
+    resourceGrid.innerHTML = resources.map((item) => (
+      `<article class="resource-card" data-category="${item.category || "all"}">
+        <span class="pill">${item.type || "자료"}</span>
+        <h3>${item.title}</h3>
+        <p>${item.summary || ""}</p>
+        <a class="button primary" href="${item.href}" download aria-label="${item.title} 다운로드">${item.downloadLabel || "다운로드"}</a>
+      </article>`
+    )).join("");
+  }
+
+  function renderPrompts() {
+    if (!promptGrid || !data.prompts) return;
+    promptGrid.innerHTML = data.prompts.map((item, index) => (
+      `<article class="prompt-card">
+        <h3>${item.title}</h3>
+        <p>${item.summary}</p>
+        <ul>${item.lines.map((line) => `<li>${line}</li>`).join("")}</ul>
+        <button class="copy-button" type="button" data-copy="${index}">문장 복사</button>
+      </article>`
+    )).join("");
+  }
+
+  function updateProgress() {
+    if (!progressText || !progressBar) return;
+    const total = data.items.length;
+    const count = data.items.filter((item) => completed.has(item.id)).length;
+    progressText.textContent = `${count} / ${total} 완료`;
+    document.querySelector(".track").setAttribute("aria-valuenow",String(count));
+    progressBar.style.width = `${total ? Math.round((count / total) * 100) : 0}%`;
+  }
+
+  chips.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-filter]");
+    if (!button) return;
+    activeFilter = button.dataset.filter;
+    renderChips();
+    renderBoard();
+  });
+
+  search.addEventListener("input", renderBoard);
+
+  board.addEventListener("change", (event) => {
+    const input = event.target.closest("[data-check]");
+    if (!input) return;
+    if (input.checked) completed.add(input.dataset.check);
+    else completed.delete(input.dataset.check);
+    try{localStorage.setItem(storageKey, JSON.stringify([...completed]));}catch{document.getElementById("saveNote").textContent="브라우저 저장이 제한되어 완료 기록은 현재 화면에서만 유지됩니다.";}
+    updateProgress();
+  });
+
+  if (promptGrid) {
+    promptGrid.addEventListener("click", async (event) => {
+      const button = event.target.closest("[data-copy]");
+      if (!button) return;
+      const item = data.prompts[Number(button.dataset.copy)];
+      try{await navigator.clipboard.writeText(item.lines.join("\n"));}catch{const toast=document.getElementById("toast");toast.textContent="복사할 수 없습니다. 위 문장을 선택해 직접 복사해 주세요.";setTimeout(()=>toast.textContent="",5000);return;}
+      const original = button.textContent;
+      button.textContent = "복사 완료";
+      setTimeout(() => { button.textContent = original; }, 1200);
+    });
+  }
+
+  function resetBoard(){search.value="";activeFilter="all";renderChips();renderBoard();}
+  document.getElementById("resetBoard").addEventListener("click",()=>{resetBoard();search.focus();});
+  document.querySelectorAll("[data-reset-board]").forEach(a=>a.addEventListener("click",resetBoard));
+  document.getElementById("resourceSearch").addEventListener("input",renderResources);
+  document.getElementById("resetResources").addEventListener("click",()=>{document.getElementById("resourceSearch").value="";renderResources();});
+  const theme=document.getElementById("theme");
+  function setTheme(dark){document.documentElement.dataset.theme=dark?"dark":"light";theme.textContent=dark?"라이트 모드":"다크 모드";theme.setAttribute("aria-pressed",String(dark));}
+  try{setTheme(localStorage.getItem("major-theme")==="dark");}catch{}
+  theme.addEventListener("click",()=>{const dark=document.documentElement.dataset.theme!=="dark";setTheme(dark);try{localStorage.setItem("major-theme",dark?"dark":"light");}catch{}});
+  renderChips();
+  renderBoard();
+  renderResources();
+  renderPrompts();
+})();
+
+</script>
 </body>
 </html>
