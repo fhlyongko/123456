@@ -93,12 +93,22 @@ header.hero .directory-note{border-left:3px solid #b43742;background:var(--card)
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}}
 @media print{.statusline,.hero-actions,#theme,.directory{display:none}header.hero>.wrap{display:block;box-shadow:none}body{background:white}}
 
+
+/* Final navigation and small-screen audit */
+#theme{font-family:inherit;font-size:12px}
+#sites{scroll-margin-top:130px}
+.card,.directory,.hero>.wrap>div{min-width:0}
+.directory a b{overflow-wrap:anywhere}
+.card h3,.card p{overflow-wrap:anywhere}
+@media(max-width:850px){.toolbar .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto}.filters{grid-column:1/-1}#sites{scroll-margin-top:150px}}
+@media(max-width:440px){.directory a{grid-template-columns:24px minmax(0,1fr)}.directory a em{grid-column:2;font-size:10px}.byline{flex-wrap:wrap}nav.top .links{gap:13px}nav.top .links a{font-size:12px}.filters .f{flex:1;padding:7px 6px;font-size:12px}#sites{scroll-margin-top:185px}}
+@media print{.stats b{color:#202b40}.card{color:#202b40}}
 </style>
 </head>
 <body><a class="skip" href="#sites">콘텐츠로 이동</a>
 <nav class="top"><div class="wrap">
-  <a class="brand" href="#home">수업·연구 통합 포털</a><div class="nav-actions">
-  <span class="links"><a href="#" data-nav="u">학부</a><a href="#" data-nav="g">대학원</a><a href="#" data-nav="x">비교과</a><a href="#" data-nav="r">연구·도구</a></span><button id="theme" type="button" aria-pressed="false">다크 모드</button></div>
+  <a class="brand" href="#home" data-home>수업·연구 통합 포털</a><div class="nav-actions">
+  <span class="links"><a href="#sites" data-nav="u">학부</a><a href="#sites" data-nav="g">대학원</a><a href="#sites" data-nav="x">비교과</a><a href="#sites" data-nav="r">연구·도구</a></span><button id="theme" type="button" aria-pressed="false">다크 모드</button></div>
 </div></nav><div class="statusline"><div class="wrap"><b>LEARNING & RESEARCH</b><span>국립창원대학교 · 이용직</span><span class="rev">REV. 2026.10</span></div></div>
 
 <main id="home"><header class="hero"><div class="wrap"><div>
@@ -106,7 +116,7 @@ header.hero .directory-note{border-left:3px solid #b43742;background:var(--card)
 <h1>배움에서 연구로,<br>하나로 연결하다.</h1>
 <p class="subtitle">LEARNING & RESEARCH PORTAL</p>
 <p>학부·대학원 수업, 글로벌 역량 프로그램과 연구 도구를 한곳에 모았습니다. 지금 필요한 수업과 자료를 찾아 다음 단계로 이어 가세요.</p>
-<div class="hero-actions"><a class="primary" href="#sites">전체 사이트 보기 →</a><a href="#sites" data-nav="r">연구 도구 찾기</a></div>
+<div class="hero-actions"><a class="primary" href="#sites" data-nav="all">전체 사이트 보기 →</a><a href="#sites" data-nav="r">연구 도구 찾기</a></div>
 <div class="byline"><span>운영<b>국립창원대학교 · 이용직</b></span><span>핵심 분야<b>AI 리터러시 · 영어교육 · 학술 글쓰기</b></span></div>
 </div><aside class="directory" aria-label="분야별 바로가기"><div class="directory-title">PORTAL INDEX / 분야별 안내</div>
 <a href="#sites" data-nav="u"><span>01</span><b>학부 수업</b><em>UNDERGRADUATE ↗</em></a>
@@ -120,7 +130,7 @@ header.hero .directory-note{border-left:3px solid #b43742;background:var(--card)
 
 <div class="toolbar"><div class="wrap">
   <input aria-label="사이트 검색" id="q" type="search" placeholder="검색: AI, 영어글쓰기, 논문, 유학, 연구윤리 …">
-  <div class="filters" id="filters">
+  <button type="button" id="reset" class="f">검색 초기화</button><div class="filters" id="filters" role="group" aria-label="사이트 분야 선택">
     <button class="f on" data-f="all">전체</button>
     <button class="f" data-f="u">학부</button>
     <button class="f" data-f="g">대학원</button>
@@ -156,14 +166,14 @@ const $=s=>document.querySelector(s);
 function draw(){
  const q=$("#q").value.trim().toLowerCase();
  const list=SITES.filter(s=>flt==="all"||s.c===flt)
-   .filter(s=>!q||(s.t+s.d+s.k).toLowerCase().includes(q));
+   .filter(s=>!q||(s.t+" "+s.d+" "+s.k+" "+s.m+" "+LABEL[s.c]).toLowerCase().includes(q));
  $("#grid").innerHTML = list.length? list.map(s=>`
    <a class="card ${s.c}" href="${B+s.u}">
      <div class="card-num">RESOURCE / ${String(SITES.indexOf(s)+1).padStart(2,"0")}</div><div class="tagrow"><span class="tag ${s.c}">${LABEL[s.c]}</span><span class="meta">${s.m}</span></div>
      <h3>${s.t}</h3><p>${s.d}</p><div class="go">바로가기 →</div>
    </a>`).join("") : '<div class="empty">검색 결과가 없습니다. 다른 키워드로 찾아보세요.</div>';
  $("#result-count").textContent=list.length+"개 사이트 표시 / 전체 "+SITES.length+"개";
- document.querySelectorAll(".f").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.f===flt)));
+ document.querySelectorAll("[data-f]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.f===flt)));
  $("#secTitle").textContent = flt==="all"?"전체 사이트":LABEL[flt]+" 사이트";
 }
 $("#filters").addEventListener("click",e=>{if(!e.target.matches(".f"))return;
@@ -173,10 +183,13 @@ $("#q").addEventListener("input",draw);
 document.querySelectorAll('[data-nav]').forEach(a=>a.addEventListener("click",e=>{
  e.preventDefault(); $("#q").value=""; const t=a.dataset.nav;
  document.querySelectorAll(".f").forEach(b=>b.classList.toggle("on",b.dataset.f===t));
- flt=t; draw(); document.querySelector("#secTitle").scrollIntoView({behavior:"smooth",block:"start"});}));
+ flt=t; draw(); document.querySelector("#sites").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth",block:"start"});}));
 $("#nCourse").textContent=SITES.filter(s=>s.c==="u"||s.c==="g").length;
 $("#nExtra").textContent=SITES.filter(s=>s.c==="x").length;
 $("#nRes").textContent=SITES.filter(s=>s.c==="r").length;
+function resetSearch(){flt="all";$("#q").value="";document.querySelectorAll("[data-f]").forEach(b=>b.classList.toggle("on",b.dataset.f==="all"));draw();}
+$("#reset").addEventListener("click",()=>{resetSearch();$("#q").focus();});
+document.querySelector("[data-home]").addEventListener("click",resetSearch);
 $("#nTotal").textContent=SITES.length;
 function setTheme(dark){document.documentElement.dataset.theme=dark?"dark":"light";$("#theme").textContent=dark?"라이트 모드":"다크 모드";$("#theme").setAttribute("aria-pressed",String(dark));}
 try{setTheme(localStorage.getItem("portal-theme")==="dark");}catch{}
