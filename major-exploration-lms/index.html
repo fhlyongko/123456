@@ -631,6 +631,22 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
 .hero-grid>*,.resource-search>*{min-width:0}
 @media(max-width:360px){.controls{grid-template-columns:minmax(0,1fr)}.chips{grid-column:1}.controls>#resetBoard{justify-self:start}.brand strong{font-size:12px}}
 </style>
+
+<style>
+#course-workspace{scroll-margin-top:100px;padding:36px 0;color:#25344c}#course-workspace *{box-sizing:border-box}
+#course-workspace .cw-shell{border:1px solid #d8e1ec;border-radius:16px;background:#fff;padding:clamp(18px,3vw,30px)}
+#course-workspace h2{font-family:inherit;font-size:26px;margin:5px 0 12px}#course-workspace h3{font-size:17px;margin:0 0 12px}
+#course-workspace .cw-tag{color:#366bb0;font-size:12px;letter-spacing:.1em;font-weight:700}
+#course-workspace .cw-note{font-size:13px;color:#56647a;line-height:1.7}#course-workspace .cw-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+#course-workspace .cw-box{background:#f4f7fb;border:1px solid #dce5f0;border-radius:10px;padding:18px;min-width:0}
+#course-workspace label{display:block;font-size:14px;margin:10px 0}#course-workspace select,#course-workspace textarea{display:block;width:100%;padding:10px;border:1px solid #a9b8cd;border-radius:6px;background:white;color:#25344c;font:inherit}#course-workspace textarea{min-height:95px;resize:vertical}
+#course-workspace button{font:inherit;font-size:14px;border:1px solid #244d82;border-radius:7px;padding:10px 14px;background:#fff;color:#244d82;cursor:pointer;margin:4px 4px 4px 0}#course-workspace button.cw-primary{background:#142e51;color:#fff}#course-workspace button:disabled{opacity:.45;cursor:not-allowed}
+#course-workspace :focus-visible{outline:3px solid #3e86dc;outline-offset:3px}#course-workspace pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:14px;margin:10px 0}#course-workspace [hidden]{display:none!important}
+#course-workspace .cw-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:0;list-style:none;counter-reset:steps}#course-workspace .cw-steps li{counter-increment:steps;padding:12px;background:#edf3fa;border:1px solid #d9e3ef;font-size:13px;border-radius:7px}#course-workspace .cw-steps li:before{content:counter(steps,decimal-leading-zero);display:block;color:#366bb0;font-weight:bold}
+#course-workspace details{margin:18px 0}#course-workspace summary{font-size:14px;color:#25344c}#course-workspace .cw-log{padding-left:20px;max-height:330px;overflow:auto;font-size:13px}#course-workspace .cw-log li{padding:8px 0;border-bottom:1px solid #dce5f0;white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:700px){#course-workspace .cw-grid{grid-template-columns:1fr}#course-workspace .cw-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<style>[data-theme=dark] #course-workspace .cw-shell{background:#1d2c42;color:#edf1fb}[data-theme=dark] #course-workspace .cw-box,[data-theme=dark] #course-workspace .cw-steps li{background:#283950;color:#edf1fb}[data-theme=dark] #course-workspace .cw-note,[data-theme=dark] #course-workspace summary{color:#adbbd1}#course-workspace{scroll-margin-top:var(--header-offset,100px)}</style>
 </head>
 <body><a class="skip" href="#board-section">학습 콘텐츠로 이동</a>
   <header class="topbar">
@@ -640,7 +656,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
         <span><strong>전공탐구생활 온라인 수업강의실</strong><small>Major Exploration Board</small></span>
       </a>
       <nav class="nav" aria-label="주요 메뉴">
-        <a href="#board-section">학습 보드</a>
+        <a href="#course-workspace">주차 브리핑·기록</a><a href="#board-section">학습 보드</a>
         <a href="#studio">과제 도구</a>
         <a href="#resources">PDF 자료</a><a href="../">통합 포털 ↗</a><button class="button" id="theme" type="button" aria-pressed="false">다크 모드</button>
       </nav>
@@ -654,7 +670,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
           <p class="eyebrow">Major Exploration</p>
           <h1>나를 이해하고,<br>전공과 미래를 설계하다.</h1><p class="hero-subtitle">MAJOR EXPLORATION · LEARNING GUIDE</p>
           <p class="lead">자기이해, 전공 탐색, AI 리터러시, 진로 설계, 대학생활 로드맵을 하나의 인터랙티브 보드에서 확인하고 주차별 PDF 자료를 바로 다운로드할 수 있습니다.</p>
-          <div class="hero-actions">
+          <div class="hero-actions"><a class="button primary" href="#course-workspace">주차 브리핑 시작 →</a>
             <a class="button primary" data-reset-board href="#board-section">전체 학습 보기 →</a>
             <a class="button" href="#resources">PDF 자료 다운로드</a>
           </div><p class="hero-meta">전공탐구생활 · 자기이해에서 대학생활 로드맵까지</p>
@@ -676,7 +692,33 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
       </div>
     </section>
 
-    <section class="section" id="board-section">
+    
+<section id="course-workspace"><div class="wrap"><div class="cw-shell">
+<p class="cw-tag">COURSE CONTEXT → REVIEW → ACTION → RECORD</p>
+<h2>전공탐색을 실행으로 이어가는 작업 공간</h2>
+<p>자기이해 → 전공 비교 → AI 정보 검증 → 진로 설계의 맥락에서 주차별 할 일을 정하고, 확인한 내용을 기록합니다.</p>
+<p class="cw-note">이 공간은 로그인 없는 개인 작업 도구입니다. 기록은 현재 브라우저에만 저장되며 공식 출석·성적·과제 제출에 반영되지 않습니다. AI 자동 실행, 웹 DB, Drive·Notion·Padlet 연동은 연결되어 있지 않습니다. 학생 이름·성적 등 개인정보는 입력하지 마세요.</p>
+<details><summary>구조와 10단계 작업 순서 보기</summary>
+<p class="cw-note">교수: 지시·판단·최종 확인 / 과목 맥락: 게시된 주차·자료 / 개인 기억: 이 브라우저의 운영기록 / 실행: 변경안 미리보기·저장·내보내기. 출결 예외와 성적 판단은 교수자가 공식 LMS에서 처리합니다.</p>
+<ol class="cw-steps"><li>과목·주차 선택</li><li>과목 맥락 읽기</li><li>브리핑 확인</li><li>작업 지시 입력</li><li>조회 / 기록 변경</li><li>최신 자료 대조</li><li>변경안 미리보기</li><li>확인 / 수정</li><li>저장 후 대조</li><li>내보내기·기록</li></ol>
+<p class="cw-note">조회는 저장 없이 보고합니다. 기록 변경은 최신 게시 자료 대조 → 변경안 → 확인 → 저장 후 재확인 순서입니다. 여기의 확인 체크는 교수 인증이나 공식 승인을 대신하지 않습니다.</p></details>
+<div class="cw-grid"><div class="cw-box"><h3>01 · 과목 맥락과 브리핑</h3>
+<label for="cw-week">작업할 주차</label><select id="cw-week"></select>
+<pre id="cw-brief"></pre><a id="cw-material" hidden>선택 주차 PDF 열기</a>
+<p class="cw-note" id="cw-context"></p>
+</div><div class="cw-box"><h3>02 · 작업 지시</h3>
+<label for="cw-mode">작업 유형</label><select id="cw-mode"><option value="read">조회·브리핑 (저장 없음)</option><option value="write">개인 운영기록 변경</option></select>
+<label for="cw-task">할 일 / 교수 지시 메모</label><textarea id="cw-task" maxlength="3000" placeholder="예: 관심 전공 두 개의 교육과정을 비교하고 선택 기준을 정리한다."></textarea>
+<label for="cw-next">다음 작업</label><textarea id="cw-next" maxlength="1000" placeholder="다음 수업에서 이어갈 일을 적으세요."></textarea>
+<button type="button" id="cw-preview" class="cw-primary">브리핑 확인</button>
+</div></div>
+<div class="cw-box" id="cw-planbox" hidden style="margin-top:18px"><h3>03 · 변경안 검토</h3><pre id="cw-plan"></pre>
+<label><input type="checkbox" id="cw-confirm"> 변경 내용을 검토했습니다. 교수 판단이 필요한 사항은 별도로 확인했습니다.</label>
+<button type="button" id="cw-apply" class="cw-primary" disabled>확인한 기록 저장</button><button type="button" id="cw-revise">지시 수정</button></div>
+<p id="cw-status" role="status" aria-live="polite" class="cw-note"></p>
+<details><summary>04 · 운영기록과 다음 작업</summary><p class="cw-note">다른 기기로 옮기거나 보관하려면 JSON으로 내보내세요. 브라우저 데이터를 삭제하면 이곳의 기록도 사라집니다.</p><button type="button" id="cw-export">운영기록 JSON 내보내기</button><ol class="cw-log" id="cw-log"></ol></details>
+</div></div></section>
+<section class="section" id="board-section">
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -848,7 +890,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
       <h3>${item.title}</h3>
       <p>${item.summary}</p>
       <div class="task-foot">
-        ${download}
+        <button type="button" class="button" data-work-week="${Number(item.week.replace(/\D/g,''))}">이번 주 작업 계획</button>${download}
         <label class="check-label"><input type="checkbox" aria-label="${item.week} ${item.title} 완료" data-check="${item.id}" ${done ? "checked" : ""}> 완료</label>
       </div>
     </article>`;
@@ -959,5 +1001,41 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
 })();
 
 </script>
+
+<script>
+(function(){
+'use strict';
+const under=true;
+const course=JSON.parse(document.getElementById('course-data').textContent);
+const activities={self:['흥미·강점·가치를 경험과 연결해 정리합니다.','자기이해 메모와 전공 탐색 질문'],major:['관심 전공의 교육과정·필요 역량·진출 분야를 비교합니다.','출처가 포함된 전공 비교표'],ai:['AI가 제시한 전공·진로 정보를 원출처와 대조합니다.','정보 검증 및 AI 사용 기록'],career:['전공 목표와 학습·비교과 활동을 실행 일정으로 연결합니다.','진로 로드맵과 다음 실천 과제']};
+const rawItems=course.items.map(x=>({w:Number(x.week.replace(/\D/g,'')),t:x.title,g:x.summary,f:x.href||'',act:(activities[x.category]||activities.career)[0],as:(activities[x.category]||activities.career)[1]}));
+const items=Array.from(new Set(rawItems.map(x=>x.w))).map(w=>{const group=rawItems.filter(x=>x.w===w);return {...group[0],t:group.map(x=>x.t).join(' / '),g:group.map(x=>x.g).join(' ')};});
+const id=s=>document.getElementById('cw-'+s), key='course-workflow:v1:'+'major-exploration';
+let pending=null, busy=false;
+const signature=JSON.stringify(course.items.map(x=>[Number(x.week.replace(/\D/g,'')),x.title,x.summary,x.href||'']));
+function records(){const raw=localStorage.getItem(key);const a=raw?JSON.parse(raw):[];if(!Array.isArray(a)||a.some(x=>!x||typeof x.task!=='string'||typeof x.next!=='string'||typeof x.title!=='string'||!Number.isInteger(x.week)||typeof x.time!=='string'))throw Error('운영기록 형식을 확인할 수 없습니다. 기존 기록을 덮어쓰지 않았습니다.');return a;}
+function tell(t){id('status').textContent=t;}
+function invalidate(){pending=null;id('planbox').hidden=true;id('confirm').checked=false;id('apply').disabled=true;}
+function chosen(){return items.find(x=>x.w===Number(id('week').value));}
+function log(){try{const a=records();id('log').replaceChildren();if(!a.length){id('log').textContent='아직 저장된 운영기록이 없습니다.';return;}a.slice().reverse().forEach(x=>{const li=document.createElement('li');li.textContent=x.time+' · '+x.week+'주차 '+x.title+'\n작업: '+x.task+'\n다음: '+(x.next||'미지정');id('log').append(li);});}catch(e){tell('저장소를 읽을 수 없습니다. '+e.message);}}
+function brief(){invalidate();const x=chosen();id('brief').textContent=x.w+'주차 · '+x.t+'\n\n맥락: '+x.g+'\n\n활동: '+x.act+'\n산출물: '+x.as;id('material').hidden=!x.f;if(x.f)id('material').href=x.f;try{const a=records().filter(r=>r.week===x.w);id('context').textContent=(x.f?'연결된 자료를 먼저 확인하세요.':'이 주차는 별도 PDF가 없습니다. 주차 활동 안내를 따르세요.')+(a.length?' 이전 기록의 다음 작업: '+(a[a.length-1].next||'미지정'):' 이 주차의 운영기록은 아직 없습니다.');}catch(e){tell(e.message);}}
+async function latest(){const response=await fetch(location.pathname+'?course-context='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('게시 자료를 확인할 수 없습니다. 네트워크 상태를 확인한 뒤 다시 시도하세요.');const text=await response.text();const doc=new DOMParser().parseFromString(text,'text/html');let sig;
+if(under){const d=doc.getElementById('course-data');if(!d)throw Error('과목 맥락이 변경되었습니다. 페이지를 새로고침하세요.');const data=JSON.parse(d.textContent);sig=JSON.stringify(data.items.map(x=>[Number(x.week.replace(/\D/g,'')),x.title,x.summary,x.href||'']));}
+else{const script=[...doc.scripts].find(s=>s.textContent.includes('const M=['));const current=[...document.scripts].find(s=>s.textContent.includes('const M=['));if(!script||script.textContent!==current.textContent)throw Error('게시 자료가 변경되었습니다. 새로고침 후 변경안을 다시 만드세요.');sig=signature;}
+if(sig!==signature)throw Error('게시 자료가 변경되었습니다. 새로고침 후 다시 검토하세요.');return new Date().toLocaleString('ko-KR');}
+id('week').innerHTML=items.map(x=>'<option value="'+x.w+'">'+x.w+'주차 · '+x.t+'</option>').join('');
+id('week').addEventListener('change',brief);
+['mode','task','next'].forEach(n=>id(n).addEventListener(n==='mode'?'change':'input',()=>{invalidate();id('preview').textContent=id('mode').value==='read'?'브리핑 확인':'최신 자료 대조 · 변경안 만들기';}));
+id('preview').addEventListener('click',async()=>{if(busy)return;invalidate();if(id('mode').value==='read'){brief();tell('조회 완료: 선택 주차의 자료와 활동을 확인했습니다. 기록은 변경하지 않았습니다.');return;}const task=id('task').value.trim();if(!task){tell('할 일을 먼저 입력하세요.');id('task').focus();return;}busy=true;id('preview').disabled=true;try{const week=chosen().w,next=id('next').value.trim();const old=JSON.stringify(records());tell('최신 게시 자료를 확인하고 있습니다…');const checked=await latest();if(week!==chosen().w||task!==id('task').value.trim()||next!==id('next').value.trim()||id('mode').value!=='write')throw Error('입력이 바뀌었습니다. 변경안을 다시 만드세요.');pending={old,week,title:chosen().t,task,next};id('plan').textContent='최신 게시 자료 대조: '+checked+'\n변경 대상: 이 브라우저의 개인 운영기록\n기록 수: '+JSON.parse(old).length+' → '+(JSON.parse(old).length+1)+'\n주차: '+week+' · '+pending.title+'\n추가할 작업: '+task+'\n다음 작업: '+(next||'미지정')+'\n공식 LMS·출석·성적 변경: 없음';id('planbox').hidden=false;tell('미리보기 완료. 아직 저장하지 않았습니다.');}catch(e){tell(e.message);}finally{busy=false;id('preview').disabled=false;}});
+id('confirm').addEventListener('change',()=>{id('apply').disabled=!id('confirm').checked||!pending;});
+id('revise').addEventListener('click',()=>{invalidate();id('task').focus();tell('지시를 수정한 후 변경안을 다시 만드세요.');});
+id('apply').addEventListener('click',async()=>{if(!pending||!id('confirm').checked||busy)return;busy=true;id('apply').disabled=true;const p=pending;try{await latest();if(pending!==p)throw Error('변경안이 수정되었습니다. 다시 검토하세요.');if(JSON.stringify(records())!==p.old)throw Error('다른 탭에서 기록이 변경되었습니다. 변경안을 다시 만드세요.');const a=JSON.parse(p.old);a.push({week:p.week,title:p.title,task:p.task,next:p.next,time:new Date().toISOString()});const value=JSON.stringify(a);localStorage.setItem(key,value);if(localStorage.getItem(key)!==value)throw Error('저장 후 대조에 실패했습니다. 기록을 확인하세요.');invalidate();log();brief();tell('저장 및 기록 수 대조 완료: '+a.length+'건. 외부 서비스에는 전송되지 않았습니다.');}catch(e){invalidate();tell(e.message);}finally{busy=false;}});
+id('export').addEventListener('click',()=>{try{const a=records();const blob=new Blob([JSON.stringify({course:'전공탐구생활',exportedAt:new Date().toISOString(),scope:'browser-local-not-official-lms',records:a},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='major-exploration'+'-course-records.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);tell('JSON 내보내기를 요청했습니다. 다운로드한 파일을 확인하세요.');}catch(e){tell(e.message);}});
+window.addEventListener('storage',e=>{if(e.key===key){invalidate();log();tell('다른 탭의 변경을 감지했습니다. 변경안을 다시 검토하세요.');}});
+document.getElementById('board').addEventListener('click',event=>{const button=event.target.closest('[data-work-week]');if(!button)return;id('week').value=button.dataset.workWeek;brief();document.getElementById('course-workspace').scrollIntoView({behavior:'smooth'});id('week').focus();});
+brief();log();
+})();
+</script>
 </body>
 </html>
+
