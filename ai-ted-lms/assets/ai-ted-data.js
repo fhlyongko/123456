@@ -19,7 +19,8 @@ const modules = [
 ];
 const labels = {ted:"TED·읽기", project:"프로젝트", ai:"AI 활용"};
 const key = "ai-ted-lms-progress";
-const done = new Set(JSON.parse(localStorage.getItem(key) || "[]"));
+let savedProgress=[];try{const v=JSON.parse(localStorage.getItem(key)||"[]");if(Array.isArray(v))savedProgress=v.filter(w=>modules.some(m=>m.w===w));}catch(e){}
+const done = new Set(savedProgress);
 let activeFilter = "all";
 const $ = (s) => document.querySelector(s);
 function downloadButton(item) {
@@ -61,7 +62,7 @@ document.addEventListener("change", (event) => {
   if (!event.target.matches("[data-week]")) return;
   const week = Number(event.target.dataset.week);
   if (event.target.checked) done.add(week); else done.delete(week);
-  localStorage.setItem(key, JSON.stringify([...done]));
+  try{localStorage.setItem(key, JSON.stringify([...done]));}catch(e){const status=document.getElementById("cw-status");if(status)status.textContent="완료 체크를 저장하지 못했습니다. 현재 화면에만 반영됩니다.";}
   updateProgress();
 });
 const filters = $("#filters");
@@ -79,3 +80,4 @@ const search = $("#search");
 if (search) search.addEventListener("input", renderModules);
 renderModules();
 renderResources();
+
