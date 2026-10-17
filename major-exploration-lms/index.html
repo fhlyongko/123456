@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
+  <link rel="canonical" href="https://fhlyongko.github.io/123456/major-exploration-lms/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>전공탐구생활 온라인 수업강의실</title>
   <meta name="description" content="전공탐구생활 수업을 위한 주차별 인터랙티브 보드와 PDF 다운로드 자료실입니다.">
@@ -647,7 +648,15 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
 @media(max-width:700px){#course-workspace .cw-grid{grid-template-columns:1fr}#course-workspace .cw-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 <style>[data-theme=dark] #course-workspace .cw-shell{background:#1d2c42;color:#edf1fb}[data-theme=dark] #course-workspace .cw-box,[data-theme=dark] #course-workspace .cw-steps li{background:#283950;color:#edf1fb}[data-theme=dark] #course-workspace .cw-note,[data-theme=dark] #course-workspace summary{color:#adbbd1}#course-workspace{scroll-margin-top:var(--header-offset,100px)}</style>
-</head>
+<style>
+[data-theme=dark] .topbar{background:#1d2c42}
+[data-theme=dark] #course-workspace h2,[data-theme=dark] #course-workspace h3{color:#edf1fb}
+[data-theme=dark] #course-workspace .cw-tag,[data-theme=dark] #course-workspace .cw-steps li:before{color:#b3c5ff}
+[data-theme=dark] #course-workspace select,[data-theme=dark] #course-workspace textarea{background:#142031;color:#edf1fb;border-color:#8293ae}
+[data-theme=dark] #course-workspace button{background:#283950;color:#edf1fb;border-color:#8293ae}
+[data-theme=dark] #course-workspace button.cw-primary{background:#b3c5ff;color:#142031}
+.cw-material-link{display:block;margin:10px 0;text-underline-offset:3px}
+</style></head>
 <body><a class="skip" href="#board-section">학습 콘텐츠로 이동</a>
   <header class="topbar">
     <div class="topbar-inner">
@@ -661,7 +670,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
         <a href="#resources">PDF 자료</a><a href="../">통합 포털 ↗</a><button class="button" id="theme" type="button" aria-pressed="false">다크 모드</button>
       </nav>
     </div>
-  </header><div class="statusline"><div class="wrap"><b>COURSE HANDBOOK</b><span>2026학년도 1학기 자료</span><span>REV. 2026.10</span></div></div>
+  </header><div class="statusline"><div class="wrap"><b>COURSE HANDBOOK</b><span>2026학년도 1학기 자료</span><span>REV. 2026.10.17</span></div></div>
 
   <main id="home">
     <section class="hero">
@@ -704,7 +713,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
 <p class="cw-note">조회는 저장 없이 보고합니다. 기록 변경은 최신 게시 자료 대조 → 변경안 → 확인 → 저장 후 재확인 순서입니다. 여기의 확인 체크는 교수 인증이나 공식 승인을 대신하지 않습니다.</p></details>
 <div class="cw-grid"><div class="cw-box"><h3>01 · 과목 맥락과 브리핑</h3>
 <label for="cw-week">작업할 주차</label><select id="cw-week"></select>
-<pre id="cw-brief"></pre><a id="cw-material" hidden>선택 주차 PDF 열기</a>
+<pre id="cw-brief"></pre><div id="cw-materials" aria-label="선택 주차 자료"></div>
 <p class="cw-note" id="cw-context"></p>
 </div><div class="cw-box"><h3>02 · 작업 지시</h3>
 <label for="cw-mode">작업 유형</label><select id="cw-mode"><option value="read">조회·브리핑 (저장 없음)</option><option value="write">개인 운영기록 변경</option></select>
@@ -716,7 +725,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
 <label><input type="checkbox" id="cw-confirm"> 변경 내용을 검토했습니다. 교수 판단이 필요한 사항은 별도로 확인했습니다.</label>
 <button type="button" id="cw-apply" class="cw-primary" disabled>확인한 기록 저장</button><button type="button" id="cw-revise">지시 수정</button></div>
 <p id="cw-status" role="status" aria-live="polite" class="cw-note"></p>
-<details><summary>04 · 운영기록과 다음 작업</summary><p class="cw-note">다른 기기로 옮기거나 보관하려면 JSON으로 내보내세요. 브라우저 데이터를 삭제하면 이곳의 기록도 사라집니다.</p><button type="button" id="cw-export">운영기록 JSON 내보내기</button><ol class="cw-log" id="cw-log"></ol></details>
+<details><summary>04 · 운영기록과 다음 작업</summary><p class="cw-note">기록을 파일로 보관하려면 JSON으로 내보내세요. 이 페이지는 내보낸 파일의 다시 불러오기를 지원하지 않습니다. 브라우저 데이터를 삭제하면 이곳의 기록도 사라집니다.</p><button type="button" id="cw-export">운영기록 JSON 내보내기</button><ol class="cw-log" id="cw-log"></ol></details>
 </div></div></section>
 <section class="section" id="board-section">
       <div class="wrap">
@@ -749,7 +758,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
             <p class="lead">보고서와 발표 준비에 사용할 수 있는 문장 틀입니다.</p>
           </div>
         </div>
-        <div class="prompt-grid" id="promptGrid"></div>
+        <p class="note">진로탐색 및 설계 보고서는 원본 과제 지침에 따라 AI 사용이 금지됩니다. 아래 문장 틀은 스스로 작성하기 위한 참고용이며, AI 활용 활동은 교수자가 허용한 과제에서만 진행하세요.</p><div class="prompt-grid" id="promptGrid"></div>
       </div>
     </section>
 
@@ -759,13 +768,13 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
           <div>
             <p class="eyebrow">Materials</p>
             <h2>PDF 자료 다운로드</h2>
-            <p class="lead">수업계획서, 주차별 강의자료, 핵심 과제 자료를 모두 PDF로 내려받을 수 있습니다.</p>
+            <p class="lead">2026학년도 1학기 원본 자료 14개와 보충 자료 7개를 제공합니다. 현재 수업의 일정·평가·제출 방식은 교수자의 최신 공지를 확인하세요.</p>
           </div>
         </div>
         <div class="resource-search"><input class="search" id="resourceSearch" type="search" aria-label="PDF 자료 검색" placeholder="PDF 검색: 주차, 계획안, 로드맵 …"><button class="button" id="resetResources" type="button">검색 초기화</button></div><p class="result-count" id="resourceCount" role="status"></p><div class="resource-grid" id="resourceGrid"></div><p class="empty" id="resourceEmpty" hidden>검색 조건에 맞는 PDF가 없습니다. 다른 검색어를 입력하거나 검색 초기화를 눌러 주세요.</p>
       </div>
     </section>
-  <noscript><div class="wrap"><h2>PDF 자료 바로가기</h2><p>검색과 완료 기록은 JavaScript가 필요합니다. 자료는 아래에서 바로 열 수 있습니다.</p><ul><li><a href="files/course-plan-2026-spring.pdf">2026학년도 1학기 전공탐구생활 계획안</a></li><li><a href="files/week01-course-introduction.pdf">1주차 전공탐구생활 강의소개</a></li><li><a href="files/week02-self-understanding-1.pdf">2주차 자기이해 1</a></li><li><a href="files/week03-self-understanding-career.pdf">3주차 자기이해 2와 진로 이해</a></li><li><a href="files/week04-university-department.pdf">4주차 대학과 학과의 이해</a></li><li><a href="files/week04-career-design-assignment.pdf">4주차 진로탐색 및 설계 보고서</a></li><li><a href="files/week04-lecture-2.pdf">4주차 강의 2</a></li><li><a href="generated/week05.pdf">5주차 전공 정보 탐색</a></li><li><a href="generated/week06.pdf">6주차 전공 비교와 선택 기준</a></li><li><a href="generated/week07.pdf">7주차 전공 역량과 학습 계획</a></li><li><a href="generated/week08.pdf">8주차 중간 진로 설계 점검</a></li><li><a href="generated/week09.pdf">9주차 비교과 활동과 성장 계획</a></li><li><a href="files/week10-ai-literacy.pdf">10주차 AI 리터러시</a></li><li><a href="files/week11-chatgpt-education.pdf">11주차 ChatGPT 교육</a></li><li><a href="files/week12-career-design-jobs.pdf">12주차 전공 기반 진로 설계: 직업</a></li><li><a href="files/week13-career-design.pdf">13주차 전공 기반 진로 설계</a></li><li><a href="files/week14-extracurricular-career-design.pdf">14주차 비교과 기반 진로 설계</a></li><li><a href="files/week15-major-exploration-exhibition.pdf">15주차 전공 탐색 전시회</a></li><li><a href="files/week16-campus-life-design-sharing.pdf">16주차 나의 대학생활 설계 공유</a></li><li><a href="generated/final-roadmap.pdf">최종 로드맵</a></li><li><a href="generated/poster-guide.pdf">포스터 발표 가이드</a></li></ul></div></noscript></main>
+  <noscript><div class="wrap"><h2>PDF 자료 바로가기</h2><p>검색과 개인 기록 기능에는 JavaScript가 필요합니다.</p><ul><li><a href="files/course-plan-2026-spring.pdf">2026학년도 1학기 전공탐구생활 계획안 (원본 PDF)</a></li><li><a href="files/week01-course-introduction.pdf">1주차 전공탐구생활 강의소개 (원본 PDF)</a></li><li><a href="files/week02-self-understanding-1.pdf">2주차 자기이해 1 (원본 PDF)</a></li><li><a href="files/week03-self-understanding-career.pdf">3주차 자기이해 2와 진로 이해 (원본 PDF)</a></li><li><a href="files/week04-university-department.pdf">4주차 대학과 학과의 이해 (원본 PDF)</a></li><li><a href="files/week04-career-design-assignment.pdf">4주차 진로탐색 및 설계 보고서 (원본 PDF)</a></li><li><a href="files/week04-lecture-2.pdf">4주차 추가 강의: 대학의 가치를 다시 발견하는 시간 (원본 PDF)</a></li><li><a href="generated/week05.pdf">5주차 전공 탐색 1: 관심 분야 넓히기 (보충 PDF)</a></li><li><a href="generated/week06.pdf">6주차 전공 탐색 2: 전공 비교하기 (보충 PDF)</a></li><li><a href="generated/week07.pdf">7주차 전공 탐색 3: 정보 검증하기 (보충 PDF)</a></li><li><a href="generated/week08.pdf">8주차 중간 점검: 진로탐색 보고서 (보충 PDF)</a></li><li><a href="generated/week09.pdf">9주차 전공 탐색 4: 선택 기준 세우기 (보충 PDF)</a></li><li><a href="files/week10-ai-literacy.pdf">10주차 AI 리터러시 (원본 PDF)</a></li><li><a href="files/week11-chatgpt-education.pdf">11주차 ChatGPT 교육 (원본 PDF)</a></li><li><a href="files/week12-career-design-jobs.pdf">12주차 전공선택에 기반한 진로 설계: 직업 (원본 PDF)</a></li><li><a href="files/week13-career-design.pdf">13주차 전공선택에 기반한 진로 설계: 학업 (원본 PDF)</a></li><li><a href="files/week14-extracurricular-career-design.pdf">14주차 전공선택에 기반한 진로 설계: 비교과 (원본 PDF)</a></li><li><a href="files/week15-major-exploration-exhibition.pdf">15주차 전시회로 떠나는 전공 탐색 여행 (원본 PDF)</a></li><li><a href="files/week16-campus-life-design-sharing.pdf">16주차 나의 대학생활 설계 공유 (원본 PDF)</a></li><li><a href="generated/final-roadmap.pdf">최종 로드맵 (보충 PDF)</a></li><li><a href="generated/poster-guide.pdf">포스터 발표 가이드 (보충 PDF)</a></li></ul></div></noscript></main>
 
   <div id="toast" role="status" aria-live="polite"></div><footer class="footer">전공탐구생활 온라인 수업강의실 | 나의 전공 선택과 대학생활 설계를 연결하는 학습 공간</footer>
 
@@ -773,67 +782,422 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
 {
   "slug": "major-exploration",
   "filters": [
-    {"id": "self", "label": "자기이해"},
-    {"id": "major", "label": "전공탐색"},
-    {"id": "ai", "label": "AI 리터러시"},
-    {"id": "career", "label": "진로설계"}
+    {
+      "id": "self",
+      "label": "자기이해"
+    },
+    {
+      "id": "major",
+      "label": "전공탐색"
+    },
+    {
+      "id": "ai",
+      "label": "AI 리터러시"
+    },
+    {
+      "id": "career",
+      "label": "진로설계"
+    }
   ],
   "columns": [
-    {"id": "self", "title": "자기이해"},
-    {"id": "major", "title": "전공탐색"},
-    {"id": "ai", "title": "AI와 역량"},
-    {"id": "career", "title": "진로·대학생활"}
+    {
+      "id": "self",
+      "title": "자기이해"
+    },
+    {
+      "id": "major",
+      "title": "전공탐색"
+    },
+    {
+      "id": "ai",
+      "title": "AI와 역량"
+    },
+    {
+      "id": "career",
+      "title": "진로·대학생활"
+    }
   ],
   "items": [
-    {"id": "w01", "column": "self", "category": "self", "week": "1주차", "tag": "강의소개", "title": "전공탐구생활 강의소개", "summary": "수업의 목적, 운영 방식, 전공탐구의 의미를 확인합니다.", "href": "files/week01-course-introduction.pdf", "downloadLabel": "1주차 PDF"},
-    {"id": "w02", "column": "self", "category": "self", "week": "2주차", "tag": "자기이해", "title": "자기이해 1", "summary": "나의 흥미, 가치, 강점, 학습 경험을 바탕으로 진로 탐색의 출발점을 만듭니다.", "href": "files/week02-self-understanding-1.pdf", "downloadLabel": "2주차 PDF"},
-    {"id": "w03", "column": "self", "category": "self", "week": "3주차", "tag": "진로이해", "title": "자기이해 2와 진로 이해", "summary": "자기이해 결과를 진로 관심사와 연결하고 탐색 질문을 정리합니다.", "href": "files/week03-self-understanding-career.pdf", "downloadLabel": "3주차 PDF"},
-    {"id": "w04a", "column": "major", "category": "major", "week": "4주차", "tag": "대학·학과", "title": "대학과 학과의 이해", "summary": "대학의 학문 체계와 학과별 특성을 비교하며 전공 선택 기준을 세웁니다.", "href": "files/week04-university-department.pdf", "downloadLabel": "4주차 PDF"},
-    {"id": "w04b", "column": "major", "category": "major", "week": "4주차", "tag": "진로보고서", "title": "진로탐색 및 설계 보고서", "summary": "전공과 진로를 연결하는 보고서 작성 기준과 구성 방식을 확인합니다.", "href": "files/week04-career-design-assignment.pdf", "downloadLabel": "과제 PDF"},
-    {"id": "w05", "column": "major", "category": "major", "week": "5주차", "tag": "전공탐색", "title": "전공 정보 탐색", "summary": "관심 전공의 교육과정, 필요 역량, 진출 분야를 조사합니다.", "href": "generated/week05.pdf", "downloadLabel": "5주차 PDF"},
-    {"id": "w06", "column": "major", "category": "major", "week": "6주차", "tag": "비교분석", "title": "전공 비교와 선택 기준", "summary": "복수의 전공 후보를 비교하고 나에게 맞는 선택 기준을 정리합니다.", "href": "generated/week06.pdf", "downloadLabel": "6주차 PDF"},
-    {"id": "w07", "column": "major", "category": "major", "week": "7주차", "tag": "역량", "title": "전공 역량과 학습 계획", "summary": "전공 공부에 필요한 핵심 역량과 학기별 학습 계획을 설계합니다.", "href": "generated/week07.pdf", "downloadLabel": "7주차 PDF"},
-    {"id": "w08", "column": "career", "category": "career", "week": "8주차", "tag": "중간점검", "title": "중간 진로 설계 점검", "summary": "자기이해와 전공탐색 결과를 종합하여 중간 로드맵을 점검합니다.", "href": "generated/week08.pdf", "downloadLabel": "8주차 PDF"},
-    {"id": "w09", "column": "career", "category": "career", "week": "9주차", "tag": "비교과", "title": "비교과 활동과 성장 계획", "summary": "전공 학습을 보완하는 비교과 활동과 포트폴리오 전략을 정리합니다.", "href": "generated/week09.pdf", "downloadLabel": "9주차 PDF"},
-    {"id": "w10", "column": "ai", "category": "ai", "week": "10주차", "tag": "AI", "title": "AI 리터러시", "summary": "AI 사회에서 필요한 기본 이해, 활용 역량, 책임 있는 사용 태도를 학습합니다.", "href": "files/week10-ai-literacy.pdf", "downloadLabel": "10주차 PDF"},
-    {"id": "w11", "column": "ai", "category": "ai", "week": "11주차", "tag": "ChatGPT", "title": "ChatGPT 교육", "summary": "생성형 AI를 학습과 진로 탐색에 활용하는 방법과 주의사항을 배웁니다.", "href": "files/week11-chatgpt-education.pdf", "downloadLabel": "11주차 PDF"},
-    {"id": "w12", "column": "career", "category": "career", "week": "12주차", "tag": "직업", "title": "전공선택에 기반한 진로 설계: 직업", "summary": "전공 선택과 직업 세계를 연결하여 진로 가능성을 구체화합니다.", "href": "files/week12-career-design-jobs.pdf", "downloadLabel": "12주차 PDF"},
-    {"id": "w13", "column": "career", "category": "career", "week": "13주차", "tag": "진로설계", "title": "전공선택에 기반한 진로 설계", "summary": "관심 전공, 진로 목표, 학습 계획을 하나의 실행 로드맵으로 정리합니다.", "href": "files/week13-career-design.pdf", "downloadLabel": "13주차 PDF"},
-    {"id": "w14", "column": "career", "category": "career", "week": "14주차", "tag": "비교과", "title": "전공선택에 기반한 진로 설계: 비교과", "summary": "비교과 활동, 대외활동, 자격과 경험을 전공 진로 계획에 연결합니다.", "href": "files/week14-extracurricular-career-design.pdf", "downloadLabel": "14주차 PDF"},
-    {"id": "w15", "column": "career", "category": "career", "week": "15주차", "tag": "전시회", "title": "전시회로 떠나는 전공 탐색 여행", "summary": "전공 관련 자료와 사례를 전시회 방식으로 공유하며 서로의 관점을 확장합니다.", "href": "files/week15-major-exploration-exhibition.pdf", "downloadLabel": "15주차 PDF"},
-    {"id": "w16", "column": "career", "category": "career", "week": "16주차", "tag": "공유", "title": "나의 대학생활 설계 공유", "summary": "학기 동안 완성한 대학생활 설계와 진로 로드맵을 발표하고 공유합니다.", "href": "files/week16-campus-life-design-sharing.pdf", "downloadLabel": "16주차 PDF"}
+    {
+      "id": "w01",
+      "column": "self",
+      "category": "self",
+      "week": "1주차",
+      "tag": "강의소개",
+      "title": "전공탐구생활 강의소개",
+      "summary": "수업의 목적, 운영 방식, 전공탐구의 의미를 확인합니다.",
+      "href": "files/week01-course-introduction.pdf",
+      "downloadLabel": "1주차 PDF"
+    },
+    {
+      "id": "w02",
+      "column": "self",
+      "category": "self",
+      "week": "2주차",
+      "tag": "자기이해",
+      "title": "자기이해 1",
+      "summary": "나의 흥미, 가치, 강점, 학습 경험을 바탕으로 진로 탐색의 출발점을 만듭니다.",
+      "href": "files/week02-self-understanding-1.pdf",
+      "downloadLabel": "2주차 PDF"
+    },
+    {
+      "id": "w03",
+      "column": "self",
+      "category": "self",
+      "week": "3주차",
+      "tag": "진로이해",
+      "title": "자기이해 2와 진로 이해",
+      "summary": "자기이해 결과를 진로 관심사와 연결하고 탐색 질문을 정리합니다.",
+      "href": "files/week03-self-understanding-career.pdf",
+      "downloadLabel": "3주차 PDF"
+    },
+    {
+      "id": "w04a",
+      "column": "major",
+      "category": "major",
+      "week": "4주차",
+      "tag": "대학·학과",
+      "title": "대학과 학과의 이해",
+      "summary": "대학의 학문 체계와 학과별 특성을 비교하며 전공 선택 기준을 세웁니다.",
+      "href": "files/week04-university-department.pdf",
+      "downloadLabel": "4주차 PDF"
+    },
+    {
+      "id": "w04b",
+      "column": "major",
+      "category": "major",
+      "week": "4주차",
+      "tag": "진로보고서",
+      "title": "진로탐색 및 설계 보고서",
+      "summary": "전공과 진로를 연결하는 보고서 작성 기준과 구성 방식을 확인합니다. 이 보고서 과제에서는 AI 사용이 금지됩니다.",
+      "href": "files/week04-career-design-assignment.pdf",
+      "downloadLabel": "과제 PDF"
+    },
+    {
+      "id": "w05",
+      "column": "major",
+      "category": "major",
+      "week": "5주차",
+      "tag": "전공탐색",
+      "title": "전공 탐색 1: 관심 분야 넓히기",
+      "summary": "멘토의 전공 소개를 바탕으로 관심 전공 후보와 추가 탐색 질문을 정리합니다.",
+      "href": "generated/week05.pdf",
+      "downloadLabel": "5주차 PDF"
+    },
+    {
+      "id": "w06",
+      "column": "major",
+      "category": "major",
+      "week": "6주차",
+      "tag": "비교분석",
+      "title": "전공 탐색 2: 전공 비교하기",
+      "summary": "교육과정, 학습 방식, 요구 역량 등 같은 기준으로 전공 후보를 비교합니다.",
+      "href": "generated/week06.pdf",
+      "downloadLabel": "6주차 PDF"
+    },
+    {
+      "id": "w07",
+      "column": "major",
+      "category": "major",
+      "week": "7주차",
+      "tag": "정보검증",
+      "title": "전공 탐색 3: 정보 검증하기",
+      "summary": "학과 홈페이지와 멘토 답변을 비교하고 전공 선택의 기대·우려·대처 방안을 정리합니다.",
+      "href": "generated/week07.pdf",
+      "downloadLabel": "7주차 PDF"
+    },
+    {
+      "id": "w08",
+      "column": "career",
+      "category": "career",
+      "week": "8주차",
+      "tag": "중간점검",
+      "title": "중간 점검: 진로탐색 보고서",
+      "summary": "자기평가, 정보 수집, 목표 설정과 실행계획을 점검합니다. 원본 보고서 과제 지침에 따라 AI 사용은 금지됩니다.",
+      "href": "generated/week08.pdf",
+      "downloadLabel": "8주차 PDF"
+    },
+    {
+      "id": "w09",
+      "column": "major",
+      "category": "major",
+      "week": "9주차",
+      "tag": "선택기준",
+      "title": "전공 탐색 4: 선택 기준 세우기",
+      "summary": "전공 선택 기준의 중요도를 정하고, 근거를 바탕으로 1순위 전공과 대안 전공을 검토합니다.",
+      "href": "generated/week09.pdf",
+      "downloadLabel": "9주차 PDF"
+    },
+    {
+      "id": "w10",
+      "column": "ai",
+      "category": "ai",
+      "week": "10주차",
+      "tag": "AI",
+      "title": "AI 리터러시",
+      "summary": "AI 사회에서 필요한 기본 이해, 활용 역량, 책임 있는 사용 태도를 학습합니다.",
+      "href": "files/week10-ai-literacy.pdf",
+      "downloadLabel": "10주차 PDF"
+    },
+    {
+      "id": "w11",
+      "column": "ai",
+      "category": "ai",
+      "week": "11주차",
+      "tag": "ChatGPT",
+      "title": "ChatGPT 교육",
+      "summary": "생성형 AI를 학습과 진로 탐색에 활용하는 방법과 주의사항을 배웁니다.",
+      "href": "files/week11-chatgpt-education.pdf",
+      "downloadLabel": "11주차 PDF"
+    },
+    {
+      "id": "w12",
+      "column": "career",
+      "category": "career",
+      "week": "12주차",
+      "tag": "직업",
+      "title": "전공선택에 기반한 진로 설계: 직업",
+      "summary": "전공 선택과 직업 세계를 연결하여 진로 가능성을 구체화합니다.",
+      "href": "files/week12-career-design-jobs.pdf",
+      "downloadLabel": "12주차 PDF"
+    },
+    {
+      "id": "w13",
+      "column": "career",
+      "category": "career",
+      "week": "13주차",
+      "tag": "진로설계",
+      "title": "전공선택에 기반한 진로 설계: 학업",
+      "summary": "전공 목표에 필요한 교과목과 학기별 학업 계획을 설계합니다.",
+      "href": "files/week13-career-design.pdf",
+      "downloadLabel": "13주차 PDF"
+    },
+    {
+      "id": "w14",
+      "column": "career",
+      "category": "career",
+      "week": "14주차",
+      "tag": "비교과",
+      "title": "전공선택에 기반한 진로 설계: 비교과",
+      "summary": "비교과 활동, 대외활동, 자격과 경험을 전공 진로 계획에 연결합니다.",
+      "href": "files/week14-extracurricular-career-design.pdf",
+      "downloadLabel": "14주차 PDF"
+    },
+    {
+      "id": "w15",
+      "column": "career",
+      "category": "career",
+      "week": "15주차",
+      "tag": "전시회",
+      "title": "전시회로 떠나는 전공 탐색 여행",
+      "summary": "전공 관련 자료와 사례를 전시회 방식으로 공유하며 서로의 관점을 확장합니다. 계획안의 15주차는 보강주이며, 이 PDF는 전시회 탐색 자료입니다.",
+      "href": "files/week15-major-exploration-exhibition.pdf",
+      "downloadLabel": "15주차 PDF"
+    },
+    {
+      "id": "w16",
+      "column": "career",
+      "category": "career",
+      "week": "16주차",
+      "tag": "공유",
+      "title": "나의 대학생활 설계 공유",
+      "summary": "학기 동안 완성한 대학생활 설계와 진로 로드맵을 발표하고 공유합니다.",
+      "href": "files/week16-campus-life-design-sharing.pdf",
+      "downloadLabel": "16주차 PDF"
+    }
   ],
   "resources": [
-    {"type": "PDF", "title": "2026학년도 1학기 전공탐구생활 계획안", "summary": "수업 운영 전체 계획", "href": "files/course-plan-2026-spring.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "1주차 전공탐구생활 강의소개", "summary": "수업 안내", "href": "files/week01-course-introduction.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "2주차 자기이해 1", "summary": "자기이해 활동", "href": "files/week02-self-understanding-1.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "3주차 자기이해 2와 진로 이해", "summary": "진로 이해 활동", "href": "files/week03-self-understanding-career.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "4주차 대학과 학과의 이해", "summary": "대학과 학과 탐색", "href": "files/week04-university-department.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "4주차 진로탐색 및 설계 보고서", "summary": "핵심 과제 안내", "href": "files/week04-career-design-assignment.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "4주차 강의 2", "summary": "추가 강의자료", "href": "files/week04-lecture-2.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "5주차 전공 정보 탐색", "summary": "생성 학습자료", "href": "generated/week05.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "6주차 전공 비교와 선택 기준", "summary": "생성 학습자료", "href": "generated/week06.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "7주차 전공 역량과 학습 계획", "summary": "생성 학습자료", "href": "generated/week07.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "8주차 중간 진로 설계 점검", "summary": "생성 학습자료", "href": "generated/week08.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "9주차 비교과 활동과 성장 계획", "summary": "생성 학습자료", "href": "generated/week09.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "10주차 AI 리터러시", "summary": "AI 역량 학습", "href": "files/week10-ai-literacy.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "11주차 ChatGPT 교육", "summary": "생성형 AI 활용", "href": "files/week11-chatgpt-education.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "12주차 전공 기반 진로 설계: 직업", "summary": "직업 탐색", "href": "files/week12-career-design-jobs.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "13주차 전공 기반 진로 설계", "summary": "진로 로드맵", "href": "files/week13-career-design.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "14주차 비교과 기반 진로 설계", "summary": "비교과 전략", "href": "files/week14-extracurricular-career-design.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "15주차 전공 탐색 전시회", "summary": "전시회 활동", "href": "files/week15-major-exploration-exhibition.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "16주차 나의 대학생활 설계 공유", "summary": "최종 발표", "href": "files/week16-campus-life-design-sharing.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "최종 로드맵", "summary": "대학생활 설계 양식", "href": "generated/final-roadmap.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "포스터 발표 가이드", "summary": "전공 탐색 발표 안내", "href": "generated/poster-guide.pdf", "downloadLabel": "다운로드"}
+    {
+      "type": "원본 PDF",
+      "title": "2026학년도 1학기 전공탐구생활 계획안",
+      "summary": "수업 운영 전체 계획",
+      "href": "files/course-plan-2026-spring.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "1주차 전공탐구생활 강의소개",
+      "summary": "수업의 목적, 운영 방식, 전공탐구의 의미를 확인합니다.",
+      "href": "files/week01-course-introduction.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "2주차 자기이해 1",
+      "summary": "나의 흥미, 가치, 강점, 학습 경험을 바탕으로 진로 탐색의 출발점을 만듭니다.",
+      "href": "files/week02-self-understanding-1.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "3주차 자기이해 2와 진로 이해",
+      "summary": "자기이해 결과를 진로 관심사와 연결하고 탐색 질문을 정리합니다.",
+      "href": "files/week03-self-understanding-career.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "4주차 대학과 학과의 이해",
+      "summary": "대학의 학문 체계와 학과별 특성을 비교하며 전공 선택 기준을 세웁니다.",
+      "href": "files/week04-university-department.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "4주차 진로탐색 및 설계 보고서",
+      "summary": "전공과 진로를 연결하는 보고서 작성 기준과 구성 방식을 확인합니다. 이 보고서 과제에서는 AI 사용이 금지됩니다.",
+      "href": "files/week04-career-design-assignment.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "4주차 추가 강의: 대학의 가치를 다시 발견하는 시간",
+      "summary": "추가 강의자료",
+      "href": "files/week04-lecture-2.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "5주차 전공 탐색 1: 관심 분야 넓히기",
+      "summary": "보충 학습자료 · 멘토의 전공 소개를 바탕으로 관심 전공 후보와 추가 탐색 질문을 정리합니다.",
+      "href": "generated/week05.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "6주차 전공 탐색 2: 전공 비교하기",
+      "summary": "보충 학습자료 · 교육과정, 학습 방식, 요구 역량 등 같은 기준으로 전공 후보를 비교합니다.",
+      "href": "generated/week06.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "7주차 전공 탐색 3: 정보 검증하기",
+      "summary": "보충 학습자료 · 학과 홈페이지와 멘토 답변을 비교하고 전공 선택의 기대·우려·대처 방안을 정리합니다.",
+      "href": "generated/week07.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "8주차 중간 점검: 진로탐색 보고서",
+      "summary": "보충 학습자료 · 자기평가, 정보 수집, 목표 설정과 실행계획을 점검합니다. 원본 보고서 과제 지침에 따라 AI 사용은 금지됩니다.",
+      "href": "generated/week08.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "9주차 전공 탐색 4: 선택 기준 세우기",
+      "summary": "보충 학습자료 · 전공 선택 기준의 중요도를 정하고, 근거를 바탕으로 1순위 전공과 대안 전공을 검토합니다.",
+      "href": "generated/week09.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "10주차 AI 리터러시",
+      "summary": "AI 사회에서 필요한 기본 이해, 활용 역량, 책임 있는 사용 태도를 학습합니다.",
+      "href": "files/week10-ai-literacy.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "11주차 ChatGPT 교육",
+      "summary": "생성형 AI를 학습과 진로 탐색에 활용하는 방법과 주의사항을 배웁니다.",
+      "href": "files/week11-chatgpt-education.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "12주차 전공선택에 기반한 진로 설계: 직업",
+      "summary": "전공 선택과 직업 세계를 연결하여 진로 가능성을 구체화합니다.",
+      "href": "files/week12-career-design-jobs.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "13주차 전공선택에 기반한 진로 설계: 학업",
+      "summary": "전공 목표에 필요한 교과목과 학기별 학업 계획을 설계합니다.",
+      "href": "files/week13-career-design.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "14주차 전공선택에 기반한 진로 설계: 비교과",
+      "summary": "비교과 활동, 대외활동, 자격과 경험을 전공 진로 계획에 연결합니다.",
+      "href": "files/week14-extracurricular-career-design.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "15주차 전시회로 떠나는 전공 탐색 여행",
+      "summary": "전공 관련 자료와 사례를 전시회 방식으로 공유하며 서로의 관점을 확장합니다. 계획안의 15주차는 보강주이며, 이 PDF는 전시회 탐색 자료입니다.",
+      "href": "files/week15-major-exploration-exhibition.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "16주차 나의 대학생활 설계 공유",
+      "summary": "학기 동안 완성한 대학생활 설계와 진로 로드맵을 발표하고 공유합니다.",
+      "href": "files/week16-campus-life-design-sharing.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "최종 로드맵",
+      "summary": "보충 학습자료 · 대학생활 설계 양식",
+      "href": "generated/final-roadmap.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "포스터 발표 가이드",
+      "summary": "보충 학습자료 · 전공 탐색 발표 안내",
+      "href": "generated/poster-guide.pdf",
+      "downloadLabel": "다운로드"
+    }
   ],
   "prompts": [
-    {"title": "자기이해 문장", "summary": "나의 특성을 정리하는 기본 문장입니다.", "lines": ["나의 강점은 ... 입니다.", "내가 중요하게 생각하는 가치는 ... 입니다.", "나는 ... 상황에서 가장 몰입합니다.", "이 특징은 ... 전공 탐색과 연결됩니다."]},
-    {"title": "전공 비교 틀", "summary": "전공 후보를 비교할 때 사용할 수 있습니다.", "lines": ["관심 전공 1: ...", "관심 전공 2: ...", "비교 기준: 교육과정, 필요 역량, 진출 분야, 나의 적합성", "현재 나에게 더 적합한 선택지는 ... 이며, 그 이유는 ... 입니다."]},
-    {"title": "AI 활용 점검", "summary": "AI 도구를 책임 있게 사용할 때 필요한 기준입니다.", "lines": ["AI가 제안한 정보는 반드시 출처를 확인합니다.", "나의 경험과 판단을 중심으로 최종 내용을 작성합니다.", "AI 사용 목적은 아이디어 정리와 표현 점검으로 제한합니다."]},
-    {"title": "최종 로드맵", "summary": "대학생활 설계 발표를 준비하는 문장 틀입니다.", "lines": ["나의 전공 목표는 ... 입니다.", "이를 위해 이번 학기에는 ... 를 실천하겠습니다.", "다음 학기에는 ... 역량을 강화하겠습니다.", "졸업 전까지 ... 경험을 축적하겠습니다."]}
+    {
+      "title": "자기이해 문장",
+      "summary": "나의 특성을 정리하는 기본 문장입니다.",
+      "lines": [
+        "나의 강점은 ... 입니다.",
+        "내가 중요하게 생각하는 가치는 ... 입니다.",
+        "나는 ... 상황에서 가장 몰입합니다.",
+        "이 특징은 ... 전공 탐색과 연결됩니다."
+      ]
+    },
+    {
+      "title": "전공 비교 틀",
+      "summary": "전공 후보를 비교할 때 사용할 수 있습니다.",
+      "lines": [
+        "관심 전공 1: ...",
+        "관심 전공 2: ...",
+        "비교 기준: 교육과정, 필요 역량, 진출 분야, 나의 적합성",
+        "현재 나에게 더 적합한 선택지는 ... 이며, 그 이유는 ... 입니다."
+      ]
+    },
+    {
+      "title": "AI 활용 점검",
+      "summary": "AI 도구를 책임 있게 사용할 때 필요한 기준입니다.",
+      "lines": [
+        "과제별 AI 허용 여부를 먼저 확인합니다. 진로탐색 및 설계 보고서는 AI 사용 금지입니다.",
+        "허용된 활동에서 AI가 제안한 정보는 원출처와 대조합니다.",
+        "나의 경험과 판단을 중심으로 작성하고, 허용된 AI 사용 내역을 기록합니다."
+      ]
+    },
+    {
+      "title": "최종 로드맵",
+      "summary": "대학생활 설계 발표를 준비하는 문장 틀입니다.",
+      "lines": [
+        "나의 전공 목표는 ... 입니다.",
+        "이를 위해 이번 학기에는 ... 를 실천하겠습니다.",
+        "다음 학기에는 ... 역량을 강화하겠습니다.",
+        "졸업 전까지 ... 경험을 축적하겠습니다."
+      ]
+    }
   ]
 }
-  </script>
+</script>
   <script>
 (function () {
   const dataElement = document.getElementById("course-data");
@@ -956,6 +1320,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
     if (!button) return;
     activeFilter = button.dataset.filter;
     renderChips();
+    chips.querySelector(`[data-filter="${activeFilter}"]`).focus();
     renderBoard();
   });
 
@@ -994,6 +1359,7 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
   function setTheme(dark){document.documentElement.dataset.theme=dark?"dark":"light";theme.textContent=dark?"라이트 모드":"다크 모드";theme.setAttribute("aria-pressed",String(dark));}
   try{setTheme(localStorage.getItem("major-theme")==="dark");}catch{}
   theme.addEventListener("click",()=>{const dark=document.documentElement.dataset.theme!=="dark";setTheme(dark);try{localStorage.setItem("major-theme",dark?"dark":"light");}catch{}});
+  window.addEventListener('storage',event=>{if(event.key===storageKey||event.key===null){try{const ids=JSON.parse(localStorage.getItem(storageKey)||'[]');if(!Array.isArray(ids))return;completed.clear();ids.forEach(id=>{if(data.items.some(x=>x.id===id))completed.add(id);});renderBoard();}catch{}}});
   renderChips();
   renderBoard();
   renderResources();
@@ -1008,29 +1374,30 @@ h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color
 const under=true;
 const course=JSON.parse(document.getElementById('course-data').textContent);
 const activities={self:['흥미·강점·가치를 경험과 연결해 정리합니다.','자기이해 메모와 전공 탐색 질문'],major:['관심 전공의 교육과정·필요 역량·진출 분야를 비교합니다.','출처가 포함된 전공 비교표'],ai:['AI가 제시한 전공·진로 정보를 원출처와 대조합니다.','정보 검증 및 AI 사용 기록'],career:['전공 목표와 학습·비교과 활동을 실행 일정으로 연결합니다.','진로 로드맵과 다음 실천 과제']};
-const rawItems=course.items.map(x=>({w:Number(x.week.replace(/\D/g,'')),t:x.title,g:x.summary,f:x.href||'',act:(activities[x.category]||activities.career)[0],as:(activities[x.category]||activities.career)[1]}));
-const items=Array.from(new Set(rawItems.map(x=>x.w))).map(w=>{const group=rawItems.filter(x=>x.w===w);return {...group[0],t:group.map(x=>x.t).join(' / '),g:group.map(x=>x.g).join(' ')};});
+const weekOutputs={1:'수업 운영 확인과 자기소개 메모',2:'흥미·가치·강점에 대한 경험 메모',3:'진로 관심사와 탐색 질문',4:'대학·학과 탐색 메모와 AI를 사용하지 않은 진로탐색 보고서',5:'관심 전공 후보와 전공별 질문',6:'공통 기준을 적용한 전공 비교표',7:'멘토 질문 및 자료 대조 기록',8:'원본 지침에 따른 진로탐색 보고서 점검표',9:'가중치 의사결정표와 선택 근거',10:'AI 리터러시 및 윤리 점검',11:'허용된 AI 활용 활동의 검증 기록',12:'관심 직업과 전공 연결표',13:'학기별 교과 학습 계획',14:'비교과 활동 실행계획',15:'전시회 사례와 전공의 연결 메모',16:'대학생활 설계 로드맵과 공유 자료'};
+const rawItems=course.items.map(x=>({w:Number(x.week.replace(/\D/g,'')),t:x.title,g:x.summary,f:x.href||'',act:x.summary,as:weekOutputs[Number(x.week.replace(/\D/g,''))]}));
+const items=Array.from(new Set(rawItems.map(x=>x.w))).map(w=>{const group=rawItems.filter(x=>x.w===w);return {...group[0],t:group.map(x=>x.t).join(' / '),g:group.map(x=>x.g).join(' '),materials:course.resources.filter(r=>group.some(x=>x.f===r.href)||(w===4&&r.href.endsWith('week04-lecture-2.pdf')))};});
 const id=s=>document.getElementById('cw-'+s), key='course-workflow:v1:'+'major-exploration';
 let pending=null, busy=false;
-const signature=JSON.stringify(course.items.map(x=>[Number(x.week.replace(/\D/g,'')),x.title,x.summary,x.href||'']));
+const signature=JSON.stringify({items:course.items,resources:course.resources});
 function records(){const raw=localStorage.getItem(key);const a=raw?JSON.parse(raw):[];if(!Array.isArray(a)||a.some(x=>!x||typeof x.task!=='string'||typeof x.next!=='string'||typeof x.title!=='string'||!Number.isInteger(x.week)||typeof x.time!=='string'))throw Error('운영기록 형식을 확인할 수 없습니다. 기존 기록을 덮어쓰지 않았습니다.');return a;}
 function tell(t){id('status').textContent=t;}
 function invalidate(){pending=null;id('planbox').hidden=true;id('confirm').checked=false;id('apply').disabled=true;}
 function chosen(){return items.find(x=>x.w===Number(id('week').value));}
 function log(){try{const a=records();id('log').replaceChildren();if(!a.length){id('log').textContent='아직 저장된 운영기록이 없습니다.';return;}a.slice().reverse().forEach(x=>{const li=document.createElement('li');li.textContent=x.time+' · '+x.week+'주차 '+x.title+'\n작업: '+x.task+'\n다음: '+(x.next||'미지정');id('log').append(li);});}catch(e){tell('저장소를 읽을 수 없습니다. '+e.message);}}
-function brief(){invalidate();const x=chosen();id('brief').textContent=x.w+'주차 · '+x.t+'\n\n맥락: '+x.g+'\n\n활동: '+x.act+'\n산출물: '+x.as;id('material').hidden=!x.f;if(x.f)id('material').href=x.f;try{const a=records().filter(r=>r.week===x.w);id('context').textContent=(x.f?'연결된 자료를 먼저 확인하세요.':'이 주차는 별도 PDF가 없습니다. 주차 활동 안내를 따르세요.')+(a.length?' 이전 기록의 다음 작업: '+(a[a.length-1].next||'미지정'):' 이 주차의 운영기록은 아직 없습니다.');}catch(e){tell(e.message);}}
-async function latest(){const response=await fetch(location.pathname+'?course-context='+Date.now(),{cache:'no-store'});if(!response.ok)throw Error('게시 자료를 확인할 수 없습니다. 네트워크 상태를 확인한 뒤 다시 시도하세요.');const text=await response.text();const doc=new DOMParser().parseFromString(text,'text/html');let sig;
-if(under){const d=doc.getElementById('course-data');if(!d)throw Error('과목 맥락이 변경되었습니다. 페이지를 새로고침하세요.');const data=JSON.parse(d.textContent);sig=JSON.stringify(data.items.map(x=>[Number(x.week.replace(/\D/g,'')),x.title,x.summary,x.href||'']));}
+function brief(){invalidate();const x=chosen();id('brief').textContent=x.w+'주차 · '+x.t+'\n\n맥락: '+x.g+'\n\n활동: '+x.act+'\n산출물: '+x.as;id('materials').replaceChildren();x.materials.forEach(r=>{const a=document.createElement('a');a.href=r.href;a.textContent=r.title+' 열기';a.className='cw-material-link';id('materials').append(a);});try{const a=records().filter(r=>r.week===x.w);id('context').textContent=(x.f?'연결된 자료를 먼저 확인하세요.':'이 주차는 별도 PDF가 없습니다. 주차 활동 안내를 따르세요.')+(a.length?' 이전 기록의 다음 작업: '+(a[a.length-1].next||'미지정'):' 이 주차의 운영기록은 아직 없습니다.');}catch(e){tell(e.name==='TimeoutError'?'자료 확인 시간이 초과되었습니다. 다시 시도하세요.':e.message);}}
+async function latest(){const response=await fetch(location.pathname+'?course-context='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(15000)});if(!response.ok)throw Error('게시 자료를 확인할 수 없습니다. 네트워크 상태를 확인한 뒤 다시 시도하세요.');const text=await response.text();const doc=new DOMParser().parseFromString(text,'text/html');let sig;
+if(under){const d=doc.getElementById('course-data');if(!d)throw Error('과목 맥락이 변경되었습니다. 페이지를 새로고침하세요.');const data=JSON.parse(d.textContent);sig=JSON.stringify({items:data.items,resources:data.resources});}
 else{const script=[...doc.scripts].find(s=>s.textContent.includes('const M=['));const current=[...document.scripts].find(s=>s.textContent.includes('const M=['));if(!script||script.textContent!==current.textContent)throw Error('게시 자료가 변경되었습니다. 새로고침 후 변경안을 다시 만드세요.');sig=signature;}
 if(sig!==signature)throw Error('게시 자료가 변경되었습니다. 새로고침 후 다시 검토하세요.');return new Date().toLocaleString('ko-KR');}
 id('week').innerHTML=items.map(x=>'<option value="'+x.w+'">'+x.w+'주차 · '+x.t+'</option>').join('');
 id('week').addEventListener('change',brief);
 ['mode','task','next'].forEach(n=>id(n).addEventListener(n==='mode'?'change':'input',()=>{invalidate();id('preview').textContent=id('mode').value==='read'?'브리핑 확인':'최신 자료 대조 · 변경안 만들기';}));
-id('preview').addEventListener('click',async()=>{if(busy)return;invalidate();if(id('mode').value==='read'){brief();tell('조회 완료: 선택 주차의 자료와 활동을 확인했습니다. 기록은 변경하지 않았습니다.');return;}const task=id('task').value.trim();if(!task){tell('할 일을 먼저 입력하세요.');id('task').focus();return;}busy=true;id('preview').disabled=true;try{const week=chosen().w,next=id('next').value.trim();const old=JSON.stringify(records());tell('최신 게시 자료를 확인하고 있습니다…');const checked=await latest();if(week!==chosen().w||task!==id('task').value.trim()||next!==id('next').value.trim()||id('mode').value!=='write')throw Error('입력이 바뀌었습니다. 변경안을 다시 만드세요.');pending={old,week,title:chosen().t,task,next};id('plan').textContent='최신 게시 자료 대조: '+checked+'\n변경 대상: 이 브라우저의 개인 운영기록\n기록 수: '+JSON.parse(old).length+' → '+(JSON.parse(old).length+1)+'\n주차: '+week+' · '+pending.title+'\n추가할 작업: '+task+'\n다음 작업: '+(next||'미지정')+'\n공식 LMS·출석·성적 변경: 없음';id('planbox').hidden=false;tell('미리보기 완료. 아직 저장하지 않았습니다.');}catch(e){tell(e.message);}finally{busy=false;id('preview').disabled=false;}});
+id('preview').addEventListener('click',async()=>{if(busy)return;invalidate();if(id('mode').value==='read'){brief();tell('조회 완료: 선택 주차의 자료와 활동을 확인했습니다. 기록은 변경하지 않았습니다.');return;}const task=id('task').value.trim();if(!task){tell('할 일을 먼저 입력하세요.');id('task').focus();return;}busy=true;id('preview').disabled=true;try{const week=chosen().w,next=id('next').value.trim();const old=JSON.stringify(records());tell('최신 게시 자료를 확인하고 있습니다…');const checked=await latest();if(week!==chosen().w||task!==id('task').value.trim()||next!==id('next').value.trim()||id('mode').value!=='write')throw Error('입력이 바뀌었습니다. 변경안을 다시 만드세요.');pending={old,week,title:chosen().t,task,next};id('plan').textContent='최신 게시 자료 대조: '+checked+'\n변경 대상: 이 브라우저의 개인 운영기록\n기록 수: '+JSON.parse(old).length+' → '+(JSON.parse(old).length+1)+'\n주차: '+week+' · '+pending.title+'\n추가할 작업: '+task+'\n다음 작업: '+(next||'미지정')+'\n공식 LMS·출석·성적 변경: 없음';id('planbox').hidden=false;tell('미리보기 완료. 아직 저장하지 않았습니다.');}catch(e){tell(e.name==='TimeoutError'?'자료 확인 시간이 초과되었습니다. 다시 시도하세요.':e.message);}finally{busy=false;id('preview').disabled=false;}});
 id('confirm').addEventListener('change',()=>{id('apply').disabled=!id('confirm').checked||!pending;});
 id('revise').addEventListener('click',()=>{invalidate();id('task').focus();tell('지시를 수정한 후 변경안을 다시 만드세요.');});
 id('apply').addEventListener('click',async()=>{if(!pending||!id('confirm').checked||busy)return;busy=true;id('apply').disabled=true;const p=pending;try{await latest();if(pending!==p||!id('confirm').checked)throw Error('변경안 또는 확인 상태가 바뀌었습니다. 다시 검토하세요.');if(JSON.stringify(records())!==p.old)throw Error('다른 탭에서 기록이 변경되었습니다. 변경안을 다시 만드세요.');const a=JSON.parse(p.old);a.push({week:p.week,title:p.title,task:p.task,next:p.next,time:new Date().toISOString()});const value=JSON.stringify(a);localStorage.setItem(key,value);if(localStorage.getItem(key)!==value)throw Error('저장 후 대조에 실패했습니다. 기록을 확인하세요.');invalidate();log();brief();tell('저장 및 기록 수 대조 완료: '+a.length+'건. 외부 서비스에는 전송되지 않았습니다.');}catch(e){invalidate();tell(e.message);}finally{busy=false;}});
-id('export').addEventListener('click',()=>{try{const a=records();const blob=new Blob([JSON.stringify({course:'전공탐구생활',exportedAt:new Date().toISOString(),scope:'browser-local-not-official-lms',records:a},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='major-exploration'+'-course-records.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);tell('JSON 내보내기를 요청했습니다. 다운로드한 파일을 확인하세요.');}catch(e){tell(e.message);}});
+id('export').addEventListener('click',()=>{try{const a=records();const blob=new Blob([JSON.stringify({course:'전공탐구생활',exportedAt:new Date().toISOString(),scope:'browser-local-not-official-lms',records:a},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='major-exploration'+'-course-records.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);tell('JSON 내보내기를 요청했습니다. 다운로드한 파일을 확인하세요.');}catch(e){tell(e.name==='TimeoutError'?'자료 확인 시간이 초과되었습니다. 다시 시도하세요.':e.message);}});
 window.addEventListener('storage',e=>{if(e.key===key){invalidate();log();tell('다른 탭의 변경을 감지했습니다. 변경안을 다시 검토하세요.');}});
 document.getElementById('board').addEventListener('click',event=>{const button=event.target.closest('[data-work-week]');if(!button)return;id('week').value=button.dataset.workWeek;brief();document.getElementById('course-workspace').scrollIntoView({behavior:'smooth'});id('week').focus();});
 brief();log();
