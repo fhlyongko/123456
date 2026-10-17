@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>인공지능 TED · Learning Signal Board</title>
+  <title>인공지능 TED · 학생용 학습 보드와 PDF 자료</title>
+  <link rel="canonical" href="https://fhlyongko.github.io/123456/ai-ted-lms/student-pdf.html">
   <meta name="description" content="TED 읽기, AI 리터러시, 영어 커뮤니케이션, 프로젝트 포트폴리오를 16주 학습 신호로 탐색하는 인터랙티브 수업 보드입니다.">
   <meta name="theme-color" content="#f4f0e7">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +15,7 @@
 
 <style>
 #course-workspace{scroll-margin-top:100px;padding:36px 0;color:#25344c}#course-workspace *{box-sizing:border-box}
+#course-workspace .wrap{max-width:var(--page-width);margin:auto;padding:0 var(--page-gutter)}
 #course-workspace .cw-shell{border:1px solid #d8e1ec;border-radius:16px;background:#fff;padding:clamp(18px,3vw,30px)}
 #course-workspace h2{font-family:inherit;font-size:26px;margin:5px 0 12px}#course-workspace h3{font-size:17px;margin:0 0 12px}
 #course-workspace .cw-tag{color:#366bb0;font-size:12px;letter-spacing:.1em;font-weight:700}
@@ -25,6 +27,7 @@
 #course-workspace .cw-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:0;list-style:none;counter-reset:steps}#course-workspace .cw-steps li{counter-increment:steps;padding:12px;background:#edf3fa;border:1px solid #d9e3ef;font-size:13px;border-radius:7px}#course-workspace .cw-steps li:before{content:counter(steps,decimal-leading-zero);display:block;color:#366bb0;font-weight:bold}
 #course-workspace details{margin:18px 0}#course-workspace summary{font-size:14px;color:#25344c}#course-workspace .cw-log{padding-left:20px;max-height:330px;overflow:auto;font-size:13px}#course-workspace .cw-log li{padding:8px 0;border-bottom:1px solid #dce5f0;white-space:pre-wrap;overflow-wrap:anywhere}
 @media(max-width:700px){#course-workspace .cw-grid{grid-template-columns:1fr}#course-workspace .cw-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.board-columns{grid-template-columns:1fr;overflow-x:visible}.board-column{min-width:0}.site-header nav{max-width:100%}.section{scroll-margin-top:130px}}
 </style>
 </head>
 <body>
@@ -44,6 +47,7 @@
   </header>
 
   <main id="main">
+    <noscript><p class="section">검색과 PDF 변환에는 JavaScript가 필요합니다. <a href="https://github.com/fhlyongko/123456/tree/gh-pages/ai-ted-lms/downloads">수업자료 원본 목록</a>을 이용하세요.</p></noscript>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow">00 · AI + TED COURSE SYSTEM</p>
@@ -91,7 +95,7 @@
     <section class="stats" aria-label="강의 구성 요약">
       <dl class="stats-grid">
         <div class="stat"><dt class="stat-label">COURSE MODULES</dt><dd><span class="stat-num">16</span><span class="stat-unit">주차</span></dd></div>
-        <div class="stat"><dt class="stat-label">DOWNLOADABLE FILES</dt><dd><span class="stat-num">15</span><span class="stat-unit">자료</span></dd></div>
+        <div class="stat"><dt class="stat-label">DOWNLOADABLE FILES</dt><dd><span class="stat-num" id="resourceCount">15</span><span class="stat-unit">자료</span></dd></div>
         <div class="stat"><dt class="stat-label">LEARNING MODES</dt><dd><span class="stat-num">04</span><span class="stat-unit">트랙</span></dd></div>
       </dl>
     </section>
@@ -159,7 +163,7 @@
     <section class="section" id="resources-board">
       <header class="section-head">
         <div><p class="eyebrow">02 · RESOURCE INDEX</p><h2>자료를 찾는 시간이 수업보다 길어지지 않도록.</h2></div>
-        <p class="lead">파일 유형과 주차 맥락을 한 줄에서 확인하고 원본 PDF·활동지·안내 파일을 바로 내려받으세요.</p>
+        <p class="lead">PDF 자료는 바로 다운로드합니다. Markdown 활동지·안내문은 PDF로 변환하며, 강의계획서는 HWPX 원본으로 제공합니다.</p>
       </header>
       <div class="resource-toolbar">
         <input class="board-search" id="resourceSearch" type="search" aria-label="수업자료 검색" placeholder="Unit, AI, 포트폴리오…">
@@ -168,6 +172,7 @@
           <button class="filter" type="button" data-resource-filter="unit" aria-pressed="false">Unit</button>
           <button class="filter" type="button" data-resource-filter="ai" aria-pressed="false">AI</button>
           <button class="filter" type="button" data-resource-filter="portfolio" aria-pressed="false">Portfolio</button>
+          <button class="filter" type="button" data-resource-filter="guide" aria-pressed="false">강의 안내</button>
         </div>
       </div>
       <div class="resource-board" id="resourceBoard" aria-live="polite"></div>
@@ -254,16 +259,17 @@
       const seen = new Set();
       const resources = [];
       modules.forEach((item)=>item.dl.forEach((entry)=>{
-        if(seen.has(entry[1])) return;
+        if(seen.has(entry[1])) { resources.find(r=>r.entry[1]===entry[1]).weeks.push(item.w); return; }
         seen.add(entry[1]);
-        const type = entry[1].includes("unit") ? "unit" : entry[1].includes("ai") ? "ai" : entry[1].includes("portfolio") ? "portfolio" : "guide";
-        resources.push({entry,item,type});
+        const type = entry[1].includes("unit") ? "unit" : entry[1].startsWith("ai-") ? "ai" : entry[1].includes("portfolio") ? "portfolio" : "guide";
+        resources.push({entry,item,type,weeks:[item.w]});
       }));
+      document.getElementById("resourceCount").textContent=resources.length;
       const filtered = resources
-        .filter(({item,type})=>resourceFilter === "all" || type === resourceFilter || item.c === resourceFilter)
+        .filter(({entry,item,type})=>resourceFilter === "all" || type === resourceFilter || (resourceFilter === "ai" && entry[1].includes("ai-cyborgs")))
         .filter(({entry,item,type})=>!query || [entry[0],entry[1],item.t,item.d,type].join(" ").toLowerCase().includes(query));
-      root.innerHTML = filtered.map(({entry,item,type},index)=>`<a class="resource-row" href="${base + entry[1]}" download data-type="${type}">
-        <span class="resource-index">${String(index + 1).padStart(2,"0")}</span><h3>${entry[0]}</h3><p>W${String(item.w).padStart(2,"0")} · ${item.t}</p><span class="resource-arrow" aria-hidden="true">↘</span>
+      root.innerHTML = filtered.map(({entry,item,type,weeks},index)=>`<a class="resource-row" href="${base + entry[1]}" download data-type="${type}">
+        <span class="resource-index">${String(index + 1).padStart(2,"0")}</span><h3>${entry[0]}</h3><p>${weeks.map(w=>"W"+String(w).padStart(2,"0")).join(" · ")} · ${item.t} · ${entry[1].endsWith(".md") ? "PDF 변환" : entry[1].split(".").pop().toUpperCase()}</p><span class="resource-arrow" aria-hidden="true">↘</span>
       </a>`).join("") || `<p class="resource-empty">검색 결과가 없습니다.</p>`;
     }
     document.addEventListener("click",(event)=>{
@@ -291,7 +297,7 @@
     document.querySelectorAll("[data-board-task]").forEach((item)=>{ item.checked = !!taskState[item.dataset.boardTask]; });
     renderBoard(); renderResourceBoard(); updateBoardProgress();
   </script>
-  <script src="assets/pdf-downloads.js"></script>
+  <script src="assets/pdf-downloads.js?v=20261017-audit"></script>
 
 <script>
 (function(){
