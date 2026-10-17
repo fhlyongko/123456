@@ -2,12 +2,662 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
+  <link rel="canonical" href="https://fhlyongko.github.io/123456/major-exploration-lms/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>전공탐구생활 온라인 수업강의실</title>
   <meta name="description" content="전공탐구생활 수업을 위한 주차별 인터랙티브 보드와 PDF 다운로드 자료실입니다.">
-  <link rel="stylesheet" href="../assets/interactive-board.css">
-</head>
-<body>
+  <style>
+:root {
+  --bg: #f6f1e8;
+  --paper: #fffdf8;
+  --ink: #242018;
+  --text: #4d463b;
+  --muted: #7b7163;
+  --line: #e7ddcd;
+  --teal: #347f73;
+  --gold: #b78b2c;
+  --terra: #c96f4b;
+  --plum: #87629a;
+  --soft: #f0e6d6;
+  --shadow: 0 24px 60px -42px rgba(43, 34, 20, .58);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% 4%, rgba(183, 139, 44, .16), transparent 28%),
+    radial-gradient(circle at 92% 2%, rgba(52, 127, 115, .15), transparent 30%),
+    linear-gradient(180deg, #fbf7ee 0%, var(--bg) 60%, #f3eadc 100%);
+  color: var(--text);
+  font-family: "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", Arial, sans-serif;
+  line-height: 1.65;
+  letter-spacing: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+a {
+  color: inherit;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(183, 139, 44, .22);
+  background: rgba(255, 253, 248, .92);
+  backdrop-filter: blur(16px);
+}
+
+.topbar-inner,
+.wrap {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+.topbar-inner {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.brand-mark {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--teal), var(--gold));
+  color: #fff;
+  font-weight: 950;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+  line-height: 1.25;
+}
+
+.brand strong {
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.brand small {
+  color: var(--muted);
+  font-size: .76rem;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.nav a,
+.button,
+.chip,
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 13px;
+  background: var(--paper);
+  color: var(--muted);
+  text-decoration: none;
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 850;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+}
+
+.nav a:hover,
+.button:hover,
+.chip:hover,
+.copy-button:hover {
+  border-color: rgba(52, 127, 115, .35);
+  color: var(--ink);
+  box-shadow: 0 12px 30px -24px rgba(43, 34, 20, .5);
+}
+
+.button.primary,
+.chip.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 253, 248, .95), rgba(245, 236, 221, .9)),
+    radial-gradient(circle at 78% 28%, rgba(135, 98, 154, .16), transparent 32%);
+}
+
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(320px, .94fr);
+  gap: clamp(28px, 5vw, 58px);
+  align-items: center;
+  padding: clamp(42px, 7vw, 86px) 0;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--teal);
+  font-size: .78rem;
+  font-weight: 950;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  color: var(--ink);
+  letter-spacing: 0;
+  text-align: left;
+}
+
+h1 {
+  margin-bottom: 18px;
+  font-family: Georgia, "Noto Serif KR", "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 4.3rem);
+  line-height: 1.08;
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-family: Georgia, "Noto Serif KR", "Times New Roman", serif;
+  font-size: clamp(1.55rem, 3.2vw, 2.55rem);
+  line-height: 1.18;
+}
+
+h3 {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.lead {
+  max-width: 760px;
+  margin: 0;
+  color: #5b5247;
+  font-size: clamp(1rem, 1.35vw, 1.14rem);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.hero-panel,
+.stat-card,
+.board-column,
+.resource-card,
+.prompt-card,
+.progress-panel {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 253, 248, .86);
+  box-shadow: var(--shadow);
+}
+
+.hero-panel {
+  padding: 22px;
+}
+
+.map-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.map-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 13px 14px;
+  border: 1px solid #eadfce;
+  border-radius: 15px;
+  background: #fffaf0;
+}
+
+.map-row dt {
+  color: var(--gold);
+  font-weight: 950;
+}
+
+.map-row dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.stat-card {
+  padding: 15px;
+}
+
+.stat-card strong {
+  display: block;
+  color: var(--teal);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.stat-card span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.section {
+  padding: clamp(42px, 6vw, 74px) 0 0;
+  scroll-margin-top: 88px;
+}
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 15px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.board-column {
+  min-width: 0;
+  padding: 14px;
+}
+
+.column-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.column-title strong {
+  color: var(--ink);
+  font-weight: 950;
+}
+
+.column-title span {
+  border-radius: 999px;
+  padding: 3px 8px;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 900;
+}
+
+.card-list {
+  display: grid;
+  gap: 10px;
+}
+
+.task-card {
+  min-width: 0;
+  border: 1px solid #eadfce;
+  border-radius: 15px;
+  background: #fffaf0;
+  padding: 14px;
+}
+
+.task-card.hidden,
+.resource-card.hidden {
+  display: none;
+}
+
+.task-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border-radius: 999px;
+  padding: 3px 8px;
+  background: rgba(52, 127, 115, .1);
+  color: var(--teal);
+  font-size: .74rem;
+  font-weight: 900;
+}
+
+.task-card h3 {
+  margin: 0 0 7px;
+}
+
+.task-card p {
+  margin: 0;
+  color: #5e564b;
+  font-size: .95rem;
+}
+
+.task-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.check-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 850;
+}
+
+.progress-panel {
+  display: grid;
+  grid-template-columns: minmax(160px, .35fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 16px 18px;
+}
+
+.progress-panel span {
+  display: block;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.progress-panel strong {
+  display: block;
+  color: var(--ink);
+}
+
+.track {
+  height: 11px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--soft);
+}
+
+.track i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--terra));
+  transition: width .2s ease;
+}
+
+.prompt-grid,
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 14px;
+}
+
+.prompt-card,
+.resource-card {
+  min-width: 0;
+  padding: 18px;
+}
+
+.prompt-card ul {
+  margin: 10px 0 14px;
+  padding-left: 19px;
+  color: var(--muted);
+}
+
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.resource-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .94rem;
+}
+
+.resource-card .button {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.empty {
+  margin: 0;
+  padding: 18px;
+  border: 1px dashed var(--line);
+  border-radius: 18px;
+  color: var(--muted);
+  background: rgba(255, 253, 248, .6);
+}
+
+.footer {
+  margin-top: 70px;
+  padding: 28px 18px 54px;
+  border-top: 1px solid var(--line);
+  background: rgba(255, 253, 248, .7);
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 920px) {
+  .topbar-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 12px 0;
+  }
+
+  .nav {
+    justify-content: flex-start;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-head,
+  .controls,
+  .progress-panel {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .controls {
+    display: grid;
+  }
+
+  .chips {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar-inner,
+  .wrap {
+    width: calc(100% - 28px);
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .nav a {
+    padding: 8px 6px;
+    font-size: .84rem;
+  }
+
+  h1 {
+    font-size: clamp(1.7rem, 8vw, 2.25rem);
+  }
+
+  .hero-actions .button,
+  .resource-card .button {
+    width: 100%;
+  }
+
+  .map-row {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Course-specific whitepaper design; shared course styles remain untouched. */
+:root{--bg:#f4f6fa;--paper:#fff;--ink:#202b40;--text:#445066;--muted:#626f83;--line:#cdd5e2;--soft:#eaf0f8;--teal:#29458c;--gold:#a63843;--terra:#a63843;--shadow:none}
+body{background-color:var(--bg);background-image:linear-gradient(#29458c07 1px,transparent 1px),linear-gradient(90deg,#29458c07 1px,transparent 1px);background-size:28px 28px}
+.wrap,.topbar-inner{width:min(1240px,calc(100% - 40px))}
+.topbar{background:#29458c;border:0}.topbar-inner{min-height:62px}.brand strong{color:#fff;font-size:15px}.brand small{color:#d2dcf4;font:10px monospace;letter-spacing:.12em;margin-top:5px}
+.brand-mark{border-radius:0;background:transparent;border:1px solid #ffffff66;width:32px;height:36px;font:24px Georgia}
+.nav a,.nav button{color:#eef2ff;background:transparent;border-color:#ffffff44;font-size:12px}
+.button,.chip,.copy-button,.search,.nav a,.nav button{border-radius:2px;font-weight:600;min-height:40px}.button.primary,.chip.active{background:var(--teal);border-color:var(--teal);color:var(--paper)}
+.statusline{background:var(--paper);border-bottom:1px solid #a63843;font:11px monospace;padding:9px 0;letter-spacing:.06em}.statusline .wrap{display:flex;gap:22px;flex-wrap:wrap}.statusline b{color:var(--gold)}.statusline span:last-child{margin-left:auto}
+.hero{border:0;overflow:visible;padding:30px 0}.hero:before{display:none}.hero-grid{padding:42px;background:var(--paper);border:1px solid var(--line);grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;box-shadow:0 12px 26px #1624400b}
+.hero-grid:before,.hero-grid:after{content:"";position:absolute;width:36px;height:36px;pointer-events:none}.hero-grid:before{top:-1px;left:-1px;border-top:3px solid var(--gold);border-left:3px solid var(--gold)}.hero-grid:after{bottom:-1px;right:-1px;border-bottom:3px solid var(--teal);border-right:3px solid var(--teal)}
+.eyebrow{font:11px monospace;color:var(--muted);letter-spacing:.15em;margin-bottom:18px}
+h1{font-family:Georgia,"Batang",serif;font-size:clamp(32px,4vw,51px);line-height:1.4;letter-spacing:-.04em}
+h2{font-family:Georgia,"Batang",serif;font-size:28px;line-height:1.4}.lead{color:var(--muted);font-size:15px;line-height:1.9}
+.hero-subtitle{font:11px monospace;color:var(--gold);letter-spacing:.16em;margin:18px 0}.hero-actions .button{padding:12px 16px}
+.hero-panel{background:var(--bg);border-radius:0;padding:22px}.map-row{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:12px 0;grid-template-columns:50px 1fr;font-size:14px}.map-row dt{font:12px monospace;padding-top:4px}.map-list{gap:0}
+.stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.stat-card{border-radius:0;background:var(--paper);padding:14px 10px;border-bottom:3px solid var(--teal)}.stat-card strong{color:var(--ink);font-size:30px}.stat-card span{font-size:11px}
+.hero-meta{margin-top:25px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.section{padding-top:36px;scroll-margin-top:90px}.board{grid-template-columns:repeat(2,minmax(0,1fr))}.board-column,.prompt-card,.resource-card,.progress-panel{border-radius:2px;background:var(--paper)}.board-column{padding:20px;border-top:3px solid var(--teal)}
+.task-card{background:var(--bg);border:1px solid var(--line);border-radius:1px;padding:18px}.task-card p{color:var(--muted);font-size:14px}.task-card h3{font-size:17px;line-height:1.5}.pill{border-radius:2px;background:var(--soft);color:var(--teal);font-weight:600}.task-foot{justify-content:space-between}.check-label{font-size:12px}
+.prompt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.resource-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.resource-card,.prompt-card{padding:22px}
+.track i{background:var(--teal)}.progress-panel{grid-template-columns:minmax(150px,.4fr) 1fr}
+.controls{grid-template-columns:minmax(0,1fr) auto}.chips{grid-column:1/-1;justify-content:flex-start}
+.note,.result-count{font-size:12px;color:var(--muted)}.resource-search{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:20px 0}.resource-search input{flex:1;min-width:160px}.empty{background:var(--paper);border-radius:2px}
+.footer{background:var(--paper)}:focus-visible{outline:3px solid #ca9228;outline-offset:4px}.skip{position:fixed;top:-100px;left:10px;z-index:100;background:var(--paper);padding:10px}.skip:focus{top:10px}input[type=checkbox]{accent-color:var(--teal);width:17px;height:17px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:12px 20px;max-width:90vw;z-index:100}#toast:empty{display:none}
+[data-theme=dark]{--bg:#142031;--paper:#1d2c42;--ink:#edf1fb;--text:#cbd5e8;--muted:#adbbd1;--line:#3a4a62;--soft:#283950;--teal:#b3c5ff;--gold:#efa3aa}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;padding:30px;gap:28px}.topbar-inner{gap:12px}.section{scroll-margin-top:145px}.resource-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.wrap,.topbar-inner{width:calc(100% - 28px)}.hero-grid{padding:24px 18px}.board,.prompt-grid,.resource-grid{grid-template-columns:1fr}.nav{display:flex;flex-wrap:wrap;gap:6px}.nav a,.nav button{padding:7px 10px;font-size:11px}.brand strong{font-size:13px}.map-row{grid-template-columns:45px minmax(0,1fr)}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-panel{padding:16px}.progress-panel{grid-template-columns:1fr;gap:10px}.section{scroll-margin-top:180px}.statusline .wrap{gap:8px 16px}.statusline span:last-child{margin-left:0}.chips{gap:5px}.chip{font-size:12px;padding:7px 10px}.hero-actions .button{width:auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{.topbar,.controls,.hero-actions,.resource-search,#toast,#resetBoard{display:none}body{background:white}.hero-grid{box-shadow:none}.task-card,.resource-card,.prompt-card{break-inside:avoid}.board{display:block}.board-column{margin-bottom:20px}.section{padding-top:20px}}
+
+
+/* Final audit: anchor offsets and narrow controls. */
+#home,.section{scroll-margin-top:var(--header-offset,90px)}
+.controls>.search{min-width:0;width:100%}
+.hero-grid>*,.resource-search>*{min-width:0}
+@media(max-width:360px){.controls{grid-template-columns:minmax(0,1fr)}.chips{grid-column:1}.controls>#resetBoard{justify-self:start}.brand strong{font-size:12px}}
+</style>
+
+<style>
+#course-workspace{scroll-margin-top:100px;padding:36px 0;color:#25344c}#course-workspace *{box-sizing:border-box}
+#course-workspace .cw-shell{border:1px solid #d8e1ec;border-radius:16px;background:#fff;padding:clamp(18px,3vw,30px)}
+#course-workspace h2{font-family:inherit;font-size:26px;margin:5px 0 12px}#course-workspace h3{font-size:17px;margin:0 0 12px}
+#course-workspace .cw-tag{color:#366bb0;font-size:12px;letter-spacing:.1em;font-weight:700}
+#course-workspace .cw-note{font-size:13px;color:#56647a;line-height:1.7}#course-workspace .cw-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+#course-workspace .cw-box{background:#f4f7fb;border:1px solid #dce5f0;border-radius:10px;padding:18px;min-width:0}
+#course-workspace label{display:block;font-size:14px;margin:10px 0}#course-workspace select,#course-workspace textarea{display:block;width:100%;padding:10px;border:1px solid #a9b8cd;border-radius:6px;background:white;color:#25344c;font:inherit}#course-workspace textarea{min-height:95px;resize:vertical}
+#course-workspace button{font:inherit;font-size:14px;border:1px solid #244d82;border-radius:7px;padding:10px 14px;background:#fff;color:#244d82;cursor:pointer;margin:4px 4px 4px 0}#course-workspace button.cw-primary{background:#142e51;color:#fff}#course-workspace button:disabled{opacity:.45;cursor:not-allowed}
+#course-workspace :focus-visible{outline:3px solid #3e86dc;outline-offset:3px}#course-workspace pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:14px;margin:10px 0}#course-workspace [hidden]{display:none!important}
+#course-workspace .cw-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:0;list-style:none;counter-reset:steps}#course-workspace .cw-steps li{counter-increment:steps;padding:12px;background:#edf3fa;border:1px solid #d9e3ef;font-size:13px;border-radius:7px}#course-workspace .cw-steps li:before{content:counter(steps,decimal-leading-zero);display:block;color:#366bb0;font-weight:bold}
+#course-workspace details{margin:18px 0}#course-workspace summary{font-size:14px;color:#25344c}#course-workspace .cw-log{padding-left:20px;max-height:330px;overflow:auto;font-size:13px}#course-workspace .cw-log li{padding:8px 0;border-bottom:1px solid #dce5f0;white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:700px){#course-workspace .cw-grid{grid-template-columns:1fr}#course-workspace .cw-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<style>[data-theme=dark] #course-workspace .cw-shell{background:#1d2c42;color:#edf1fb}[data-theme=dark] #course-workspace .cw-box,[data-theme=dark] #course-workspace .cw-steps li{background:#283950;color:#edf1fb}[data-theme=dark] #course-workspace .cw-note,[data-theme=dark] #course-workspace summary{color:#adbbd1}#course-workspace{scroll-margin-top:var(--header-offset,100px)}</style>
+<style>
+[data-theme=dark] .topbar{background:#1d2c42}
+[data-theme=dark] #course-workspace h2,[data-theme=dark] #course-workspace h3{color:#edf1fb}
+[data-theme=dark] #course-workspace .cw-tag,[data-theme=dark] #course-workspace .cw-steps li:before{color:#b3c5ff}
+[data-theme=dark] #course-workspace select,[data-theme=dark] #course-workspace textarea{background:#142031;color:#edf1fb;border-color:#8293ae}
+[data-theme=dark] #course-workspace button{background:#283950;color:#edf1fb;border-color:#8293ae}
+[data-theme=dark] #course-workspace button.cw-primary{background:#b3c5ff;color:#142031}
+.cw-material-link{display:block;margin:10px 0;text-underline-offset:3px}
+</style></head>
+<body><a class="skip" href="#board-section">학습 콘텐츠로 이동</a>
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="#home" aria-label="전공탐구생활 온라인 수업강의실">
@@ -15,24 +665,24 @@
         <span><strong>전공탐구생활 온라인 수업강의실</strong><small>Major Exploration Board</small></span>
       </a>
       <nav class="nav" aria-label="주요 메뉴">
-        <a href="#board-section">학습 보드</a>
+        <a href="#course-workspace">주차 브리핑·기록</a><a href="#board-section">학습 보드</a>
         <a href="#studio">과제 도구</a>
-        <a href="#resources">PDF 다운로드</a>
+        <a href="#resources">PDF 자료</a><a href="../">통합 포털 ↗</a><button class="button" id="theme" type="button" aria-pressed="false">다크 모드</button>
       </nav>
     </div>
-  </header>
+  </header><div class="statusline"><div class="wrap"><b>COURSE HANDBOOK</b><span>2026학년도 1학기 자료</span><span>REV. 2026.10.17</span></div></div>
 
   <main id="home">
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
           <p class="eyebrow">Major Exploration</p>
-          <h1>전공탐구생활 온라인 수업강의실</h1>
+          <h1>나를 이해하고,<br>전공과 미래를 설계하다.</h1><p class="hero-subtitle">MAJOR EXPLORATION · LEARNING GUIDE</p>
           <p class="lead">자기이해, 전공 탐색, AI 리터러시, 진로 설계, 대학생활 로드맵을 하나의 인터랙티브 보드에서 확인하고 주차별 PDF 자료를 바로 다운로드할 수 있습니다.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="#board-section">학습 보드 시작</a>
+          <div class="hero-actions"><a class="button primary" href="#course-workspace">주차 브리핑 시작 →</a>
+            <a class="button primary" data-reset-board href="#board-section">전체 학습 보기 →</a>
             <a class="button" href="#resources">PDF 자료 다운로드</a>
-          </div>
+          </div><p class="hero-meta">전공탐구생활 · 자기이해에서 대학생활 로드맵까지</p>
         </div>
         <aside class="hero-panel" aria-label="수업 구성">
           <p class="eyebrow">Course Journey</p>
@@ -43,7 +693,7 @@
             <div class="map-row"><dt>4단계</dt><dd>전공 기반 진로 설계와 대학생활 공유</dd></div>
           </dl>
           <div class="stats">
-            <div class="stat-card"><strong>16</strong><span>주차 보드</span></div>
+            <div class="stat-card"><strong>16</strong><span>주차 과정</span></div>
             <div class="stat-card"><strong>21</strong><span>PDF 자료</span></div>
             <div class="stat-card"><strong>4</strong><span>진로 단계</span></div>
           </div>
@@ -51,7 +701,33 @@
       </div>
     </section>
 
-    <section class="section" id="board-section">
+    
+<section id="course-workspace"><div class="wrap"><div class="cw-shell">
+<p class="cw-tag">COURSE CONTEXT → REVIEW → ACTION → RECORD</p>
+<h2>전공탐색을 실행으로 이어가는 작업 공간</h2>
+<p>자기이해 → 전공 비교 → AI 정보 검증 → 진로 설계의 맥락에서 주차별 할 일을 정하고, 확인한 내용을 기록합니다.</p>
+<p class="cw-note">이 공간은 로그인 없는 개인 작업 도구입니다. 기록은 현재 브라우저에만 저장되며 공식 출석·성적·과제 제출에 반영되지 않습니다. AI 자동 실행, 웹 DB, Drive·Notion·Padlet 연동은 연결되어 있지 않습니다. 학생 이름·성적 등 개인정보는 입력하지 마세요.</p>
+<details><summary>구조와 10단계 작업 순서 보기</summary>
+<p class="cw-note">교수: 지시·판단·최종 확인 / 과목 맥락: 게시된 주차·자료 / 개인 기억: 이 브라우저의 운영기록 / 실행: 변경안 미리보기·저장·내보내기. 출결 예외와 성적 판단은 교수자가 공식 LMS에서 처리합니다.</p>
+<ol class="cw-steps"><li>과목·주차 선택</li><li>과목 맥락 읽기</li><li>브리핑 확인</li><li>작업 지시 입력</li><li>조회 / 기록 변경</li><li>최신 자료 대조</li><li>변경안 미리보기</li><li>확인 / 수정</li><li>저장 후 대조</li><li>내보내기·기록</li></ol>
+<p class="cw-note">조회는 저장 없이 보고합니다. 기록 변경은 최신 게시 자료 대조 → 변경안 → 확인 → 저장 후 재확인 순서입니다. 여기의 확인 체크는 교수 인증이나 공식 승인을 대신하지 않습니다.</p></details>
+<div class="cw-grid"><div class="cw-box"><h3>01 · 과목 맥락과 브리핑</h3>
+<label for="cw-week">작업할 주차</label><select id="cw-week"></select>
+<pre id="cw-brief"></pre><div id="cw-materials" aria-label="선택 주차 자료"></div>
+<p class="cw-note" id="cw-context"></p>
+</div><div class="cw-box"><h3>02 · 작업 지시</h3>
+<label for="cw-mode">작업 유형</label><select id="cw-mode"><option value="read">조회·브리핑 (저장 없음)</option><option value="write">개인 운영기록 변경</option></select>
+<label for="cw-task">할 일 / 교수 지시 메모</label><textarea id="cw-task" maxlength="3000" placeholder="예: 관심 전공 두 개의 교육과정을 비교하고 선택 기준을 정리한다."></textarea>
+<label for="cw-next">다음 작업</label><textarea id="cw-next" maxlength="1000" placeholder="다음 수업에서 이어갈 일을 적으세요."></textarea>
+<button type="button" id="cw-preview" class="cw-primary">브리핑 확인</button>
+</div></div>
+<div class="cw-box" id="cw-planbox" hidden style="margin-top:18px"><h3>03 · 변경안 검토</h3><pre id="cw-plan"></pre>
+<label><input type="checkbox" id="cw-confirm"> 변경 내용을 검토했습니다. 교수 판단이 필요한 사항은 별도로 확인했습니다.</label>
+<button type="button" id="cw-apply" class="cw-primary" disabled>확인한 기록 저장</button><button type="button" id="cw-revise">지시 수정</button></div>
+<p id="cw-status" role="status" aria-live="polite" class="cw-note"></p>
+<details><summary>04 · 운영기록과 다음 작업</summary><p class="cw-note">기록을 파일로 보관하려면 JSON으로 내보내세요. 이 페이지는 내보낸 파일의 다시 불러오기를 지원하지 않습니다. 브라우저 데이터를 삭제하면 이곳의 기록도 사라집니다.</p><button type="button" id="cw-export">운영기록 JSON 내보내기</button><ol class="cw-log" id="cw-log"></ol></details>
+</div></div></section>
+<section class="section" id="board-section">
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -61,14 +737,14 @@
           </div>
         </div>
         <div class="controls">
-          <input class="search" id="searchInput" type="search" placeholder="자기이해, 전공, AI, 진로, 대학생활로 검색">
-          <div class="chips" id="filterChips" aria-label="학습 분류"></div>
+          <input class="search" id="searchInput" aria-label="학습 항목 검색" type="search" placeholder="자기이해, 전공, AI, 진로, 대학생활로 검색">
+          <button type="button" class="button" id="resetBoard">검색 초기화</button><div class="chips" id="filterChips" role="group" aria-label="학습 분류"></div>
         </div>
         <div class="progress-panel">
           <div><span>나의 진행률</span><strong id="progressText">0 / 17 완료</strong></div>
-          <div class="track"><i id="progressBar"></i></div>
+          <div class="track" role="progressbar" aria-label="학습 항목 완료율" aria-valuemin="0" aria-valuemax="17" aria-valuenow="0"><i id="progressBar"></i></div>
         </div>
-        <div class="board" id="board"></div>
+        <p class="note" id="saveNote">16주 과정, 총 17개 학습 항목입니다. 4주차는 강의와 과제 2개 항목으로 구성됩니다. 완료 표시는 현재 브라우저에만 저장되며 공식 출결·과제 제출 기록이 아닙니다.</p><p class="result-count" id="resultCount" role="status"></p><div class="board" id="board"></div>
         <p class="empty" id="emptyState" hidden>검색 조건에 맞는 항목이 없습니다.</p>
       </div>
     </section>
@@ -82,7 +758,7 @@
             <p class="lead">보고서와 발표 준비에 사용할 수 있는 문장 틀입니다.</p>
           </div>
         </div>
-        <div class="prompt-grid" id="promptGrid"></div>
+        <p class="note">진로탐색 및 설계 보고서는 원본 과제 지침에 따라 AI 사용이 금지됩니다. 아래 문장 틀은 스스로 작성하기 위한 참고용이며, AI 활용 활동은 교수자가 허용한 과제에서만 진행하세요.</p><div class="prompt-grid" id="promptGrid"></div>
       </div>
     </section>
 
@@ -92,81 +768,641 @@
           <div>
             <p class="eyebrow">Materials</p>
             <h2>PDF 자료 다운로드</h2>
-            <p class="lead">수업계획서, 주차별 강의자료, 핵심 과제 자료를 모두 PDF로 내려받을 수 있습니다.</p>
+            <p class="lead">2026학년도 1학기 원본 자료 14개와 보충 자료 7개를 제공합니다. 현재 수업의 일정·평가·제출 방식은 교수자의 최신 공지를 확인하세요.</p>
           </div>
         </div>
-        <div class="resource-grid" id="resourceGrid"></div>
+        <div class="resource-search"><input class="search" id="resourceSearch" type="search" aria-label="PDF 자료 검색" placeholder="PDF 검색: 주차, 계획안, 로드맵 …"><button class="button" id="resetResources" type="button">검색 초기화</button></div><p class="result-count" id="resourceCount" role="status"></p><div class="resource-grid" id="resourceGrid"></div><p class="empty" id="resourceEmpty" hidden>검색 조건에 맞는 PDF가 없습니다. 다른 검색어를 입력하거나 검색 초기화를 눌러 주세요.</p>
       </div>
     </section>
-  </main>
+  <noscript><div class="wrap"><h2>PDF 자료 바로가기</h2><p>검색과 개인 기록 기능에는 JavaScript가 필요합니다.</p><ul><li><a href="files/course-plan-2026-spring.pdf">2026학년도 1학기 전공탐구생활 계획안 (원본 PDF)</a></li><li><a href="files/week01-course-introduction.pdf">1주차 전공탐구생활 강의소개 (원본 PDF)</a></li><li><a href="files/week02-self-understanding-1.pdf">2주차 자기이해 1 (원본 PDF)</a></li><li><a href="files/week03-self-understanding-career.pdf">3주차 자기이해 2와 진로 이해 (원본 PDF)</a></li><li><a href="files/week04-university-department.pdf">4주차 대학과 학과의 이해 (원본 PDF)</a></li><li><a href="files/week04-career-design-assignment.pdf">4주차 진로탐색 및 설계 보고서 (원본 PDF)</a></li><li><a href="files/week04-lecture-2.pdf">4주차 추가 강의: 대학의 가치를 다시 발견하는 시간 (원본 PDF)</a></li><li><a href="generated/week05.pdf">5주차 전공 탐색 1: 관심 분야 넓히기 (보충 PDF)</a></li><li><a href="generated/week06.pdf">6주차 전공 탐색 2: 전공 비교하기 (보충 PDF)</a></li><li><a href="generated/week07.pdf">7주차 전공 탐색 3: 정보 검증하기 (보충 PDF)</a></li><li><a href="generated/week08.pdf">8주차 중간 점검: 진로탐색 보고서 (보충 PDF)</a></li><li><a href="generated/week09.pdf">9주차 전공 탐색 4: 선택 기준 세우기 (보충 PDF)</a></li><li><a href="files/week10-ai-literacy.pdf">10주차 AI 리터러시 (원본 PDF)</a></li><li><a href="files/week11-chatgpt-education.pdf">11주차 ChatGPT 교육 (원본 PDF)</a></li><li><a href="files/week12-career-design-jobs.pdf">12주차 전공선택에 기반한 진로 설계: 직업 (원본 PDF)</a></li><li><a href="files/week13-career-design.pdf">13주차 전공선택에 기반한 진로 설계: 학업 (원본 PDF)</a></li><li><a href="files/week14-extracurricular-career-design.pdf">14주차 전공선택에 기반한 진로 설계: 비교과 (원본 PDF)</a></li><li><a href="files/week15-major-exploration-exhibition.pdf">15주차 전시회로 떠나는 전공 탐색 여행 (원본 PDF)</a></li><li><a href="files/week16-campus-life-design-sharing.pdf">16주차 나의 대학생활 설계 공유 (원본 PDF)</a></li><li><a href="generated/final-roadmap.pdf">최종 로드맵 (보충 PDF)</a></li><li><a href="generated/poster-guide.pdf">포스터 발표 가이드 (보충 PDF)</a></li></ul></div></noscript></main>
 
-  <footer class="footer">전공탐구생활 온라인 수업강의실 | 나의 전공 선택과 대학생활 설계를 연결하는 학습 공간</footer>
+  <div id="toast" role="status" aria-live="polite"></div><footer class="footer">전공탐구생활 온라인 수업강의실 | 나의 전공 선택과 대학생활 설계를 연결하는 학습 공간</footer>
 
   <script id="course-data" type="application/json">
 {
   "slug": "major-exploration",
   "filters": [
-    {"id": "self", "label": "자기이해"},
-    {"id": "major", "label": "전공탐색"},
-    {"id": "ai", "label": "AI 리터러시"},
-    {"id": "career", "label": "진로설계"}
+    {
+      "id": "self",
+      "label": "자기이해"
+    },
+    {
+      "id": "major",
+      "label": "전공탐색"
+    },
+    {
+      "id": "ai",
+      "label": "AI 리터러시"
+    },
+    {
+      "id": "career",
+      "label": "진로설계"
+    }
   ],
   "columns": [
-    {"id": "self", "title": "자기이해"},
-    {"id": "major", "title": "전공탐색"},
-    {"id": "ai", "title": "AI와 역량"},
-    {"id": "career", "title": "진로·대학생활"}
+    {
+      "id": "self",
+      "title": "자기이해"
+    },
+    {
+      "id": "major",
+      "title": "전공탐색"
+    },
+    {
+      "id": "ai",
+      "title": "AI와 역량"
+    },
+    {
+      "id": "career",
+      "title": "진로·대학생활"
+    }
   ],
   "items": [
-    {"id": "w01", "column": "self", "category": "self", "week": "1주차", "tag": "강의소개", "title": "전공탐구생활 강의소개", "summary": "수업의 목적, 운영 방식, 전공탐구의 의미를 확인합니다.", "href": "files/week01-course-introduction.pdf", "downloadLabel": "1주차 PDF"},
-    {"id": "w02", "column": "self", "category": "self", "week": "2주차", "tag": "자기이해", "title": "자기이해 1", "summary": "나의 흥미, 가치, 강점, 학습 경험을 바탕으로 진로 탐색의 출발점을 만듭니다.", "href": "files/week02-self-understanding-1.pdf", "downloadLabel": "2주차 PDF"},
-    {"id": "w03", "column": "self", "category": "self", "week": "3주차", "tag": "진로이해", "title": "자기이해 2와 진로 이해", "summary": "자기이해 결과를 진로 관심사와 연결하고 탐색 질문을 정리합니다.", "href": "files/week03-self-understanding-career.pdf", "downloadLabel": "3주차 PDF"},
-    {"id": "w04a", "column": "major", "category": "major", "week": "4주차", "tag": "대학·학과", "title": "대학과 학과의 이해", "summary": "대학의 학문 체계와 학과별 특성을 비교하며 전공 선택 기준을 세웁니다.", "href": "files/week04-university-department.pdf", "downloadLabel": "4주차 PDF"},
-    {"id": "w04b", "column": "major", "category": "major", "week": "4주차", "tag": "진로보고서", "title": "진로탐색 및 설계 보고서", "summary": "전공과 진로를 연결하는 보고서 작성 기준과 구성 방식을 확인합니다.", "href": "files/week04-career-design-assignment.pdf", "downloadLabel": "과제 PDF"},
-    {"id": "w05", "column": "major", "category": "major", "week": "5주차", "tag": "전공탐색", "title": "전공 정보 탐색", "summary": "관심 전공의 교육과정, 필요 역량, 진출 분야를 조사합니다.", "href": "generated/week05.pdf", "downloadLabel": "5주차 PDF"},
-    {"id": "w06", "column": "major", "category": "major", "week": "6주차", "tag": "비교분석", "title": "전공 비교와 선택 기준", "summary": "복수의 전공 후보를 비교하고 나에게 맞는 선택 기준을 정리합니다.", "href": "generated/week06.pdf", "downloadLabel": "6주차 PDF"},
-    {"id": "w07", "column": "major", "category": "major", "week": "7주차", "tag": "역량", "title": "전공 역량과 학습 계획", "summary": "전공 공부에 필요한 핵심 역량과 학기별 학습 계획을 설계합니다.", "href": "generated/week07.pdf", "downloadLabel": "7주차 PDF"},
-    {"id": "w08", "column": "career", "category": "career", "week": "8주차", "tag": "중간점검", "title": "중간 진로 설계 점검", "summary": "자기이해와 전공탐색 결과를 종합하여 중간 로드맵을 점검합니다.", "href": "generated/week08.pdf", "downloadLabel": "8주차 PDF"},
-    {"id": "w09", "column": "career", "category": "career", "week": "9주차", "tag": "비교과", "title": "비교과 활동과 성장 계획", "summary": "전공 학습을 보완하는 비교과 활동과 포트폴리오 전략을 정리합니다.", "href": "generated/week09.pdf", "downloadLabel": "9주차 PDF"},
-    {"id": "w10", "column": "ai", "category": "ai", "week": "10주차", "tag": "AI", "title": "AI 리터러시", "summary": "AI 사회에서 필요한 기본 이해, 활용 역량, 책임 있는 사용 태도를 학습합니다.", "href": "files/week10-ai-literacy.pdf", "downloadLabel": "10주차 PDF"},
-    {"id": "w11", "column": "ai", "category": "ai", "week": "11주차", "tag": "ChatGPT", "title": "ChatGPT 교육", "summary": "생성형 AI를 학습과 진로 탐색에 활용하는 방법과 주의사항을 배웁니다.", "href": "files/week11-chatgpt-education.pdf", "downloadLabel": "11주차 PDF"},
-    {"id": "w12", "column": "career", "category": "career", "week": "12주차", "tag": "직업", "title": "전공선택에 기반한 진로 설계: 직업", "summary": "전공 선택과 직업 세계를 연결하여 진로 가능성을 구체화합니다.", "href": "files/week12-career-design-jobs.pdf", "downloadLabel": "12주차 PDF"},
-    {"id": "w13", "column": "career", "category": "career", "week": "13주차", "tag": "진로설계", "title": "전공선택에 기반한 진로 설계", "summary": "관심 전공, 진로 목표, 학습 계획을 하나의 실행 로드맵으로 정리합니다.", "href": "files/week13-career-design.pdf", "downloadLabel": "13주차 PDF"},
-    {"id": "w14", "column": "career", "category": "career", "week": "14주차", "tag": "비교과", "title": "전공선택에 기반한 진로 설계: 비교과", "summary": "비교과 활동, 대외활동, 자격과 경험을 전공 진로 계획에 연결합니다.", "href": "files/week14-extracurricular-career-design.pdf", "downloadLabel": "14주차 PDF"},
-    {"id": "w15", "column": "career", "category": "career", "week": "15주차", "tag": "전시회", "title": "전시회로 떠나는 전공 탐색 여행", "summary": "전공 관련 자료와 사례를 전시회 방식으로 공유하며 서로의 관점을 확장합니다.", "href": "files/week15-major-exploration-exhibition.pdf", "downloadLabel": "15주차 PDF"},
-    {"id": "w16", "column": "career", "category": "career", "week": "16주차", "tag": "공유", "title": "나의 대학생활 설계 공유", "summary": "학기 동안 완성한 대학생활 설계와 진로 로드맵을 발표하고 공유합니다.", "href": "files/week16-campus-life-design-sharing.pdf", "downloadLabel": "16주차 PDF"}
+    {
+      "id": "w01",
+      "column": "self",
+      "category": "self",
+      "week": "1주차",
+      "tag": "강의소개",
+      "title": "전공탐구생활 강의소개",
+      "summary": "수업의 목적, 운영 방식, 전공탐구의 의미를 확인합니다.",
+      "href": "files/week01-course-introduction.pdf",
+      "downloadLabel": "1주차 PDF"
+    },
+    {
+      "id": "w02",
+      "column": "self",
+      "category": "self",
+      "week": "2주차",
+      "tag": "자기이해",
+      "title": "자기이해 1",
+      "summary": "나의 흥미, 가치, 강점, 학습 경험을 바탕으로 진로 탐색의 출발점을 만듭니다.",
+      "href": "files/week02-self-understanding-1.pdf",
+      "downloadLabel": "2주차 PDF"
+    },
+    {
+      "id": "w03",
+      "column": "self",
+      "category": "self",
+      "week": "3주차",
+      "tag": "진로이해",
+      "title": "자기이해 2와 진로 이해",
+      "summary": "자기이해 결과를 진로 관심사와 연결하고 탐색 질문을 정리합니다.",
+      "href": "files/week03-self-understanding-career.pdf",
+      "downloadLabel": "3주차 PDF"
+    },
+    {
+      "id": "w04a",
+      "column": "major",
+      "category": "major",
+      "week": "4주차",
+      "tag": "대학·학과",
+      "title": "대학과 학과의 이해",
+      "summary": "대학의 학문 체계와 학과별 특성을 비교하며 전공 선택 기준을 세웁니다.",
+      "href": "files/week04-university-department.pdf",
+      "downloadLabel": "4주차 PDF"
+    },
+    {
+      "id": "w04b",
+      "column": "major",
+      "category": "major",
+      "week": "4주차",
+      "tag": "진로보고서",
+      "title": "진로탐색 및 설계 보고서",
+      "summary": "전공과 진로를 연결하는 보고서 작성 기준과 구성 방식을 확인합니다. 이 보고서 과제에서는 AI 사용이 금지됩니다.",
+      "href": "files/week04-career-design-assignment.pdf",
+      "downloadLabel": "과제 PDF"
+    },
+    {
+      "id": "w05",
+      "column": "major",
+      "category": "major",
+      "week": "5주차",
+      "tag": "전공탐색",
+      "title": "전공 탐색 1: 관심 분야 넓히기",
+      "summary": "멘토의 전공 소개를 바탕으로 관심 전공 후보와 추가 탐색 질문을 정리합니다.",
+      "href": "generated/week05.pdf",
+      "downloadLabel": "5주차 PDF"
+    },
+    {
+      "id": "w06",
+      "column": "major",
+      "category": "major",
+      "week": "6주차",
+      "tag": "비교분석",
+      "title": "전공 탐색 2: 전공 비교하기",
+      "summary": "교육과정, 학습 방식, 요구 역량 등 같은 기준으로 전공 후보를 비교합니다.",
+      "href": "generated/week06.pdf",
+      "downloadLabel": "6주차 PDF"
+    },
+    {
+      "id": "w07",
+      "column": "major",
+      "category": "major",
+      "week": "7주차",
+      "tag": "정보검증",
+      "title": "전공 탐색 3: 정보 검증하기",
+      "summary": "학과 홈페이지와 멘토 답변을 비교하고 전공 선택의 기대·우려·대처 방안을 정리합니다.",
+      "href": "generated/week07.pdf",
+      "downloadLabel": "7주차 PDF"
+    },
+    {
+      "id": "w08",
+      "column": "career",
+      "category": "career",
+      "week": "8주차",
+      "tag": "중간점검",
+      "title": "중간 점검: 진로탐색 보고서",
+      "summary": "자기평가, 정보 수집, 목표 설정과 실행계획을 점검합니다. 원본 보고서 과제 지침에 따라 AI 사용은 금지됩니다.",
+      "href": "generated/week08.pdf",
+      "downloadLabel": "8주차 PDF"
+    },
+    {
+      "id": "w09",
+      "column": "major",
+      "category": "major",
+      "week": "9주차",
+      "tag": "선택기준",
+      "title": "전공 탐색 4: 선택 기준 세우기",
+      "summary": "전공 선택 기준의 중요도를 정하고, 근거를 바탕으로 1순위 전공과 대안 전공을 검토합니다.",
+      "href": "generated/week09.pdf",
+      "downloadLabel": "9주차 PDF"
+    },
+    {
+      "id": "w10",
+      "column": "ai",
+      "category": "ai",
+      "week": "10주차",
+      "tag": "AI",
+      "title": "AI 리터러시",
+      "summary": "AI 사회에서 필요한 기본 이해, 활용 역량, 책임 있는 사용 태도를 학습합니다.",
+      "href": "files/week10-ai-literacy.pdf",
+      "downloadLabel": "10주차 PDF"
+    },
+    {
+      "id": "w11",
+      "column": "ai",
+      "category": "ai",
+      "week": "11주차",
+      "tag": "ChatGPT",
+      "title": "ChatGPT 교육",
+      "summary": "생성형 AI를 학습과 진로 탐색에 활용하는 방법과 주의사항을 배웁니다.",
+      "href": "files/week11-chatgpt-education.pdf",
+      "downloadLabel": "11주차 PDF"
+    },
+    {
+      "id": "w12",
+      "column": "career",
+      "category": "career",
+      "week": "12주차",
+      "tag": "직업",
+      "title": "전공선택에 기반한 진로 설계: 직업",
+      "summary": "전공 선택과 직업 세계를 연결하여 진로 가능성을 구체화합니다.",
+      "href": "files/week12-career-design-jobs.pdf",
+      "downloadLabel": "12주차 PDF"
+    },
+    {
+      "id": "w13",
+      "column": "career",
+      "category": "career",
+      "week": "13주차",
+      "tag": "진로설계",
+      "title": "전공선택에 기반한 진로 설계: 학업",
+      "summary": "전공 목표에 필요한 교과목과 학기별 학업 계획을 설계합니다.",
+      "href": "files/week13-career-design.pdf",
+      "downloadLabel": "13주차 PDF"
+    },
+    {
+      "id": "w14",
+      "column": "career",
+      "category": "career",
+      "week": "14주차",
+      "tag": "비교과",
+      "title": "전공선택에 기반한 진로 설계: 비교과",
+      "summary": "비교과 활동, 대외활동, 자격과 경험을 전공 진로 계획에 연결합니다.",
+      "href": "files/week14-extracurricular-career-design.pdf",
+      "downloadLabel": "14주차 PDF"
+    },
+    {
+      "id": "w15",
+      "column": "career",
+      "category": "career",
+      "week": "15주차",
+      "tag": "전시회",
+      "title": "전시회로 떠나는 전공 탐색 여행",
+      "summary": "전공 관련 자료와 사례를 전시회 방식으로 공유하며 서로의 관점을 확장합니다. 계획안의 15주차는 보강주이며, 이 PDF는 전시회 탐색 자료입니다.",
+      "href": "files/week15-major-exploration-exhibition.pdf",
+      "downloadLabel": "15주차 PDF"
+    },
+    {
+      "id": "w16",
+      "column": "career",
+      "category": "career",
+      "week": "16주차",
+      "tag": "공유",
+      "title": "나의 대학생활 설계 공유",
+      "summary": "학기 동안 완성한 대학생활 설계와 진로 로드맵을 발표하고 공유합니다.",
+      "href": "files/week16-campus-life-design-sharing.pdf",
+      "downloadLabel": "16주차 PDF"
+    }
   ],
   "resources": [
-    {"type": "PDF", "title": "2026학년도 1학기 전공탐구생활 계획안", "summary": "수업 운영 전체 계획", "href": "files/course-plan-2026-spring.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "1주차 전공탐구생활 강의소개", "summary": "수업 안내", "href": "files/week01-course-introduction.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "2주차 자기이해 1", "summary": "자기이해 활동", "href": "files/week02-self-understanding-1.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "3주차 자기이해 2와 진로 이해", "summary": "진로 이해 활동", "href": "files/week03-self-understanding-career.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "4주차 대학과 학과의 이해", "summary": "대학과 학과 탐색", "href": "files/week04-university-department.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "4주차 진로탐색 및 설계 보고서", "summary": "핵심 과제 안내", "href": "files/week04-career-design-assignment.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "4주차 강의 2", "summary": "추가 강의자료", "href": "files/week04-lecture-2.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "5주차 전공 정보 탐색", "summary": "생성 학습자료", "href": "generated/week05.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "6주차 전공 비교와 선택 기준", "summary": "생성 학습자료", "href": "generated/week06.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "7주차 전공 역량과 학습 계획", "summary": "생성 학습자료", "href": "generated/week07.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "8주차 중간 진로 설계 점검", "summary": "생성 학습자료", "href": "generated/week08.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "9주차 비교과 활동과 성장 계획", "summary": "생성 학습자료", "href": "generated/week09.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "10주차 AI 리터러시", "summary": "AI 역량 학습", "href": "files/week10-ai-literacy.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "11주차 ChatGPT 교육", "summary": "생성형 AI 활용", "href": "files/week11-chatgpt-education.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "12주차 전공 기반 진로 설계: 직업", "summary": "직업 탐색", "href": "files/week12-career-design-jobs.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "13주차 전공 기반 진로 설계", "summary": "진로 로드맵", "href": "files/week13-career-design.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "14주차 비교과 기반 진로 설계", "summary": "비교과 전략", "href": "files/week14-extracurricular-career-design.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "15주차 전공 탐색 전시회", "summary": "전시회 활동", "href": "files/week15-major-exploration-exhibition.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "16주차 나의 대학생활 설계 공유", "summary": "최종 발표", "href": "files/week16-campus-life-design-sharing.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "최종 로드맵", "summary": "대학생활 설계 양식", "href": "generated/final-roadmap.pdf", "downloadLabel": "다운로드"},
-    {"type": "PDF", "title": "포스터 발표 가이드", "summary": "전공 탐색 발표 안내", "href": "generated/poster-guide.pdf", "downloadLabel": "다운로드"}
+    {
+      "type": "원본 PDF",
+      "title": "2026학년도 1학기 전공탐구생활 계획안",
+      "summary": "수업 운영 전체 계획",
+      "href": "files/course-plan-2026-spring.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "1주차 전공탐구생활 강의소개",
+      "summary": "수업의 목적, 운영 방식, 전공탐구의 의미를 확인합니다.",
+      "href": "files/week01-course-introduction.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "2주차 자기이해 1",
+      "summary": "나의 흥미, 가치, 강점, 학습 경험을 바탕으로 진로 탐색의 출발점을 만듭니다.",
+      "href": "files/week02-self-understanding-1.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "3주차 자기이해 2와 진로 이해",
+      "summary": "자기이해 결과를 진로 관심사와 연결하고 탐색 질문을 정리합니다.",
+      "href": "files/week03-self-understanding-career.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "4주차 대학과 학과의 이해",
+      "summary": "대학의 학문 체계와 학과별 특성을 비교하며 전공 선택 기준을 세웁니다.",
+      "href": "files/week04-university-department.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "4주차 진로탐색 및 설계 보고서",
+      "summary": "전공과 진로를 연결하는 보고서 작성 기준과 구성 방식을 확인합니다. 이 보고서 과제에서는 AI 사용이 금지됩니다.",
+      "href": "files/week04-career-design-assignment.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "4주차 추가 강의: 대학의 가치를 다시 발견하는 시간",
+      "summary": "추가 강의자료",
+      "href": "files/week04-lecture-2.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "5주차 전공 탐색 1: 관심 분야 넓히기",
+      "summary": "보충 학습자료 · 멘토의 전공 소개를 바탕으로 관심 전공 후보와 추가 탐색 질문을 정리합니다.",
+      "href": "generated/week05.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "6주차 전공 탐색 2: 전공 비교하기",
+      "summary": "보충 학습자료 · 교육과정, 학습 방식, 요구 역량 등 같은 기준으로 전공 후보를 비교합니다.",
+      "href": "generated/week06.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "7주차 전공 탐색 3: 정보 검증하기",
+      "summary": "보충 학습자료 · 학과 홈페이지와 멘토 답변을 비교하고 전공 선택의 기대·우려·대처 방안을 정리합니다.",
+      "href": "generated/week07.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "8주차 중간 점검: 진로탐색 보고서",
+      "summary": "보충 학습자료 · 자기평가, 정보 수집, 목표 설정과 실행계획을 점검합니다. 원본 보고서 과제 지침에 따라 AI 사용은 금지됩니다.",
+      "href": "generated/week08.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "9주차 전공 탐색 4: 선택 기준 세우기",
+      "summary": "보충 학습자료 · 전공 선택 기준의 중요도를 정하고, 근거를 바탕으로 1순위 전공과 대안 전공을 검토합니다.",
+      "href": "generated/week09.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "10주차 AI 리터러시",
+      "summary": "AI 사회에서 필요한 기본 이해, 활용 역량, 책임 있는 사용 태도를 학습합니다.",
+      "href": "files/week10-ai-literacy.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "11주차 ChatGPT 교육",
+      "summary": "생성형 AI를 학습과 진로 탐색에 활용하는 방법과 주의사항을 배웁니다.",
+      "href": "files/week11-chatgpt-education.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "12주차 전공선택에 기반한 진로 설계: 직업",
+      "summary": "전공 선택과 직업 세계를 연결하여 진로 가능성을 구체화합니다.",
+      "href": "files/week12-career-design-jobs.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "13주차 전공선택에 기반한 진로 설계: 학업",
+      "summary": "전공 목표에 필요한 교과목과 학기별 학업 계획을 설계합니다.",
+      "href": "files/week13-career-design.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "14주차 전공선택에 기반한 진로 설계: 비교과",
+      "summary": "비교과 활동, 대외활동, 자격과 경험을 전공 진로 계획에 연결합니다.",
+      "href": "files/week14-extracurricular-career-design.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "15주차 전시회로 떠나는 전공 탐색 여행",
+      "summary": "전공 관련 자료와 사례를 전시회 방식으로 공유하며 서로의 관점을 확장합니다. 계획안의 15주차는 보강주이며, 이 PDF는 전시회 탐색 자료입니다.",
+      "href": "files/week15-major-exploration-exhibition.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "원본 PDF",
+      "title": "16주차 나의 대학생활 설계 공유",
+      "summary": "학기 동안 완성한 대학생활 설계와 진로 로드맵을 발표하고 공유합니다.",
+      "href": "files/week16-campus-life-design-sharing.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "최종 로드맵",
+      "summary": "보충 학습자료 · 대학생활 설계 양식",
+      "href": "generated/final-roadmap.pdf",
+      "downloadLabel": "다운로드"
+    },
+    {
+      "type": "보충 PDF",
+      "title": "포스터 발표 가이드",
+      "summary": "보충 학습자료 · 전공 탐색 발표 안내",
+      "href": "generated/poster-guide.pdf",
+      "downloadLabel": "다운로드"
+    }
   ],
   "prompts": [
-    {"title": "자기이해 문장", "summary": "나의 특성을 정리하는 기본 문장입니다.", "lines": ["나의 강점은 ... 입니다.", "내가 중요하게 생각하는 가치는 ... 입니다.", "나는 ... 상황에서 가장 몰입합니다.", "이 특징은 ... 전공 탐색과 연결됩니다."]},
-    {"title": "전공 비교 틀", "summary": "전공 후보를 비교할 때 사용할 수 있습니다.", "lines": ["관심 전공 1: ...", "관심 전공 2: ...", "비교 기준: 교육과정, 필요 역량, 진출 분야, 나의 적합성", "현재 나에게 더 적합한 선택지는 ... 이며, 그 이유는 ... 입니다."]},
-    {"title": "AI 활용 점검", "summary": "AI 도구를 책임 있게 사용할 때 필요한 기준입니다.", "lines": ["AI가 제안한 정보는 반드시 출처를 확인합니다.", "나의 경험과 판단을 중심으로 최종 내용을 작성합니다.", "AI 사용 목적은 아이디어 정리와 표현 점검으로 제한합니다."]},
-    {"title": "최종 로드맵", "summary": "대학생활 설계 발표를 준비하는 문장 틀입니다.", "lines": ["나의 전공 목표는 ... 입니다.", "이를 위해 이번 학기에는 ... 를 실천하겠습니다.", "다음 학기에는 ... 역량을 강화하겠습니다.", "졸업 전까지 ... 경험을 축적하겠습니다."]}
+    {
+      "title": "자기이해 문장",
+      "summary": "나의 특성을 정리하는 기본 문장입니다.",
+      "lines": [
+        "나의 강점은 ... 입니다.",
+        "내가 중요하게 생각하는 가치는 ... 입니다.",
+        "나는 ... 상황에서 가장 몰입합니다.",
+        "이 특징은 ... 전공 탐색과 연결됩니다."
+      ]
+    },
+    {
+      "title": "전공 비교 틀",
+      "summary": "전공 후보를 비교할 때 사용할 수 있습니다.",
+      "lines": [
+        "관심 전공 1: ...",
+        "관심 전공 2: ...",
+        "비교 기준: 교육과정, 필요 역량, 진출 분야, 나의 적합성",
+        "현재 나에게 더 적합한 선택지는 ... 이며, 그 이유는 ... 입니다."
+      ]
+    },
+    {
+      "title": "AI 활용 점검",
+      "summary": "AI 도구를 책임 있게 사용할 때 필요한 기준입니다.",
+      "lines": [
+        "과제별 AI 허용 여부를 먼저 확인합니다. 진로탐색 및 설계 보고서는 AI 사용 금지입니다.",
+        "허용된 활동에서 AI가 제안한 정보는 원출처와 대조합니다.",
+        "나의 경험과 판단을 중심으로 작성하고, 허용된 AI 사용 내역을 기록합니다."
+      ]
+    },
+    {
+      "title": "최종 로드맵",
+      "summary": "대학생활 설계 발표를 준비하는 문장 틀입니다.",
+      "lines": [
+        "나의 전공 목표는 ... 입니다.",
+        "이를 위해 이번 학기에는 ... 를 실천하겠습니다.",
+        "다음 학기에는 ... 역량을 강화하겠습니다.",
+        "졸업 전까지 ... 경험을 축적하겠습니다."
+      ]
+    }
   ]
 }
-  </script>
-  <script src="../assets/interactive-board.js"></script>
+</script>
+  <script>
+(function () {
+  const dataElement = document.getElementById("course-data");
+  if (!dataElement) return;
+
+  const data = JSON.parse(dataElement.textContent);
+  const board = document.getElementById("board");
+  const resourceGrid = document.getElementById("resourceGrid");
+  const promptGrid = document.getElementById("promptGrid");
+  const search = document.getElementById("searchInput");
+  const chips = document.getElementById("filterChips");
+  const progressText = document.getElementById("progressText");
+  const progressBar = document.getElementById("progressBar");
+  const empty = document.getElementById("emptyState");
+  const storageKey = `interactive-board:${data.slug}`;
+  let stored=[];try{const parsed=JSON.parse(localStorage.getItem(storageKey)||"[]");if(Array.isArray(parsed))stored=parsed.filter(id=>data.items.some(item=>item.id===id));}catch{}
+  const completed=new Set(stored);
+  let activeFilter = "all";
+
+  function normalize(value) {
+    return String(value || "").normalize("NFKC").toLowerCase().replace(/\s+/g, " ").trim();
+  }
+
+  function matchItem(item, query) {
+    const haystack = normalize([
+      item.title,
+      item.summary,
+      item.week,
+      item.tag,
+      item.column,
+      (data.filters.find(filter=>filter.id===item.category)||{}).label,
+      item.downloadLabel
+    ].join(" "));
+    return (!query || haystack.includes(query)) && (activeFilter === "all" || item.category === activeFilter);
+  }
+
+  function renderChips() {
+    const filters = [{ id: "all", label: "전체" }].concat(data.filters || []);
+    chips.innerHTML = filters.map((filter) => (
+      `<button class="chip ${filter.id === activeFilter ? "active" : ""}" type="button" aria-pressed="${filter.id === activeFilter}" data-filter="${filter.id}">${filter.label}</button>`
+    )).join("");
+  }
+
+  function taskCard(item) {
+    const done = completed.has(item.id);
+    const download = item.href
+      ? `<a class="button" href="${item.href}" download>${item.downloadLabel || "자료 다운로드"}</a>`
+      : "";
+    return `<article class="task-card" data-id="${item.id}" data-category="${item.category}">
+      <div class="task-meta">
+        <span class="pill">${item.week || item.tag || "Module"}</span>
+        ${item.tag ? `<span class="pill">${item.tag}</span>` : ""}
+      </div>
+      <h3>${item.title}</h3>
+      <p>${item.summary}</p>
+      <div class="task-foot">
+        <button type="button" class="button" data-work-week="${Number(item.week.replace(/\D/g,''))}">이번 주 작업 계획</button>${download}
+        <label class="check-label"><input type="checkbox" aria-label="${item.week} ${item.title} 완료" data-check="${item.id}" ${done ? "checked" : ""}> 완료</label>
+      </div>
+    </article>`;
+  }
+
+  function renderBoard() {
+    const query = normalize(search.value.trim());
+    let visibleCount = 0;
+    board.innerHTML = data.columns.map((column) => {
+      const items = data.items.filter((item) => item.column === column.id && matchItem(item, query));
+      visibleCount += items.length;
+      if(!items.length)return "";
+      return `<section class="board-column" aria-label="${column.title}">
+        <div class="column-title"><strong>${column.title}</strong><span>${items.length}</span></div>
+        <div class="card-list">${items.map(taskCard).join("") || `<p class="empty">표시할 항목이 없습니다.</p>`}</div>
+      </section>`;
+    }).join("");
+    document.getElementById("resultCount").textContent=visibleCount+"개 항목 표시 / 전체 "+data.items.length+"개";
+    if (empty) empty.hidden = visibleCount !== 0;
+    updateProgress();
+  }
+
+  function renderResources() {
+    if (!resourceGrid || !data.resources) return;
+    const query=normalize(document.getElementById("resourceSearch").value.trim());
+    const resources=data.resources.filter(item=>normalize(item.title+" "+item.summary).includes(query));
+    document.getElementById("resourceEmpty").hidden=resources.length!==0;
+    document.getElementById("resourceCount").textContent=resources.length+"개 PDF 표시 / 전체 "+data.resources.length+"개";
+    resourceGrid.innerHTML = resources.map((item) => (
+      `<article class="resource-card" data-category="${item.category || "all"}">
+        <span class="pill">${item.type || "자료"}</span>
+        <h3>${item.title}</h3>
+        <p>${item.summary || ""}</p>
+        <a class="button primary" href="${item.href}" download aria-label="${item.title} 다운로드">${item.downloadLabel || "다운로드"}</a>
+      </article>`
+    )).join("");
+  }
+
+  function renderPrompts() {
+    if (!promptGrid || !data.prompts) return;
+    promptGrid.innerHTML = data.prompts.map((item, index) => (
+      `<article class="prompt-card">
+        <h3>${item.title}</h3>
+        <p>${item.summary}</p>
+        <ul>${item.lines.map((line) => `<li>${line}</li>`).join("")}</ul>
+        <button class="copy-button" type="button" aria-label="${item.title} 문장 복사" data-copy="${index}">문장 복사</button>
+      </article>`
+    )).join("");
+  }
+
+  function updateProgress() {
+    if (!progressText || !progressBar) return;
+    const total = data.items.length;
+    const count = data.items.filter((item) => completed.has(item.id)).length;
+    progressText.textContent = `${count} / ${total} 완료`;
+    document.querySelector(".track").setAttribute("aria-valuemax",String(total));
+    document.querySelector(".track").setAttribute("aria-valuenow",String(count));
+    progressBar.style.width = `${total ? Math.round((count / total) * 100) : 0}%`;
+  }
+
+  chips.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-filter]");
+    if (!button) return;
+    activeFilter = button.dataset.filter;
+    renderChips();
+    chips.querySelector(`[data-filter="${activeFilter}"]`).focus();
+    renderBoard();
+  });
+
+  search.addEventListener("input", renderBoard);
+
+  board.addEventListener("change", (event) => {
+    const input = event.target.closest("[data-check]");
+    if (!input) return;
+    if (input.checked) completed.add(input.dataset.check);
+    else completed.delete(input.dataset.check);
+    try{localStorage.setItem(storageKey, JSON.stringify([...completed]));}catch{document.getElementById("saveNote").textContent="브라우저 저장이 제한되어 완료 기록은 현재 화면에서만 유지됩니다.";}
+    updateProgress();
+  });
+
+  if (promptGrid) {
+    promptGrid.addEventListener("click", async (event) => {
+      const button = event.target.closest("[data-copy]");
+      if (!button) return;
+      const item = data.prompts[Number(button.dataset.copy)];
+      try{await navigator.clipboard.writeText(item.lines.join("\n"));}catch{const toast=document.getElementById("toast");toast.textContent="복사할 수 없습니다. 위 문장을 선택해 직접 복사해 주세요.";setTimeout(()=>toast.textContent="",5000);return;}
+      const original = button.textContent;
+      button.textContent = "복사 완료";
+      setTimeout(() => { button.textContent = original; }, 1200);
+    });
+  }
+
+  function resetBoard(){search.value="";activeFilter="all";renderChips();renderBoard();}
+  document.getElementById("resetBoard").addEventListener("click",()=>{resetBoard();search.focus();});
+  document.querySelectorAll("[data-reset-board]").forEach(a=>a.addEventListener("click",resetBoard));
+  document.getElementById("resourceSearch").addEventListener("input",renderResources);
+  document.getElementById("resetResources").addEventListener("click",()=>{document.getElementById("resourceSearch").value="";renderResources();});
+  document.querySelector(".brand").addEventListener("click",resetBoard);
+  const header=document.querySelector(".topbar");
+  if(typeof ResizeObserver!=="undefined"){new ResizeObserver(()=>{document.documentElement.style.setProperty("--header-offset",(header.getBoundingClientRect().height+18)+"px");}).observe(header);}
+  const theme=document.getElementById("theme");
+  function setTheme(dark){document.documentElement.dataset.theme=dark?"dark":"light";theme.textContent=dark?"라이트 모드":"다크 모드";theme.setAttribute("aria-pressed",String(dark));}
+  try{setTheme(localStorage.getItem("major-theme")==="dark");}catch{}
+  theme.addEventListener("click",()=>{const dark=document.documentElement.dataset.theme!=="dark";setTheme(dark);try{localStorage.setItem("major-theme",dark?"dark":"light");}catch{}});
+  window.addEventListener('storage',event=>{if(event.key===storageKey||event.key===null){try{const ids=JSON.parse(localStorage.getItem(storageKey)||'[]');if(!Array.isArray(ids))return;completed.clear();ids.forEach(id=>{if(data.items.some(x=>x.id===id))completed.add(id);});renderBoard();}catch{}}});
+  renderChips();
+  renderBoard();
+  renderResources();
+  renderPrompts();
+})();
+
+</script>
+
+<script>
+(function(){
+'use strict';
+const under=true;
+const course=JSON.parse(document.getElementById('course-data').textContent);
+const activities={self:['흥미·강점·가치를 경험과 연결해 정리합니다.','자기이해 메모와 전공 탐색 질문'],major:['관심 전공의 교육과정·필요 역량·진출 분야를 비교합니다.','출처가 포함된 전공 비교표'],ai:['AI가 제시한 전공·진로 정보를 원출처와 대조합니다.','정보 검증 및 AI 사용 기록'],career:['전공 목표와 학습·비교과 활동을 실행 일정으로 연결합니다.','진로 로드맵과 다음 실천 과제']};
+const weekOutputs={1:'수업 운영 확인과 자기소개 메모',2:'흥미·가치·강점에 대한 경험 메모',3:'진로 관심사와 탐색 질문',4:'대학·학과 탐색 메모와 AI를 사용하지 않은 진로탐색 보고서',5:'관심 전공 후보와 전공별 질문',6:'공통 기준을 적용한 전공 비교표',7:'멘토 질문 및 자료 대조 기록',8:'원본 지침에 따른 진로탐색 보고서 점검표',9:'가중치 의사결정표와 선택 근거',10:'AI 리터러시 및 윤리 점검',11:'허용된 AI 활용 활동의 검증 기록',12:'관심 직업과 전공 연결표',13:'학기별 교과 학습 계획',14:'비교과 활동 실행계획',15:'전시회 사례와 전공의 연결 메모',16:'대학생활 설계 로드맵과 공유 자료'};
+const rawItems=course.items.map(x=>({w:Number(x.week.replace(/\D/g,'')),t:x.title,g:x.summary,f:x.href||'',act:x.summary,as:weekOutputs[Number(x.week.replace(/\D/g,''))]}));
+const items=Array.from(new Set(rawItems.map(x=>x.w))).map(w=>{const group=rawItems.filter(x=>x.w===w);return {...group[0],t:group.map(x=>x.t).join(' / '),g:group.map(x=>x.g).join(' '),materials:course.resources.filter(r=>group.some(x=>x.f===r.href)||(w===4&&r.href.endsWith('week04-lecture-2.pdf')))};});
+const id=s=>document.getElementById('cw-'+s), key='course-workflow:v1:'+'major-exploration';
+let pending=null, busy=false;
+const signature=JSON.stringify({items:course.items,resources:course.resources});
+function records(){const raw=localStorage.getItem(key);const a=raw?JSON.parse(raw):[];if(!Array.isArray(a)||a.some(x=>!x||typeof x.task!=='string'||typeof x.next!=='string'||typeof x.title!=='string'||!Number.isInteger(x.week)||typeof x.time!=='string'))throw Error('운영기록 형식을 확인할 수 없습니다. 기존 기록을 덮어쓰지 않았습니다.');return a;}
+function tell(t){id('status').textContent=t;}
+function invalidate(){pending=null;id('planbox').hidden=true;id('confirm').checked=false;id('apply').disabled=true;}
+function chosen(){return items.find(x=>x.w===Number(id('week').value));}
+function log(){try{const a=records();id('log').replaceChildren();if(!a.length){id('log').textContent='아직 저장된 운영기록이 없습니다.';return;}a.slice().reverse().forEach(x=>{const li=document.createElement('li');li.textContent=x.time+' · '+x.week+'주차 '+x.title+'\n작업: '+x.task+'\n다음: '+(x.next||'미지정');id('log').append(li);});}catch(e){tell('저장소를 읽을 수 없습니다. '+e.message);}}
+function brief(){invalidate();const x=chosen();id('brief').textContent=x.w+'주차 · '+x.t+'\n\n맥락: '+x.g+'\n\n활동: '+x.act+'\n산출물: '+x.as;id('materials').replaceChildren();x.materials.forEach(r=>{const a=document.createElement('a');a.href=r.href;a.textContent=r.title+' 열기';a.className='cw-material-link';id('materials').append(a);});try{const a=records().filter(r=>r.week===x.w);id('context').textContent=(x.f?'연결된 자료를 먼저 확인하세요.':'이 주차는 별도 PDF가 없습니다. 주차 활동 안내를 따르세요.')+(a.length?' 이전 기록의 다음 작업: '+(a[a.length-1].next||'미지정'):' 이 주차의 운영기록은 아직 없습니다.');}catch(e){tell(e.name==='TimeoutError'?'자료 확인 시간이 초과되었습니다. 다시 시도하세요.':e.message);}}
+async function latest(){const response=await fetch(location.pathname+'?course-context='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(15000)});if(!response.ok)throw Error('게시 자료를 확인할 수 없습니다. 네트워크 상태를 확인한 뒤 다시 시도하세요.');const text=await response.text();const doc=new DOMParser().parseFromString(text,'text/html');let sig;
+if(under){const d=doc.getElementById('course-data');if(!d)throw Error('과목 맥락이 변경되었습니다. 페이지를 새로고침하세요.');const data=JSON.parse(d.textContent);sig=JSON.stringify({items:data.items,resources:data.resources});}
+else{const script=[...doc.scripts].find(s=>s.textContent.includes('const M=['));const current=[...document.scripts].find(s=>s.textContent.includes('const M=['));if(!script||script.textContent!==current.textContent)throw Error('게시 자료가 변경되었습니다. 새로고침 후 변경안을 다시 만드세요.');sig=signature;}
+if(sig!==signature)throw Error('게시 자료가 변경되었습니다. 새로고침 후 다시 검토하세요.');return new Date().toLocaleString('ko-KR');}
+id('week').innerHTML=items.map(x=>'<option value="'+x.w+'">'+x.w+'주차 · '+x.t+'</option>').join('');
+id('week').addEventListener('change',brief);
+['mode','task','next'].forEach(n=>id(n).addEventListener(n==='mode'?'change':'input',()=>{invalidate();id('preview').textContent=id('mode').value==='read'?'브리핑 확인':'최신 자료 대조 · 변경안 만들기';}));
+id('preview').addEventListener('click',async()=>{if(busy)return;invalidate();if(id('mode').value==='read'){brief();tell('조회 완료: 선택 주차의 자료와 활동을 확인했습니다. 기록은 변경하지 않았습니다.');return;}const task=id('task').value.trim();if(!task){tell('할 일을 먼저 입력하세요.');id('task').focus();return;}busy=true;id('preview').disabled=true;try{const week=chosen().w,next=id('next').value.trim();const old=JSON.stringify(records());tell('최신 게시 자료를 확인하고 있습니다…');const checked=await latest();if(week!==chosen().w||task!==id('task').value.trim()||next!==id('next').value.trim()||id('mode').value!=='write')throw Error('입력이 바뀌었습니다. 변경안을 다시 만드세요.');pending={old,week,title:chosen().t,task,next};id('plan').textContent='최신 게시 자료 대조: '+checked+'\n변경 대상: 이 브라우저의 개인 운영기록\n기록 수: '+JSON.parse(old).length+' → '+(JSON.parse(old).length+1)+'\n주차: '+week+' · '+pending.title+'\n추가할 작업: '+task+'\n다음 작업: '+(next||'미지정')+'\n공식 LMS·출석·성적 변경: 없음';id('planbox').hidden=false;tell('미리보기 완료. 아직 저장하지 않았습니다.');}catch(e){tell(e.name==='TimeoutError'?'자료 확인 시간이 초과되었습니다. 다시 시도하세요.':e.message);}finally{busy=false;id('preview').disabled=false;}});
+id('confirm').addEventListener('change',()=>{id('apply').disabled=!id('confirm').checked||!pending;});
+id('revise').addEventListener('click',()=>{invalidate();id('task').focus();tell('지시를 수정한 후 변경안을 다시 만드세요.');});
+id('apply').addEventListener('click',async()=>{if(!pending||!id('confirm').checked||busy)return;busy=true;id('apply').disabled=true;const p=pending;try{await latest();if(pending!==p||!id('confirm').checked)throw Error('변경안 또는 확인 상태가 바뀌었습니다. 다시 검토하세요.');if(JSON.stringify(records())!==p.old)throw Error('다른 탭에서 기록이 변경되었습니다. 변경안을 다시 만드세요.');const a=JSON.parse(p.old);a.push({week:p.week,title:p.title,task:p.task,next:p.next,time:new Date().toISOString()});const value=JSON.stringify(a);localStorage.setItem(key,value);if(localStorage.getItem(key)!==value)throw Error('저장 후 대조에 실패했습니다. 기록을 확인하세요.');invalidate();log();brief();tell('저장 및 기록 수 대조 완료: '+a.length+'건. 외부 서비스에는 전송되지 않았습니다.');}catch(e){invalidate();tell(e.message);}finally{busy=false;}});
+id('export').addEventListener('click',()=>{try{const a=records();const blob=new Blob([JSON.stringify({course:'전공탐구생활',exportedAt:new Date().toISOString(),scope:'browser-local-not-official-lms',records:a},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='major-exploration'+'-course-records.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);tell('JSON 내보내기를 요청했습니다. 다운로드한 파일을 확인하세요.');}catch(e){tell(e.name==='TimeoutError'?'자료 확인 시간이 초과되었습니다. 다시 시도하세요.':e.message);}});
+window.addEventListener('storage',e=>{if(e.key===key){invalidate();log();tell('다른 탭의 변경을 감지했습니다. 변경안을 다시 검토하세요.');}});
+document.getElementById('board').addEventListener('click',event=>{const button=event.target.closest('[data-work-week]');if(!button)return;id('week').value=button.dataset.workWeek;brief();document.getElementById('course-workspace').scrollIntoView({behavior:'smooth'});id('week').focus();});
+brief();log();
+})();
+</script>
 </body>
 </html>
+
