@@ -1,8 +1,8 @@
-2026학년도 2학기 중간 프로젝트 일정 대조 — 2026-11-03
-최초 국문·영문 강의계획서는 8주차 발표를 계획했다. 이후 10월 운영 공지와 두 분반 프로젝트 지침은 7주차(10월 12–16일) 조별활동, 8주차(10월 19–23일) 온라인 수업, 9주차(10월 26–30일) 발표를 안내했다. 따라서 과거 학생 공지는 9주차 발표 기준으로 읽는다. 이는 발표 완료를 입증하는 기록이 아니며, 분반별 실제 실시일은 별도 확인이 필요하다. 11월 2일 TA 보고서의 ‘8주차 확정’은 실제 실시 증거로 사용하거나 과거 출석·제출 기록에 소급 적용하지 않는다.
+중간 프로젝트 8주차 발표 최종 확정 — 2026-11-03
+교수자 최종 확정: 두 분반의 중간 프로젝트 발표는 8주차입니다. 7주차는 조별 프로젝트 준비, 8주차는 발표와 피드백, 9주차는 원 강의계획서의 비언어적 의사소통(Body Signs) 수업으로 정리합니다. 종전 9주차 발표 및 8주차 온라인 수업 안내와 일정 확인 보류 문구는 이 확정 안내로 대체합니다. 이 일정 정리는 기존 출석, 학생 제출 시점, 성적을 변경하거나 새로운 제출 기한을 부여하지 않습니다. 실제 실시의 달력 날짜는 별도 기록 없이 추정하지 않습니다.
 평가방식은 Pass/Fail, 중간 프로젝트 비중은 30%(루브릭 30점)이다. 필수 최종 산출물은 팀당 영어 디지털 결과물 1개이며 AI 사용은 선택이다. 포스터·슬라이드·영상의 동시 제출 및 NotebookLM 사용은 필수가 아니다. AI 미사용만으로 불이익을 주지 않는다. 기존 출석·제출 시점·성적은 변경하지 않는다.
-Schedule clarification for Fall 2026 — 3 November 2026
-The original Korean and English syllabi scheduled the presentation for Week 8. The subsequent October announcements and both section-specific project guides scheduled group work in Week 7 (12–16 October), online classes in Week 8 (19–23 October), and presentations in Week 9 (26–30 October). Week 9 is therefore the documented announced schedule, not verified evidence that presentations took place. The actual presentation date for each section remains unverified. The 2 November TA report's reference to confirmation of Week 8 must not be treated as evidence of delivery or applied retrospectively to attendance or submission records.
+Final confirmation: Week 8 midterm presentations — 3 November 2026
+Final instructor confirmation: the midterm presentations for both sections are scheduled for Week 8. Week 7 is for project preparation, Week 8 for presentations and feedback, and Week 9 for nonverbal communication (Body Signs), as in the original syllabus. This confirmation supersedes the earlier Week 9 presentation and Week 8 online-class notices and the pending schedule clarification. Existing attendance, submission timestamps, and grades remain unchanged; no new deadline is imposed. Calendar dates of actual delivery are not inferred without supporting records.
 The course uses Pass/Fail assessment. The midterm project accounts for 30% of the course assessment and uses a 30-point rubric. Each team is required to submit one English digital product. AI use is optional; NotebookLM and multiple product formats are not mandatory. Students must not be penalized merely for not using AI. Existing attendance, submission timestamps, and grades remain unchanged.
 
 # 인공지능과 TED강의로 배우는 글로벌 커뮤니케이션
@@ -16,7 +16,7 @@ The course uses Pass/Fail assessment. The midterm project accounts for 30% of th
 
 ## 평가
 
-- 출석 및 참여: 20%
+- 출석 및 참여: 30%
 - 중간 팀 프로젝트: 30% (30점)
 - 기말 개인 포트폴리오: 40%
 
@@ -26,11 +26,10 @@ The course uses Pass/Fail assessment. The midterm project accounts for 30% of th
 않고, 사용 목적·프롬프트·수정·거부 이유를 기록한다. 수업과 무관한 인터넷
 사용은 하지 않는다.
 
-## 최신 중간 프로젝트 안내 (2026학년도 2학기)
+## 확정 중간 프로젝트 일정
 
-- 7주차 (10월 12–16일): 조별 프로젝트 활동
-- 8주차 (10월 19–23일): 기존 공지에 따른 온라인 수업
-- 9주차 (10월 26–30일): 예정된 수업에서 중간 프로젝트 발표
-- 온라인 출석·활동·제출 경로·기한은 기존 온라인 공지를 따릅니다.
-- 중간 외 비율은 기존 게시값이며, 전체 평가 구성의 미확정 10%는 공식 강의계획 및 교수자 안내로 확인하세요.
-- 최신 기준: https://docs.google.com/document/d/1E8OeWi4z32s73nZMeIkYzVdcmzku49VzlTA62jRY1Iw/edit
+- 7주차: 조별 프로젝트 준비
+- 8주차: 중간 프로젝트 발표와 피드백 (교수자 최종 확정)
+- 9주차: 비언어적 의사소통 / Body Signs
+- 기존 출석과 학생 제출 시점은 변경하지 않습니다.
+- 최신 안내: https://docs.google.com/document/d/1V4nLsg1EjXmaNRb6PfEjEbYmH3xoC8mYMu_lOY7bYrE/edit
