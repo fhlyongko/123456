@@ -1,20 +1,20 @@
 :root {
-  --color-paper: oklch(97.5% 0.014 92);
-  --color-paper-strong: oklch(94.8% 0.025 90);
-  --color-surface: oklch(99.2% 0.006 92);
-  --color-ink: oklch(19% 0.028 252);
-  --color-text: oklch(33% 0.032 252);
-  --color-muted: oklch(51% 0.028 252);
-  --color-line: oklch(84% 0.025 250);
-  --color-line-strong: oklch(70% 0.038 250);
-  --color-cobalt: oklch(54% 0.205 263);
-  --color-cobalt-dark: oklch(42% 0.18 263);
-  --color-lime: oklch(84% 0.18 121);
-  --color-lime-soft: oklch(93% 0.09 121);
+  --color-paper: #f7f7f2;
+  --color-paper-strong: #edf1ea;
+  --color-surface: #ffffff;
+  --color-ink: #183c35;
+  --color-text: #29473e;
+  --color-muted: #5b6e63;
+  --color-line: #d8e0d5;
+  --color-line-strong: #9aad9a;
+  --color-cobalt: #245744;
+  --color-cobalt-dark: #183c35;
+  --color-lime: #cbd8b6;
+  --color-lime-soft: #edf1e6;
   --color-coral: oklch(68% 0.19 31);
   --color-coral-soft: oklch(93% 0.055 31);
   --color-yellow: oklch(88% 0.16 91);
-  --color-focus: oklch(57% 0.22 263);
+  --color-focus: #245744;
   --color-shadow: oklch(19% 0.028 252 / 0.16);
   --color-overlay: oklch(97.5% 0.014 92 / 0.9);
 
