@@ -583,3 +583,7 @@ h3 {
     grid-template-columns: 1fr;
   }
 }
+
+/* Coordinated editorial identity; retain course content and layout. */
+:root{--bg:#f7f7f2;--paper:#fff;--ink:#183c35;--text:#29473e;--muted:#5b6e63;--line:#d8e0d5;--teal:#245744;--gold:#8b7746;--soft:#edf1ea}
+body{background:var(--bg);font-family:Arial,'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}.topbar{background:rgba(247,247,242,.96);border-color:var(--line)}.hero::before{background:linear-gradient(135deg,#f7f7f2,#edf1ea)}.lead{color:var(--muted)}.brand-mark{background:var(--ink)}a:focus-visible,button:focus-visible{outline:3px solid var(--teal);outline-offset:4px}
