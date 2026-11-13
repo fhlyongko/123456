@@ -124,7 +124,7 @@
   <p class="kicker">Weekly Modules</p>
   <h2>주차별 학습</h2>
   <p class="lead">검색하거나 주제로 골라 보고, 학습 후 완료를 표시하세요. 체크리스트는 펼쳐서 확인합니다.</p>
-  <div class="controls"><input id="search" type="search" placeholder="검색: abstract, IRB, literature review, AI 윤리 …"></div>
+  <div class="controls"><input id="search" aria-label="주차별 학습 검색" type="search" placeholder="검색: abstract, IRB, literature review, AI 윤리 …"></div>
   <div class="filters" id="filters">
     <button class="filter active" data-f="all">전체</button>
     <button class="filter" data-f="planning">연구설계</button>
@@ -203,7 +203,8 @@ const T=[
 ];
 const cat={planning:"연구설계",writing:"논문작성",ethics:"윤리·AI",career:"성장·커리어"};
 const KEY="grad-writing-done";
-const done=new Set(JSON.parse(localStorage.getItem(KEY)||"[]"));
+function loadProgress(){try{const value=JSON.parse(localStorage.getItem(KEY)||"[]");return new Set(Array.isArray(value)?value.filter(w=>M.some(x=>x.w===w)):[]);}catch{return new Set();}}
+const done=loadProgress();
 let flt="all";const $=s=>document.querySelector(s);
 function draw(){
  const q=$("#search").value.trim().toLowerCase();const host=$("#weeks");host.innerHTML="";
@@ -226,8 +227,8 @@ function draw(){
 function prog(){const p=Math.round(done.size/M.length*100);$("#pbar").style.width=p+"%";$("#ptext").textContent=done.size+" / "+M.length;}
 $("#tools").innerHTML=T.map((t,i)=>`<article class="tool"><h3>${t.h}</h3><p>${t.p}</p><ul>${t.i.map(x=>`<li>${x}</li>`).join("")}</ul><button class="copy" data-i="${i}">템플릿 복사</button></article>`).join("");
 $("#matgrid").innerHTML=M.filter(x=>x.f).map(x=>`<a class="pdf" href="${B+x.f}">↓ W${x.w}</a>`).join("");
-document.addEventListener("change",e=>{if(!e.target.matches("[data-w]"))return;const w=+e.target.dataset.w;e.target.checked?done.add(w):done.delete(w);localStorage.setItem(KEY,JSON.stringify([...done]));prog();});
-document.addEventListener("click",async e=>{const b=e.target.closest(".copy");if(!b)return;const t=T[+b.dataset.i];await navigator.clipboard.writeText(t.h+"\n\n"+t.i.join("\n"));b.textContent="복사 완료";setTimeout(()=>b.textContent="템플릿 복사",1400);});
+document.addEventListener("change",e=>{if(!e.target.matches("[data-w]"))return;const w=+e.target.dataset.w;e.target.checked?done.add(w):done.delete(w);try{localStorage.setItem(KEY,JSON.stringify([...done]));}catch{ /* Keep progress available for this session when storage is blocked. */ }prog();});
+document.addEventListener("click",async e=>{const b=e.target.closest(".copy");if(!b)return;const t=T[+b.dataset.i];try{await navigator.clipboard.writeText(t.h+"\n\n"+t.i.join("\n"));b.textContent="복사 완료";}catch{b.textContent="복사 실패 · 다시 시도";}setTimeout(()=>b.textContent="템플릿 복사",1400);});
 $("#filters").addEventListener("click",e=>{if(!e.target.matches(".filter"))return;document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));e.target.classList.add("active");flt=e.target.dataset.f;draw();});
 $("#search").addEventListener("input",draw);
 draw();
